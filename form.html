@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>form</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
+
+</head>
+
+<body class="body">
+	<div class="container">
+    <div class="banner">
+      <h1 class="logo">
+        <a href="#" class="logoLink positionR">
+          <img src="images/logo.png" width="200" height="70" alt="logo image"/>
+          <span class="logoText positionA positionASetting">websit logo</span>
+        </a>
+      </h1>
+      <p>web site introduction</p> 
+    </div>
+    
+    <div class="content">
+   		<div class="tips success">This is a tips with the class <strong>.success</strong>. <a href="#">Link</a>.</div>
+      <div class="tips notice">This is atips with the class <strong>.error</strong>. <a href="#">Link</a>.</div>
+      <div class="tips error">This is a tips with the class <strong>.notice</strong>. <a href="#">Link</a>.</div>
+      
+      <form id="loginform" class="loginform" action="" method="post">   
+        <fieldset>
+          <legend>Sample Login Form</legend>
+          <p class="inputWrap">
+            <label for="username">Username</label><br/>
+            <input type="text" class="text" name="username" id="username"/> 
+            <span class="validatorTips">username must not blank!</span>
+          </p> 
+        
+          <p>
+            <label for="password">Password</label><br/>
+            <input type="password" class="text" id="password" name="password"/>
+          </p>
+      
+          <p>
+            <input type="submit" value="Submit"/>
+            <input type="reset" value="Reset"/>
+          </p>
+      
+        </fieldset> 
+      </form>
+     	
+      <form id="registerform" action="" method="post">   
+        <fieldset>
+          <legend>Sample Register Form</legend>
+          
+         		<p>
+              <label for="field0">Text input (title)</label><br/>
+              <input type="text" class="title" name="field0" id="field0" />
+              <span class="validatorTips">title must not blank!</span>
+            </p>
+
+            <p>
+              <label for="field1">Another field</label><br/>
+              <input type="text" class="text" id="field1" name="field1" />
+            </p>
+
+            <p>
+              <label for="field3">A password field</label><br/>
+              <input type="password" class="text" id="field3" name="field3" />
+            </p>
+            
+            <p>
+              <label for="field4">Textarea</label><br/>
+              <textarea name="field4" id="field4" rows="5" cols="20"></textarea>
+            </p>
+
+ 
+            <p>
+              <label for="field5">Select field</label><br/>
+              <select id="field5" name="field5">
+                <option value="1">Ottawa</option>
+                <option value="2">Calgary</option>
+                <option value="3">Moosejaw</option>
+              </select>
+            </p>
+  
+            <p>
+              <label for="field6">Select with groups</label><br/>
+              <select id="field6" name="field6">
+                <option>Favorite pet</option>
+                <optgroup label="mammals">
+                  <option>dog</option>
+                  <option>cat</option>
+                  <option>rabbit</option>
+                  <option>horse</option>
+                </optgroup>
+                <optgroup label="reptiles">
+                  <option>iguana</option>
+                  <option>snake</option>
+                </optgroup>
+              </select>
+            </p>
+  
+            <p><label>Radio buttons</label><br/>
+              <input type="radio" name="example" /> Radio one<br/>
+              <input type="radio" name="example" /> Radio two<br/>
+              <input type="radio" name="example" /> Radio three<br/>
+            </p>
+  
+            <p><label>Checkboxes</label><br/>
+              <input type="checkbox"/> Check one<br/>
+              <input type="checkbox"/> Check two<br/>
+              <input type="checkbox"/> Check three<br/>
+            </p>
+      			
+            <p>
+              <input type="submit" value="Submit" />
+              <input type="reset" value="Reset" />
+            </p>
+            
+        </fieldset> 
+      </form>
+      
+      <div class="footer clear">
+        <p class="bottom">Copyright 2010 Web Development Machine All rights reserved.</p>
+      </div> 
+    </div>
+  </div>
+</body>
+</html>

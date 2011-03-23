@@ -1,0 +1,173 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* -----------------------------------------------------------------------
+ 
+ Rain CSS Framework 2.0
+ http://www.webdevelopmentmachine.com
+
+		@  Copyright (c) Web Development Machine All rights reserved.
+		@  version  2.0
+		@  author: Rain.Zhai 
+		@  date: 2010.6.27
+		@  update date: 2010.8.9
+
+----------------------------------------------------------------------- */
+
+/**
+----------------------------------- 
+Atomic Css Objects   
+-----------------------------------
+*/
+/*  font 
+		free properties
+		--font-family
+		--font-size
+		--font
+*/
+.fontNormal{ font-style:normal;}
+.fontItalic{ font-style:italic;}
+.fontOblique{ font-style:oblique;}
+.fontVariant{ font-variant:small-caps;}
+.fontBord{ font-weight:bold;} 
+.strong{ font-weight:bold;}
+.fontBorder{ font-weight:bolder;}
+.fontLighter{ font-weight: lighter;}
+.fontsizeXxsmall{ font-size:xx-small;}
+.fontsizeXsmall{ font-size: x-small;}
+.fontsizeSmall{ font-size: small;}
+.fontsizeMedium{ font-size: medium;}
+.fontsizeLarge{ font-size: large;}
+.fontsizeXlarge{ font-size: x-large;}
+.fontsizeXxlarge{ font-size: xx-large;}
+/*  color and background 
+		free properties
+		--color
+		--background
+*/
+
+/*  text
+		free properties
+		--word-spacing
+		--letter-spacing
+		--text-indent
+		--line-height
+*/
+.textDecNone{text-decoration:none;}
+.textDecUnder{text-decoration: underline;}
+.textDecOver{text-decoration: overline;}
+.textDecThough{text-decoration: line-through;}
+.valignBase{vertical-align: baseline;}
+.valignSub{vertical-align: sub;}
+.valignSuper{vertical-align: super;}
+.valignTop{vertical-align: top;}
+.valignTtop{vertical-align: text-top;}
+.valignMiddle{vertical-align: middle;}
+.valignBottom{vertical-align: bottom;}
+.valignTbottom{vertical-align: text-bottom;}
+.tTransCap{text-transform:capitalize;}
+.tTransUpper{text-transform:uppercase;}
+.tTransLower{text-transform:lowercase;}
+.textAlignLeft{text-align:left;}
+.textAlignRight{text-align:right;}
+.textAlignCenter{text-align:center;}
+.textIndent{text-indent:20px;}
+.textIndentLarge{text-indent:40px;} 
+/*  box
+		free properties
+		--width
+		--height
+*/
+.marginLRAuto{ margin-left:auto; margin-right:auto;}
+.center{ margin-left:auto; margin-right:auto;}
+.marginTop{ margin-top:10px;}
+.marginBottom{ margin-bottom:10px;}
+.marginRight{ margin-right:10px;}
+.marginLeft{ margin-left:10px;}
+.margin{ margin:10px;}
+.paddingTop{ padding-top:10px;}
+.paddingBottom{ padding-bottom:10px;}
+.paddingRight{ padding-right:10px;}
+.paddingLeft{ padding-left:10px;}
+.padding{ padding:10px;}
+.border { border:1px #ccc solid;}
+.noBorder{ border:0 none!important;}
+.left{ float:left;}
+.right{ float:right;} 
+.clearRight{ clear:right;}
+.clearLeft{ clear:left;}
+.clear{clear:both;}
+
+/*	positioning
+		free properties
+		--direction
+		--clip  
+		--z-index
+*/
+.positionS{ position:static;}
+.positionA{ position:absolute;}
+.positionR{ position: relative;}
+.positionFix{ position:fixed;}
+.show{ display:block;}
+.displayBlock{display:block;}
+.hide{ display:none;}
+.overflowHide{ overflow:hidden;}
+.overflowAuto{ overflow:auto;}
+.overflowScroll{ overflow:scroll;}
+.overflowVisible{ overflow:visible;}
+.visible{ visibility:visible;}
+.visibleFalse{ visibility:hidden;}
+/*	list
+		free properties
+
+*/
+.listStyleNo{list-style:none outside none;}
+
+/* useful objects*/
+.imageAds{ border:1px #ccc solid; background-color:#efefef; text-align:center; padding:5px;}
+.triangle{width:0; height:0; border:5px solid transparent;border-left-color:#ccc;}
+.cursorPointer{ cursor:pointer;}
+
+/**
+-----------------------------------  
+Page Layout Css Objects    
+----------------------------------- 
+*/
+/*-- container object use --*/
+.container{ width:1000px;}
+
+	/*-- banner.css -- banner object and sub-objects --*/
+	.banner{ margin-bottom:10px; background:#F2F2F2;}
+		.logo{ width:200px; padding:20px 0 0; margin:0;}  
+				.logoText{z-index:0; text-indent:-9999px;}
+				.secondaryTitle{color:#fff;}
+		.menuNav{height:40px; line-height:40px; padding:0; background:#CCC;} 
+			.menuLink{ padding:0 20px;}
+	
+	/*-- content.css -- content object and sub-objects --*/
+	.content{ border-top:1px #ccc solid;}
+	
+		.sidebar{ width:300px;}
+			.sidebox{ border-bottom:3px #ccc solid;}
+				.category{ padding-left:5px; font-size:1.5em; margin-top:5px;}
+				.theme{padding-left:5px; padding-bottom:10px;}
+					.theme li{ padding:3px 0;}
+		
+		.main{ width:690px;}
+			.mainBox{ margin:10px; border-bottom:1px #ccc solid;}
+			.postItem{ margin-bottom:1.2em;}
+				.articleTitleWrap{margin-top:1em;} 
+			.pagination{ margin-top:2em; text-align:right; padding-right:20px; font-size:13px;}
+				.paginationLink{padding:0 3px; }
+				
+			.commonTitle{ font-size:1.5em;}
+			
+			.addComment{ border-bottom:0 none;}
+			 .commonform span{ padding-left:5px;}
+		
+		.footer{ background:#F2F2F2; height:40px; line-height:40px; padding-left:10px;}
+		
+		/*-- form.css -- form object and sub-objects --*/	
+		.loginform{ width:350px; margin:auto;}
+			.inputWrap{}
+				.validatorTips { color:red;}
+		

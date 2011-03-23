@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML5 examples</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
+<script type="text/javascript">
+	window.onload = test;
+	//sessionStorage and localStorage
+	function test(){ 
+    window.sessionStorage.setItem("test", "this is sessionStorage");
+    if (window.globalStorage){
+        window.globalStorage.namedItem("a.com").setItem("test", "this is LocalStorage");
+    }else{
+    		window.localStorage.setItem("test", "this is LocalStorage");
+		}
+		
+		var a = window.sessionStorage.getItem("test"); 
+		if (window.globalStorage){
+			var b = window.globalStorage.namedItem("a.com").getItem("test"); 
+    }else{
+			var c = window.localStorage.getItem("test"); 
+		}
+	}
+</script>
+</head>
+
+<body class="body">	
+<div class="container">
+    <div class="banner">
+      <h1 class="logo displayBlock overflowHide">
+        <a href="#" class="displayBlock textDecNone positionR">
+          <img src="images/logo.png" width="200" height="70" alt="logo image"/>
+          <span class="logoText positionA overflowHide">websit logo</span>
+        </a>
+      </h1>
+      <p>web site introduction</p>
+      <ul class="menuNav positionR listStyleNo displayBlock last">
+      	<li class="menuItem left positionR"><a class="menuLink displayBlock textDecNone" href="#">link</a></li>
+      	<li class="menuItem left positionR"><a class="menuLink" href="#">link</a></li>
+      	<li class="menuItem left positionR"><a class="menuLink" href="#">link</a></li>
+      </ul>
+    </div>
+    
+    <div class="content">
+    	<h1>HTML 5 examples</h1>
+      <iframe>
+      
+      </iframe>  
+  	</div>
+    
+</div>
+</body>
+</html>
