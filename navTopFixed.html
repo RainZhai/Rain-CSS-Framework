@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Rain CSS > Article</title>
+<title>Rain CSS > Navigation Top Fixed</title>
 <!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
@@ -12,27 +12,28 @@
 </head>
 
 <body class="body">
-	<div class="header headerBlue">
-  	<nav class="listStyleNo positionR clearfix">
-    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
-    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
-    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
-    </nav>
-  </div>
-	<div class="headerM headerGrey">
-  	<div class="container positionR">
-    	<div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
+    <div class="header headerBlue positionFix" style="top:0; z-index:10000;">
+      <nav class="listStyleNo positionR clearfix">
+        <a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
+        <a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
+        <a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
+      </nav>
     </div>
-  </div>
-  
-	<div class="container marginTop"> 
+    <div class="headerM headerGrey" style="margin-top:30px;">
+      <div class="container positionR">
+        <div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
+      </div>
+    </div>
+    
+	<div class="container marginTop positionR"> 
     <div class="content">
     	<div class="sidebar left positionR">
         <div class="sidebox">
           <h2 class="category">Web Design and Applications</h2>
           <ul class="theme listStyleNo last">
             <li>
-            <a href="#" style="width:180px; display:block; white-space:nowrap;text-overflow:ellipsis; overflow:hidden;">Math on the Web Math on the WebMath on the WebMath on the WebMath on the Web</a>
+            <a href="#" style="width:180px; display:block; white-space:nowrap;text-overflow:ellipsis; overflow:hidden;">
+            Math on the Web Math on the WebMath on the WebMath on the WebMath on the Web</a>
             </li>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Mobile Web</a></li>

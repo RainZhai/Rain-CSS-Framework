@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Blueprint HTML Elements Tests</title>
+
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+    <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/>
+    <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/><![endif]-->
+		<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
+		<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+  </head>
+  <body class="showgrid">
+		<div class="header headerBlue">
+		  <nav class="listStyleNo positionR clearfix">
+		    <a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
+		    <a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
+		    <a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
+		  </nav>
+		</div>
+		<div class="headerM headerGrey">
+		  <div class="container positionR">
+		    <div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
+		  </div>
+		</div>
+    <div class="container marginTop">
+      <h2>Tests for common HTML elements</h2>
+      <hr>
+      <h5>PARAGRAPHS <span class="alt">&amp;</span> BOXES</h5>
+      <div class="span-8">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <sub>sub text</sub> ut labore et <sup>sup text</sup> magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+
+      <div class="span-8">
+        <p class="small">Use class <code>small</code>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="large">Use class <code>large</code>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+
+      <div class="span-8 last">
+        <div class="box">
+          <p class="last">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <blockquote>
+          <p>Use <code>&lt;blockquote&gt;</code> tag,Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </blockquote>
+        <blockquote class="pull-right">
+          <p>Use <code>&lt;blockquote class="pull-right"&gt;</code> Ut enim ad minim veniam,ut aliquip ex ea commodo consequat.</p>
+        </blockquote>
+
+      </div>
+      <hr>
+
+      <h5>LISTS</h5>
+      <div class="span-8">
+        <ul>
+          <li><code>&lt;ul&gt;</code>Unordered list test</li>
+          <li>Another list element. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+          <li>Yet another element in the list</li>
+          <li>Some long text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+        </ul>
+        <ol>
+          <li><code>&lt;ol&gt;</code>Ordered list test</li>
+          <li>Another list element</li>
+          <li>Yet another element in the list</li>
+        </ol>
+      </div>
+
+      <div class="span-8">
+        <ol>
+          <li>Ordered list</li>
+          <li>Here's a nested unordered list
+          <ul>
+            <li>Nested Unordered list</li>
+            <li>Nested ordered list
+            <ol>
+              <li>The first</li>
+              <li>And the second</li>
+            </ol>
+            </li>
+          </ul>
+          </li>
+          <li>Ordered List item</li>
+          <li>Nested Ordered list
+          <ol>
+            <li>Some point</li>
+            <li>Nested Unordered list
+            <ul>
+              <li>The first</li>
+              <li>And the second</li>
+            </ul>
+            </li>
+          </ol>
+          </li>
+        </ol>
+      </div>
+
+      <div class="span-8 last">
+      	<p><code>&lt;dl&gt;</code>definition list</p>
+        <dl>
+          <dt><code>&lt;dt&gt;</code>definition term</dt>
+          <dd><code>&lt;dd&gt;</code>definition description</dd>
+          <dt>definition list dt</dt>
+          <dd>definition list dd</dd>
+          <dt>Lorem ipsum dolor sit amet</dt>
+          <dd>Lorem ipsum dolor sit amet</dd>
+          <dt>Lorem ipsum dolor sit amet</dt>
+          <dd>Lorem ipsum dolor sit amet</dd>
+        </dl>
+      </div>
+      <hr>
+
+      <h5>HEADINGS</h5>
+      <div class="span-8">
+        <h1>H1: Lorem ipsum dolor sit amet</h1>
+        <h2>H2: Lorem ipsum dolor sit amet, consectetur elit</h2>
+        <h3>H3: Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
+        <h4>H4: Lorem ipsum dolor sit amet, consectetur adipisicing elit adipis</h4>
+        <h5>H5: Lorem ipsum dolor sit amet, consectetur adipisicing elit adipisicing elit adipisicing elit</h5>
+        <h6>H6: Lorem ipsum dolor sit amet, consectetur adipisicing elit adipisicing elit adipisicing elit</h6>
+      </div>
+
+      <div class="span-8">
+        <h1>Heading 1</h1><hr>
+        <h2>Heading 2</h2><hr>
+        <h3>Heading 3</h3><hr>
+        <h4>Heading 4</h4><hr>
+        <h5>Heading 5</h5><hr>
+        <h6>Heading 6</h6>
+      </div>
+
+      <div class="span-8 last">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+      </div>
+      <hr>
+
+      <h5>MISC ELEMENTS</h5>
+      <div class="span-8">
+        <p>
+          <strong>&lt;strong&gt;</strong><br>
+          <del>&lt;del&gt; deleted</del><br>
+          <dfn>&lt;dfn&gt; dfn</dfn><br>
+          <em>&lt;em&gt; emphasis</em>
+        </p>
+        <p>
+          <a>&lt;a&gt; anchor</a><br>
+          <a href="http://www.google.com">&lt;a&gt; a + href</a>
+        </p>
+        <p>
+          <abbr title="extended abbr text should show when mouse over">&lt;abbr&gt; abbr - extended text when mouseover.</abbr><br>
+          <acronym title="extended acronym text should show when mouse over">&lt;acronym&gt; acronym - extended text when mouseover.</acronym>
+        </p>
+        <address>
+          &lt;address&gt;<br>
+          Donald Duck<br>
+          Box 555<br>
+          Disneyland
+        </address>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore.</p>
+      </div>
+
+      <div class="span-8">
+        <table summary="This is the summary text for this table."  border="0" cellspacing="0" cellpadding="0">
+          <caption><em>A standard test table with a caption, tr, td elements</em></caption>
+          <tr>
+            <th class="span-4">Table Header One</th>
+            <th class="span-4 last">Table Header Two</th>
+          </tr>
+          <tr>
+            <td>TD One</td>
+            <td>TD Two</td>
+          </tr>
+          <tr>
+            <td colspan="2">TD colspan 2</td>
+          </tr>
+        </table>
+
+        <table summary="This is the summary text for this table."  border="0" cellspacing="0" cellpadding="0">
+          <caption><em>A test table with a thead, tfoot, and tbody elements</em></caption>
+          <thead>
+            <tr>
+              <th class="span-4">Table Header One</th>
+              <th class="span-4 last">Table Header Two</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <td colspan="2">tfoot footer</td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr>
+              <td>TD One</td>
+              <td>TD Two</td>
+            </tr>
+            <tr>
+              <td>TD One</td>
+              <td>TD Two</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>TD One</td>
+              <td>TD Two</td>
+            </tr>
+            <tr>
+              <td>TD One</td>
+              <td>TD Two</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="span-8 last">
+<pre>&lt;pre&gt;
+pre  space1
+pre  space1
+pre    space2
+pre    space2
+pre tab
+pre tab</pre>
+
+        <code>&lt;code&gt;
+          Not indented
+          indent1
+          indent1
+          indent2
+          indent3</code>
+
+        <tt>&lt;tt&gt;
+          This tt text should be monospaced
+          and
+          wrap as if
+          one line of text
+          even though the code has newlines, spaces, and tabs.
+          It should be the same size as &lt;p&gt; text.
+        </tt> 
+      </div>
+      <hr/>
+			<h5>Text Element font property</h5>
+			<div class="span-13 border">
+				<p class="fontNormal">text with class <code>fontNormal</code></p>
+				<p class="fontItalic">text with class <code>fontItalic</code></p>
+				<p class="fontOblique">text with class <code>fontOblique</code></p>
+				<p class="fontVariant">text with class <code>fontVariant</code></p>
+				<p class="fontWeightNormal">text with class <code>fontWeightNormal</code></p>
+				<p class="fontBord">text with class <code>fontBord</code> or <code>strong</code></p>
+				<p class="fontBorder">text with class <code>fontBorder</code></p>
+				<p class="fontLighter">text with class <code>fontLighter</code></p> 
+				<p class="fontsizeXxsmall">text with class <code>fontsizeXxsmall</code></p>
+				<p class="fontsizeXsmall">text with class <code>fontsizeXsmall</code></p>
+				<p class="fontsizeSmall">text with class <code>fontsizeSmall</code></p>
+				<p class="fontsizeMedium">text with class <code>fontsizeMedium</code></p>
+				<p class="fontsizeLarge">text with class <code>fontsizeLarge</code></p>
+				<p class="fontsizeXlarge">text with class <code>fontsizeXlarge</code></p>
+				<p class="fontsizeXxlarge">text with class <code>fontsizeXxlarge</code></p>
+			</div>
+			<div class="span-12 border last">
+				<p class="textDecNone">text with class <code>textDecNone</code></p>
+				<p class="textDecUnder">text with class <code>textDecUnder</code></p>
+				<p class="textDecOver">text with class <code>textDecOver</code></p>
+				<p class="textDecThough">text with class <code>textDecThough</code></p>
+				<p><span class="valignBase">text</span> with class <code>valignBase</code></p>
+				<p><span class="valignSub">text</span> with class <code>valignSub</code></p>
+				<p><span class="valignSuper">text</span> with class <code>valignSuper</code></p>
+				<p><span class="valignTop">text</span><span class="fontsize-2">with</span> class <code>valignTop</code></p>
+				<p><span class="valignTtop">text</span> with class <code>valignTtop</code></p>				
+				<p><span class="valignMiddle">text</span> with class <code>valignMiddle</code></p>					
+				<p><span class="valignBottom">text</span> with class <code>valignBottom</code></p>				
+				<p><span class="valignTbottom">text</span> <span class="fontsize-2">with</span> class <code>valignTbottom</code></p>				
+				<p><span class="tTransCap">text</span> with class <code>tTransCap</code></p>	
+				<p><span class="tTransUpper">text</span> with class <code>tTransUpper</code></p>
+				<p><span class="tTransLower">TEXT</span> with class <code>tTransLower</code></p>
+				<p class="textAlignLeft">text with class <code>textAlignLeft</code></p>
+				<p class="textAlignRight">text with class <code>textAlignRight</code></p>
+				<p class="textAlignCenter">text with class <code>textAlignCenter</code></p>
+				<p class="textIndent">text with class <code>textIndent</code></p>
+			</div>
+			<hr/>
+			<h5>Links with icons</h5>
+            <div>
+            <a href="#" class="width-10 height-2 displayBlock"><img src="images/wdm_logo.jpg" class="left marginRightS" /><em>web DM</em></a>
+            </div>
+			<h5>Text Element font size</h5>
+			<div>
+				<p class="fontsize-1 bottom">text with class <code>fontsize-1</code></p> 
+				<p class="fontsize-2 bottom">text with class <code>fontsize-2</code></p> 
+				<p class="fontsize-3 bottom">text with class <code>fontsize-3</code></p> 
+				<p class="fontsize-4 bottom">text with class <code>fontsize-4</code></p> 
+				<p class="fontsize-5 bottom">text with class <code>fontsize-5</code></p> 
+				<p class="fontsize-6 bottom">text with class <code>fontsize-6</code></p> 
+				<p class="fontsize-7 bottom">text with class <code>fontsize-7</code></p>
+				<p class="fontsize-8 bottom">text with class <code>fontsize-8</code></p>  
+				<p class="fontsize-9 bottom">text with class <code>fontsize-9</code></p> 
+				<p class="fontsize-10 bottom">text with class <code>fontsize-10</code></p>
+			</div> 
+      <hr/>
+      <p>
+        <a href="http://validator.w3.org/check?uri=referer">
+          <img src="images/valid.png" alt="Valid HTML 4.01 Strict" height="31" width="88" class="top"/>
+        </a>
+      </p>
+
+    </div>
+  </body>
+</html>

@@ -2,129 +2,656 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>form</title>
+<title>Rain CSS > Form</title>
 <!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
-
 </head>
 
 <body class="body">
-	<div class="container">
-    <div class="banner">
-      <h1 class="logo">
-        <a href="#" class="logoLink positionR">
-          <img src="images/logo.png" width="200" height="70" alt="logo image"/>
-          <span class="logoText positionA positionASetting">websit logo</span>
-        </a>
-      </h1>
-      <p>web site introduction</p> 
+	<div class="header headerBlue">
+  	<nav class="listStyleNo positionR clearfix">
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container positionR">
+    	<div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
     </div>
-    
+  </div>
+  
+	<div class="container marginTop"> 
     <div class="content">
-   		<div class="tips success">This is a tips with the class <strong>.success</strong>. <a href="#">Link</a>.</div>
-      <div class="tips notice">This is atips with the class <strong>.error</strong>. <a href="#">Link</a>.</div>
-      <div class="tips error">This is a tips with the class <strong>.notice</strong>. <a href="#">Link</a>.</div>
-      
-      <form id="loginform" class="loginform" action="" method="post">   
+    	<div class="sidebar left positionR">
+      	<h2 class="category">Web Form with CSS2</h2>
+      	<p>This part forms example from blueprint framwork,and extend it with other useful css objects</p>
+      </div>
+      <div class="main mainRight positionR">
+    	<h1>Forms</h1>
+        <form id="dummy" action="" method="post">
+          <fieldset>
+            <legend>Sample Form</legend>
+            <p>
+              <label for="dummy0">Text input (title)</label><br>
+              <input type="text" class="title" name="dummy0" id="dummy0" value="Field with class .title" />
+            </p>
+
+            <p>
+              <label for="dummy1">Another field</label><br>
+              <input type="text" class="text" id="dummy1" name="dummy1" value="Field with class .text"/>
+            </p>
+
+            <p>
+              <label for="dummy2">Textarea</label><br>
+              <textarea name="dummy2" id="dummy2" rows="5" cols="20"></textarea>
+            </p>
+
+            <p>
+              <label for="dummy3">A password field</label><br>
+              <input type="password" class="text" id="dummy3" name="dummy3" value="Password"/>
+            </p>
+
+            <p>
+              <input type="submit" value="Submit">
+              <input type="reset" value="Reset">
+            </p>
+
+          </fieldset>
+        </form> 
+        <div class="error">
+          This is a &lt;div&gt; with the class <strong>.error</strong>. <a href="#">Link</a>.
+        </div>
+        <div class="notice">
+          This is a &lt;div&gt; with the class <strong>.notice</strong>. <a href="#">Link</a>.
+        </div>
+        <div class="info">
+          This is a &lt;div&gt; with the class <strong>.info</strong>. <a href="#">Link</a>.
+        </div>
+        <div class="success">
+          This is a &lt;div&gt; with the class <strong>.success</strong>. <a href="#">Link</a>.
+        </div>
+
         <fieldset>
-          <legend>Sample Login Form</legend>
-          <p class="inputWrap">
-            <label for="username">Username</label><br/>
-            <input type="text" class="text" name="username" id="username"/> 
-            <span class="validatorTips">username must not blank!</span>
-          </p> 
+          <legend>Select, checkboxes, lists</legend>
+
+          <p>
+            <label for="dummy3">Select field</label><br>
+            <select id="dummy3" name="dummy3">
+              <option value="1">Ottawa</option>
+              <option value="2">Calgary</option>
+              <option value="3">Moosejaw</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="dummy4">Select with groups</label><br>
+            <select id="dummy4" name="dummy4">
+              <option>Favorite pet</option>
+              <optgroup label="mammals">
+                <option>dog</option>
+                <option>cat</option>
+                <option>rabbit</option>
+                <option>horse</option>
+              </optgroup>
+              <optgroup label="reptiles">
+                <option>iguana</option>
+                <option>snake</option>
+              </optgroup>
+            </select>
+          </p>
+
+          <p><label>Radio buttons</label><br>
+            <input type="radio" name="example"> Radio one<br>
+            <input type="radio" name="example"> Radio two<br>
+            <input type="radio" name="example"> Radio three<br>
+          </p>
+
+          <p><label>Checkboxes</label><br>
+            <input type="checkbox"> Check one<br>
+            <input type="checkbox"> Check two<br>
+            <input type="checkbox"> Check three<br>
+          </p>
+        </fieldset>
         
-          <p>
-            <label for="password">Password</label><br/>
-            <input type="password" class="text" id="password" name="password"/>
-          </p>
-      
-          <p>
-            <input type="submit" value="Submit"/>
-            <input type="reset" value="Reset"/>
-          </p>
-      
-        </fieldset> 
-      </form>
-     	
-      <form id="registerform" action="" method="post">   
         <fieldset>
-          <legend>Sample Register Form</legend>
+          <legend>Alignment One</legend>
+          <p>
+            <label for="dummy5">Select field</label>
+            <select id="dummy5" name="dummy5">
+              <option value="1">Ottawa</option>
+              <option value="2">Calgary</option>
+              <option value="3">Moosejaw</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="dummy6">Text input (title)</label>
+            <input type="text" class="title" name="dummy6" id="dummy6" value="Field with class .title">
+          </p>
+
+          <p>
+            <label for="dummy7">Select field</label>
+            <select id="dummy7" name="dummy7">
+              <option value="1">Ottawa</option>
+              <option value="2">Calgary</option>
+              <option value="3">Moosejaw</option>
+            </select>
+            <label for="dummy8">Another field</label>
+            <input type="text" class="text" id="dummy8" name="dummy8" value="Field with class .text">
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Alignment Two</legend>
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="dummy9">Select field</label>
+            <select id="dummy9" name="dummy9" class="marginTopL">
+              <option value="1">Ottawa</option>
+              <option value="2">Calgary</option>
+              <option value="3">Moosejaw</option>
+            </select>
+          </p>
+
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="dummy10">Text input (title)</label>
+            <input type="text" class="title" name="dummy6" id="dummy10" value="Field with class .title">
+          </p> 
+
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="dummy11">Field 1</label>
+            <input type="text" class="text" id="dummy8" name="dummy11" value="Field with class .text">
+          </p>
           
-         		<p>
-              <label for="field0">Text input (title)</label><br/>
-              <input type="text" class="title" name="field0" id="field0" />
-              <span class="validatorTips">title must not blank!</span>
-            </p>
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="dummy12">Textarea</label>
+            <textarea name="dummy2" class="commonTextarea" id="dummy12" rows="5" cols="20"></textarea>
+          </p>
+        </fieldset>
 
-            <p>
-              <label for="field1">Another field</label><br/>
-              <input type="text" class="text" id="field1" name="field1" />
-            </p>
+        <fieldset>
+          <legend>Form states</legend>
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="warning_bg">Input with warning(bg)</label>
+            <input type="text" class="text bgLightYellow" name="warning_bg" id="warning_bg" value="Field with class .text and .bgLightYellow"/>
+          </p> 
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="error_bg">Input with error(bg)</label>
+            <input type="text" class="text bgLightRed" name="error_bg" id="error_bg" value="Field with class .text and .bgLightRed"/>
+          </p> 
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="success_bg">Input with success(bg)</label>
+            <input type="text" class="text bgLightGreen" name="success_bg" id="success_bg" value="Field with class .text and .bgLightGreen"/>
+          </p> 
 
-            <p>
-              <label for="field3">A password field</label><br/>
-              <input type="password" class="text" id="field3" name="field3" />
-            </p>
-            
-            <p>
-              <label for="field4">Textarea</label><br/>
-              <textarea name="field4" id="field4" rows="5" cols="20"></textarea>
-            </p>
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="warning_border">Input warning(border)</label>
+            <input type="text" class="text borderYellow" id="warning_border" name="warning_border" value="Field with class .text and .borderYellow"/>
+          </p>
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="error_border">Input error(border)</label>
+            <input type="text" class="text borderRed" id="error_border" name="error_border" value="Field with class .text and .borderRed"/>
+          </p>
+          <p class="clearfix">
+            <label class="commonLable left textAlignRight" for="success_border">Input success(border)</label>
+            <input type="text" class="text borderGreen" id="success_border" name="success_border" value="Field with class .text and .borderGreen"/>
+          </p>
 
- 
-            <p>
-              <label for="field5">Select field</label><br/>
-              <select id="field5" name="field5">
-                <option value="1">Ottawa</option>
-                <option value="2">Calgary</option>
-                <option value="3">Moosejaw</option>
-              </select>
-            </p>
-  
-            <p>
-              <label for="field6">Select with groups</label><br/>
-              <select id="field6" name="field6">
-                <option>Favorite pet</option>
-                <optgroup label="mammals">
-                  <option>dog</option>
-                  <option>cat</option>
-                  <option>rabbit</option>
-                  <option>horse</option>
-                </optgroup>
-                <optgroup label="reptiles">
-                  <option>iguana</option>
-                  <option>snake</option>
-                </optgroup>
-              </select>
-            </p>
-  
-            <p><label>Radio buttons</label><br/>
-              <input type="radio" name="example" /> Radio one<br/>
-              <input type="radio" name="example" /> Radio two<br/>
-              <input type="radio" name="example" /> Radio three<br/>
-            </p>
-  
-            <p><label>Checkboxes</label><br/>
-              <input type="checkbox"/> Check one<br/>
-              <input type="checkbox"/> Check two<br/>
-              <input type="checkbox"/> Check three<br/>
-            </p>
-      			
-            <p>
-              <input type="submit" value="Submit" />
-              <input type="reset" value="Reset" />
-            </p>
-            
-        </fieldset> 
-      </form>
-      
-      <div class="footer clear">
-        <p class="bottom">Copyright 2010 Web Development Machine All rights reserved.</p>
+          <p class="clearfix bgLightYellow paddingTop">
+            <label class="commonLable left textAlignRight" for="warning_wrap">Input warning(wrap)</label>
+            <input type="text" class="text" id="warning_wrap" name="warning_wrap" value="Field with class .text"/>
+          </p> 
+					<p class="clearfix bgLightRed paddingTop">
+            <label class="commonLable left textAlignRight" for="warning_wrap">Input error(wrap)</label>
+            <input type="text" class="text" id="warning_wrap" name="warning_wrap" value="Field with class .text"/>
+          </p>
+					<p class="clearfix bgLightGreen paddingTop">
+						<label class="commonLable left textAlignRight" for="warning_wrap">Input success(wrap)</label>
+						<input type="text" class="text" id="warning_wrap" name="warning_wrap" value="Field with class .text"/>
+					</p>
+        </fieldset>
+
+				<fieldset>
+					<legend>Form free sizes</legend>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_1">Field width-1</label>
+						<input type="text" class="paddingS width-1" id="field_width_1" name="field_width_1" value="Field with class .paddingS .width-1"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_2">Field width-2</label>
+						<input type="text" class="paddingS width-2" id="field_width_2" name="field_width_2" value="Field with class .paddingS .width-2"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_3">Field width-3</label>
+						<input type="text" class="paddingS width-3" id="field_width_3" name="field_width_3" value="Field with class .paddingS .width-3"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_4">Field width-4</label>
+						<input type="text" class="paddingS width-4" id="field_width_4" name="field_width_4" value="Field with class .paddingS .width-4"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_5">Field width-5</label>
+						<input type="text" class="paddingS width-5" id="field_width_5" name="field_width_5" value="Field with class .paddingS .width-5"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_6">Field width-6</label>
+						<input type="text" class="paddingS width-6" id="field_width_6" name="field_width_6" value="Field with class .paddingS .width-6"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_7">Field width-7</label>
+						<input type="text" class="paddingS width-7" id="field_width_7" name="field_width_7" value="Field with class .paddingS .width-7"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_8">Field width-8</label>
+						<input type="text" class="paddingS width-8" id="field_width_8" name="field_width_8" value="Field with class .paddingS .width-8"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_9">Field width-9</label>
+						<input type="text" class="paddingS width-9" id="field_width_9" name="field_width_9" value="Field with class .paddingS .width-9"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_10">Field width-10</label>
+						<input type="text" class="paddingS width-10" id="field_width_10" name="field_width_10" value="Field with class .paddingS .width-10"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_11">Field width-11</label>
+						<input type="text" class="paddingS width-11" id="field_width_11" name="field_width_11" value="Field with class .paddingS .width-11"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_12">Field width-12</label>
+						<input type="text" class="paddingS width-12" id="field_width_12" name="field_width_12" value="Field with class .paddingS .width-12"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_13">Field width-13</label>
+						<input type="text" class="paddingS width-13" id="field_width_13" name="field_width_13" value="Field with class .paddingS .width-13"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_14">Field width-14</label>
+						<input type="text" class="paddingS width-14" id="field_width_14" name="field_width_14" value="Field with class .paddingS .width-14"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_15">Field width-15</label>
+						<input type="text" class="paddingS width-15" id="field_width_15" name="field_width_15" value="Field with class .paddingS .width-15"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_16">Field width-16</label>
+						<input type="text" class="paddingS width-16" id="field_width_16" name="field_width_16" value="Field with class .paddingS .width-16"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_17">Field width-17</label>
+						<input type="text" class="paddingS width-17" id="field_width_17" name="field_width_17" value="Field with class .paddingS .width-17"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_18">Field width-18</label>
+						<input type="text" class="paddingS width-18" id="field_width_18" name="field_width_18" value="Field with class .paddingS .width-18"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_19">Field width-19</label>
+						<input type="text" class="paddingS width-19" id="field_width_19" name="field_width_19" value="Field with class .paddingS .width-19"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_20">Field width-20</label>
+						<input type="text" class="paddingS width-20" id="field_width_20" name="field_width_20" value="Field with class .paddingS .width-20"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_21">Field width-21</label>
+						<input type="text" class="paddingS width-21" id="field_width_21" name="field_width_21" value="Field with class .paddingS .width-21"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_22">Field width-22</label>
+						<input type="text" class="paddingS width-22" id="field_width_22" name="field_width_22" value="Field with class .paddingS .width-22"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_23">Field width-23</label>
+						<input type="text" class="paddingS width-23" id="field_width_23" name="field_width_23" value="Field with class .paddingS .width-23"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_24">Field width-24</label>
+						<input type="text" class="paddingS width-24" id="field_width_24" name="field_width_24" value="Field with class .paddingS .width-24"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_25">Field width-25</label>
+						<input type="text" class="paddingS width-25" id="field_width_25" name="field_width_25" value="Field with class .paddingS .width-25"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_26">Field width-26</label>
+						<input type="text" class="paddingS width-26" id="field_width_26" name="field_width_26" value="Field with class .paddingS .width-26"/>
+					</p> 
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_27">Field width-27</label>
+						<input type="text" class="paddingS width-27" id="field_width_27" name="field_width_27" value="Field with class .paddingS .width-27"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_28">Field width-28</label>
+						<input type="text" class="paddingS width-28" id="field_width_28" name="field_width_28" value="Field with class .paddingS .width-28"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_29">Field width-29</label>
+						<input type="text" class="paddingS width-29" id="field_width_29" name="field_width_29" value="Field with class .paddingS .width-29"/>
+					</p>
+					<p>
+						<label class="commonLable left textAlignRight" for="field_width_30">Field width-30</label>
+						<input type="text" class="paddingS width-30" id="field_width_30" name="field_width_30" value="Field with class .paddingS .width-30"/>
+					</p>
+				</fieldset>
       </div> 
+    </div>
+
+    <div class="paddingTop">
+    	<div class="sidebar left positionR">
+      	<h2 class="category">Web Form with CSS3</h2>
+      	<p>This part forms example from blueprint framwork,and extend it with other useful style</p>
+      </div>
+      <div class="main mainRight positionR">
+              <h1>Forms</h1>
+              <form id="dummy" action="" method="post">
+                <fieldset>
+                  <legend>Sample Form</legend>
+                  <p>
+                    <label for="dummy0">Text input (title)</label><br>
+                    <input type="text" class="title css3_roundS inputBox_grey css3_box_shadow_grey" name="dummy0" id="dummy0" value="Field with class .title .css3_roundS .css3_box_shadow_grey .inputBox_grey .css3_box_shadow_grey" />
+                  </p>
+      
+                  <p>
+                    <label for="dummy1">Another field</label><br>
+                    <input type="text" class="text css3_roundS inputBox_grey css3_box_shadow_grey" id="dummy1" name="dummy1" value="Field with class .text .css3_roundS .css3_box_shadow_grey .inputBox_grey .css3_box_shadow_grey"/>
+                  </p>
+      
+                  <p>
+                    <label for="dummy2">Textarea</label><br>
+                    <textarea name="dummy2" class="css3_roundS inputBox_grey css3_box_shadow_grey" id="dummy2" rows="5" cols="20"></textarea>
+                  </p>
+      
+                  <p>
+                    <label for="dummy3">A password field</label><br>
+                    <input type="password" class="text css3_roundS inputBox_grey css3_box_shadow_grey" id="dummy3" name="dummy3" value="Password"/>
+                  </p>
+      
+                  <p>
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                  </p>
+      
+                </fieldset>
+              </form> 
+              <div class="error css3_roundS">
+                This is a &lt;div&gt; with the class <strong>.error</strong>. <a href="#">Link</a>.
+              </div>
+              <div class="notice css3_roundS">
+                This is a &lt;div&gt; with the class <strong>.notice</strong>. <a href="#">Link</a>.
+              </div>
+              <div class="info css3_roundS">
+                This is a &lt;div&gt; with the class <strong>.info</strong>. <a href="#">Link</a>.
+              </div>
+              <div class="success css3_roundS">
+                This is a &lt;div&gt; with the class <strong>.success</strong>. <a href="#">Link</a>.
+              </div>
+      
+              <fieldset>
+                <legend>Select, checkboxes, lists</legend>
+                <p>
+                  <label for="dummy3">Select field</label><br>
+                  <select id="dummy3" name="dummy3" class="css3_roundS inputBox_grey">
+                    <option value="1">Ottawa</option>
+                    <option value="2">Calgary</option>
+                    <option value="3">Moosejaw</option>
+                  </select>
+                </p>
+      
+                <p>
+                  <label for="dummy4">Select with groups</label><br>
+                  <select id="dummy4" name="dummy4" class="css3_roundS inputBox_grey">
+                    <option>Favorite pet</option>
+                    <optgroup label="mammals">
+                      <option>dog</option>
+                      <option>cat</option>
+                      <option>rabbit</option>
+                      <option>horse</option>
+                    </optgroup>
+                    <optgroup label="reptiles">
+                      <option>iguana</option>
+                      <option>snake</option>
+                    </optgroup>
+                  </select>
+                </p>
+      
+                <p><label>Radio buttons</label><br>
+                  <input type="radio" name="example"> Radio one<br>
+                  <input type="radio" name="example"> Radio two<br>
+                  <input type="radio" name="example"> Radio three<br>
+                </p>
+      
+                <p><label>Checkboxes</label><br>
+                  <input type="checkbox"> Check one<br>
+                  <input type="checkbox"> Check two<br>
+                  <input type="checkbox"> Check three<br>
+                </p>
+              </fieldset>
+              
+              <fieldset>
+                <legend>Alignment</legend>
+                <p>
+                  <label for="dummy5">Select field</label>
+                  <select id="dummy5" name="dummy5" class="css3_roundS inputBox_grey">
+                    <option value="1">Ottawa</option>
+                    <option value="2">Calgary</option>
+                    <option value="3">Moosejaw</option>
+                  </select>
+                </p>
+      
+                <p>
+                  <label for="dummy6">Text input (title)</label>
+                  <input type="text" class="title css3_roundS inputBox_grey css3_box_shadow_grey" name="dummy6" id="dummy6" value="Field with class .title .css3_roundS .css3_box_shadow_grey .inputBox_grey .css3_box_shadow_grey">
+                </p>
+      
+                <p>
+                  <label for="dummy7">Select field</label>
+                  <select id="dummy7" name="dummy7" class="css3_roundS inputBox_grey">
+                    <option value="1">Ottawa</option>
+                    <option value="2">Calgary</option>
+                    <option value="3">Moosejaw</option>
+                  </select>
+                  <label for="dummy8">Another field</label>
+                  <input type="text" class="text css3_roundS inputBox_grey css3_box_shadow_grey" id="dummy8" name="dummy8" value="Field with class .text .css3_roundS .css3_box_shadow_grey .inputBox_grey .css3_box_shadow_grey">
+                </p>
+              </fieldset>
+      
+              <fieldset>
+                <legend>Alignment Two</legend>
+                <p class="clearfix">
+                  <label class="commonLable left textAlignRight" for="dummy9">Select field</label>
+                  <select id="dummy9" name="dummy9" class="marginTopL css3_roundS inputBox_grey">
+                    <option value="1">Ottawa</option>
+                    <option value="2">Calgary</option>
+                    <option value="3">Moosejaw</option>
+                  </select>
+                </p>
+      
+                <p class="clearfix">
+                  <label class="commonLable left textAlignRight" for="dummy10">Text input (title)</label>
+                  <input type="text" class="title css3_roundS inputBox_grey css3_box_shadow_grey" name="dummy6" id="dummy10" value="Field with class .title .css3_box_shadow_grey">
+                </p> 
+      
+                <p class="clearfix">
+                  <label class="commonLable left textAlignRight" for="dummy11">Field 1</label>
+                  <input type="text" class="text css3_roundS inputBox_grey css3_box_shadow_grey" id="dummy8" name="dummy11" value="Field with class .text .css3_roundS .css3_box_shadow_grey .inputBox_grey .css3_box_shadow_grey">
+                </p>
+      
+                <p class="clearfix">
+                  <label class="commonLable left textAlignRight" for="dummy15">Field 2</label>
+                  <input type="text" class="text css3_roundS css3_box_shadow_blue inputBox_blue" id="dummy15" name="dummy15" value="Field with class .text .css3_roundS .css3_box_shadow_blue .inputBox_blue">
+                </p>
+                
+                <p class="clearfix">
+                  <label class="commonLable left textAlignRight" for="dummy12">Textarea</label>
+                  <textarea name="dummy2" class="commonTextarea css3_roundS css3_box_shadow_grey inputBox_grey" id="dummy12" rows="5" cols="20"></textarea>
+                </p>
+              </fieldset>
+      
+              <fieldset>
+                <legend>Form States</legend> 
+                <p class="clearfix">
+                    <label class="commonLable left textAlignRight" for="warning_bg_2">Input with warning(bg)</label>
+                    <input type="text" class="text bgLightYellow css3_roundS" name="warning_bg_2" id="warning_bg_2" value="Field with class .text and .bgLightYellow .css3_roundS"/>
+                </p> 
+                <p class="clearfix">
+                    <label class="commonLable left textAlignRight" for="error_bg_2">Input with error(bg)</label>
+                    <input type="text" class="text bgLightRed css3_roundS" name="error_bg_2" id="error_bg_2" value="Field with class .text and .bgLightRed .css3_roundS"/>
+                </p> 
+                <p class="clearfix">
+                    <label class="commonLable left textAlignRight" for="success_bg_2">Input with success(bg)</label>
+                    <input type="text" class="text bgLightGreen css3_roundS" name="success_bg_2" id="success_bg_2" value="Field with class .text and .bgLightGreen .css3_roundS"/>
+                </p>
+
+                <p class="clearfix">
+                    <label class="commonLable left textAlignRight" for="warning_border_2">Input warning(border)</label>
+                    <input type="text" class="text borderYellow css3_roundS css3_box_outer_shadow_yellow" id="warning_border_2" name="warning_border_2" value="Field with class .text .borderYellow .css3_roundS .css3_box_outer_shadow_yellow"/>
+                </p>
+                <p class="clearfix">
+                    <label class="commonLable left textAlignRight" for="error_border_2">Input error(border)</label>
+                    <input type="text" class="text borderRed css3_roundS css3_box_outer_shadow_red" id="error_border_2" name="error_border_2" value="Field with class .text .borderRed .css3_roundS .css3_box_outer_shadow_red"/>
+                </p>
+                <p class="clearfix">
+                    <label class="commonLable left textAlignRight" for="success_border_2">Input success(border)</label>
+                    <input type="text" class="text borderGreen css3_roundS css3_box_outer_shadow_green" id="success_border_2" name="success_border_2" value="Field with class .text .borderGreen .css3_roundS .css3_box_outer_shadow_green"/>
+                </p>
+                <p class="clearfix">
+                    <label class="commonLable left textAlignRight" for="common_border_2">Input common(border)</label>
+                    <input type="text" class="text borderBlue css3_roundS css3_box_outer_shadow_blue" id="common_border_2" name="common_border_2" value="Field with class .text .borderBlue .css3_roundS .css3_box_outer_shadow_blue"/>
+                </p>
+			</fieldset>
+
+            <fieldset>
+                <legend>Form free sizes</legend>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_1">Field width-1</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-1" id="field_css3_width_1" name="field_css3_width_1" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-1"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_2">Field width-2</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-2" id="field_css3_width_2" name="field_css3_width_2" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-2"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_3">Field width-3</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-3" id="field_css3_width_3" name="field_css3_width_3" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-3"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_4">Field width-4</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-4" id="field_css3_width_4" name="field_css3_width_4" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-4"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_5">Field width-5</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-5" id="field_css3_width_5" name="field_css3_width_5" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-5"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_6">Field width-6</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-6" id="field_css3_width_6" name="field_css3_width_6" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-6"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_7">Field width-7</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-7" id="field_css3_width_7" name="field_css3_width_7" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-7"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_8">Field width-8</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-8" id="field_css3_width_8" name="field_css3_width_8" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-8"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_9">Field width-9</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-9" id="field_css3_width_9" name="field_css3_width_9" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-9"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_10">Field width-10</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-10" id="field_css3_width_10" name="field_css3_width_10" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-10"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_11">Field width-11</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-11" id="field_css3_width_11" name="field_css3_width_11" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-11"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_12">Field width-12</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-12" id="field_css3_width_12" name="field_css3_width_12" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-12"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_13">Field width-13</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-13" id="field_css3_width_13" name="field_css3_width_13" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-13"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_14">Field width-14</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-14" id="field_css3_width_14" name="field_css3_width_14" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-14"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_15">Field width-15</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-15" id="field_css3_width_15" name="field_css3_width_15" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-15"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_16">Field width-16</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-16" id="field_css3_width_16" name="field_css3_width_16" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-16"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_17">Field width-17</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-17" id="field_css3_width_17" name="field_css3_width_17" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-17"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_18">Field width-18</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-18" id="field_css3_width_18" name="field_css3_width_18" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-18"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_19">Field width-19</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-19" id="field_css3_width_19" name="field_css3_width_19" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-19"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_20">Field width-20</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-20" id="field_css3_width_20" name="field_css3_width_20" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-20"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_21">Field width-21</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-21" id="field_css3_width_21" name="field_css3_width_21" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-21"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_22">Field width-22</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-22" id="field_css3_width_22" name="field_css3_width_22" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-22"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_23">Field width-23</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-23" id="field_css3_width_23" name="field_css3_width_23" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-23"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_24">Field width-24</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-24" id="field_css3_width_24" name="field_css3_width_24" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-24"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_25">Field width-25</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-25" id="field_css3_width_25" name="field_css3_width_25" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-25"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_26">Field width-26</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-26" id="field_css3_width_26" name="field_css3_width_26" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-26"/>
+                </p> 
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_27">Field width-27</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-27" id="field_css3_width_27" name="field_css3_width_27" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-27"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_28">Field width-28</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-28" id="field_css3_width_28" name="field_css3_width_28" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-28"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_29">Field width-29</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-29" id="field_css3_width_29" name="field_css3_width_29" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-29"/>
+                </p>
+                <p>
+                    <label class="commonLable left textAlignRight" for="field_css3_width_30">Field width-30</label>
+                    <input type="text" class="paddingS css3_roundS css3_box_shadow_blue inputBox_blue width-30" id="field_css3_width_30" name="field_css3_width_30" value="Field with class .paddingS .css3_roundS .css3_box_shadow_blue .inputBox_blue .width-30"/>
+                </p>
+            </fieldset>
+            </div>
+      
+      <footer class="footer socialFooter clear borderTop">
+        <p class="bottom paddingLeftS">Copyright 2010-2011 Web Development Machine All rights reserved.</p>
+      </footer> 
     </div>
   </div>
 </body>

@@ -1,58 +1,215 @@
 ﻿<!DOCTYPE html>
 <html> 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HTML5 examples</title>
+<meta charset="utf-8" />
+<title>Rain CSS > HTML5 Tags</title>
 <!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
-<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
-<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/>
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
-<script type="text/javascript">
-	window.onload = test;
-	//sessionStorage and localStorage
-	function test(){ 
-    window.sessionStorage.setItem("test", "this is sessionStorage");
-    if (window.globalStorage){
-        window.globalStorage.namedItem("a.com").setItem("test", "this is LocalStorage");
-    }else{
-    		window.localStorage.setItem("test", "this is LocalStorage");
-		}
-		
-		var a = window.sessionStorage.getItem("test"); 
-		if (window.globalStorage){
-			var b = window.globalStorage.namedItem("a.com").getItem("test"); 
-    }else{
-			var c = window.localStorage.getItem("test"); 
-		}
-	}
-</script>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 </head>
-
-<body class="body">	
-<div class="container">
-    <div class="banner">
-      <h1 class="logo displayBlock overflowHide">
-        <a href="#" class="displayBlock textDecNone positionR">
-          <img src="images/logo.png" width="200" height="70" alt="logo image"/>
-          <span class="logoText positionA overflowHide">websit logo</span>
-        </a>
-      </h1>
-      <p>web site introduction</p>
-      <ul class="menuNav positionR listStyleNo displayBlock last">
-      	<li class="menuItem left positionR"><a class="menuLink displayBlock textDecNone" href="#">link</a></li>
-      	<li class="menuItem left positionR"><a class="menuLink" href="#">link</a></li>
-      	<li class="menuItem left positionR"><a class="menuLink" href="#">link</a></li>
-      </ul>
+<body class="body">
+<header>
+	<div class="header headerBlue">
+  	<nav class="listStyleNo positionR clearfix">
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container positionR">
+    	<div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
     </div>
-    
+  </div>
+</header> 
+	<div class="container marginTop"> 
     <div class="content">
-    	<h1>HTML 5 examples</h1>
-      <iframe>
+    	<div class="sidebar left positionR"> 
+        <aside class="sidebox">
+          <h2 class="category">Use HTML5 tags Build Web Page</h2>
+          <p>Rain css is a CSS Object oriented implementing,and all object are set in screen.css and rain.css,so you can only invoke it now and it support all css3 properties,
+          and the reset css use <a href="http://www.blueprintcss.org" title="blueprint framework" target="_blank">blueprint framework</a>.</p>
+        </aside>        
+      </div>
       
-      </iframe>  
-  	</div>
-    
-</div>
+      <div class="main mainRight positionR">
+      	<article class="entry mainBox">
+        	<header> 
+          <h1 class="entryTitle">The HTML5 Tags Example</h1>
+          <p><a href="#">ran</a> 发表于<time pubdate datetime="2009-10-09 14:28">2009-10-09 14:28</time>,分类:<a href="#">A</a>, Tips, <a href="#comments">6条评论 »</a>,10次阅读</p>
+          </header>
+          <p>This Page use all new html 5 tags </p> 
+          <ul>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-article-element">&lt;article&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-aside-element">&lt;aside&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-audio-element">&lt;audio&gt;</a>
+            <br/>
+            <audio controls>
+                <source src="little_comfort.mp3" />
+                <source src="little_comfort.ogg" />
+            </audio>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-bdi-element">&lt;bdi&gt;</a>
+            <br/>
+            <p><bdi>Aroma</bdi> - 3 reviews</p>
+            <p><bdi>PURPLE PIZZA</bdi> - 5 reviews</p>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-canvas-element">&lt;canvas&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-command-element">&lt;command&gt;</a>
+            <br/>
+            <menu>
+            <command type="command">Click Me!</command>
+            </menu>
+
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-datalist-element">&lt;datalist&gt;</a>
+            <br/>
+            <input id="myCar" list="cars" />
+            <datalist id="cars">
+              <option value="BMW">
+              <option value="Ford">
+              <option value="Volvo">
+            </datalist>
+
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-details-element">&lt;details&gt;</a>
+            <br/>
+            <section class="progress window">
+             <h3>Copying "Really Achieving Your Childhood Dreams"</h3>
+             <details>
+              <summary>Copying... <progress max="375505392" value="97543282"></progress> 25%</summary>
+              <dl>
+               <dt>Transfer rate:</dt> <dd>452KB/s</dd>
+               <dt>Local filename:</dt> <dd>/home/rpausch/raycd.m4v</dd> 
+              </dl>
+             </details>
+            </section>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-embed-element">&lt;embed&gt;</a>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-figcaption-element">&lt;figcaption&gt;</a>
+            <br/>
+						<figure>
+              <figcaption>Figcaption</figcaption>
+              <p>The figcaption element represents a caption or legend for the rest of the contents of the figcaption element's parent figure element</p>
+            </figure></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-figure-element">&lt;figure&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-footer-element">&lt;footer&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-header-element">&lt;header&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-hgroup-element">&lt;hgroup&gt;</a>
+            <br/>
+            <hgroup>
+             <h3>The reality dysfunction</h3>
+             <h4>Space is not the only void</h4>
+            </hgroup>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-keygen-element">&lt;keygen&gt;</a>
+            <br/>
+            <form action="#" method="post" enctype="multipart/form-data">
+             <p><keygen name="key"></p>
+             <p><input type="submit" value="Submit key"></p>
+            </form>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-mark-element">&lt;mark&gt;</a>
+            <br/>
+            <p>Look around and you will find, no-one's really <mark>colour</mark> blind.</p>            
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-meter-element">&lt;meter&gt;</a>
+            <br/> 
+            Tickets sold: <meter min="0" max="100" value="75"></meter>            
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-nav-element">&lt;nav&gt;</a>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-output-element">&lt;output&gt;</a>
+            <br/>
+            <form onSubmit="return false" oninput="o.value = a.valueAsNumber + b.valueAsNumber">
+             <input name=a type=number step=any> +
+             <input name=b type=number step=any> =
+             <output name=o></output>
+            </form>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-progress-element">&lt;progress&gt;</a>
+            <br/>
+            Progress: <progress id="Progress" max="100" value="80"></progress>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-rp-element">&lt;rp&gt;</a></li>
+            <br/>
+            <ruby>
+             漢 <rp>(</rp><rt>かん</rt><rp>)</rp>
+             字 <rp>(</rp><rt>じ</rt><rp>)</rp>
+            </ruby>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-rt-element">&lt;rt&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-ruby-element">&lt;ruby&gt;</a></li>
+            <br/>
+            <ruby>漢<rt>かん</rt>字<rt>じ</rt></ruby><br/>
+            <ruby>漢<rt>ㄏㄢˋ</rt>字<rt>ㄗˋ</rt></ruby><br/>
+            <ruby>汉<rt>hàn</rt>字<rt>zì</rt></ruby>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-section-element">&lt;section&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-source-element">&lt;source&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-summary-element">&lt;summary&gt;</a>
+            <br/>
+            <details>
+            <summary>HTML 5</summary>
+            This document teaches you everything you have to learn about HTML 5.
+            </details>
+
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-time-element">&lt;time&gt;</a>
+            <br/>
+            <time  datetime="2007-10-05">October 5</time> - <time datetime="2007-10-20">19</time>
+            </li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-track-element">&lt;track&gt;</a></li>
+            <li><a href="http://dev.w3.org/html5/spec/Overview.html#the-video-element">&lt;video&gt;</a>
+            <br/>
+            <video width="320" height="240" controls="controls">
+              <source src="TheSaltwaterRoom.mp4" type="video/mp4" />
+              <track kind="subtitles" src="subs_chi.srt" srclang="zh" label="Chinese">
+              <track kind="subtitles" src="subs_eng.srt" srclang="en" label="English">
+            </video>
+            </li> 
+          </ul> 
+        </article>
+        
+        <section class="relativeArticle mainBox">
+          <h2 class="commonTitle">相关文章</h2>
+          <ul>
+            <li><a href="#">article A</a></li>
+            <li><a href="#">article B</a></li>
+            <li><a href="#">article C</a></li> 
+          </ul> 
+        </section> 
+        <section class="comments mainBox" id="comments">
+          <h2 class="commonTitle">文章评论</h2>
+          <article class="commentsList">
+            <footer>
+              <p class=""><a href="#">rain</a> 在17日之前说:</p>
+              <p>demo</p> 
+            </footer> 
+          </article>
+        </section>
+        
+        <section class="addComment mainBox">
+          <h2 class="commonTitle">发表评论</h2>
+          <form action="" method="post" id="commonform" class="commonform">
+            <p class="bottom"><input type="text" name="username"/><span>呢称</span></p>
+            <p class="bottom"><input type="text" name="email"/><span>邮件</span></p>
+            <p class="bottom"><input type="text" name="website"/><span>网站</span></p>
+            <p class="bottom"><textarea name="comment" id="comment_text" cols="20" rows="5"></textarea></p>
+            <p><input type="submit" value="OK" name="submit" id="comment_submit"/></p>
+          </form>
+        </section>
+      </div>
+      
+      <footer class="footer socialFooter clear borderTop"> 
+        <address class="bottom">
+        For more details, contact<a href="mailto:js@example.com">John Smith</a>.
+        </address>
+        <p class="bottom paddingLeftS">Copyright 2010-2011 Web Development Machine All rights reserved.</p>
+      </footer> 
+    </div>
+  </div>
 </body>
 </html>

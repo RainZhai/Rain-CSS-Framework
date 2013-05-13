@@ -2,43 +2,166 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>CSS 3 examples</title>
+<title>Rain CSS > CSS3 Examples</title>
 <!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
-
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 </head>
 
 <body class="body">	
-<div class="container">
-    <div class="banner">
-      <h1 class="logo displayBlock overflowHide">
-        <a href="#" class="displayBlock textDecNone positionR">
-          <img src="images/logo.png" width="200" height="70" alt="logo image"/>
-          <span class="logoText positionA overflowHide">websit logo</span>
-        </a>
-      </h1>
-      <p>web site introduction</p>
-      <ul class="menuNav positionR listStyleNo displayBlock last">
-      	<li class="menuItem left positionR"><a class="menuLink displayBlock textDecNone" href="#">link</a></li>
-      	<li class="menuItem left positionR"><a class="menuLink" href="#">link</a></li>
-      	<li class="menuItem left positionR"><a class="menuLink" href="#">link</a></li>
-      </ul>
+	<div class="header headerBlue">
+  	<nav class="listStyleNo positionR clearfix">
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container positionR">
+    	<div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
     </div>
-    
+  </div>
+  
+<div class="container marginTop"> 
     <div class="content">
-    	<h1>CSS 3 examples</h1>  
-      <p class="css3_border_round menuNav">border-radius</p> 
-      <p class="css3_box_shadow boder padding">box-shadow</p>
-      <p class="border css3_text_shadow boder fontsizeLarge padding">text-shadow</p>
-    	<p class="css3_gradient padding">gradient(moz,webkit)</p>
-      <p class="padding css3_color_rgba">rgba</p>
-      <p class="css3_rotate menuNav">rotate</p>
-      <a class="displayBlock css3link menuNav padding" href="#">transition</a>
-      <p class="css3_matrix menuNav marginTop">matrix</p>
+		<div class="sidebar left positionR">
+			<h2 class="category">CSS3 Examples</h2>
+			<p>This part examples all build with CSS3</p>
+		</div>
+		<div class="main mainRight positionR">	  
+		<h1>CSS 3 examples</h1>
+		
+		<p class="css3_border_round css3_background_clip menuNav">radius</p> 
+		
+		<p class="css3_box_shadow padding">box-shadow</p>
+		
+		<p class="border css3_text_shadow boder fontsizeLarge padding">text-shadow</p>
+		
+		<p class="css3_gradient padding">linear-gradient</p>
+		
+		<p class="padding css3_color_HSL">hsl</p>
+		
+		<p class="padding css3_color_HSLA">hsla</p>
+		
+		<p class="padding css3_color_rgba">rgba</p>
+		
+		<p class="css3_rotate menuNav">rotate</p>
+		
+		<a class="displayBlock css3_transition menuNav padding" href="#">transition</a>
+		
+		<p class="css3_matrix menuNav marginTop">matrix</p>
+		
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" />
+		<div class="clearfix">
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>matrix3d</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="css3_matrix_3D border"/>
+		</div>
+		   
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>translate</h3> 
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_translate"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>translate3d</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_translate_3D"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>translateX</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_translateX"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>translateY</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_translateY"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>translateZ</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_translateZ"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_scale</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_scale"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_scale_3D</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_scale_3D"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_scaleX</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_scaleX"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_scaleY</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_scaleY"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_scaleZ</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_scaleZ"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_rotate</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_rotate"/>
+		</div> 
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_rotate_3D</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_rotate_3D"/>
+		</div> 
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_rotateX</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_rotateX"/>
+		</div> 
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_rotateY</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_rotateY"/>
+		</div> 
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_rotateZ</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_rotateZ"/>
+		</div> 
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_skew</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_skew"/>
+		</div> 
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_skewX</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_skewX"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_skewY</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_skewY"/>
+		</div>
+		
+		<div style="width:300px; height:200px;" class="positionR left border">
+		<h3>css3_perspective</h3>
+		<img src="images/html5_logo.jpg" width="100" height="141" alt="html5 logo" class="border css3_perspective"/>
+		</div>
+		</div>
+		
+		<p class="opacity">opacity</p>
       
+      <footer class="footer socialFooter clear borderTop">
+        <p class="bottom paddingLeftS">Copyright 2010-2011 Web Development Machine All rights reserved.</p>
+      </footer> 
   	</div>
     
 </div>

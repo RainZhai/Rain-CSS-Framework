@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<title>Rain CSS > Base Layouts</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+</head>
+<body class="body">
+	<div class="header headerBlue">
+  	<nav class="listStyleNo positionR clearfix">
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container positionR">
+    	<div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
+    </div>
+  </div>
+	<div class="container marginTop">
+    <div class="content">
+    	<div class="sidebar left positionR">
+          <h2 class="category">Fixed layout</h2>
+          <p>Fixed layout has 1000px width and class <code>container</code> get this layout pattern.</p>
+      </div>
+      
+      <div class="main mainRight positionR">
+				<h1 class="entryTitle">Fixed layout</h1>
+        <div class="bgLightBlue css3_border_round height-20"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marginLRAuto width-fluid-80 marginTop">
+    <div class="width-fluid-20 left positionR">
+        <h2 class="category">Fluid layout</h2>
+        <p>Fixed layout has 80% width and class <code>width-fluid-80</code> get this layout pattern.</p>
+    </div>
+    
+    <div class="width-fluid-80 mainRight positionR">
+      <h1 class="entryTitle">Fluid layout</h1>
+      <div class="bgLightBlue css3_border_round height-20"></div>
+    </div> 
+  </div>
+  
+	<div class="container marginTop">
+    <div class="content">
+    	<div class="sidebar left positionR">
+          <h2 class="category">Multi-column</h2>
+          <p>Multi-column use class <code>css3_columns</code></p>
+      </div>
+      
+      <div class="main mainRight positionR">
+				<h1 class="entryTitle">Multi-column</h1>
+        <div class="entry css3_columns mainBox">  
+          <h1 class="entryTitle bgLightBlue">HTML &amp; CSS</h1>
+          <p><a href="#">ran</a> 发表于 , 分类:<a href="#"></a>, Tips, <a href="#">6条评论 »</a>,10次阅读</p> 
+          <p>HTML (the Hypertext Markup Language) and CSS  (Cascading Style Sheets) are two of the core technologies 
+          for building Web pages. HTML provides the structure of the page, CSS the (visual and aural) layout, for a 
+          variety of devices. Along with graphics and scripting, HTML and CSS are the basis of building Web pages and 
+          Web Applications. Learn more below about:</p>
+					<h2>What is HTML?</h2>
+
+					<p>HTML is the language for describing the structure of Web pages. HTML gives authors the means to:</p>
+					<ul>
+    				<li>Publish online documents with headings, text, tables, lists, photos, etc.</li>
+            <li>Retrieve online information via hypertext links, at the click of a button.</li>
+            <li>Design forms for conducting transactions with remote services, for use in searching for information, 
+            making reservations, ordering products, etc.</li>
+            <li>Include spread-sheets, video clips, sound clips, and other applications directly in their documents.</li>
+					</ul>
+					<p>With HTML, authors describe the structure of pages using markup. The elements of the language label pieces of 
+          content such as "paragraph," "list," "table," and so on.</p>
+					<h2>What is XHTML?</h2>
+
+          <p>XHTML is a variant of HTML that uses the syntax of XML, the Extensible Markup Language. XHTML has all the same 
+          elements (for paragraphs, etc.) as the HTML variant, but the syntax is slightly different. Because XHTML is an 
+          XML application, you can use other XML tools with it (such as XSLT, a language for transforming XML content).</p>
+
+					<h2>What is CSS?</h2>
+
+					<p>CSS is the language for describing the presentation of Web pages, including colors, layout, and fonts. It allows 
+          to adapt the presentation to different types of devices, such as large screens, small screens, or printers. CSS is 
+          independent of HTML and can be used with any XML-based markup language. The separation of HTML from CSS makes it 
+          easier to maintain sites, share style sheets across pages, and tailor pages to different environments. This is 
+          referred to as the separation of structure (or: content) from presentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container marginTop">
+    <div class="content">
+    	<div class="sidebar left positionR">
+          <h2 class="category">Flexible Box</h2>
+          <p>Flexible Box use class <code>css3_flexbox</code></p>
+      </div>
+      
+      <div class="main mainRight positionR">
+				<h1 class="entryTitle">Flexible Box</h1>
+        <div class="entry css3_flexbox width-fluid-100 height-10 mainBox">  
+        	<div class="bgLightRed height-10"></div>
+          <div class="bgLightBlue height-10"></div>
+          <div class="bgLightGreen height-10"></div>
+        </div>
+      </div>
+    
+      <footer class="footer socialFooter marginTop clear borderTop">
+        <p class="bottom paddingLeftS">Copyright 2010-2011 Web Development Machine All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+  <script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	
+	<script type="text/javascript">
+	try{
+	var pageTracker = _gat._getTracker("UA-17127063-1");
+	pageTracker._trackPageview();
+	} catch(err) {}
+	</script>
+</body>
+</html>

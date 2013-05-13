@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<title>Rain CSS > IE 6 Upgrade</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+</head>
+<body class="body">
+	<div class="header headerBlue">
+  	<nav class="listStyleNo positionR clearfix">
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link2</a>
+    	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link3</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container positionR">
+    	<div class="left"><a class="textDecNone displayBlock paddingTopLL fontsizeXxlarge" href="index.html">Rain CSS</a></div>
+    </div>
+  </div>
+	<div class="container">
+    <div class="content">
+    	<div class="sidebar left positionR">
+        <div class="sidebox">
+          <h2 class="category">What is Rain CSS</h2>
+          <p>Rain css is a CSS Object oriented implementing,and all object are set in screen.css and rain.css,so you can only invoke it now and it support all css3 properties,
+          and the reset css use <a href="http://www.blueprintcss.org" title="blueprint framework" target="_blank">blueprint framework</a>.</p>
+        </div>
+				<a href="http://www.webdevelopmentmachine.com/download/rain-css-2.0.3.rar" class="displayBlock textDecNone textAlignCenter heightLL css3_roundS css3_gradient_grey borderGrey_2 button greyButton ">Download</a>
+      </div>
+      
+      <div class="main mainRight positionR">
+      	<div class="entry margin">  
+          <h1 class="entryTitle">Examples</h1>
+        </div> 
+      </div>
+      
+      <footer class="footer socialFooter clear borderTop">
+        <p class="bottom paddingLeftS">Copyright 2010-2011 Web Development Machine All rights reserved.</p>
+      </footer> 
+    </div>
+  </div>
+  <script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	
+<script type="text/javascript">
+try{
+var pageTracker = _gat._getTracker("UA-17127063-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+<!--[if lte IE 6]>
+
+<![endif]-->
+<style type="text/css"> 
+#ie6-warning{position:absolute;top:0; left:0;font-size:12px; line-height:30px; color:#F00; background: #fff8d3; width:100%;} 
+#ie6-warning img{float:right; cursor:pointer; margin-top:4px;}
+#ie6-warning a{text-decoration:none;}
+.close_ie{color:#333; font-weight:bold;}
+</style>
+<div id="ie6-warning" class="textAlignRight">
+您正在使用 Internet Explorer 6 低版本的IE浏览器。为更好的浏览本页，建议您将浏览器升级到
+<a href="http://www.microsoft.com/china/windows/internet-explorer/ie8howto.aspx" target="_blank">IE8</a>
+ 或以下浏览器：<a href="http://www.firefox.com.cn/download/">Firefox</a> / <a href="http://www.google.cn/chrome">
+Chrome</a> / <a href="http://www.apple.com.cn/safari/">Safari</a> / <a href="http://www.Opera.com/">Opera</a> 
+<span class="padding cursorPointer" onclick="closeme();">X</span>
+</div> 
+
+<script type="text/javascript">
+	function closeme() {
+		var div = document.getElementById("ie6-warning");
+		div.style.display = "none";
+	}
+	function position_fixed(el, eltop, elleft) {
+		// check if this is IE6 
+		if (!window.XMLHttpRequest)
+			window.onscroll = function() {
+				el.style.top = (document.documentElement.scrollTop + eltop)+ "px";
+				el.style.left = (document.documentElement.scrollLeft + elleft)+ "px";
+			};
+		else {
+			el.style.position = "fixed";
+		}
+	}
+	position_fixed(document.getElementById("ie6-warning"), 0, 0);
+</script>
+</body>
+</html>

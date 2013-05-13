@@ -1,4 +1,4 @@
-/*  
+﻿/*  
     __Changelog__
     2010.07.16: 
 	1. Add position static object.
@@ -41,4 +41,44 @@
 2011.1.17
 .marginLRAuto{ margin-left:auto; margin-right:auto;}
 .center{ margin-left:auto; margin-right:auto;}
+
+2011.5.4
+.wordWrapBreak{word-wrap: break-word;}
+.wordBreakNormal{word-break:normal;}
+.wordBreakAll{word-break:break-all;}
+.wordBreakKeepAll{word-break:keep-all;}
+
+2011.5.23
+ 1.add marginTopS etc. objects
+ 2.add paddingTopL etc. objects
+
+2011.9.6
+ 1.update css3 models
+
+2011.9.14
+ 1.add css3 properties in form.html
+ 2.add common button objects in button.html
+ 3.add table example in table.html
+
+2011.11.19
+ 1.add html5 tags examples
+ 2.add Mobile compatible CSS3 query
+
+2012.3.4
+ 1.add common backgroud color
+
+2012.3.13
+ 1.add different color border style
+ 2.add different colors outer shadow box
+ 3.add common width and height css objects
+ 4.add different colors inner shadow box
+ 5.add cyan css3 style button
+ 
+2012.4.18
+ 1.extend blueprint html elements
+ 2.add navigation component
+ 3.add label component
+
+2012.8.19
+ 1.add table style
 */ 
