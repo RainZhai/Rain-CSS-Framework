@@ -9,6 +9,10 @@
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<style type="text/css">
+.transitionBg{ left:0; bottom: 0; height:30px; width:55px; transition:left 1s ease 0s;}
+.transitionLink-2:hover .transitionBg{left:50px; transition: left 1s ease 0s;}
+</style>
 </head>
 
 <body class="body">
@@ -88,6 +92,17 @@
 					</li>
 					<li class="left marginRightSS bgWhite"><a class="displayBlock css3_roundS textDecNone paddingLeft paddingRight itemLightGrey itemColorBlack" href="#">Profile</a></li>
 					<li class="left bgWhite"><a class="displayBlock css3_roundS textDecNone paddingLeft paddingRight itemLightGrey itemColorBlack" href="#">Messages</a></li>
+				</ul>
+				
+				<ul class="listStyleNo noPadding noRightMargin heightM positionR clearfix">
+					<li class="left marginRightSS bgWhite">
+                        <a class="transitionLink displayBlock bgBlue css3_roundS textDecNone paddingLeft paddingRight colorWhite" href="#">Home
+                            <span class="transitionBg bgBlue displayBlock bgBlue css3_roundS positionA"></span>
+                        </a>
+					</li>
+					<li class="left marginRightSS bgWhite"><a class="transitionLink-2 displayBlock css3_roundS textDecNone paddingLeft paddingRight itemLightGrey itemColorBlack" href="#">Profile
+                    	<span class="transitionBg bgBlue displayBlock bgBlue css3_roundS positionA"></span></a></li>
+					<li class="left bgWhite"><a class="transitionLink-3 displayBlock css3_roundS textDecNone paddingLeft paddingRight itemLightGrey itemColorBlack" href="#">Messages</a></li>
 				</ul>
 				
 				<ul class="css3_roundS border listStyleNo noPadding noRightMargin">

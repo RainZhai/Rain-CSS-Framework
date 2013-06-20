@@ -137,6 +137,14 @@ Atomic Css Objects
 .textAlignCenter{text-align:center;}
 .textIndent{text-indent:20px;}
 .textIndentL{text-indent:40px;}
+.wordWrapBreak{word-wrap: break-word;}
+.wordBreakNormal{word-break:normal;}
+.wordBreakAll{word-break:break-all;}
+.wordBreakKeepAll{word-break:keep-all;}
+.wordSpaceNowrap{white-space:nowrap;}
+.wordSpacePre{white-space: pre;}
+.wordSpacePreline{white-space: pre-line;}
+.wordSpacePrewrap{white-space: pre-wrap;}
 /*  box
 		free properties
 		--width
@@ -522,11 +530,6 @@ Atomic Css Objects
 .triangleBottomWhite{width:0; height:0; border:4px solid transparent;border-bottom-color:#fff;}
 
 .cursorPointer{ cursor:pointer;}
-.wordWrapBreak{word-wrap: break-word;}
-.wordBreakNormal{word-break:normal;}
-.wordBreakAll{word-break:break-all;}
-.wordBreakKeepAll{word-break:keep-all;}
-.wordSpaceNowrap{white-space:nowrap;}
 /* extend css3 objects */
 .css3_roundS {
      -moz-border-radius: 3px; /* FF1+ */
@@ -1046,5 +1049,5 @@ border-top: 0 none;}
 .progressBarAnim{background: #EFEFEF url(../dijit/themes/claro/images/progressBarAnim.gif) repeat-x center top;}
 .dijitProgressBarFull{z-index:-1;}
 /* button code */
-.plusIcon, .plusBlockIcon {background:url("images/plus.gif") no-repeat center center; height:18px; width:18px;}
-.dijitArrowButtonInner { background:url("images/buttonArrows.png") no-repeat -51px 53%; height:15px; width:15px;}
+.plusIcon, .plusBlockIcon {background:url(images/plus.gif) no-repeat center center; height:18px; width:18px;}
+.dijitArrowButtonInner { background:url(images/buttonArrows.png) no-repeat -51px 53%; height:15px; width:15px;}

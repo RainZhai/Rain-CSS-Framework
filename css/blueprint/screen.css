@@ -598,7 +598,7 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
      -moz-transition: all 3s linear;  /* FF3.7+ */
        -o-transition: all 3s linear;  /* Opera 10.5 */
   -webkit-transition: all 3s linear;  /* Saf3.2+, Chrome */
-					transition: all 3s linear; 
+		  transition: all 3s linear; 
 }
 
 .css3_transition:hover {
