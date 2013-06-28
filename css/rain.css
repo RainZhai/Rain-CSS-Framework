@@ -411,22 +411,32 @@ pre-line 	合并空白符序列，但是保留换行符。
 .marginTop-2{ margin-top:20px;}
 .marginTop-3{ margin-top:30px;}
 .marginTop-4{ margin-top:40px;}
+.marginTop-5{ margin-top:50px;}
+.marginTop-6{ margin-top:60px;}
 .marginBottom-1{ margin-bottom:10px;}
 .marginBottom-2{ margin-bottom:20px;}
 .marginBottom-3{ margin-bottom:30px;}
 .marginBottom-4{ margin-bottom:40px;}
+.marginBottom-5{ margin-bottom:50px;}
+.marginBottom-6{ margin-bottom:60px;}
 .marginRight-1{ margin-right:10px;}
 .marginRight-2{ margin-right:20px;}
 .marginRight-3{ margin-right:30px;}
 .marginRight-4{ margin-right:40px;}
+.marginRight-5{ margin-right:50px;}
+.marginRight-6{ margin-right:60px;}
 .marginLeft-1{ margin-left:10px;}
 .marginLeft-2{ margin-left:20px;}
 .marginLeft-3{ margin-left:30px;}
 .marginLeft-4{ margin-left:40px;}
+.marginLeft-5{ margin-left:50px;}
+.marginLeft-6{ margin-left:60px;}
 .margin-1{ margin:10px;}
 .margin-2{ margin:20px;}
 .margin-3{ margin:30px;}
 .margin-4{ margin:40px;}
+.margin-5{ margin:50px;}
+.margin-6{ margin:60px;}
 
 .border{ border:1px #ccc solid!important;}
 .borderLeft { border-left:1px #ccc solid!important;}
@@ -575,6 +585,10 @@ pre-line 	合并空白符序列，但是保留换行符。
 .overflowVisible{ overflow:visible;}
 .visible{ visibility:visible;}
 .visibleFalse{ visibility:hidden;}
+.z-1{z-index:1;}
+.z-100{z-index:100;}
+.z-1000{z-index:1000;}
+.z-10000{z-index:10000;}
 /*	list
 		free properties
 
