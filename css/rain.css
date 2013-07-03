@@ -1512,6 +1512,12 @@ border-top: 0 none;}
   -khtml-opacity: 0.4;  
          opacity: 0.4;
 }
+.opacityHover:hover{
+          filter: alpha(opacity=50);  
+    -moz-opacity: 0.5;  
+  -khtml-opacity: 0.5;  
+         opacity: 0.5;
+}
 .opacity{
           filter: alpha(opacity=50);  
     -moz-opacity: 0.5;  
