@@ -349,7 +349,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 
 .paddingTop{ padding-top:10px;}
 .paddingBottom{ padding-bottom:10px;}
-.paddingRight{ padding-right:10px;}
+.paddingRight{ padding-right:10px!important;}
 .paddingLeft{ padding-left:10px;}
 .padding{ padding:10px;}
 
@@ -438,7 +438,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .margin-5{ margin:50px;}
 .margin-6{ margin:60px;}
 
-.border{ border:1px #ccc solid!important;}
+.border{ border:1px #ccc solid!important; margin-right:0; padding-right:0;}
 .borderLeft { border-left:1px #ccc solid!important;}
 .borderRight { border-right:1px #ccc solid!important;}
 .borderTop { border-top:1px #ccc solid!important;}
