@@ -11,7 +11,7 @@
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 </head>
 
-<body class="body">
+<body class="body" id="body">
 	<div class="header headerBlue">
   	<nav class="listStyleNo positionR clearfix">
     	<a href="#" class="headerLink headerLinkBlue left paddingRight paddingLeft displayBlock textDecNone">link1</a>
@@ -84,7 +84,7 @@
 <div class="c_testwrap2 hide">
       <div class="dialogMsg margin">这是第二个弹出框</div>
 </div>
-<div class="c_testwrap3 hide">
+<div class="c_testwrap3 hide" id='c_testwrap3'>
       <div class="dialogMsg margin">这是第三个弹出框</div>
 </div>
 
@@ -112,7 +112,7 @@
 	}).show();
 	
 	var a = $.dialog({
-		content: $(".c_testwrap"),
+		content: document.getElementById('c_testwrap3'),
 		buttonsArray: ["ok","cancel"],
 		buttonsCallback: {"ok":function(){ b.show();},
 			"cancel":function(){ a.hide();}}

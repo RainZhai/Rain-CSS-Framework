@@ -33,32 +33,26 @@
 		buttonsArray:[],
 		buttonsCallback:{},
 		beforeShow:function(){},
+		afterShow:function(){},
+		beforeClose:function(){},
+		afterClose:function(){},
 		upload:false
 	}, o || {});
 	
 	var randomStr = Math.round(Math.random()*1000000+1)+'',
-		width = o.width,
-		height = o.height,
-		top = o.top,
-		left = o.left,
 		contentObj = o.content,
-		bgColor = o.bgColor,
 		closeClass = o.closeHandleClass+randomStr,
 		dialogHandleClass = o.dialogHandleClass+randomStr,
-		title = o.title,
-		closeCallback = o.closeCallback,
-		header = o.header,
 		html = null;
-	var beforeShow=o.beforeShow;
 	o.show = function(callback){
-		(typeof (beforeShow)=="function")&& beforeShow();
+		o.beforeShow();
 		
 		if($("body").find("."+dialogHandleClass).length==0){
-			if(header){
+			if(o.header){
 				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 				'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
 				'<div class="c_dialogBox dialogBox positionFix"> '+
-				'<div class="c_dialogTitle padding"><h3 class="bottom">'+title+'</h3>'+
+				'<div class="c_dialogTitle padding"><h3 class="bottom">'+o.title+'</h3>'+
 				'<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span> </div>'+
 				'<div class="c_contentWrap padding"></div><p class="c_btnWrap margin"> </p></div></div>');
 			}else{
@@ -72,6 +66,8 @@
 				html.find(".c_contentWrap").append($("<p>"+contentObj+"</p>"));
 			}	else if((contentObj instanceof jQuery)){
 				html.find(".c_contentWrap").append(contentObj.show());
+			} else if('nodeName' in contentObj){
+				html.find(".c_contentWrap").append($(contentObj).show());
 			}
 			$("body").append(html);
 			//控制框是否可以拖拽
@@ -97,12 +93,12 @@
 				contentObj.append(uploadHtml);
 				uploadHtml.find(".c_lnPic").bind("click",function(){
 					_height = _height + 30;
-					html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":top, "left":left });
+					html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":o.top, "left":o.left });
 					uploadHtml.find(".c_picArea").removeClass("hide");
 				});
 				uploadHtml.find(".c_closeUploadBox").bind("click",function(){
 					_height = _height - 30;
-					html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":top, "left":left });
+					html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":o.top, "left":o.left });
 					uploadHtml.find(".c_picArea").addClass("hide");
 				});
 				
@@ -147,15 +143,15 @@
 				swfu = new SWFUpload(settings);
 			}
 			//设置遮罩颜色
-			$(".c_bgColor").css({ "background-color": bgColor});
+			$(".c_bgColor").css({ "background-color": o.bgColor});
 			//遍历设置的按钮数组,将相应的按钮进行显示并绑定相应事件
 			var buttonsArray = o.buttonsArray;
 			var buttonsCallback = o.buttonsCallback;
 			var buttonsWrap = html.find(".c_btnWrap");
 			var buttonDom = html.find(".c_button");
 			function functionHandler(event){
-				var _callback = buttonsArray[event.data.index];
-				_callback && buttonsCallback[_callback]();
+				var _callback = buttonsArray[event.data.index]; 
+				if(typeof buttonsCallback[_callback] =='function') buttonsCallback[_callback]();
 			}
 			//按钮绑定事件
 			if(buttonsArray.length>0){
@@ -169,8 +165,9 @@
 			}
 			//关闭按钮绑定事件
 			html.find("."+closeClass).bind("click",function(){
-				$("."+dialogHandleClass).hide();
-				closeCallback();
+				o.beforeClose();
+				$("."+dialogHandleClass).hide(o.closeCallback());
+				o.afterClose();
 			});
 			
 			//设置样式
@@ -181,14 +178,15 @@
 			html.find(".c_btnWrap").css(o.btnsWrapStyle).addClass(o.btnsWrapClass);
 			//计算弹出层的大小和位置
 			if(o.width>0 && o.height>0){
-				html.find(".c_dialogBox").css({ "width": width, "height":height, "top":top, "left":left });
+				html.find(".c_dialogBox").css({ "width": o.width, "height":o.height, "top":o.top, "left":o.left });
 			}else{
-				html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":top, "left":left });
+				html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":o.top, "left":o.left });
 			}
-			if(callback){	callback();}
 		}else{
 			$("."+dialogHandleClass).show(callback);
 		}
+		o.afterShow();
+		if(typeof(callback)==='function'){	callback();}
 		return o;
 	}
 	o.hide = o.close = function(callback){
