@@ -37,7 +37,7 @@
     </div>
   </div>
   
-<div class="dialogWrap positionFix overflowAuto"> 
+<div class="dialogWrap positionFix overflowAuto hide"> 
 	<div class="c_boxfade dialogWrapIE opacity positionA"></div>
 	<!-- The common dialog box -->
     <div class="dialogBoxSize css3_box_outer_shadow_grey css3_text_shadow dialogBox positionA">
@@ -78,5 +78,45 @@
     </div>
 </div>
 
+<div class="c_testwrap hide">
+    <div class="dialogMsg margin">这里是弹出框内容</div>
+</div>
+<div class="c_testwrap2 hide">
+      <div class="dialogMsg margin">这是第二个弹出框</div>
+</div>
+<div class="c_testwrap3 hide">
+      <div class="dialogMsg margin">这是第三个弹出框</div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/jquery.dialog.js"></script>
+<script type="text/javascript">
+	var b = $.dialog({
+		width: 540,
+		height: 300,
+		top:'30%',
+		draggable: false,
+		content:$(".c_testwrap2"),
+		title:"hello dialog 2",
+		dialogStyle:{"border":"8px solid #ededed"},
+		titleStyle:{"background":"#F5F5F5"},
+		btnsWrapStyle:{'text-align':'right'},
+		buttonsClass:["heightS css3_roundS css3_gradient_blue button blueButton marginLeft","heightS css3_roundS css3_gradient_grey borderGrey_2 button greyButton marginLeft"],
+		buttonsStyle:[{width:80}],
+		closeCallback: function(){},
+		buttonsArray: ["ok","button2"],
+		buttonsCallback:{"ok":function(){ 
+			a.show();
+		}},
+		upload:false
+	}).show();
+	
+	var a = $.dialog({
+		content: $(".c_testwrap"),
+		buttonsArray: ["ok","cancel"],
+		buttonsCallback: {"ok":function(){ b.show();},
+			"cancel":function(){ a.hide();}}
+	});
+</script>
 </body>
 </html>

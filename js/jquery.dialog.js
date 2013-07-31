@@ -6,7 +6,7 @@
 * Date: 2013.1.21
 */
 (function($) {
-	$.dialogWrap = function(o) {
+	$.fn.dialog = $.dialog = function(o) {
 	o = $.extend({
 		width: 540, //弹出框宽度
 		height: 0,//弹出框高度
@@ -15,14 +15,19 @@
 		draggable: false,//是否可以拖拽
 		header:true,
 		content:null,//弹出框内显示的内容
-		contentSelector:null,//内容区域对象
 		closeHandleClass:"c_close",//关闭图标的句柄
-		dialogWrapHandleClass:"c_dialogwrap",//弹出层句柄
-		dialogTitletext:"提示框",//弹出层文本
+		dialogHandleClass:"c_dialogwrap",//弹出层句柄
+		title:"提示框",//弹出层文本
 		bgColor:"#fff",//遮罩背景色
-		borderCSS:{"border":"8px solid #ededed"},//设置边框效果
-		titleCSS:{"background":"#F5F5F5"},
-		buttonsAlign:"right",
+		dialogStyle:{},//设置弹出框样式
+		dialogClass:'',//设置弹出框class
+		headStyle:{"background":"#F5F5F5"},
+		headClass:'',
+		contentStyle:{},
+		contentClass:'',
+		btnsWrapStyle:{'text-align':'right'},
+		btnsWrapClass:'',
+		buttonsStyle:[{}],
 		buttonsClass:["heightS css3_roundS css3_gradient_blue button blueButton marginLeft"],
 		closeCallback: function(){},
 		buttonsArray:[],
@@ -31,7 +36,7 @@
 		upload:false
 	}, o || {});
 	
-	var randomStr = Math.round(Math.random()*1000000)+1000000+'',
+	var randomStr = Math.round(Math.random()*1000000+1)+'',
 		width = o.width,
 		height = o.height,
 		top = o.top,
@@ -39,45 +44,43 @@
 		contentObj = o.content,
 		bgColor = o.bgColor,
 		closeClass = o.closeHandleClass+randomStr,
-		dialogWrapHandleClass = o.dialogWrapHandleClass+randomStr,
-		dialogTitletext = o.dialogTitletext,
+		dialogHandleClass = o.dialogHandleClass+randomStr,
+		title = o.title,
 		closeCallback = o.closeCallback,
 		header = o.header,
 		html = null;
-		console.info(randomStr);
 	var beforeShow=o.beforeShow;
 	o.show = function(callback){
 		(typeof (beforeShow)=="function")&& beforeShow();
 		
-		if($("body").find("."+dialogWrapHandleClass).length==0){
+		if($("body").find("."+dialogHandleClass).length==0){
 			if(header){
-				html = $('<div class="'+dialogWrapHandleClass+' dialogWrap textAlignLeft positionFix">'+
+				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 				'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
-				'<div class="dialogBoxSize dialogBox2 positionFix"> '+
-				'<div class="c_dialogTitle padding"><h3 class="bottom">'+dialogTitletext+'</h3>'+
+				'<div class="c_dialogBox dialogBox positionFix"> '+
+				'<div class="c_dialogTitle padding"><h3 class="bottom">'+title+'</h3>'+
 				'<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span> </div>'+
-				'<div class="c_contentWrap"></div><p class="c_dialogButtonWrap dialogButtonWrap margin"> </p></div></div>');
+				'<div class="c_contentWrap padding"></div><p class="c_btnWrap margin"> </p></div></div>');
 			}else{
-				html = $('<div class="'+dialogWrapHandleClass+' dialogWrap textAlignLeft positionFix">'+
+				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 						'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
-						'<div class="dialogBoxSize dialogBox2 positionFix"> '+
-						'<div class="c_contentWrap"></div><p class="c_dialogButtonWrap dialogButtonWrap margin"> </p></div></div>');
+						'<div class="c_dialogBox dialogBox positionFix"> '+
+						'<div class="c_contentWrap padding"></div><p class="c_btnWrap margin"> </p></div></div>');
 			}
 			//将内容追加到弹出框,并再追加到body
 			if(typeof(contentObj)==='string'){
-				width=200,height=50,left="59%";
-				html.find(".c_contentWrap").append($("<p style='text-align:center; font-size:14px; padding-top:15px;'>"+contentObj+"</p>"));
+				html.find(".c_contentWrap").append($("<p>"+contentObj+"</p>"));
 			}	else if((contentObj instanceof jQuery)){
 				html.find(".c_contentWrap").append(contentObj.show());
 			}
 			$("body").append(html);
 			//控制框是否可以拖拽
 			if(o.draggable){
-				$("."+dialogWrapHandleClass).show().find(".dialogBox2").draggable({cursor:"move", handle:".c_dialogTitle", scroll:false, containment: "html"});
+				$("."+dialogHandleClass).show().find(".c_dialogBox").draggable({cursor:"move", handle:".c_dialogTitle", scroll:false, containment: "html"});
 			}
 			//获取dialog宽度和高度
-			var _width = $("body").width()/5+200; 
-			var _height = html.find(".c_contentWrap").height() + html.find(".c_dialogTitle").height() + html.find(".c_dialogButtonWrap").height() +100;
+			var _width = $("body").width()/5+150; 
+			var _height = html.find(".c_contentWrap").height() + html.find(".c_dialogTitle").height() + html.find(".c_btnWrap").height() +100;
 			//设置上传控制
 			if(o.upload){
 				var uploadHtml = $('<div class="uploadBox margin">'+
@@ -94,12 +97,12 @@
 				contentObj.append(uploadHtml);
 				uploadHtml.find(".c_lnPic").bind("click",function(){
 					_height = _height + 30;
-					html.find(".dialogBoxSize").css({ "width": _width, "height":_height, "top":top, "left":left });
+					html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":top, "left":left });
 					uploadHtml.find(".c_picArea").removeClass("hide");
 				});
 				uploadHtml.find(".c_closeUploadBox").bind("click",function(){
 					_height = _height - 30;
-					html.find(".dialogBoxSize").css({ "width": _width, "height":_height, "top":top, "left":left });
+					html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":top, "left":left });
 					uploadHtml.find(".c_picArea").addClass("hide");
 				});
 				
@@ -148,49 +151,54 @@
 			//遍历设置的按钮数组,将相应的按钮进行显示并绑定相应事件
 			var buttonsArray = o.buttonsArray;
 			var buttonsCallback = o.buttonsCallback;
-			var buttonsWrap = html.find(".c_dialogButtonWrap");
+			var buttonsWrap = html.find(".c_btnWrap");
 			var buttonDom = html.find(".c_button");
 			function functionHandler(event){
 				var _callback = buttonsArray[event.data.index];
-				buttonsCallback[_callback]();
+				_callback && buttonsCallback[_callback]();
 			}
 			//按钮绑定事件
 			if(buttonsArray.length>0){
 				for(var i=0; i<buttonsArray.length; i++){
 					var btnClass = o.buttonsClass[i] || '';
-					var buttons = $("<input type='button' value='"+buttonsArray[i]+"' class='c_button "+btnClass+"' />");
+					var btnStyle = o.buttonsStyle[i] || {};
+					var buttons = $("<input type='button' value='"+buttonsArray[i]+"' class='c_button "+btnClass+"' />").css(btnStyle);
 					buttons.bind("click",{index:i},functionHandler);
 					buttonsWrap.append(buttons);
 				}
 			}
 			//关闭按钮绑定事件
 			html.find("."+closeClass).bind("click",function(){
-				$("."+dialogWrapHandleClass).hide();
+				$("."+dialogHandleClass).hide();
 				closeCallback();
 			});
 			
-			html.find(".c_bgColor").height($("body").height());
 			//设置样式
-			html.find(".dialogBox2").css(o.borderCSS);
-			html.find(".c_dialogTitle").css(o.titleCSS);
-			html.find(".c_dialogButtonWrap").css({"text-align":o.buttonsAlign});
+			html.find(".c_bgColor").height($("body").height());
+			if(o.dialogStyle) html.find(".c_dialogBox").css(o.dialogStyle);
+			html.find(".c_dialogTitle").css(o.headStyle).addClass(o.headClass);
+			html.find(".c_contentWrap").css(o.contentStyle).addClass(o.contentClass);
+			html.find(".c_btnWrap").css(o.btnsWrapStyle).addClass(o.btnsWrapClass);
 			//计算弹出层的大小和位置
-			if(height>0){
-				html.find(".dialogBoxSize").css({ "width": width, "height":height, "top":top, "left":left });
+			if(o.width>0 && o.height>0){
+				html.find(".c_dialogBox").css({ "width": width, "height":height, "top":top, "left":left });
 			}else{
-				html.find(".dialogBoxSize").css({ "width": _width, "height":_height, "top":top, "left":left });
+				html.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":top, "left":left });
 			}
 			if(callback){	callback();}
 		}else{
-			$("."+dialogWrapHandleClass).show(callback);
+			$("."+dialogHandleClass).show(callback);
 		}
+		return o;
 	}
-	o.close = function(callback){
-		$("."+dialogWrapHandleClass).hide();
+	o.hide = o.close = function(callback){
+		$("."+dialogHandleClass).hide();
 		if(callback){	callback();}
+		return o;
 	}
 	o.height = function(h/*number*/){
-		if(typeof(h)==='number'){if(html){html.find(".dialogBoxSize").height(h);}}
+		if(typeof(h)==='number'){if(html){html.find(".c_dialogBox").height(h);}}
+		return o;
 	}
 	
 	return o;
