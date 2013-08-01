@@ -788,6 +788,7 @@ Page Layout Css Objects
 ----------------------------------- 
 */
 /*-- header object define nav --*/
+html,.body{height:100%;}
 .header{ height:30px;}
 .headerBlack{ background:#2D2D2D; border-bottom:1px solid #333;}
 .headerBlue{ background:#0c4a85; border-bottom:1px solid #0c4a85; width:100%;}
@@ -1086,7 +1087,7 @@ border-top: 0 none;}
 .dialogWrapIE {width:100%; height:100%; bottom:0; left:0; right:0; top:0; z-index:100; background-color:#fff;}
 .close{ width:20px; height:20px; top:5px; right:0.3em; color:#666; cursor:pointer; text-shadow: 0 1px 0 #FFFFFF;}
 .dialogMsg{min-height:100px;}
-.dialogBox{width:540px; height:200px; margin-left:-280px; background-color: #FFFFFF; border: 1px solid #707070; left: 50%;top: 260px;
+.dialogBox{width:540px; height:200px; margin-left:-280px; background-color: #FFFFFF; border: 1px solid #ddd; left: 50%;top: 260px;
     z-index: 150;}
 
 /*-- messages.css -- messages ojbects --*/

@@ -4,31 +4,33 @@
 * the plugin to generate warp div to show dialog
 * Anthor: zhaiyu
 * Date: 2013.1.21
+* lastUpdate : 2013.8.1
 */
 (function($) {
-	$.fn.dialog = $.dialog = function(o) {
-	o = $.extend({
+	$.fn.dialog = $.dialog = function(obj) {
+	var o = $.extend({
 		width: 540, //弹出框宽度
 		height: 0,//弹出框高度
 		top: "20%",//离顶部的距离
 		left: "50%",//离左边的距离
 		draggable: false,//是否可以拖拽
 		header:true,
+		showClose:false,
 		content:null,//弹出框内显示的内容
-		closeHandleClass:"c_close",//关闭图标的句柄
-		dialogHandleClass:"c_dialogwrap",//弹出层句柄
-		title:"提示框",//弹出层文本
-		bgColor:"#fff",//遮罩背景色
+		closeHandleClass:'c_close',//关闭图标的句柄
+		dialogHandleClass:'c_dialogwrap',//弹出层句柄
+		titleText:'提示框',//弹出层文本
+		bgColor:'#fff',//遮罩背景色
 		dialogStyle:{},//设置弹出框样式
 		dialogClass:'',//设置弹出框class
-		headStyle:{"background":"#F5F5F5"},
+		headStyle:{'background':'#F5F5F5'},
 		headClass:'',
 		contentStyle:{},
 		contentClass:'',
 		btnsWrapStyle:{'text-align':'right'},
 		btnsWrapClass:'',
 		buttonsStyle:[{}],
-		buttonsClass:["heightS css3_roundS css3_gradient_blue button blueButton marginLeft"],
+		buttonsClass:['heightS css3_roundS css3_gradient_blue button blueButton marginLeft'],
 		closeCallback: function(){},
 		buttonsArray:[],
 		buttonsCallback:{},
@@ -37,8 +39,7 @@
 		beforeClose:function(){},
 		afterClose:function(){},
 		upload:false
-	}, o || {});
-	
+	}, obj || {}); 
 	var randomStr = Math.round(Math.random()*1000000+1)+'',
 		contentObj = o.content,
 		closeClass = o.closeHandleClass+randomStr,
@@ -47,12 +48,12 @@
 	o.show = function(callback){
 		o.beforeShow();
 		
-		if($("body").find("."+dialogHandleClass).length==0){
+		if($('body').find('.'+dialogHandleClass).length==0){
 			if(o.header){
 				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 				'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
 				'<div class="c_dialogBox dialogBox positionFix"> '+
-				'<div class="c_dialogTitle padding"><h3 class="bottom">'+o.title+'</h3>'+
+				'<div class="c_dialogTitle padding"><h3 class="bottom">'+o.titleText+'</h3>'+
 				'<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span> </div>'+
 				'<div class="c_contentWrap padding"></div><p class="c_btnWrap margin"> </p></div></div>');
 			}else{
@@ -61,22 +62,27 @@
 						'<div class="c_dialogBox dialogBox positionFix"> '+
 						'<div class="c_contentWrap padding"></div><p class="c_btnWrap margin"> </p></div></div>');
 			}
-			//将内容追加到弹出框,并再追加到body
-			if(typeof(contentObj)==='string'){
-				html.find(".c_contentWrap").append($("<p>"+contentObj+"</p>"));
-			}	else if((contentObj instanceof jQuery)){
-				html.find(".c_contentWrap").append(contentObj.show());
-			} else if('nodeName' in contentObj){
-				html.find(".c_contentWrap").append($(contentObj).show());
+			if(obj && (typeof(obj)==='string' || obj instanceof jQuery || 'nodeName' in obj)){
+				html.find("."+closeClass).hide();
+				html.find('.c_contentWrap').append(obj);
+			}else{
+				//将内容追加到弹出框,并再追加到body
+				if(typeof(contentObj)==='string'){
+					html.find('.c_contentWrap').append($('<p>'+contentObj+'</p>'));
+				}	else if((contentObj instanceof jQuery)){
+					html.find('.c_contentWrap').append(contentObj.show());
+				} else if(contentObj && 'nodeName' in contentObj){
+					html.find('.c_contentWrap').append($(contentObj).show());
+				}
 			}
-			$("body").append(html);
+			$('body').append(html);
 			//控制框是否可以拖拽
 			if(o.draggable){
-				$("."+dialogHandleClass).show().find(".c_dialogBox").draggable({cursor:"move", handle:".c_dialogTitle", scroll:false, containment: "html"});
+				$('.'+dialogHandleClass).show().find('.c_dialogBox').draggable({cursor:'move', handle:'.c_dialogTitle', scroll:false, containment: 'html'});
 			}
 			//获取dialog宽度和高度
-			var _width = $("body").width()/5+150; 
-			var _height = html.find(".c_contentWrap").height() + html.find(".c_dialogTitle").height() + html.find(".c_btnWrap").height() +100;
+			var _width = $('body').width()/5+150; 
+			var _height = html.find('.c_contentWrap').height() + html.find('.c_dialogTitle').height() + html.find('.c_btnWrap').height() +100;
 			//设置上传控制
 			if(o.upload){
 				var uploadHtml = $('<div class="uploadBox margin">'+
@@ -198,7 +204,7 @@
 		if(typeof(h)==='number'){if(html){html.find(".c_dialogBox").height(h);}}
 		return o;
 	}
-	
+	//console.log($(this));
 	return o;
 }
 })(jQuery);

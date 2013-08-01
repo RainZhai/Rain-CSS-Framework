@@ -47,8 +47,8 @@
       </div>
       <div class="dialogMsg margin">this place for content</div>
       <p class="paddingLeft paddingRight textAlignRight">
-      <input type="button" class="heightM" value="Submit">
-      <input type="button" class="heightM" value="Cancel">      
+      <input type="button" class="heightM" value="Submit"/>
+      <input type="button" class="heightM" value="Cancel"/>      
       </p>
     </div>
 	<!-- The dialog box with css3 effect -->
@@ -59,8 +59,8 @@
       </div>
       <div class="dialogMsg margin">this place for content</div>
       <p class="paddingLeft paddingRight textAlignRight">
-      <input type="button" class="heightL widthL css3_roundS css3_gradient_blue button blueButton" value="Submit">
-      <input type="button" class="heightL widthL css3_roundS css3_gradient_grey borderGrey_2 button greyButton " value="Cancel">      
+      <input type="button" class="heightL widthL css3_roundS css3_gradient_blue button blueButton" value="Submit"/>
+      <input type="button" class="heightL widthL css3_roundS css3_gradient_grey borderGrey_2 button greyButton " value="Cancel"/>      
       </p>
     </div>
     
@@ -72,8 +72,8 @@
       </div>
       <div class="dialogMsg margin">this place for content</div>
       <p class="paddingLeft paddingRight textAlignRight">
-      <input type="button" class="heightL widthL css3_roundS css3_gradient_blue button blueButton" value="Submit">
-      <input type="button" class="heightL widthL css3_roundS css3_gradient_grey borderGrey_2 button greyButton " value="Cancel">      
+      <input type="button" class="heightL widthL css3_roundS css3_gradient_blue button blueButton" value="Submit"/>
+      <input type="button" class="heightL widthL css3_roundS css3_gradient_grey borderGrey_2 button greyButton " value="Cancel"/>      
       </p>
     </div>
 </div>
@@ -90,6 +90,7 @@
 
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.dialog.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript">
 	var b = $.dialog({
 		width: 540,
@@ -97,26 +98,21 @@
 		top:'30%',
 		draggable: false,
 		content:$(".c_testwrap2"),
-		title:"hello dialog 2",
+		titleText:"hello dialog 2",
 		dialogStyle:{"border":"8px solid #ededed"},
 		titleStyle:{"background":"#F5F5F5"},
 		btnsWrapStyle:{'text-align':'right'},
 		buttonsClass:["heightS css3_roundS css3_gradient_blue button blueButton marginLeft","heightS css3_roundS css3_gradient_grey borderGrey_2 button greyButton marginLeft"],
 		buttonsStyle:[{width:80}],
 		closeCallback: function(){},
-		buttonsArray: ["ok","button2"],
+		buttonsArray: ["ok","button2","button2","button2","button2"],
 		buttonsCallback:{"ok":function(){ 
 			a.show();
 		}},
 		upload:false
 	}).show();
-	
-	var a = $.dialog({
-		content: document.getElementById('c_testwrap3'),
-		buttonsArray: ["ok","cancel"],
-		buttonsCallback: {"ok":function(){ b.show();},
-			"cancel":function(){ a.hide();}}
-	});
+	var temp = document.getElementById('c_testwrap3');
+	var a = $.dialog(temp); 
 </script>
 </body>
 </html>
