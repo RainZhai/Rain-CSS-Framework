@@ -105,14 +105,14 @@
 		buttonsClass:["heightS css3_roundS css3_gradient_blue button blueButton marginLeft","heightS css3_roundS css3_gradient_grey borderGrey_2 button greyButton marginLeft"],
 		buttonsStyle:[{width:80}],
 		closeCallback: function(){},
-		buttonsArray: ["ok","button2","button2","button2","button2"],
-		buttonsCallback:{"ok":function(){ 
-			a.show();
-		}},
+		buttons:"OKCancel",
+		beforeClose:function(e){ alert(e.data.name);alert(e.data.type);},
+		afterClose:function(e){ alert(e.data.name +"--dsfsdf");},
 		upload:false
 	}).show();
 	var temp = document.getElementById('c_testwrap3');
-	var a = $.dialog(temp); 
+	var a = $.dialog($('<p>你好！</p>'));
+	
 </script>
 </body>
 </html>

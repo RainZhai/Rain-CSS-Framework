@@ -32,6 +32,7 @@
 		buttonsStyle:[{}],
 		buttonsClass:['heightS css3_roundS css3_gradient_blue button blueButton marginLeft'],
 		closeCallback: function(){},
+		buttons:null,
 		buttonsArray:[],
 		buttonsCallback:{},
 		beforeShow:function(){},
@@ -150,25 +151,43 @@
 			}
 			//设置遮罩颜色
 			$(".c_bgColor").css({ "background-color": o.bgColor});
-			//遍历设置的按钮数组,将相应的按钮进行显示并绑定相应事件
-			var buttonsArray = o.buttonsArray;
-			var buttonsCallback = o.buttonsCallback;
-			var buttonsWrap = html.find(".c_btnWrap");
-			var buttonDom = html.find(".c_button");
-			function functionHandler(event){
-				var _callback = buttonsArray[event.data.index]; 
-				if(typeof buttonsCallback[_callback] =='function') buttonsCallback[_callback]();
-			}
-			//按钮绑定事件
-			if(buttonsArray.length>0){
-				for(var i=0; i<buttonsArray.length; i++){
-					var btnClass = o.buttonsClass[i] || '';
-					var btnStyle = o.buttonsStyle[i] || {};
-					var buttons = $("<input type='button' value='"+buttonsArray[i]+"' class='c_button "+btnClass+"' />").css(btnStyle);
-					buttons.bind("click",{index:i},functionHandler);
-					buttonsWrap.append(buttons);
+				//设置按钮
+				var buttonsWrap = html.find(".c_btnWrap");
+				if (o.buttons && typeof(o.buttons)==='string') {
+						function btnHandler(event) {
+							o.beforeClose(event);
+							o.close();
+							o.afterClose(event);
+						}
+						var button = [];
+						if(o.buttons==='OK') button.push($("<input type='button' value='确定' class='c_button' />"));
+						if(o.buttons==='OKCancel') button.push($("<input type='button' value='确定' class='c_button' />").attr('btype','ok'), $("<input type='button' value='取消' class='c_button marginLeftS' />").attr('btype','canel'));
+						if(o.buttons==='YesNo') button.push($("<input type='button' value='是' class='c_button' />"), $("<input type='button' value='否' class='c_button marginLeftS' />"));
+						if(o.buttons==='YesNoCancel') 
+							button.push($("<input type='button' value='是' class='c_button' />"),$("<input type='button' value='否' class='c_button marginLeftS' />"),$("<input type='button' value='取消' class='c_button marginLeftS' />"));
+						for ( var i = 0; i < button.length; i++) {
+							button[i].bind("click", {name : o.buttons,type: button[i].attr('btype')}, btnHandler);
+							buttonsWrap.append(button[i]);
+						}
+				} else {
+					// 遍历设置的按钮数组,将相应的按钮进行显示并绑定相应事件
+					var buttonsArray = o.buttonsArray;
+					var buttonsCallback = o.buttonsCallback;
+					var buttonDom = html.find(".c_button");
+					function btnsHandler(event) {
+						var _callback = buttonsArray[event.data.index];
+						if (typeof buttonsCallback[_callback] == 'function')
+							buttonsCallback[_callback]();
+					}
+					// 按钮绑定事件
+					for ( var i = 0; i < buttonsArray.length; i++) {
+						var btnClass = o.buttonsClass[i] || '';
+						var btnStyle = o.buttonsStyle[i] || {};
+						var buttons = $("<input type='button' value='" + buttonsArray[i] + "' class='c_button " + btnClass + "' />").css(btnStyle);
+						buttons.bind("click", {index : i}, btnsHandler);
+						buttonsWrap.append(buttons);
+					}
 				}
-			}
 			//关闭按钮绑定事件
 			html.find("."+closeClass).bind("click",function(){
 				o.beforeClose();
@@ -197,14 +216,13 @@
 	}
 	o.hide = o.close = function(callback){
 		$("."+dialogHandleClass).hide();
-		if(callback){	callback();}
+		if(typeof(callback)==='function'){	callback();}
 		return o;
 	}
 	o.height = function(h/*number*/){
 		if(typeof(h)==='number'){if(html){html.find(".c_dialogBox").height(h);}}
 		return o;
 	}
-	//console.log($(this));
 	return o;
 }
 })(jQuery);
