@@ -24,125 +24,125 @@ Atomic Css Objects
 		--font-size
 		--font
 */
-.fontNormal{ font-style:normal;}
-.fontItalic{ font-style:italic;}
-.fontOblique{ font-style:oblique;}
-.fontVariant{ font-variant:small-caps;}
-.fontWeightNormal{ font-weight:normal;} 
-.fontBord{ font-weight:bold;}
+.fN,.fontNormal{ font-style:normal;}
+.fI,.fontItalic{ font-style:italic;}
+.fO,.fontOblique{ font-style:oblique;}
+.fV,.fontVariant{ font-variant:small-caps;}
+.fWN,.fontWeightNormal{ font-weight:normal;} 
+.bord,.fontBord{ font-weight:bold;}
 .strong{ font-weight:bold;}
-.fontBorder{ font-weight:bolder;}
-.fontLighter{ font-weight: lighter;}
-.fontsizeXxsmall{ font-size:xx-small;}
-.fontsizeXsmall{ font-size: x-small;}
-.fontsizeSmall{ font-size: small;}
-.fontsizeMedium{ font-size: medium;}
-.fontsizeLarge{ font-size: large;}
-.fontsizeXlarge{ font-size: x-large;}
-.fontsizeXxlarge{ font-size: xx-large;}
-.fontsize-1{ font-size: 1em;}
-.fontsize-2{ font-size: 2em;}
-.fontsize-3{ font-size: 3em;}
-.fontsize-4{ font-size: 4em;}
-.fontsize-5{ font-size: 5em;}
-.fontsize-6{ font-size: 6em;}
-.fontsize-7{ font-size: 7em;}
-.fontsize-8{ font-size: 8em;}
-.fontsize-9{ font-size: 9em;}
-.fontsize-10{ font-size: 10em;}
+.border,.fontBorder{ font-weight:bolder;}
+.lighter,.fontLighter{ font-weight: lighter;}
+.fsXXs,.fontsizeXxsmall{ font-size:xx-small;}
+.fsXs,.fontsizeXsmall{ font-size: x-small;}
+.fss,.fontsizeSmall{ font-size: small;}
+.fsM,.fontsizeMedium{ font-size: medium;}
+.fsl,.fontsizeLarge{ font-size: large;}
+.fsXl,.fontsizeXlarge{ font-size: x-large;}
+.fsXXl,.fontsizeXxlarge{ font-size: xx-large;}
+.fs-1,.fontsize-1{ font-size: 1em;}
+.fs-2,.fontsize-2{ font-size: 2em;}
+.fs-3,.fontsize-3{ font-size: 3em;}
+.fs-4,.fontsize-4{ font-size: 4em;}
+.fs-5,.fontsize-5{ font-size: 5em;}
+.fs-6,.fontsize-6{ font-size: 6em;}
+.fs-7,.fontsize-7{ font-size: 7em;}
+.fs-8,.fontsize-8{ font-size: 8em;}
+.fs-9,.fontsize-9{ font-size: 9em;}
+.fs-10,.fontsize-10{ font-size: 10em;}
 /*  color and background 
 		free properties
 		--color
 		--background
 */
-.bgLightYellow{background-color: #FDF5D9!important;}
-.bgLightRed{background-color: #FDDFDE!important;}
-.bgLightGreen{background-color: #D1EED1!important;}
-.bgLightBlue{background-color: #DDF4FB!important;}
-.bgLightGrey{background-color: #F5F5F5!important;}
-.bgLightGrey2{background-color: #eee!important;}
-.bgYellow{background-color: #D2B852!important;}
-.bgRed{background-color: #C00!important;}
-.bgGreen{background-color: #57A957!important;}
-.bgBlue{background-color: #0064CD!important;}
+.bgLy,.bgLightYellow{background-color: #FDF5D9!important;}
+.bgLr,.bgLightRed{background-color: #FDDFDE!important;}
+.bgLg,.bgLightGreen{background-color: #D1EED1!important;}
+.bgLb,.bgLightBlue{background-color: #DDF4FB!important;}
+.bgLgrey,.bgLightGrey{background-color: #F5F5F5!important;}
+.bgLgrey2,.bgLightGrey2{background-color: #eee!important;}
+.bgY,.bgYellow{background-color: #D2B852!important;}
+.bgR,.bgRed{background-color: #C00!important;}
+.bgG,.bgGreen{background-color: #57A957!important;}
+.bgB,.bgBlue{background-color: #0064CD!important;}
 .bgGrey{background-color: grey!important;}
 .bgDeepGrey{background-color: #999!important;}
 .bgBlack{background-color: #000!important;}
-.bgWhite{background-color: #fff!important;}
+.bgW,.bgWhite{background-color: #fff!important;}
 
-.itemLightYellow:hover{background-color: #FDF5D9!important;}
-.itemLightRed:hover{background-color: #FDDFDE!important;}
-.itemLightGreen:hover{background-color: #D1EED1!important;}
-.itemLightBlue:hover{background-color: #DDF4FB!important;}
-.itemLightGrey:hover{background-color: #F5F5F5!important;}
-.itemLightGrey2:hover{background-color: #eee!important;}
-.itemYellow:hover{background-color: #D2B852!important;}
-.itemRed:hover{background-color: #C00!important;}
-.itemGreen:hover{background-color: #57A957!important;}
-.itemBlue:hover{background-color: #0064CD!important;}
-.itemGrey:hover{background-color: grey!important;}
-.itemBlack:hover{background-color: #000!important;}
-.itemWhite:hover{background-color: #fff!important;}
+.hoverLy:hover,.itemLightYellow:hover{background-color: #FDF5D9!important;}
+.hoverLr:hover,.itemLightRed:hover{background-color: #FDDFDE!important;}
+.hoverLg:hover,.itemLightGreen:hover{background-color: #D1EED1!important;}
+.hoverLb:hover,.itemLightBlue:hover{background-color: #DDF4FB!important;}
+.hoverLgrey:hover,.itemLightGrey:hover{background-color: #F5F5F5!important;}
+.hoverLgrey2:hover,.itemLightGrey2:hover{background-color: #eee!important;}
+.hoverY:hover,.itemYellow:hover{background-color: #D2B852!important;}
+.hoverR:hover,.itemRed:hover{background-color: #C00!important;}
+.hoverG:hover,.itemGreen:hover{background-color: #57A957!important;}
+.hoverB:hover,.itemBlue:hover{background-color: #0064CD!important;}
+.hoverGrey:hover,.itemGrey:hover{background-color: grey!important;}
+.hoverBlack:hover,.itemBlack:hover{background-color: #000!important;}
+.hoverWhite:hover,.itemWhite:hover{background-color: #fff!important;}
 
-.colorLightYellow{color: #FDF5D9!important;}
-.colorLightRed{color: #FDDFDE!important;}
-.colorLightGreen{color: #D1EED1!important;}
-.colorLightBlue{color: #DDF4FB!important;}
-.colorLightGrey{color: #F5F5F5!important;}
-.colorLightGrey2{color: #eee!important;}
-.colorYellow{color: #D2B852!important;}
-.colorRed{color: #C00!important;}
-.colorGreen{color: #57A957!important;}
-.colorBlue{color: #0064CD!important;}
+.colorLy,.colorLightYellow{color: #FDF5D9!important;}
+.colorLr,.colorLightRed{color: #FDDFDE!important;}
+.colorLg,.colorLightGreen{color: #D1EED1!important;}
+.colorLb,.colorLightBlue{color: #DDF4FB!important;}
+.colorLgrey,.colorLightGrey{color: #F5F5F5!important;}
+.colorLgrey2,.colorLightGrey2{color: #eee!important;}
+.colorY,.colorYellow{color: #D2B852!important;}
+.colorR,.colorRed{color: #C00!important;}
+.colorG,.colorGreen{color: #57A957!important;}
+.colorB,.colorBlue{color: #0064CD!important;}
 .colorGrey{color: grey!important;}
 .colorDeepGrey{color: #999!important;}
 .colorBlack{color: #000!important;}
-.colorWhite{color: #fff!important;}
+.colorW,.colorWhite{color: #fff!important;}
 
-.itemColorLightYellow:hover{color: #FDF5D9!important;}
-.itemColorLightRed:hover{color: #FDDFDE!important;}
-.itemColorLightGreen:hover{color: #D1EED1!important;}
-.itemColorLightBlue:hover{color: #DDF4FB!important;}
-.itemColorLightGrey:hover{color: #F5F5F5!important;}
-.itemColorYellow:hover{color: #D2B852!important;}
-.itemColorRed:hover{color: #C00!important;}
-.itemColorGreen:hover{color: #57A957!important;}
-.itemColorBlue:hover{color: #0064CD!important;}
-.itemColorGrey:hover{color: grey!important;}
-.itemColorBlack:hover{color: #000!important;}
-.itemColorWhite:hover{color: #fff!important;}
+.hoverCly,.itemColorLightYellow:hover{color: #FDF5D9!important;}
+.hoverClr,.itemColorLightRed:hover{color: #FDDFDE!important;}
+.hoverClg,.itemColorLightGreen:hover{color: #D1EED1!important;}
+.hoverClb,.itemColorLightBlue:hover{color: #DDF4FB!important;}
+.hoverClgrey,.itemColorLightGrey:hover{color: #F5F5F5!important;}
+.hoverCy,.itemColorYellow:hover{color: #D2B852!important;}
+.hoverCr,.itemColorRed:hover{color: #C00!important;}
+.hoverCg,.itemColorGreen:hover{color: #57A957!important;}
+.hoverCb,.itemColorBlue:hover{color: #0064CD!important;}
+.hoverCg,.itemColorGrey:hover{color: grey!important;}
+.hoverCblack,.itemColorBlack:hover{color: #000!important;}
+.hoverCw,.itemColorWhite:hover{color: #fff!important;}
 /*  text
 		free properties
 		--word-spacing
 		--letter-spacing
 		--line-height
 */
-.textDecNone{text-decoration:none;}
-.textDecUnder{text-decoration: underline;}
-.textDecOver{text-decoration: overline;}
-.textDecThough{text-decoration: line-through;}
-.valignBase{vertical-align: baseline;}
-.valignSub{vertical-align: sub;}
-.valignSuper{vertical-align: super;}
-.valignTop{vertical-align: top;}
-.valignTtop{vertical-align: text-top;}
-.valignMiddle{vertical-align: middle;}
-.valignBottom{vertical-align: bottom;}
-.valignTbottom{vertical-align: text-bottom;}
-.tTransCap{text-transform:capitalize;}
-.tTransUpper{text-transform:uppercase;}
-.tTransLower{text-transform:lowercase;}
-.textAlignLeft{text-align:left;}
-.textAlignRight{text-align:right;}
-.textAlignCenter{text-align:center;}
-.textIndent{text-indent:20px;}
-.textIndentL{text-indent:40px;}
-.textIndent-1{ text-indent:10px;}
-.textIndent-2{ text-indent:20px;}
-.textIndent-3{ text-indent:30px;}
-.textIndent-4{ text-indent:40px;}
-.textIndent-5{ text-indent:50px;}
-.textIndent-6{ text-indent:60px;}
+.tDnone,.textDecNone{text-decoration:none;}
+.tDunder,.textDecUnder{text-decoration: underline;}
+.tDover,.textDecOver{text-decoration: overline;}
+.tDthough,.textDecThough{text-decoration: line-through;}
+.vB,.valignBase{vertical-align: baseline;}
+.vSub,.valignSub{vertical-align: sub;}
+.vSuper,.valignSuper{vertical-align: super;}
+.vTop,.valignTop{vertical-align: top;}
+.vTtop,.valignTtop{vertical-align: text-top;}
+.vM,.valignMiddle{vertical-align: middle;}
+.vB,.valignBottom{vertical-align: bottom;}
+.vTb,.valignTbottom{vertical-align: text-bottom;}
+.tCap,.tTransCap{text-transform:capitalize;}
+.tUpper,.tTransUpper{text-transform:uppercase;}
+.tLower,.tTransLower{text-transform:lowercase;}
+.tAL,.textAlignLeft{text-align:left;}
+.tAR,.textAlignRight{text-align:right;}
+.tAC,.textAlignCenter{text-align:center;}
+.tI,.textIndent{text-indent:20px;}
+.tIL,.textIndentL{text-indent:40px;}
+.tI-1,.textIndent-1{ text-indent:10px;}
+.tI-2,.textIndent-2{ text-indent:20px;}
+.tI-3,.textIndent-3{ text-indent:30px;}
+.tI-4,.textIndent-4{ text-indent:40px;}
+.tI-5,.textIndent-5{ text-indent:50px;}
+.tI-6,.textIndent-6{ text-indent:60px;}
 /*
 word-wrap ： normal | break-word
 normal：控制连续文本换行。break-word：内容将在边界内换行。如果需要，词内换行（word-break）也会发生。
