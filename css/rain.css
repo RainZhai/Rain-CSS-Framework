@@ -24,22 +24,22 @@ Atomic Css Objects
 		--font-size
 		--font
 */
-.fN,.fontNormal{ font-style:normal;}
-.fI,.fontItalic{ font-style:italic;}
-.fO,.fontOblique{ font-style:oblique;}
-.fV,.fontVariant{ font-variant:small-caps;}
-.fWN,.fontWeightNormal{ font-weight:normal;} 
+.fn,.fontNormal{ font-style:normal;}
+.fi,.fontItalic{ font-style:italic;}
+.fo,.fontOblique{ font-style:oblique;}
+.fv,.fontVariant{ font-variant:small-caps;}
+.fwn,.fontWeightNormal{ font-weight:normal;} 
 .bord,.fontBord{ font-weight:bold;}
 .strong{ font-weight:bold;}
 .border,.fontBorder{ font-weight:bolder;}
 .lighter,.fontLighter{ font-weight: lighter;}
-.fsXXs,.fontsizeXxsmall{ font-size:xx-small;}
-.fsXs,.fontsizeXsmall{ font-size: x-small;}
+.fsxxs,.fontsizeXxsmall{ font-size:xx-small;}
+.fsxs,.fontsizeXsmall{ font-size: x-small;}
 .fss,.fontsizeSmall{ font-size: small;}
-.fsM,.fontsizeMedium{ font-size: medium;}
+.fsm,.fontsizeMedium{ font-size: medium;}
 .fsl,.fontsizeLarge{ font-size: large;}
-.fsXl,.fontsizeXlarge{ font-size: x-large;}
-.fsXXl,.fontsizeXxlarge{ font-size: xx-large;}
+.fsxl,.fontsizeXlarge{ font-size: x-large;}
+.fsxxl,.fontsizeXxlarge{ font-size: xx-large;}
 .fs-1,.fontsize-1{ font-size: 1em;}
 .fs-2,.fontsize-2{ font-size: 2em;}
 .fs-3,.fontsize-3{ font-size: 3em;}
@@ -55,109 +55,109 @@ Atomic Css Objects
 		--color
 		--background
 */
-.bgLy,.bgLightYellow{background-color: #FDF5D9!important;}
-.bgLr,.bgLightRed{background-color: #FDDFDE!important;}
-.bgLg,.bgLightGreen{background-color: #D1EED1!important;}
-.bgLb,.bgLightBlue{background-color: #DDF4FB!important;}
-.bgLgrey,.bgLightGrey{background-color: #F5F5F5!important;}
-.bgLgrey2,.bgLightGrey2{background-color: #eee!important;}
-.bgY,.bgYellow{background-color: #D2B852!important;}
-.bgR,.bgRed{background-color: #C00!important;}
-.bgG,.bgGreen{background-color: #57A957!important;}
-.bgB,.bgBlue{background-color: #0064CD!important;}
-.bgGrey{background-color: grey!important;}
+.bgly,.bgLightYellow{background-color: #FDF5D9!important;}
+.bglr,.bgLightRed{background-color: #FDDFDE!important;}
+.bglg,.bgLightGreen{background-color: #D1EED1!important;}
+.bglb,.bgLightBlue{background-color: #DDF4FB!important;}
+.bglgrey,.bgLightGrey{background-color: #F5F5F5!important;}
+.bglgrey2,.bgLightGrey2{background-color: #eee!important;}
+.bgy,.bgYellow{background-color: #D2B852!important;}
+.bgr,.bgRed{background-color: #C00!important;}
+.bgg,.bgGreen{background-color: #57A957!important;}
+.bgb,.bgBlue{background-color: #0064CD!important;}
+.bggrey{background-color: grey!important;}
 .bgDeepGrey{background-color: #999!important;}
 .bgBlack{background-color: #000!important;}
-.bgW,.bgWhite{background-color: #fff!important;}
+.bgw,.bgWhite{background-color: #fff!important;}
 
-.hoverLy:hover,.itemLightYellow:hover{background-color: #FDF5D9!important;}
-.hoverLr:hover,.itemLightRed:hover{background-color: #FDDFDE!important;}
-.hoverLg:hover,.itemLightGreen:hover{background-color: #D1EED1!important;}
-.hoverLb:hover,.itemLightBlue:hover{background-color: #DDF4FB!important;}
-.hoverLgrey:hover,.itemLightGrey:hover{background-color: #F5F5F5!important;}
-.hoverLgrey2:hover,.itemLightGrey2:hover{background-color: #eee!important;}
-.hoverY:hover,.itemYellow:hover{background-color: #D2B852!important;}
-.hoverR:hover,.itemRed:hover{background-color: #C00!important;}
-.hoverG:hover,.itemGreen:hover{background-color: #57A957!important;}
-.hoverB:hover,.itemBlue:hover{background-color: #0064CD!important;}
-.hoverGrey:hover,.itemGrey:hover{background-color: grey!important;}
-.hoverBlack:hover,.itemBlack:hover{background-color: #000!important;}
-.hoverWhite:hover,.itemWhite:hover{background-color: #fff!important;}
+.hoverly:hover,.itemLightYellow:hover{background-color: #FDF5D9!important;}
+.hoverlr:hover,.itemLightRed:hover{background-color: #FDDFDE!important;}
+.hoverlg:hover,.itemLightGreen:hover{background-color: #D1EED1!important;}
+.hoverlb:hover,.itemLightBlue:hover{background-color: #DDF4FB!important;}
+.hoverlgrey:hover,.itemLightGrey:hover{background-color: #F5F5F5!important;}
+.hoverlgrey2:hover,.itemLightGrey2:hover{background-color: #eee!important;}
+.hovery:hover,.itemYellow:hover{background-color: #D2B852!important;}
+.hoverr:hover,.itemRed:hover{background-color: #C00!important;}
+.hoverg:hover,.itemGreen:hover{background-color: #57A957!important;}
+.hoverb:hover,.itemBlue:hover{background-color: #0064CD!important;}
+.hovergrey:hover,.itemGrey:hover{background-color: grey!important;}
+.hoverblack:hover,.itemBlack:hover{background-color: #000!important;}
+.hoverwhite:hover,.itemWhite:hover{background-color: #fff!important;}
 
-.colorLy,.colorLightYellow{color: #FDF5D9!important;}
-.colorLr,.colorLightRed{color: #FDDFDE!important;}
-.colorLg,.colorLightGreen{color: #D1EED1!important;}
-.colorLb,.colorLightBlue{color: #DDF4FB!important;}
-.colorLgrey,.colorLightGrey{color: #F5F5F5!important;}
-.colorLgrey2,.colorLightGrey2{color: #eee!important;}
-.colorY,.colorYellow{color: #D2B852!important;}
-.colorR,.colorRed{color: #C00!important;}
-.colorG,.colorGreen{color: #57A957!important;}
-.colorB,.colorBlue{color: #0064CD!important;}
+.colorly,.colorLightYellow{color: #FDF5D9!important;}
+.colorlr,.colorLightRed{color: #FDDFDE!important;}
+.colorlg,.colorLightGreen{color: #D1EED1!important;}
+.colorlb,.colorLightBlue{color: #DDF4FB!important;}
+.colorlgrey,.colorLightGrey{color: #F5F5F5!important;}
+.colorlgrey2,.colorLightGrey2{color: #eee!important;}
+.colory,.colorYellow{color: #D2B852!important;}
+.colorr,.colorRed{color: #C00!important;}
+.colorg,.colorGreen{color: #57A957!important;}
+.colorb,.colorBlue{color: #0064CD!important;}
 .colorGrey{color: grey!important;}
 .colorDeepGrey{color: #999!important;}
 .colorBlack{color: #000!important;}
-.colorW,.colorWhite{color: #fff!important;}
+.colorw,.colorWhite{color: #fff!important;}
 
-.hoverCly,.itemColorLightYellow:hover{color: #FDF5D9!important;}
-.hoverClr,.itemColorLightRed:hover{color: #FDDFDE!important;}
-.hoverClg,.itemColorLightGreen:hover{color: #D1EED1!important;}
-.hoverClb,.itemColorLightBlue:hover{color: #DDF4FB!important;}
-.hoverClgrey,.itemColorLightGrey:hover{color: #F5F5F5!important;}
-.hoverCy,.itemColorYellow:hover{color: #D2B852!important;}
-.hoverCr,.itemColorRed:hover{color: #C00!important;}
-.hoverCg,.itemColorGreen:hover{color: #57A957!important;}
-.hoverCb,.itemColorBlue:hover{color: #0064CD!important;}
-.hoverCg,.itemColorGrey:hover{color: grey!important;}
-.hoverCblack,.itemColorBlack:hover{color: #000!important;}
-.hoverCw,.itemColorWhite:hover{color: #fff!important;}
+.hovercly,.itemColorLightYellow:hover{color: #FDF5D9!important;}
+.hoverclr,.itemColorLightRed:hover{color: #FDDFDE!important;}
+.hoverclg,.itemColorLightGreen:hover{color: #D1EED1!important;}
+.hoverclb,.itemColorLightBlue:hover{color: #DDF4FB!important;}
+.hoverclgrey,.itemColorLightGrey:hover{color: #F5F5F5!important;}
+.hovercy,.itemColorYellow:hover{color: #D2B852!important;}
+.hovercr,.itemColorRed:hover{color: #C00!important;}
+.hovercg,.itemColorGreen:hover{color: #57A957!important;}
+.hovercb,.itemColorBlue:hover{color: #0064CD!important;}
+.hovercg,.itemColorGrey:hover{color: grey!important;}
+.hovercblack,.itemColorBlack:hover{color: #000!important;}
+.hovercw,.itemColorWhite:hover{color: #fff!important;}
 /*  text
 		free properties
 		--word-spacing
 		--letter-spacing
 		--line-height
 */
-.tDnone,.textDecNone{text-decoration:none;}
-.tDunder,.textDecUnder{text-decoration: underline;}
-.tDover,.textDecOver{text-decoration: overline;}
-.tDthough,.textDecThough{text-decoration: line-through;}
-.vB,.valignBase{vertical-align: baseline;}
-.vSub,.valignSub{vertical-align: sub;}
-.vSuper,.valignSuper{vertical-align: super;}
-.vTop,.valignTop{vertical-align: top;}
-.vTtop,.valignTtop{vertical-align: text-top;}
-.vM,.valignMiddle{vertical-align: middle;}
-.vB,.valignBottom{vertical-align: bottom;}
-.vTb,.valignTbottom{vertical-align: text-bottom;}
-.tCap,.tTransCap{text-transform:capitalize;}
-.tUpper,.tTransUpper{text-transform:uppercase;}
-.tLower,.tTransLower{text-transform:lowercase;}
-.tAL,.textAlignLeft{text-align:left;}
-.tAR,.textAlignRight{text-align:right;}
-.tAC,.textAlignCenter{text-align:center;}
-.tI,.textIndent{text-indent:20px;}
-.tIL,.textIndentL{text-indent:40px;}
-.tI-1,.textIndent-1{ text-indent:10px;}
-.tI-2,.textIndent-2{ text-indent:20px;}
-.tI-3,.textIndent-3{ text-indent:30px;}
-.tI-4,.textIndent-4{ text-indent:40px;}
-.tI-5,.textIndent-5{ text-indent:50px;}
-.tI-6,.textIndent-6{ text-indent:60px;}
+.tdnone,.textDecNone{text-decoration:none;}
+.tdunder,.textDecUnder{text-decoration: underline;}
+.tdover,.textDecOver{text-decoration: overline;}
+.tdthough,.textDecThough{text-decoration: line-through;}
+.vb,.valignBase{vertical-align: baseline;}
+.vsub,.valignSub{vertical-align: sub;}
+.vsuper,.valignSuper{vertical-align: super;}
+.vtop,.valignTop{vertical-align: top;}
+.vttop,.valignTtop{vertical-align: text-top;}
+.vm,.valignMiddle{vertical-align: middle;}
+.vb,.valignBottom{vertical-align: bottom;}
+.vtb,.valignTbottom{vertical-align: text-bottom;}
+.tcap,.tTransCap{text-transform:capitalize;}
+.tupper,.tTransUpper{text-transform:uppercase;}
+.tlower,.tTransLower{text-transform:lowercase;}
+.tal,.textAlignLeft{text-align:left;}
+.tar,.textAlignRight{text-align:right;}
+.tac,.textAlignCenter{text-align:center;}
+.ti,.textIndent{text-indent:20px;}
+.til,.textIndentL{text-indent:40px;}
+.ti-1,.textIndent-1{ text-indent:10px;}
+.ti-2,.textIndent-2{ text-indent:20px;}
+.ti-3,.textIndent-3{ text-indent:30px;}
+.ti-4,.textIndent-4{ text-indent:40px;}
+.ti-5,.textIndent-5{ text-indent:50px;}
+.ti-6,.textIndent-6{ text-indent:60px;}
 /*
 word-wrap ： normal | break-word
 normal：控制连续文本换行。break-word：内容将在边界内换行。如果需要，词内换行（word-break）也会发生。
 */
-.wordWrapNormal{word-wrap: normal;}
-.wordWrapBreak{word-wrap: break-word;}
+.wwn,.wordWrapNormal{word-wrap: normal;}
+.wwb,.wordWrapBreak{word-wrap: break-word;}
 /*
 word-break : normal |break-all |keep-all
 normal : 　依照亚洲语言和非亚洲语言的文本规则，允许在字内换行。
 break-all : 　该行为与亚洲语言的normal相同。也允许非亚洲语言文本行的任意字内断开。该值适合包含一些非亚洲文本的亚洲文本。
 keep-all : 　与所有非亚洲语言的normal相同。对于中文，韩文，日文，不允许字断开。适合包含少量亚洲文本的非亚洲文本。
 */
-.wordBreakNormal{word-break:normal;}
-.wordBreakAll{word-break:break-all;}
-.wordBreakKeepAll{word-break:keep-all;}
+.wbn,.wordBreakNormal{word-break:normal;}
+.wball,.wordBreakAll{word-break:break-all;}
+.wbkall,.wordBreakKeepAll{word-break:keep-all;}
 /*
 white-space 属性设置如何处理元素内的空白。
 这个属性声明建立布局过程中如何处理元素中的空白符。值 pre-wrap 和 pre-line 是 CSS 2.1 中新增的。
@@ -167,179 +167,180 @@ nowrap 	文本不会换行，文本会在在同一行上继续，直到遇到 <b
 pre-wrap 	保留空白符序列，但是正常地进行换行。
 pre-line 	合并空白符序列，但是保留换行符。
 */
-.wordSpaceNowrap{white-space:nowrap;}
-.wordSpacePre{white-space: pre;}
-.wordSpacePreline{white-space: pre-line;}
-.wordSpacePrewrap{white-space: pre-wrap;}
+.wsn,.wordSpaceNowrap{white-space:nowrap;}
+.wsp,.wordSpacePre{white-space: pre;}
+.wspreline,.wordSpacePreline{white-space: pre-line;}
+.wsprewrap,.wordSpacePrewrap{white-space: pre-wrap;}
 /*  box
 		free properties
 		--width
 		--height
 */
-.fullWidth{width:100%;}
-.fullHeight{height:100%;}
-.widthAuto{width:auto;}
-.heightAuto{height: auto;}
-.heightS{ height:25px; line-height:25px;}
-.heightM{ height:30px; line-height:30px;}
-.heightL{ height:35px; line-height:35px;}
-.heightLL{ height:40px; line-height:40px;}
+.fullw,.fullWidth{width:100%;}
+.fullh,.fullHeight{height:100%;}
+.wauto,.widthAuto{width:auto;}
+.hauto,.heightAuto{height: auto;}
+.hs,.heightS{ height:25px; line-height:25px;}
+.hm,.heightM{ height:30px; line-height:30px;}
+.hl,.heightL{ height:35px; line-height:35px;}
+.hll,.heightLL{ height:40px; line-height:40px;}
 
-.widthS{ width:80px;}
-.widthM{ width:110px;}
-.widthL{ width:120px;}
-.widthLL{ width:130px;}
+.ws,.widthS{ width:80px;}
+.wm,.widthM{ width:110px;}
+.wl,.widthL{ width:120px;}
+.wll,.widthLL{ width:130px;}
 
-.fullLineHeight{line-height:100%;}
-.lineHight-1{line-height:1;}
-.lineHight-2{line-height:2;}
-.lineHight-3{line-height:3;}
-.lineHight-4{line-height:4;}
-.lineHight-5{line-height:5;}
+.fulllh,.fullLineHeight{line-height:100%;}
+.lh-1,.lineHight-1{line-height:1;}
+.lh-2,.lineHight-2{line-height:2;}
+.lh-3,.lineHight-3{line-height:3;}
+.lh-4,.lineHight-4{line-height:4;}
+.lh-5,.lineHight-5{line-height:5;}
 
-.width-1{ width:10px;}
-.width-2{ width:20px;}
-.width-3{ width:30px;}
-.width-4{ width:40px;}
-.width-5{ width:50px;}
-.width-6{ width:60px;}
-.width-7{ width:70px;}
-.width-8{ width:80px;}
-.width-9{ width:90px;}
-.width-10{ width:100px;}
-.width-11{ width:110px;}
-.width-12{ width:120px;}
-.width-13{ width:130px;}
-.width-14{ width:140px;}
-.width-15{ width:150px;}
-.width-16{ width:160px;}
-.width-17{ width:170px;}
-.width-18{ width:180px;}
-.width-19{ width:190px;}
-.width-20{ width:200px;}
-.width-21{ width:210px;}
-.width-22{ width:220px;}
-.width-23{ width:230px;}
-.width-24{ width:240px;}
-.width-25{ width:250px;}
-.width-26{ width:260px;}
-.width-27{ width:270px;}
-.width-28{ width:280px;}
-.width-29{ width:290px;}
-.width-30{ width:300px;}
+.w-1,.width-1{ width:10px;}
+.w-2,.width-2{ width:20px;}
+.w-3,.width-3{ width:30px;}
+.w-4,.width-4{ width:40px;}
+.w-5,.width-5{ width:50px;}
+.w-6,.width-6{ width:60px;}
+.w-7,.width-7{ width:70px;}
+.w-8,.width-8{ width:80px;}
+.w-9,.width-9{ width:90px;}
+.w-10,.width-10{ width:100px;}
+.w-11,.width-11{ width:110px;}
+.w-12,.width-12{ width:120px;}
+.w-13,.width-13{ width:130px;}
+.w-14,.width-14{ width:140px;}
+.w-15,.width-15{ width:150px;}
+.w-16,.width-16{ width:160px;}
+.w-17,.width-17{ width:170px;}
+.w-18,.width-18{ width:180px;}
+.w-19,.width-19{ width:190px;}
+.w-20,.width-20{ width:200px;}
+.w-21,.width-21{ width:210px;}
+.w-22,.width-22{ width:220px;}
+.w-23,.width-23{ width:230px;}
+.w-24,.width-24{ width:240px;}
+.w-25,.width-25{ width:250px;}
+.w-26,.width-26{ width:260px;}
+.w-27,.width-27{ width:270px;}
+.w-28,.width-28{ width:280px;}
+.w-29,.width-29{ width:290px;}
+.w-30,.width-30{ width:300px;}
+.w-40,.width-40{ width:400px;}
 
-.height-1{ height:10px;}
-.height-2{ height:20px;}
-.height-3{ height:30px;}
-.height-4{ height:40px;}
-.height-5{ height:50px;}
-.height-6{ height:60px;}
-.height-7{ height:70px;}
-.height-8{ height:80px;}
-.height-9{ height:90px;}
-.height-10{ height:100px;}
-.height-11{ height:110px;}
-.height-12{ height:120px;}
-.height-13{ height:130px;}
-.height-14{ height:140px;}
-.height-15{ height:150px;}
-.height-16{ height:160px;}
-.height-17{ height:170px;}
-.height-18{ height:180px;}
-.height-19{ height:190px;}
-.height-20{ height:200px;}
-.height-21{ height:210px;}
-.height-22{ height:220px;}
-.height-23{ height:230px;}
-.height-24{ height:240px;}
-.height-25{ height:250px;}
-.height-26{ height:260px;}
-.height-27{ height:270px;}
-.height-28{ height:280px;}
-.height-29{ height:290px;}
-.height-30{ height:300px;}
+.h-1,.height-1{ height:10px;}
+.h-2,.height-2{ height:20px;}
+.h-3,.height-3{ height:30px;}
+.h-4,.height-4{ height:40px;}
+.h-5,.height-5{ height:50px;}
+.h-6,.height-6{ height:60px;}
+.h-7,.height-7{ height:70px;}
+.h-8,.height-8{ height:80px;}
+.h-9,.height-9{ height:90px;}
+.h-10,.height-10{ height:100px;}
+.h-11,.height-11{ height:110px;}
+.h-12,.height-12{ height:120px;}
+.h-13,.height-13{ height:130px;}
+.h-14,.height-14{ height:140px;}
+.h-15,.height-15{ height:150px;}
+.h-16,.height-16{ height:160px;}
+.h-17,.height-17{ height:170px;}
+.h-18,.height-18{ height:180px;}
+.h-19,.height-19{ height:190px;}
+.h-20,.height-20{ height:200px;}
+.h-21,.height-21{ height:210px;}
+.h-22,.height-22{ height:220px;}
+.h-23,.height-23{ height:230px;}
+.h-24,.height-24{ height:240px;}
+.h-25,.height-25{ height:250px;}
+.h-26,.height-26{ height:260px;}
+.h-27,.height-27{ height:270px;}
+.h-28,.height-28{ height:280px;}
+.h-29,.height-29{ height:290px;}
+.h-30,.height-30{ height:300px;}
 
-.width-fluid-5{width:5%;}
-.width-fluid-10{width:10%;}
-.width-fluid-15{width:15%;}
-.width-fluid-20{width:20%;}
-.width-fluid-25{width:25%;}
-.width-fluid-30{width:30%;}
-.width-fluid-35{width:35%;}
-.width-fluid-40{width:40%;}
-.width-fluid-45{width:45%;}
-.width-fluid-50{width:50%;}
-.width-fluid-55{width:55%;}
-.width-fluid-60{width:60%;}
-.width-fluid-65{width:65%;}
-.width-fluid-70{width:70%;}
-.width-fluid-75{width:75%;}
-.width-fluid-80{width:80%;}
-.width-fluid-85{width:85%;}
-.width-fluid-90{width:90%;}
-.width-fluid-95{width:95%;}
-.width-fluid-100{width:100%;}
+.wf-5,.width-fluid-5{width:5%;}
+.wf-10,.width-fluid-10{width:10%;}
+.wf-15,.width-fluid-15{width:15%;}
+.wf-20,.width-fluid-20{width:20%;}
+.wf-25,.width-fluid-25{width:25%;}
+.wf-30,.width-fluid-30{width:30%;}
+.wf-35,.width-fluid-35{width:35%;}
+.wf-40,.width-fluid-40{width:40%;}
+.wf-45,.width-fluid-45{width:45%;}
+.wf-50,.width-fluid-50{width:50%;}
+.wf-55,.width-fluid-55{width:55%;}
+.wf-60,.width-fluid-60{width:60%;}
+.wf-65,.width-fluid-65{width:65%;}
+.wf-70,.width-fluid-70{width:70%;}
+.wf-75,.width-fluid-75{width:75%;}
+.wf-80,.width-fluid-80{width:80%;}
+.wf-85,.width-fluid-85{width:85%;}
+.wf-90,.width-fluid-90{width:90%;}
+.wf-95,.width-fluid-95{width:95%;}
+.wf-100,.width-fluid-100{width:100%;}
 
-.height-fluid-5{height:5%;}
-.height-fluid-10{height:10%;}
-.height-fluid-15{height:15%;}
-.height-fluid-20{height:20%;}
-.height-fluid-25{height:25%;}
-.height-fluid-30{height:30%;}
-.height-fluid-35{height:35%;}
-.height-fluid-40{height:40%;}
-.height-fluid-45{height:45%;}
-.height-fluid-50{height:50%;}
-.height-fluid-55{height:55%;}
-.height-fluid-60{height:60%;}
-.height-fluid-65{height:65%;}
-.height-fluid-70{height:70%;}
-.height-fluid-75{height:75%;}
-.height-fluid-80{height:80%;}
-.height-fluid-85{height:85%;}
-.height-fluid-90{height:90%;}
-.height-fluid-95{height:95%;}
-.height-fluid-100{height:100%;}
+.hf-5,.height-fluid-5{height:5%;}
+.hf-10,.height-fluid-10{height:10%;}
+.hf-15,.height-fluid-15{height:15%;}
+.hf-20,.height-fluid-20{height:20%;}
+.hf-25,.height-fluid-25{height:25%;}
+.hf-30,.height-fluid-30{height:30%;}
+.hf-35,.height-fluid-35{height:35%;}
+.hf-40,.height-fluid-40{height:40%;}
+.hf-45,.height-fluid-45{height:45%;}
+.hf-50,.height-fluid-50{height:50%;}
+.hf-55,.height-fluid-55{height:55%;}
+.hf-60,.height-fluid-60{height:60%;}
+.hf-65,.height-fluid-65{height:65%;}
+.hf-70,.height-fluid-70{height:70%;}
+.hf-75,.height-fluid-75{height:75%;}
+.hf-80,.height-fluid-80{height:80%;}
+.hf-85,.height-fluid-85{height:85%;}
+.hf-90,.height-fluid-90{height:90%;}
+.hf-95,.height-fluid-95{height:95%;}
+.hf-100,.height-fluid-100{height:100%;}
 
-.marginLRAuto{ margin-left:auto; margin-right:auto;}
+.mlrauto,.marginLRAuto{ margin-left:auto; margin-right:auto;}
 .center{ margin-left:auto; margin-right:auto;}
-.noMargin{ margin:0;}
-.noLeftMargin{margin-left:0;}
-.noRightMargin{margin-right:0;}
-.noTopMargin{margin-top:0;}
-.noBottomMargin{margin-bottom:0;}
+.nom,.noMargin{ margin:0;}
+.nolm,.noLeftMargin{margin-left:0;}
+.norm,.noRightMargin{margin-right:0;}
+.notm,.noTopMargin{margin-top:0;}
+.nobm,.noBottomMargin{margin-bottom:0;}
 
-.marginBottomNeg-1{margin-bottom:-1px;}
+.mbn-1,.marginBottomNeg-1{margin-bottom:-1px;}
 
-.noPadding{ padding:0;}
-.noLeftPadding{padding-left:0;}
-.noRightPadding{padding-right:0;}
-.noTopPadding{padding-top:0;}
-.noBottomPadding{padding-bottom:0;}
+.nop,.noPadding{ padding:0;}
+.nolp,.noLeftPadding{padding-left:0;}
+.norp,.noRightPadding{padding-right:0;}
+.notp,.noTopPadding{padding-top:0;}
+.nobp,.noBottomPadding{padding-bottom:0;}
 
-.marginTopSS{ margin-top:2px;}
-.marginBottomSS{ margin-bottom:2px;}
-.marginRightSS{ margin-right:2px;}
-.marginLeftSS{ margin-left:2px;}
-.marginSS{ margin:2px;}
+.mtss,.marginTopSS{ margin-top:2px;}
+.mbss,.marginBottomSS{ margin-bottom:2px;}
+.mrss,.marginRightSS{ margin-right:2px;}
+.mlss,.marginLeftSS{ margin-left:2px;}
+.mss,.marginSS{ margin:2px;}
 
-.paddingTopSS{ padding-top:2px;}
-.paddingBottomSS{ padding-bottom:2px;}
-.paddingRightSS{ padding-right:2px;}
-.paddingLeftSS{ padding-left:2px;}
-.paddingSS{ padding:2px;}
+.ptss,.paddingTopSS{ padding-top:2px;}
+.pbss,.paddingBottomSS{ padding-bottom:2px;}
+.prss,.paddingRightSS{ padding-right:2px;}
+.plss,.paddingLeftSS{ padding-left:2px;}
+.pss,.paddingSS{ padding:2px;}
 
-.marginTopS{ margin-top:5px;}
-.marginBottomS{ margin-bottom:5px;}
-.marginRightS{ margin-right:5px;}
-.marginLeftS{ margin-left:5px;}
-.marginS{ margin:5px;}
+.mts,.marginTopS{ margin-top:5px;}
+.mbs,.marginBottomS{ margin-bottom:5px;}
+.mrs,.marginRightS{ margin-right:5px;}
+.mls,.marginLeftS{ margin-left:5px;}
+.ms,.marginS{ margin:5px;}
 
-.paddingTopS{ padding-top:5px;}
-.paddingBottomS{ padding-bottom:5px;}
-.paddingRightS{ padding-right:5px;}
-.paddingLeftS{ padding-left:5px;}
-.paddingS{ padding:5px;}
+.pts,.paddingTopS{ padding-top:5px;}
+.pbs,.paddingBottomS{ padding-bottom:5px;}
+.prs,.paddingRightS{ padding-right:5px;}
+.pls,.paddingLeftS{ padding-left:5px;}
+.ps,.paddingS{ padding:5px;}
 
 .marginTop{ margin-top:10px;}
 .marginBottom{ margin-bottom:10px;}
