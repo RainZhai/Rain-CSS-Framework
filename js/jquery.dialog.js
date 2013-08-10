@@ -21,6 +21,8 @@
 		dialogHandleClass:'c_dialogwrap',//弹出层句柄
 		titleText:'提示框',//弹出层文本
 		bgColor:'#fff',//遮罩背景色
+		closeStyle:{},
+		closeClass:'',
 		dialogStyle:{},//设置弹出框样式
 		dialogClass:'',//设置弹出框class
 		headStyle:{'background':'#F5F5F5'},
@@ -54,9 +56,9 @@
 				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 				'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
 				'<div class="c_dialogBox dialogBox positionFix"> '+
-				'<div class="c_dialogTitle padding"><h3 class="bottom">'+o.titleText+'</h3>'+
+				'<div class="c_dialogTitle padding"><span class="bottom">'+o.titleText+'</span>'+
 				'<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span> </div>'+
-				'<div class="c_contentWrap padding"></div><p class="c_btnWrap margin"> </p></div></div>');
+				'<div class="c_contentWrap pl pr"></div><p class="c_btnWrap margin"> </p></div></div>');
 			}else{
 				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 						'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
@@ -197,6 +199,7 @@
 			
 			//设置样式
 			html.find(".c_bgColor").height($("body").height());
+			html.find("."+closeClass).css(o.closeStyle).addClass(o.headClass);
 			if(o.dialogStyle) html.find(".c_dialogBox").css(o.dialogStyle);
 			html.find(".c_dialogTitle").css(o.headStyle).addClass(o.headClass);
 			html.find(".c_contentWrap").css(o.contentStyle).addClass(o.contentClass);
@@ -219,7 +222,7 @@
 		if(typeof(callback)==='function'){	callback();}
 		return o;
 	}
-	o.height = function(h/*number*/){
+	o.setHeight = function(h/*number*/){
 		if(typeof(h)==='number'){if(html){html.find(".c_dialogBox").height(h);}}
 		return o;
 	}
