@@ -499,62 +499,62 @@ pre-line 	合并空白符序列，但是保留换行符。
 .brt,.borderRedTop { border-top:1px #C00 solid!important;}
 .brb,.borderRedBottom { border-bottom:1px #C00 solid!important;}
 
-.borderg,.borderGreen{border:1px #57A957 solid!important;}
-.bordergl,.borderGreenLeft { border-left:1px #57A957 solid!important;}
-.bordergr,.borderGreenRight { border-right:1px #57A957 solid!important;}
-.bordergt,.borderGreenTop { border-top:1px #57A957 solid!important;}
-.bordergb,.borderGreenBottom { border-bottom:1px #57A957 solid!important;}
+.bgreen,.borderGreen{border:1px #57A957 solid!important;}
+.bgreenl,.borderGreenLeft { border-left:1px #57A957 solid!important;}
+.bgreenr,.borderGreenRight { border-right:1px #57A957 solid!important;}
+.bgreent,.borderGreenTop { border-top:1px #57A957 solid!important;}
+.bgreenb,.borderGreenBottom { border-bottom:1px #57A957 solid!important;}
 
-.borderb,.borderBlue{border:1px #0064CD solid!important;}
-.borderbl,.borderBlueLeft { border-left:1px #0064CD solid!important;}
-.borderbr,.borderBlueRight { border-right:1px #0064CD solid!important;}
-.borderbt,.borderBlueTop { border-top:1px #0064CD solid!important;}
-.borderbb,.borderBlueBottom { border-bottom:1px #0064CD solid!important;}
+.bblue,.borderBlue{border:1px #0064CD solid!important;}
+.bbluel,.borderBlueLeft { border-left:1px #0064CD solid!important;}
+.bbluer,.borderBlueRight { border-right:1px #0064CD solid!important;}
+.bbluet,.borderBlueTop { border-top:1px #0064CD solid!important;}
+.bblueb,.borderBlueBottom { border-bottom:1px #0064CD solid!important;}
 
-.borderGrey{border:1px grey solid!important;}
-.borderGreyLeft { border-left:1px grey solid!important;}
-.borderGreyRight { border-right:1px grey solid!important;}
-.borderGreyTop { border-top:1px grey solid!important;}
-.borderGreyBottom { border-bottom:1px grey solid!important;}
+.borderg,.borderGrey{border:1px grey solid!important;}
+.bordergl,.borderGreyLeft { border-left:1px grey solid!important;}
+.bordergr,.borderGreyRight { border-right:1px grey solid!important;}
+.bordergt,.borderGreyTop { border-top:1px grey solid!important;}
+.bordergb,.borderGreyBottom { border-bottom:1px grey solid!important;}
 
-.borderBlack{border:1px #000 solid!important;}
-.borderBlackLeft { border-left:1px #000 solid!important;}
-.borderBlackRight { border-right:1px #000 solid!important;}
-.borderBlackTop { border-top:1px #000 solid!important;}
-.borderBlackBottom { border-bottom:1px #000 solid!important;}
+.bblack,.borderBlack{border:1px #000 solid!important;}
+.bblackl,.borderBlackLeft { border-left:1px #000 solid!important;}
+.bblackr,.borderBlackRight { border-right:1px #000 solid!important;}
+.bblackt,.borderBlackTop { border-top:1px #000 solid!important;}
+.bblackb,.borderBlackBottom { border-bottom:1px #000 solid!important;}
 
-.borderWhite{border:1px #fff solid!important;}
-.borderWhiteLeft { border-left:1px #fff solid!important;}
-.borderWhiteRight { border-right:1px #fff solid!important;}
-.borderWhiteTop { border-top:1px #fff solid!important;}
-.borderWhiteBottom { border-bottom:1px #fff solid!important;}
+.bw,.borderWhite{border:1px #fff solid!important;}
+.bwl,.borderWhiteLeft { border-left:1px #fff solid!important;}
+.bwr,.borderWhiteRight { border-right:1px #fff solid!important;}
+.bwt,.borderWhiteTop { border-top:1px #fff solid!important;}
+.bwb,.borderWhiteBottom { border-bottom:1px #fff solid!important;}
 
-.borderGrey_1{ border:1px #CCC solid!important;}
-.borderGrey_1_Left { border-left:1px #CCC solid!important;}
-.borderGrey_1_Right { border-right:1px #CCC solid!important;}
-.borderGrey_1_Top { border-top:1px #CCC solid!important;}
-.borderGrey_1_Bottom { border-bottom:1px #CCC solid;!important;}
+.bgrey_1,.borderGrey_1{ border:1px #CCC solid!important;}
+.bgrey_1l,.borderGrey_1_Left { border-left:1px #CCC solid!important;}
+.bgrey_1r,.borderGrey_1_Right { border-right:1px #CCC solid!important;}
+.bgrey_1t,.borderGrey_1_Top { border-top:1px #CCC solid!important;}
+.bgrey_1b,.borderGrey_1_Bottom { border-bottom:1px #CCC solid;!important;}
 
-.borderGrey_2{ border:1px #999 solid!important;}
-.borderGrey_2_Left { border-left:1px #999 solid!important;}
-.borderGrey_2_Right { border-right:1px #999 solid!important;}
-.borderGrey_2_Top { border-top:1px #999 solid!important;}
-.borderGrey_2_Bottom { border-bottom:1px #999 solid!important;}
+.bgrey_2,.borderGrey_2{ border:1px #999 solid!important;}
+.bgrey_2l,.borderGrey_2_Left { border-left:1px #999 solid!important;}
+.bgrey_2r,.borderGrey_2_Right { border-right:1px #999 solid!important;}
+.bgrey_2t,.borderGrey_2_Top { border-top:1px #999 solid!important;}
+.bgrey_2b,.borderGrey_2_Bottom { border-bottom:1px #999 solid!important;}
 
-.borderGrey_3{ border:1px #666 solid!important;}
-.borderGrey_3_Left { border-left:1px #666 solid!important;}
-.borderGrey_3_Right { border-right:1px #666 solid!important;}
-.borderGrey_3_Top { border-top:1px #666 solid!important;}
-.borderGrey_3_Bottom { border-bottom:1px #666 solid!important;}
+.bgrey_3,.borderGrey_3{ border:1px #666 solid!important;}
+.bgrey_3l,.borderGrey_3_Left { border-left:1px #666 solid!important;}
+.bgrey_3r,.borderGrey_3_Right { border-right:1px #666 solid!important;}
+.bgrey_3t,.borderGrey_3_Top { border-top:1px #666 solid!important;}
+.bgrey_3b,.borderGrey_3_Bottom { border-bottom:1px #666 solid!important;}
 
-.borderGrey_4{ border:1px #333 solid!important;}
-.borderGrey_4_Left { border-left:1px #333 solid!important;}
-.borderGrey_4_Right { border-right:1px #333 solid!important;}
-.borderGrey_4_Top { border-top:1px #333 solid!important;}
-.borderGrey_4_Bottom { border-bottom:1px #333 solid!important;}
+.bgrey_4,.borderGrey_4{ border:1px #333 solid!important;}
+.bgrey_4l,.borderGrey_4_Left { border-left:1px #333 solid!important;}
+.bgrey_4r,.borderGrey_4_Right { border-right:1px #333 solid!important;}
+.bgrey_4t,.borderGrey_4_Top { border-top:1px #333 solid!important;}
+.bgrey_4b,.borderGrey_4_Bottom { border-bottom:1px #333 solid!important;}
 
-.noBorder{ border:0 none!important;}
-.noLeftBorder{border-left:0 none!important;}
+.nob,.noBorder{ border:0 none!important;}
+.nolb,.noLeftBorder{border-left:0 none!important;}
 .noRightBorder{border-right:0 none!important;}
 .noTopBorder{border-top:0 none!important;}
 .noBottomBorder{border-bottom:0 none!important;}
