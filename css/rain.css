@@ -90,27 +90,27 @@ Atomic Css Objects
 .colorlb,.colorLightBlue{color: #DDF4FB!important;}
 .colorlgrey,.colorLightGrey{color: #F5F5F5!important;}
 .colorlgrey2,.colorLightGrey2{color: #eee!important;}
-.colory,.colorYellow{color: #D2B852!important;}
-.colorr,.colorRed{color: #C00!important;}
-.colorg,.colorGreen{color: #57A957!important;}
-.colorb,.colorBlue{color: #0064CD!important;}
-.colorGrey{color: grey!important;}
-.colorDeepGrey{color: #999!important;}
-.colorBlack{color: #000!important;}
-.colorw,.colorWhite{color: #fff!important;}
+.yellow,.colory,.colorYellow{color: #D2B852!important;}
+.red,.colorr,.colorRed{color: #C00!important;}
+.green,.colorg,.colorGreen{color: #57A957!important;}
+.blue,.colorb,.colorBlue{color: #0064CD!important;}
+.grey,.colorGrey{color: grey!important;}
+.deepgrey,.colorDeepGrey{color: #999!important;}
+.black,.colorBlack{color: #000!important;}
+.white,.colorw,.colorWhite{color: #fff!important;}
 
-.hovercly,.itemColorLightYellow:hover{color: #FDF5D9!important;}
-.hoverclr,.itemColorLightRed:hover{color: #FDDFDE!important;}
-.hoverclg,.itemColorLightGreen:hover{color: #D1EED1!important;}
-.hoverclb,.itemColorLightBlue:hover{color: #DDF4FB!important;}
-.hoverclgrey,.itemColorLightGrey:hover{color: #F5F5F5!important;}
-.hovercy,.itemColorYellow:hover{color: #D2B852!important;}
-.hovercr,.itemColorRed:hover{color: #C00!important;}
-.hovercg,.itemColorGreen:hover{color: #57A957!important;}
-.hovercb,.itemColorBlue:hover{color: #0064CD!important;}
-.hovercg,.itemColorGrey:hover{color: grey!important;}
-.hovercblack,.itemColorBlack:hover{color: #000!important;}
-.hovercw,.itemColorWhite:hover{color: #fff!important;}
+.hovercly:hover,.itemColorLightYellow:hover{color: #FDF5D9!important;}
+.hoverclr:hover,.itemColorLightRed:hover{color: #FDDFDE!important;}
+.hoverclg:hover,.itemColorLightGreen:hover{color: #D1EED1!important;}
+.hoverclb:hover,.itemColorLightBlue:hover{color: #DDF4FB!important;}
+.hoverclgrey:hover,.itemColorLightGrey:hover{color: #F5F5F5!important;}
+.hovercy:hover,.itemColorYellow:hover{color: #D2B852!important;}
+.hovercr:hover,.itemColorRed:hover{color: #C00!important;}
+.hovercg:hover,.itemColorGreen:hover{color: #57A957!important;}
+.hovercb:hover,.itemColorBlue:hover{color: #0064CD!important;}
+.hovercg:hover,.itemColorGrey:hover{color: grey!important;}
+.hovercblack:hover,.itemColorBlack:hover{color: #000!important;}
+.hovercw:hover,.itemColorWhite:hover{color: #fff!important;}
 /*  text
 		free properties
 		--word-spacing
@@ -350,7 +350,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 
 .pt,.paddingTop{ padding-top:10px;}
 .pb,.paddingBottom{ padding-bottom:10px;}
-.pr.paddingRight{ padding-right:10px!important;}
+.pr,.paddingRight{ padding-right:10px!important;}
 .pl,.paddingLeft{ padding-left:10px;}
 .p,.padding{ padding:10px;}
 
@@ -441,7 +441,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 
 .b,.border{ border:1px #ccc solid!important; margin-right:0; padding-right:0;}
 .bl,.borderLeft { border-left:1px #ccc solid!important;}
-.br,.borderRight { border-right:1px #ccc solid!important;}
+.bright,.borderRight { border-right:1px #ccc solid!important;}
 .bt,.borderTop { border-top:1px #ccc solid!important;}
 .bb,.borderBottom { border-bottom:1px #ccc solid!important;}
 
@@ -554,15 +554,15 @@ pre-line 	合并空白符序列，但是保留换行符。
 .bgrey_4b,.borderGrey_4_Bottom { border-bottom:1px #333 solid!important;}
 
 .nob,.noBorder{ border:0 none!important;}
-.nolb,.noLeftBorder{border-left:0 none!important;}
-.noRightBorder{border-right:0 none!important;}
-.noTopBorder{border-top:0 none!important;}
-.noBottomBorder{border-bottom:0 none!important;}
-.left{ float:left;}
-.right{ float:right;} 
-.clearRight{ clear:right;}
-.clearLeft{ clear:left;}
-.clear{clear:both;}
+.nobl,.noBorderLeft{border-left:0 none!important;}
+.nobr,.noBorderRight{border-right:0 none!important;}
+.nobt,.noBorderTop{border-top:0 none!important;}
+.nobb,.noBorderBottom{border-bottom:0 none!important;}
+.l,.left{ float:left;}
+.r,.right{ float:right;} 
+.cr,.clearRight{ clear:right;}
+.cl,.clearLeft{ clear:left;}
+.c,.clear{clear:both;}
 
 /*	positioning
 		free properties
@@ -570,22 +570,22 @@ pre-line 	合并空白符序列，但是保留换行符。
 		--clip  
 		--z-index
 */
-.positionS{ position:static;}
-.positionA{ position:absolute;}
-.positionR{ position: relative;}
-.positionFix{ position:fixed;}
+.poss,.positionS{ position:static;}
+.posa,.positionA{ position:absolute;}
+.posr,.positionR{ position: relative;}
+.posf,.positionFix{ position:fixed;}
 .show{ display:block;}
-.displayBlock{display:block;}
-.displayInline{display:inline;}
-.displayInlineBlock{display:inline-block;}
-.displayInlineTable{display:inline-table;}
+.block,.displayBlock{display:block;}
+.inline,.displayInline{display:inline;}
+.ib,.displayInlineBlock{display:inline-block;}
+.it,.displayInlineTable{display:inline-table;}
 .hide{ display:none;}
-.overflowHide{ overflow:hidden;}
-.overflowAuto{ overflow:auto;}
-.overflowScroll{ overflow:scroll;}
-.overflowVisible{ overflow:visible;}
-.visible{ visibility:visible;}
-.visibleFalse{ visibility:hidden;}
+.ohide,.overflowHide{ overflow:hidden;}
+.oauto,.overflowAuto{ overflow:auto;}
+.oscroll,.overflowScroll{ overflow:scroll;}
+.ovisible,.overflowVisible{ overflow:visible;}
+.v,.visible{ visibility:visible;}
+.vf,.nov,.visibleFalse{ visibility:hidden;}
 .z-1{z-index:1;}
 .z-100{z-index:100;}
 .z-1000{z-index:1000;}
@@ -594,195 +594,22 @@ pre-line 	合并空白符序列，但是保留换行符。
 		free properties
 
 */
-.listStyleNo{list-style:none outside none;}
+.lsn,.listStyleNo{list-style:none outside none;}
 
 /* useful objects*/
 .imageAds{ border:1px #ccc solid; background-color:#efefef; text-align:center; padding:5px;}
 .triangle{width:0; height:0; border:4px solid transparent; border-top-color:#ccc;}
-.triangleTopGrey{width:0; height:0; border:4px solid transparent;border-top-color:#999;}
-.triangleLeftGrey{width:0; height:0; border:4px solid transparent;border-left-color:#999;}
-.triangleRightGrey{width:0; height:0; border:4px solid transparent;border-right-color:#999;}
-.triangleBottomGrey{width:0; height:0; border:4px solid transparent;border-bottom-color:#999;}
+.trianglegt,.triangleGreyTop{width:0; height:0; border:4px solid transparent;border-top-color:#999;}
+.trianglegl,.triangleGreyLeft{width:0; height:0; border:4px solid transparent;border-left-color:#999;}
+.trianglegr,.triangleGreyRight{width:0; height:0; border:4px solid transparent;border-right-color:#999;}
+.trianglegb,.triangleGreyBottom{width:0; height:0; border:4px solid transparent;border-bottom-color:#999;}
 
-.triangleTopWhite{width:0; height:0; border:4px solid transparent;border-top-color:#fff;}
-.triangleLeftWhite{width:0; height:0; border:4px solid transparent;border-left-color:#fff;}
-.triangleRightWhite{width:0; height:0; border:4px solid transparent;border-right-color:#fff;}
-.triangleBottomWhite{width:0; height:0; border:4px solid transparent;border-bottom-color:#fff;}
+.trianglewt,.triangleWhiteTop{width:0; height:0; border:4px solid transparent;border-top-color:#fff;}
+.trianglewl,.triangleWhiteLeft{width:0; height:0; border:4px solid transparent;border-left-color:#fff;}
+.trianglewr,.triangleWhiteRight{width:0; height:0; border:4px solid transparent;border-right-color:#fff;}
+.trianglewb,.triangleWhiteBottom{width:0; height:0; border:4px solid transparent;border-bottom-color:#fff;}
 
-.cursorPointer{ cursor:pointer;}
-/* extend css3 objects */
-.css3_roundS {
-     -moz-border-radius: 3px; /* FF1+ */
-  -webkit-border-radius: 3px; /* Saf3+, Chrome */
-          border-radius: 3px; /* Opera 10.5, IE 9 */
-}
-
-.css3_round-4 {
-     -moz-border-radius: 4px; /* FF1+ */
-  -webkit-border-radius: 4px; /* Saf3+, Chrome */
-          border-radius: 4px; /* Opera 10.5, IE 9 */
-}
-.css3_round-5 {
-     -moz-border-radius: 5px; /* FF1+ */
-  -webkit-border-radius: 5px; /* Saf3+, Chrome */
-          border-radius: 5px; /* Opera 10.5, IE 9 */
-}
-.css3_round-6 {
-     -moz-border-radius: 6px; /* FF1+ */
-  -webkit-border-radius: 6px; /* Saf3+, Chrome */
-          border-radius: 6px; /* Opera 10.5, IE 9 */
-}
-.css3_round-7 {
-     -moz-border-radius: 7px; /* FF1+ */
-  -webkit-border-radius: 7px; /* Saf3+, Chrome */
-          border-radius: 7px; /* Opera 10.5, IE 9 */
-}
-.css3_round-8 {
-     -moz-border-radius: 8px; /* FF1+ */
-  -webkit-border-radius: 8px; /* Saf3+, Chrome */
-          border-radius: 8px; /* Opera 10.5, IE 9 */
-}
-.css3_round-9 {
-     -moz-border-radius: 9px; /* FF1+ */
-  -webkit-border-radius: 9px; /* Saf3+, Chrome */
-          border-radius: 9px; /* Opera 10.5, IE 9 */
-}
-.css3_round-10 {
-     -moz-border-radius: 10px; /* FF1+ */
-  -webkit-border-radius: 10px; /* Saf3+, Chrome */
-          border-radius: 10px; /* Opera 10.5, IE 9 */
-}
-.css3_round-11 {
-     -moz-border-radius: 11px; /* FF1+ */
-  -webkit-border-radius: 11px; /* Saf3+, Chrome */
-          border-radius: 11px; /* Opera 10.5, IE 9 */
-}
-.css3_round-12 {
-     -moz-border-radius: 12px; /* FF1+ */
-  -webkit-border-radius: 12px; /* Saf3+, Chrome */
-          border-radius: 12px; /* Opera 10.5, IE 9 */
-}
-.css3_round-13 {
-     -moz-border-radius: 13px; /* FF1+ */
-  -webkit-border-radius: 13px; /* Saf3+, Chrome */
-          border-radius: 13px; /* Opera 10.5, IE 9 */
-}
-.css3_round-14 {
-     -moz-border-radius: 14px; /* FF1+ */
-  -webkit-border-radius: 14px; /* Saf3+, Chrome */
-          border-radius: 14px; /* Opera 10.5, IE 9 */
-}
-.css3_round-15 {
-     -moz-border-radius: 15px; /* FF1+ */
-  -webkit-border-radius: 15px; /* Saf3+, Chrome */
-          border-radius: 15px; /* Opera 10.5, IE 9 */
-}
-.css3_round_full {
-     -moz-border-radius: 100%; /* FF1+ */
-  -webkit-border-radius: 100%; /* Saf3+, Chrome */
-          border-radius: 100%; /* Opera 10.5, IE 9 */
-}
-.css3_round_leftS {
-     -moz-border-radius: 3px 0 0 3px; /* FF1+ */
-  -webkit-border-radius: 3px 0 0 3px; /* Saf3+, Chrome */
-          border-radius: 3px 0 0 3px; /* Opera 10.5, IE 9 */
-}
-.css3_round_rightS {
-     -moz-border-radius: 0 3px 3px 0; /* FF1+ */
-  -webkit-border-radius: 0 3px 3px 0; /* Saf3+, Chrome */
-          border-radius: 0 3px 3px 0; /* Opera 10.5, IE 9 */
-}
-.css3_round_topS {
-     -moz-border-radius: 3px 3px 0 0; /* FF1+ */
-  -webkit-border-radius: 3px 3px 0 0; /* Saf3+, Chrome */
-          border-radius: 3px 3px 0 0; /* Opera 10.5, IE 9 */
-}
-.css3_round_bottomS {
-     -moz-border-radius: 0 0 3px 3px; /* FF1+ */
-  -webkit-border-radius: 0 0 3px 3px; /* Saf3+, Chrome */
-          border-radius: 0 0 3px 3px; /* Opera 10.5, IE 9 */
-}
-.css3_round_topleftS {
-     -moz-border-radius: 3px 0 0 0; /* FF1+ */
-  -webkit-border-radius: 3px 0 0 0; /* Saf3+, Chrome */
-          border-radius: 3px 0 0 0; /* Opera 10.5, IE 9 */
-}
-.css3_round_toprightS {
-     -moz-border-radius: 0 3px 0 0; /* FF1+ */
-  -webkit-border-radius: 0 3px 0 0; /* Saf3+, Chrome */
-          border-radius: 0 3px 0 0; /* Opera 10.5, IE 9 */
-}
-.css3_round_bottomleftS {
-     -moz-border-radius: 0 0 3px 0; /* FF1+ */
-  -webkit-border-radius: 0 0 3px 0; /* Saf3+, Chrome */
-          border-radius: 0 0 3px 0; /* Opera 10.5, IE 9 */
-}
-.css3_round_bottomrightS {
-     -moz-border-radius: 0 0 0 3px 0; /* FF1+ */
-  -webkit-border-radius: 0 0 0 3px 0; /* Saf3+, Chrome */
-          border-radius: 0 0 0 3px 0; /* Opera 10.5, IE 9 */
-}
-.css3_box_outer_shadow {
-     -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25); /* FF3.5+ */
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25); /* Saf3.0+, Chrome */
-          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9.0 */
-}
-.css3_box_outer_shadow_for_hover:hover {
-     -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); /* FF3.5+ */
-  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); /* Saf3.0+, Chrome */
-          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9.0 */
-}
-.css3_box_outer_shadow_yellow {
-     -moz-box-shadow: 0px 0px 8px #D2B852; /* FF3.5+ */
-  -webkit-box-shadow: 0px 0px 8px #D2B852; /* Saf3.0+, Chrome */
-          box-shadow: 0px 0px 8px #D2B852; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_outer_shadow_red { 
-     -moz-box-shadow: 0px 0px 8px #C00; /* FF3.5+ */
-  -webkit-box-shadow: 0px 0px 8px #C00; /* Saf3.0+, Chrome */
-          box-shadow: 0px 0px 8px #C00; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_outer_shadow_green { 
-     -moz-box-shadow: 0px 0px 8px #57A957; /* FF3.5+ */
-  -webkit-box-shadow: 0px 0px 8px #57A957; /* Saf3.0+, Chrome */
-          box-shadow: 0px 0px 8px #57A957; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_outer_shadow_blue { 
-     -moz-box-shadow: 0px 0px 8px #0064CD; /* FF3.5+ */
-  -webkit-box-shadow: 0px 0px 8px #0064CD; /* Saf3.0+, Chrome */
-          box-shadow: 0px 0px 8px #0064CD; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_outer_shadow_grey { 
-     -moz-box-shadow: 0px 0px 8px grey; /* FF3.5+ */
-  -webkit-box-shadow: 0px 0px 8px grey; /* Saf3.0+, Chrome */
-          box-shadow: 0px 0px 8px grey; /* Opera 10.5, IE 9.0 */
-}
-
-.css3_box_inner_shadow_yellow {
-     -moz-box-shadow: 0px 1px 2px #D2B852 inset; /* FF3.5+ */
-  -webkit-box-shadow: 0px 1px 2px #D2B852 inset; /* Saf3.0+, Chrome */
-          box-shadow: 0px 1px 2px #D2B852 inset; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_inner_shadow_red { 
-     -moz-box-shadow: 0px 1px 2px #C00 inset; /* FF3.5+ */
-  -webkit-box-shadow: 0px 1px 2px #C00 inset; /* Saf3.0+, Chrome */
-          box-shadow: 0px 1px 2px #C00 inset; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_inner_shadow_green { 
-     -moz-box-shadow: 0px 1px 2px #57A957 inset; /* FF3.5+ */
-  -webkit-box-shadow: 0px 1px 2px #57A957 inset; /* Saf3.0+, Chrome */
-          box-shadow: 0px 1px 2px #57A957 inset; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_inner_shadow_blue { 
-     -moz-box-shadow: 0px 1px 2px #0064CD inset; /* FF3.5+ */
-  -webkit-box-shadow: 0px 1px 2px #0064CD inset; /* Saf3.0+, Chrome */
-          box-shadow: 0px 1px 2px #0064CD inset; /* Opera 10.5, IE 9.0 */
-}
-.css3_box_inner_shadow_grey { 
-     -moz-box-shadow: 0px 1px 2px grey inset; /* FF3.5+ */
-  -webkit-box-shadow: 0px 1px 2px grey inset; /* Saf3.0+, Chrome */
-          box-shadow: 0px 1px 2px grey inset; /* Opera 10.5, IE 9.0 */
-}
+.cp,.cursorPointer{ cursor:pointer;}
 /**
 -----------------------------------  
 Page Layout Css Objects    
@@ -852,40 +679,38 @@ p .right {margin:1em 1em 1em 0;}
 .inputWrap{}
 .validatorTips { color:red;}
 .commonLable{ width:130px;}
-
 .commonTextarea{ width:400px; height:100px;}
-.inputBox_grey:hover{
+.inputg:hover,.inputBox_grey:hover{
 					 border: 1px #666 solid;
 	-moz-box-shadow: 0px 1px 3px #CCC inset; /* FF3.5+ */
 -webkit-box-shadow: 0px 1px 3px #CCC inset; /* Saf3.0+, Chrome */
 			 box-shadow: 0px 1px 3px #CCC inset; /* Opera 10.5, IE 9.0 */
 }
-.inputBox_grey:focus {
+.inputg:focus,.inputBox_grey:focus {
 	   -moz-box-shadow: 0px 1px 3px #fff inset,0px 0px 8px #999; /* FF3.5+ */
 	-webkit-box-shadow: 0px 1px 3px #fff inset,0px 0px 8px #999; /* Saf3.0+, Chrome */
 			box-shadow: 0px 1px 3px #fff inset,0px 0px 8px #999; /* Opera 10.5, IE 9.0 */
 }
-.inputBox_blue:hover{
+.inputb:hover,.inputBox_blue:hover{
 			  border: 1px #666 solid;
 	 -moz-box-shadow: 0px 1px 3px #CCC inset; /* FF3.5+ */
   -webkit-box-shadow: 0px 1px 3px #CCC inset; /* Saf3.0+, Chrome */
 		  box-shadow: 0px 1px 3px #CCC inset; /* Opera 10.5, IE 9.0 */
 }
-.inputBox_blue:focus {
+.inputg:focus,.inputBox_blue:focus {
 		 -moz-box-shadow: 0px 1px 3px #fff inset,0px 0px 8px #39F; /* FF3.5+ */
 	-webkit-box-shadow: 0px 1px 3px #fff inset,0px 0px 8px #39F; /* Saf3.0+, Chrome */
 					box-shadow: 0px 1px 3px #fff inset,0px 0px 8px #39F; /* Opera 10.5, IE 9.0 */
 					border:1px solid #39F!important;
 }
 /*-- buttons.css -- button object and sub-objects --*/	
-.button{
+.btn,.button{
 		text-shadow: 0 1px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 1px rgba(0, 0, 0, 0.1);
  -webkit-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 1px rgba(0, 0, 0, 0.1);
 		 box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
-
-.greyButton:hover{    
+.greybtn:hover,.greyButton:hover{    
 	background-color: #CCCCCC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#CCCCCC)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #ffffff, #CCCCCC); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -895,19 +720,16 @@ p .right {margin:1em 1em 1em 0;}
 	background-image:         linear-gradient(top, #ffffff, #CCCCCC);
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#CCCCCC'); /* IE6–IE9 */
 }
-
-.greyButton:active{
+.greybtn:active,.greyButton:active{
 	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
-
-.blueButton{
+.bluebtn,.blueButton{
 	border:1px solid #0064CD;
 	color: #FFF;
 }
-
-.blueButton:hover{    
+.bluebtn:hover,.blueButton:hover{    
 	background-color: #0154ab;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#049CDB), to(#0154ab)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #049CDB, #0154ab); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -917,19 +739,16 @@ p .right {margin:1em 1em 1em 0;}
 	background-image:         linear-gradient(top, #049CDB, #0154ab);
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#049CDB', EndColorStr='#0154ab'); /* IE6–IE9 */
 }
-
-.blueButton:active{
+.bluebtn:active,.blueButton:active{
 	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
-
-.greenButton{
+.greenbtn,.greenButton{
 	border:1px solid #57A957;
 	color: #FFF;
 }
-
-.greenButton:hover{    
+.greenbtn:hover,.greenButton:hover{    
 	background-color: #4a974a;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#62C462), to(#4a974a)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #62C462, #4a974a); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -939,19 +758,17 @@ p .right {margin:1em 1em 1em 0;}
 	background-image:         linear-gradient(top, #62C462, #4a974a);
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#62C462', EndColorStr='#4a974a'); /* IE6–IE9 */
 }
-
-.greenButton:active{
+.greenbtn:active,.greenButton:active{
    -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
-
-.redButton{
+.redbtn,.redButton{
 	border:1px solid #C43C35;
 	color: #FFF;
 }
 
-.redButton:hover{    
+.redbtn:hover,.redButton:hover{    
 	background-color: #b8342d;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#EE5F5B), to(#b8342d)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #EE5F5B, #b8342d); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -962,18 +779,16 @@ p .right {margin:1em 1em 1em 0;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#EE5F5B', EndColorStr='#b8342d'); /* IE6–IE9 */
 }
 
-.redButton:active{
+.redbtn:active,.redButton:active{
 	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
-
-.yellowButton{
+.yellowbtn,.yellowButton{
 	border:1px solid #D2B852;
 	color: #404040;
 }
-
-.yellowButton:hover{    
+.yellowbtn:hover,.yellowButton:hover{    
 	background-color: #D2B852;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCEEC1), to(#D2B852)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #FCEEC1, #D2B852); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -983,19 +798,16 @@ p .right {margin:1em 1em 1em 0;}
 	background-image:         linear-gradient(top, #FCEEC1, #D2B852);
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FCEEC1', EndColorStr='#D2B852'); /* IE6–IE9 */
 }
-
-.yellowButton:active{
+.yellowbtn:active,.yellowButton:active{
 	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
-
-.cyanButton{
+.cyanbtn,.cyanButton{
 	border:1px solid #2F96B4;
 	color: #fff;
 }
-
-.cyanButton:hover{    
+.cyanbtn:hover,.cyanButton:hover{    
 	background-color: #1D7D99;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#5BC0DE), to(#1D7D99)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #5BC0DE, #1D7D99); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1006,7 +818,7 @@ p .right {margin:1em 1em 1em 0;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#5BC0DE', EndColorStr='#1D7D99'); /* IE6–IE9 */
 }
 
-.cyanButton:active{
+.cyanbtn:active,.cyanButton:active{
 	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
 				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
@@ -1075,13 +887,6 @@ border-top: 0 none;}
 .table-9 tr.even td {background:none;} 
 .table-9 th, .table-9 td{ border:1px solid #ddd; color:#333; padding: 2px 2px 1px;}
 .table-9 tr:hover td { background-color: #fff;}
-/* projcet code */
-.proj_content{ background:url(../images/robot_bg_1.jpg) no-repeat 0 0; min-height:500px;}
-.waIcon{ width:145px; height:110px;}
-.record{ background:url(../images/webandroid_icon.jpg) no-repeat 10px 40px;}
-.share{ background:url(../images/webandroid_icon.jpg) no-repeat 10px 40px;}
-.interSenger{ background:url(../images/webandroid_icon.jpg) no-repeat 10px 40px;}
-.achive{ background:url(../images/webandroid_icon.jpg) no-repeat 10px 40px;}
 
 /*-- dialog.css -- dialog object and component --*/
 .dialogWrap {height:100%; width:100%; bottom:0; left:0; right:0; top:0; z-index:99;}
@@ -1142,19 +947,17 @@ border-top: 0 none;}
  * border-radius: 1-4 length|% / 1-4 length|%;
  * topleft topright bottomright bottomleft
  */
-.css3_border_round {
-     -moz-border-radius: 5px; /* FF1+ */
-  -webkit-border-radius: 5px; /* Saf3+, Chrome */
-          border-radius: 5px; /* Opera 10.5, IE 9 */
-}
-
-.css3_border_round_top {
+.round,.css3_border_round{
      -moz-border-radius: 5px 5px 0 0; /* FF1+ */
   -webkit-border-radius: 5px 5px 0 0; /* Saf3+, Chrome */
           border-radius: 5px 5px 0 0; /* Opera 10.5, IE 9 */
 }
-
-.css3_border_round_bottom {
+.roundt,.css3_border_round_top {
+     -moz-border-radius: 5px 5px 0 0; /* FF1+ */
+  -webkit-border-radius: 5px 5px 0 0; /* Saf3+, Chrome */
+          border-radius: 5px 5px 0 0; /* Opera 10.5, IE 9 */
+}
+.roundb,.css3_border_round_bottom {
      -moz-border-radius: 0 0 5px 5px; /* FF1+ */
   -webkit-border-radius: 0 0 5px 5px; /* Saf3+, Chrome */
           border-radius: 0 0 5px 5px; /* Opera 10.5, IE 9 */
@@ -1163,7 +966,7 @@ border-top: 0 none;}
 /** 
  * CSS box shadow property
  */
-.css3_box_shadow {
+.shadow,.css3_box_shadow {
 	/* box-shadow: h-shadow v-shadow blur spread color inset; */
      -moz-box-shadow: 0px 0px 5px #333; /* FF3.5+ */
   -webkit-box-shadow: 0px 0px 5px #333; /* Saf3.0+, Chrome */
@@ -1190,7 +993,7 @@ border-top: 0 none;}
 .css3_text_shadow{
 	/* text-shadow: h-shadow v-shadow blur color; */
 	 text-shadow: 1px 1px 1px #DDDDDD;
-			 filter: dropshadow(color=#DDDDDD, offx=1, offy=1); 
+	filter: dropshadow(color=#DDDDDD, offx=1, offy=1); 
 }
 
 /** 
@@ -1217,7 +1020,7 @@ border-top: 0 none;}
 /** 
  * CSS background-image to gradient property
  */
-.css3_gradient {
+.g,.css3_gradient {
   background-color: #444444;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999)); /* Saf4+, Chrome */
   background-image: -webkit-linear-gradient(top, #444444, #999999); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1227,7 +1030,7 @@ border-top: 0 none;}
   background-image:         linear-gradient(top, #444444, #999999);
             filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#444444', EndColorStr='#999999'); /* IE6–IE9 */
 }
-.css3_gradient_grey{
+.ggrey,.css3_gradient_grey{
 	background-color: #E6E6E6;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#E6E6E6)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #ffffff, #E6E6E6); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1238,7 +1041,7 @@ border-top: 0 none;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#E6E6E6'); /* IE6–IE9 */
 }
 
-.css3_gradient_blue{
+.gb,.css3_gradient_blue{
 	background-color: #0064CD;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#049CDB), to(#0064CD)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #049CDB, #0064CD); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1249,7 +1052,7 @@ border-top: 0 none;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#049CDB', EndColorStr='#0064CD'); /* IE6–IE9 */
 }
 
-.css3_gradient_green{
+.gg,.css3_gradient_green{
 	background-color: #57A957;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#62C462), to(#57A957)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #62C462, #57A957); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1260,7 +1063,7 @@ border-top: 0 none;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#62C462', EndColorStr='#57A957'); /* IE6–IE9 */
 }
 
-.css3_gradient_red{
+.gr,.css3_gradient_red{
 	background-color: #C43C35;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#EE5F5B), to(#C43C35)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #EE5F5B, #C43C35); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1271,7 +1074,7 @@ border-top: 0 none;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#EE5F5B', EndColorStr='#C43C35'); /* IE6–IE9 */
 }
 
-.css3_gradient_yellow{
+.gy,.css3_gradient_yellow{
 		background-color: #E0CE84;
 		background-image: -webkit-gradient(linear, left top, left bottom, from(#FCEEC1), to(#E0CE84)); /* Saf4+, Chrome */
 		background-image: -webkit-linear-gradient(top, #FCEEC1, #E0CE84); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1282,7 +1085,7 @@ border-top: 0 none;}
 							filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FCEEC1', EndColorStr='#E0CE84'); /* IE6–IE9 */
 }
 
-.css3_gradient_cyan{
+.gc,.css3_gradient_cyan{
 		background-color: #2F96B4;
 		background-image: -webkit-gradient(linear, left top, left bottom, from(#5BC0DE), to(#2F96B4)); /* Saf4+, Chrome */
 		background-image: -webkit-linear-gradient(top, #5BC0DE, #2F96B4); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -1488,67 +1291,67 @@ border-top: 0 none;}
         url('myfont.ttf') format('truetype');  /* Saf3+,Chrome,FF3.5,Opera10+ */
 } 
 
-.opacity_1{
+.o-1,.opacity_1{
           filter: alpha(opacity=10);  
     -moz-opacity: 0.1;  
   -khtml-opacity: 0.1;  
          opacity: 0.1;
 }
-.opacity_2{
+.o-2,.opacity_2{
           filter: alpha(opacity=20);  
     -moz-opacity: 0.2;  
   -khtml-opacity: 0.2;  
          opacity: 0.2;
 }
-.opacity_3{
+.o-3,.opacity_3{
           filter: alpha(opacity=30);  
     -moz-opacity: 0.3;  
   -khtml-opacity: 0.3;  
          opacity: 0.3;
 }
-.opacity_4{
+.o-4,.opacity_4{
           filter: alpha(opacity=40);  
     -moz-opacity: 0.4;  
   -khtml-opacity: 0.4;  
          opacity: 0.4;
 }
-.opacityHover:hover{
+.ohover:hover,.opacityHover:hover{
           filter: alpha(opacity=50);  
     -moz-opacity: 0.5;  
   -khtml-opacity: 0.5;  
          opacity: 0.5;
 }
-.opacity{
+.o,.opacity{
           filter: alpha(opacity=50);  
     -moz-opacity: 0.5;  
   -khtml-opacity: 0.5;  
          opacity: 0.5;
 }
-.opacity_5{
+.o-5,.opacity_5{
           filter: alpha(opacity=50);  
     -moz-opacity: 0.5;  
   -khtml-opacity: 0.5;  
          opacity: 0.5;
 }
-.opacity_6{
+.o-6,.opacity_6{
           filter: alpha(opacity=60);  
     -moz-opacity: 0.6;  
   -khtml-opacity: 0.6;  
          opacity: 0.6;
 }
-.opacity_7{
+.o-7,.opacity_7{
           filter: alpha(opacity=70);  
     -moz-opacity: 0.7;  
   -khtml-opacity: 0.7;  
          opacity: 0.7;
 }
-.opacity_8{
+.o-8,.opacity_8{
           filter: alpha(opacity=80);  
     -moz-opacity: 0.8;  
   -khtml-opacity: 0.8;  
          opacity: 0.8;
 }
-.opacity_9{
+.o-9,.opacity_9{
           filter: alpha(opacity=90);  
     -moz-opacity: 0.9;  
   -khtml-opacity: 0.9;  
@@ -1580,5 +1383,177 @@ border-top: 0 none;}
   -moz-box-flex: 1;
   box-flex: 1;
 }
-.text-overflow-clip{ text-overflow:clip;}  
-.text-overflow-ellipsis{ text-overflow:ellipsis;}
+.toc,.text-overflow-clip{ text-overflow:clip;}  
+.toe,.text-overflow-ellipsis{ text-overflow:ellipsis;}
+/* extend css3 objects */
+.rounds,.css3_roundS {
+     -moz-border-radius: 3px; /* FF1+ */
+  -webkit-border-radius: 3px; /* Saf3+, Chrome */
+          border-radius: 3px; /* Opera 10.5, IE 9 */
+}
+.roundls,.css3_round_leftS {
+     -moz-border-radius: 3px 0 0 3px; /* FF1+ */
+  -webkit-border-radius: 3px 0 0 3px; /* Saf3+, Chrome */
+          border-radius: 3px 0 0 3px; /* Opera 10.5, IE 9 */
+}
+.roundrs,.css3_round_rightS {
+     -moz-border-radius: 0 3px 3px 0; /* FF1+ */
+  -webkit-border-radius: 0 3px 3px 0; /* Saf3+, Chrome */
+          border-radius: 0 3px 3px 0; /* Opera 10.5, IE 9 */
+}
+.roundts,.css3_round_topS {
+     -moz-border-radius: 3px 3px 0 0; /* FF1+ */
+  -webkit-border-radius: 3px 3px 0 0; /* Saf3+, Chrome */
+          border-radius: 3px 3px 0 0; /* Opera 10.5, IE 9 */
+}
+.roundbs,.css3_round_bottomS {
+     -moz-border-radius: 0 0 3px 3px; /* FF1+ */
+  -webkit-border-radius: 0 0 3px 3px; /* Saf3+, Chrome */
+          border-radius: 0 0 3px 3px; /* Opera 10.5, IE 9 */
+}
+.roundtls,.css3_round_topleftS {
+     -moz-border-radius: 3px 0 0 0; /* FF1+ */
+  -webkit-border-radius: 3px 0 0 0; /* Saf3+, Chrome */
+          border-radius: 3px 0 0 0; /* Opera 10.5, IE 9 */
+}
+.roundtrs,.css3_round_toprightS {
+     -moz-border-radius: 0 3px 0 0; /* FF1+ */
+  -webkit-border-radius: 0 3px 0 0; /* Saf3+, Chrome */
+          border-radius: 0 3px 0 0; /* Opera 10.5, IE 9 */
+}
+.roundbls,.css3_round_bottomleftS {
+     -moz-border-radius: 0 0 3px 0; /* FF1+ */
+  -webkit-border-radius: 0 0 3px 0; /* Saf3+, Chrome */
+          border-radius: 0 0 3px 0; /* Opera 10.5, IE 9 */
+}
+.roundbrs,.css3_round_bottomrightS {
+     -moz-border-radius: 0 0 0 3px 0; /* FF1+ */
+  -webkit-border-radius: 0 0 0 3px 0; /* Saf3+, Chrome */
+          border-radius: 0 0 0 3px 0; /* Opera 10.5, IE 9 */
+}
+.round-4,.css3_round-4 {
+     -moz-border-radius: 4px; /* FF1+ */
+  -webkit-border-radius: 4px; /* Saf3+, Chrome */
+          border-radius: 4px; /* Opera 10.5, IE 9 */
+}
+.round-5,.css3_round-5 {
+     -moz-border-radius: 5px; /* FF1+ */
+  -webkit-border-radius: 5px; /* Saf3+, Chrome */
+          border-radius: 5px; /* Opera 10.5, IE 9 */
+}
+.round-6,.css3_round-6 {
+     -moz-border-radius: 6px; /* FF1+ */
+  -webkit-border-radius: 6px; /* Saf3+, Chrome */
+          border-radius: 6px; /* Opera 10.5, IE 9 */
+}
+.round-7,.css3_round-7 {
+     -moz-border-radius: 7px; /* FF1+ */
+  -webkit-border-radius: 7px; /* Saf3+, Chrome */
+          border-radius: 7px; /* Opera 10.5, IE 9 */
+}
+.round-8,.css3_round-8 {
+     -moz-border-radius: 8px; /* FF1+ */
+  -webkit-border-radius: 8px; /* Saf3+, Chrome */
+          border-radius: 8px; /* Opera 10.5, IE 9 */
+}
+.round-9,.css3_round-9 {
+     -moz-border-radius: 9px; /* FF1+ */
+  -webkit-border-radius: 9px; /* Saf3+, Chrome */
+          border-radius: 9px; /* Opera 10.5, IE 9 */
+}
+.round-10,.css3_round-10 {
+     -moz-border-radius: 10px; /* FF1+ */
+  -webkit-border-radius: 10px; /* Saf3+, Chrome */
+          border-radius: 10px; /* Opera 10.5, IE 9 */
+}
+.round-11,.css3_round-11 {
+     -moz-border-radius: 11px; /* FF1+ */
+  -webkit-border-radius: 11px; /* Saf3+, Chrome */
+          border-radius: 11px; /* Opera 10.5, IE 9 */
+}
+.round-12,.css3_round-12 {
+     -moz-border-radius: 12px; /* FF1+ */
+  -webkit-border-radius: 12px; /* Saf3+, Chrome */
+          border-radius: 12px; /* Opera 10.5, IE 9 */
+}
+.round-13,.css3_round-13 {
+     -moz-border-radius: 13px; /* FF1+ */
+  -webkit-border-radius: 13px; /* Saf3+, Chrome */
+          border-radius: 13px; /* Opera 10.5, IE 9 */
+}
+.round-14,.css3_round-14 {
+     -moz-border-radius: 14px; /* FF1+ */
+  -webkit-border-radius: 14px; /* Saf3+, Chrome */
+          border-radius: 14px; /* Opera 10.5, IE 9 */
+}
+.round-15,.css3_round-15 {
+     -moz-border-radius: 15px; /* FF1+ */
+  -webkit-border-radius: 15px; /* Saf3+, Chrome */
+          border-radius: 15px; /* Opera 10.5, IE 9 */
+}
+.roundall,.css3_round_full {
+     -moz-border-radius: 100%; /* FF1+ */
+  -webkit-border-radius: 100%; /* Saf3+, Chrome */
+          border-radius: 100%; /* Opera 10.5, IE 9 */
+}
+.so,.css3_box_outer_shadow {
+     -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25); /* FF3.5+ */
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25); /* Saf3.0+, Chrome */
+          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9.0 */
+}
+.sohover:hover,.css3_box_outer_shadow_for_hover:hover {
+     -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9.0 */
+}
+.soy,.css3_box_outer_shadow_yellow {
+     -moz-box-shadow: 0px 0px 8px #D2B852; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 8px #D2B852; /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 8px #D2B852; /* Opera 10.5, IE 9.0 */
+}
+.sor,.css3_box_outer_shadow_red { 
+     -moz-box-shadow: 0px 0px 8px #C00; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 8px #C00; /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 8px #C00; /* Opera 10.5, IE 9.0 */
+}
+.sog,.css3_box_outer_shadow_green { 
+     -moz-box-shadow: 0px 0px 8px #57A957; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 8px #57A957; /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 8px #57A957; /* Opera 10.5, IE 9.0 */
+}
+.sob,.css3_box_outer_shadow_blue { 
+     -moz-box-shadow: 0px 0px 8px #0064CD; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 8px #0064CD; /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 8px #0064CD; /* Opera 10.5, IE 9.0 */
+}
+.sogrey,.css3_box_outer_shadow_grey { 
+     -moz-box-shadow: 0px 0px 8px grey; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 8px grey; /* Saf3.0+, Chrome */
+          box-shadow: 0px 0px 8px grey; /* Opera 10.5, IE 9.0 */
+}
+
+.siy,.css3_box_inner_shadow_yellow {
+     -moz-box-shadow: 0px 1px 2px #D2B852 inset; /* FF3.5+ */
+  -webkit-box-shadow: 0px 1px 2px #D2B852 inset; /* Saf3.0+, Chrome */
+          box-shadow: 0px 1px 2px #D2B852 inset; /* Opera 10.5, IE 9.0 */
+}
+.sir,.css3_box_inner_shadow_red { 
+     -moz-box-shadow: 0px 1px 2px #C00 inset; /* FF3.5+ */
+  -webkit-box-shadow: 0px 1px 2px #C00 inset; /* Saf3.0+, Chrome */
+          box-shadow: 0px 1px 2px #C00 inset; /* Opera 10.5, IE 9.0 */
+}
+.sig,.css3_box_inner_shadow_green { 
+     -moz-box-shadow: 0px 1px 2px #57A957 inset; /* FF3.5+ */
+  -webkit-box-shadow: 0px 1px 2px #57A957 inset; /* Saf3.0+, Chrome */
+          box-shadow: 0px 1px 2px #57A957 inset; /* Opera 10.5, IE 9.0 */
+}
+.sib,.css3_box_inner_shadow_blue { 
+     -moz-box-shadow: 0px 1px 2px #0064CD inset; /* FF3.5+ */
+  -webkit-box-shadow: 0px 1px 2px #0064CD inset; /* Saf3.0+, Chrome */
+          box-shadow: 0px 1px 2px #0064CD inset; /* Opera 10.5, IE 9.0 */
+}
+.sigrey,.css3_box_inner_shadow_grey { 
+     -moz-box-shadow: 0px 1px 2px grey inset; /* FF3.5+ */
+  -webkit-box-shadow: 0px 1px 2px grey inset; /* Saf3.0+, Chrome */
+          box-shadow: 0px 1px 2px grey inset; /* Opera 10.5, IE 9.0 */
+}
