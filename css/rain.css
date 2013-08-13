@@ -228,6 +228,9 @@ pre-line 	合并空白符序列，但是保留换行符。
 .w-29,.width-29{ width:290px;}
 .w-30,.width-30{ width:300px;}
 .w-40,.width-40{ width:400px;}
+.w-50,.width-50{ width:500px;}
+.w-60,.width-60{ width:600px;}
+.w-70,.width-70{ width:700px;}
 
 .h-1,.height-1{ height:10px;}
 .h-2,.height-2{ height:20px;}
@@ -259,6 +262,10 @@ pre-line 	合并空白符序列，但是保留换行符。
 .h-28,.height-28{ height:280px;}
 .h-29,.height-29{ height:290px;}
 .h-30,.height-30{ height:300px;}
+.h-40,.height-40{ height:400px;}
+.h-50,.height-50{ height:500px;}
+.h-60,.height-60{ height:600px;}
+.h-70,.height-70{ height:700px;}
 
 .wf-5,.width-fluid-5{width:5%;}
 .wf-10,.width-fluid-10{width:10%;}
@@ -358,7 +365,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .mbl,.marginBottomL{ margin-bottom:15px;}
 .mrl,.marginRightL{ margin-right:15px;}
 .mll,.marginLeftL{ margin-left:15px;}
-.ml,.marginL{ margin:15px;}
+.m-15,.marginL{ margin:15px;}
 
 .ptl,.paddingTopL{ padding-top:15px;}
 .pbl,.paddingBottomL{ padding-bottom:15px;}
@@ -580,10 +587,10 @@ pre-line 	合并空白符序列，但是保留换行符。
 .ib,.displayInlineBlock{display:inline-block;}
 .it,.displayInlineTable{display:inline-table;}
 .hide{ display:none;}
-.ohide,.overflowHide{ overflow:hidden;}
-.oauto,.overflowAuto{ overflow:auto;}
-.oscroll,.overflowScroll{ overflow:scroll;}
-.ovisible,.overflowVisible{ overflow:visible;}
+.oh,.overflowHide{ overflow:hidden;}
+.oa,.overflowAuto{ overflow:auto;}
+.os,.overflowScroll{ overflow:scroll;}
+.ov,.overflowVisible{ overflow:visible;}
 .v,.visible{ visibility:visible;}
 .vf,.nov,.visibleFalse{ visibility:hidden;}
 .z-1{z-index:1;}
