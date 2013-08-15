@@ -997,7 +997,7 @@ border-top: 0 none;}
 /** 
  *  CSS text shadow property
  */
-.css3_text_shadow{
+.ts,.css3_text_shadow{
 	/* text-shadow: h-shadow v-shadow blur color; */
 	 text-shadow: 1px 1px 1px #DDDDDD;
 	filter: dropshadow(color=#DDDDDD, offx=1, offy=1); 

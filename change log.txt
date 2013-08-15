@@ -81,4 +81,6 @@
 
 2012.8.19
  1.add table style
+2013.8.15
+ 1.all class name use abbreviation
 */ 
