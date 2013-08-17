@@ -377,7 +377,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .mbll,.marginBottomLL{ margin-bottom:20px;}
 .mrll,.marginRightLL{ margin-right:20px;}
 .mlll,.marginLeftLL{ margin-left:20px;}
-.mll,.marginLL{ margin:20px;}
+.marginll,.marginLL{ margin:20px;}
 
 .ptll,.paddingTopLL{ padding-top:20px;}
 .pbll,.paddingBottomLL{ padding-bottom:20px;}
