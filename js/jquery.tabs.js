@@ -20,6 +20,7 @@ $.fn.extend({
 		//未选中tablink的hover类
 		hoverClass = o.hoverClass;
 		_this.children(temp_panel).hide();
+		$(_this.find(temp_tab)[0]).addClass(tabClass).removeClass(hoverClass);
 		$(_this.children(temp_panel)[0]).show();
 		_this.find(temp_tab).bind(tabE,function(){  
 				if(tabsize>0){

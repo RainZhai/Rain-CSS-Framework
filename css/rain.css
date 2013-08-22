@@ -31,7 +31,7 @@ Atomic Css Objects
 .fwn,.fontWeightNormal{ font-weight:normal;} 
 .bord,.fontBord{ font-weight:bold;}
 .strong{ font-weight:bold;}
-.fborder,.fontBorder{ font-weight:bolder;}
+.border,.fontBorder{ font-weight:bolder;}
 .lighter,.fontLighter{ font-weight: lighter;}
 .fsxxs,.fontsizeXxsmall{ font-size:xx-small;}
 .fsxs,.fontsizeXsmall{ font-size: x-small;}
@@ -383,7 +383,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .pbll,.paddingBottomLL{ padding-bottom:20px;}
 .prll,.paddingRightLL{ padding-right:20px;}
 .plll,.paddingLeftLL{ padding-left:20px;}
-.pll,.paddingLL{ padding:20px;}
+.paddingll,.paddingLL{ padding:20px;}
 
 .pt-1,.paddingTop-1{ padding-top:10px;}
 .pt-2,.paddingTop-2{ padding-top:20px;}
