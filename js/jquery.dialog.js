@@ -213,8 +213,7 @@
 				html.find('.c_contentWrap').append(contentObj.show());
 			} else if(contentObj && 'nodeName' in contentObj){
 				html.find('.c_contentWrap').append($(contentObj).show());
-			}
-			console.log(contentObj);
+			} 
 		}
 
 		//控制框是否可以拖拽
@@ -225,9 +224,7 @@
 		var _width = $('body').width()/5+150; 
 		var _height = html.find('.c_contentWrap').height() + html.find('.c_dialogTitle').height() + html.find('.c_btnWrap').height() +100;
 		//设置上传控制
-		if(o.upload){ o.initUpload(); }
-		//设置遮罩颜色
-		$(".c_bgColor").css({ "background-color": o.bgColor});
+		if(o.upload){ o.initUpload(); } 
 
 		//关闭按钮绑定事件
 		html.find("."+closeClass).bind("click",function(){
@@ -237,7 +234,7 @@
 		});
 		
 		//设置样式
-		html.find(".c_bgColor").height($("body").height());
+		html.find(".c_bgColor").height($("body").height()).css({ "background-color": o.bgColor});
 		html.find("."+closeClass).css(o.closeStyle).addClass(o.headClass);
 		if(o.dialogStyle) html.find(".c_dialogBox").css(o.dialogStyle);
 		html.find(".c_dialogTitle").css(o.headStyle).addClass(o.headClass);
