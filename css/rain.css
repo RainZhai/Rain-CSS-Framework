@@ -956,9 +956,9 @@ border-top: 0 none;}
  * topleft topright bottomright bottomleft
  */
 .round,.css3_border_round{
-     -moz-border-radius: 5px 5px 0 0; /* FF1+ */
-  -webkit-border-radius: 5px 5px 0 0; /* Saf3+, Chrome */
-          border-radius: 5px 5px 0 0; /* Opera 10.5, IE 9 */
+     -moz-border-radius: 5px; /* FF1+ */
+  -webkit-border-radius: 5px; /* Saf3+, Chrome */
+          border-radius: 5px; /* Opera 10.5, IE 9 */
 }
 .roundt,.css3_border_round_top {
      -moz-border-radius: 5px 5px 0 0; /* FF1+ */
