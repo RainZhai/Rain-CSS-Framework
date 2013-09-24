@@ -921,17 +921,7 @@ border-top: 0 none;}
 	.sidebar{ width:auto;}
 	.loginform{ width:auto; margin:auto;}
 	.mainRight{ margin:0;}
-	textarea {height: 200px; width:300px;}
-	.socialFooter{width:auto;}
-}
-
-@media only screen and (max-width: 767px), only screen and (max-device-width:767px){
-	.container{ width:auto; padding:5px;}
-	.logo{ width:auto;}
-	.sidebar{ width:auto;}
-	.loginform{ width:auto; margin:auto;}
-	.mainRight{ margin:0;}
-	textarea {height: 200px; width:300px;}
+	textarea {height: 200px; width:100%;}
 	.socialFooter{width:auto;}
 }
 
@@ -956,9 +946,9 @@ border-top: 0 none;}
  * topleft topright bottomright bottomleft
  */
 .round,.css3_border_round{
-     -moz-border-radius: 5px; /* FF1+ */
-  -webkit-border-radius: 5px; /* Saf3+, Chrome */
-          border-radius: 5px; /* Opera 10.5, IE 9 */
+     -moz-border-radius: 5px 5px 5px 5px; /* FF1+ */
+  -webkit-border-radius: 5px 5px 5px 5px; /* Saf3+, Chrome */
+          border-radius: 5px 5px 5px 5px; /* Opera 10.5, IE 9 */
 }
 .roundt,.css3_border_round_top {
      -moz-border-radius: 5px 5px 0 0; /* FF1+ */
@@ -1438,6 +1428,26 @@ border-top: 0 none;}
      -moz-border-radius: 0 0 0 3px 0; /* FF1+ */
   -webkit-border-radius: 0 0 0 3px 0; /* Saf3+, Chrome */
           border-radius: 0 0 0 3px 0; /* Opera 10.5, IE 9 */
+}
+.round-0,.css3_round-0 {
+     -moz-border-radius: 0px; /* FF1+ */
+  -webkit-border-radius: 0px; /* Saf3+, Chrome */
+          border-radius: 0px; /* Opera 10.5, IE 9 */
+}
+.round-1,.css3_round-1 {
+     -moz-border-radius: 1px; /* FF1+ */
+  -webkit-border-radius: 1px; /* Saf3+, Chrome */
+          border-radius: 1px; /* Opera 10.5, IE 9 */
+}
+.round-2,.css3_round-2 {
+     -moz-border-radius: 2px; /* FF1+ */
+  -webkit-border-radius: 2px; /* Saf3+, Chrome */
+          border-radius: 2px; /* Opera 10.5, IE 9 */
+}
+.round-3,.css3_round-3 {
+     -moz-border-radius: 3px; /* FF1+ */
+  -webkit-border-radius: 3px; /* Saf3+, Chrome */
+          border-radius: 3px; /* Opera 10.5, IE 9 */
 }
 .round-4,.css3_round-4 {
      -moz-border-radius: 4px; /* FF1+ */
