@@ -2,20 +2,21 @@
 <html> 
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
 <title>Rain CSS > Base Layouts</title>
 <!-- Framework CSS -->
-<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
-<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 </head>
 <body class="body">
 	<div class="header headerBlue">
   	<nav class="lsn posr clearfix">
-    	<a href="#" class="headerLink headerLinkBlue l pr pl block tdn">link1</a>
-    	<a href="#" class="headerLink headerLinkBlue l pr pl block tdn">link2</a>
-    	<a href="#" class="headerLink headerLinkBlue l pr pl block tdn">link3</a>
+    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link1</a>
+    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a>
+    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a>
     </nav>
   </div>
 	<div class="headerM headerGrey">
@@ -37,13 +38,13 @@
     </div>
   </div>
 
-  <div class="mlrauto container mt">
-    <div class="wf-20 l posr">
+  <div class="mlrauto container mt clearfix">
+    <div class="wf-20 ib l">
         <h2 class="category">Fluid layout</h2>
         <p>Fixed layout has 80% width and class <code>width-fluid-80</code> get this layout pattern.</p>
     </div>
     
-    <div class="wf-80 mainRight posr">
+    <div class="wf-75 ib r">
       <h1 class="entryTitle">Fluid layout</h1>
       <div class="bgLightBlue round h-20"></div>
     </div> 
@@ -110,10 +111,10 @@
           <div class="bglg h-10"></div>
         </div>
       </div>
-    
-      <footer class="footer socialFooter mt c borderTop">
-        <p class="bottom pls">Copyright 2010-2011 Web Development Machine All rights reserved.</p>
-      </footer>
+
+	    <footer class="footer socialFooter c borderTop">
+	      <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
+	    </footer> 
     </div>
   </div>
   <script type="text/javascript">

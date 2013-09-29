@@ -53,13 +53,16 @@
 		o.initHtml();
 		o.initBtns();
 	}
-	o.show = function(callback){
-		o.beforeShow();
+	o._show = function(callback){
 		if($('body').find('.'+dialogHandleClass).length==0){
 			$('body').append(html);
 		}else{
 			$("."+dialogHandleClass).show(callback);
-		}
+		} 
+	}
+	o.show = function(s,callback){
+		o.beforeShow();
+		if(s){setTimeout(function(){o._show(callback);}, s);}else{o._show(callback);}
 		o.afterShow();
 		if(typeof(callback)==='function'){	callback();}
 		return o;
@@ -227,10 +230,10 @@
 		if(o.upload){ o.initUpload(); } 
 
 		//关闭按钮绑定事件
-		html.find("."+closeClass).bind("click",function(){
-			o.beforeClose();
-			$("."+dialogHandleClass).hide(o.closeCallback());
-			o.afterClose();
+		html.find("."+closeClass).bind("click",{name : 'closebtn',type: 'close'},function(e){
+			o.beforeClose(e);
+			o.close(o.closeCallback);
+			o.afterClose(e);
 		});
 		
 		//设置样式

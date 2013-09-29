@@ -623,7 +623,7 @@ Page Layout Css Objects
 ----------------------------------- 
 */
 /*-- header object define nav --*/
-html,.body{height:100%;}
+html,.body{height:100%;width:100%;}
 .header{ height:30px;}
 .headerBlack{ background:#2D2D2D; border-bottom:1px solid #333;}
 .headerBlue{ background:#0c4a85; border-bottom:1px solid #0c4a85; width:100%;}
@@ -651,7 +651,7 @@ p .right {margin:1em 1em 1em 0;}
 		.menuLink{ padding:0 20px;}
 
 /*-- content.css -- content object and sub-objects --*/
-.content{}
+.content{padding:0 2px;}
 
 .sidebar{ width:200px;}
 .sidebarM{ width:300px;}
@@ -679,7 +679,7 @@ p .right {margin:1em 1em 1em 0;}
 	.addComment{ border-bottom:0 none;}
 	 .commonform span{ padding-left:5px;}
 	
-	.footer{ background:#F2F2F2; height:40px; line-height:40px;}
+	.footer{ background:#F2F2F2;}
 	.socialFooter{ background:none;}
 /*-- form.css -- form object and sub-objects --*/
 select {border:1px solid #bbb;}
@@ -901,7 +901,7 @@ border-top: 0 none;}
 .dialogWrapIE {width:100%; height:100%; bottom:0; left:0; right:0; top:0; z-index:100; background-color:#fff;}
 .close{ width:20px; height:20px; top:5px; right:0.3em; color:#666; cursor:pointer; text-shadow: 0 1px 0 #FFFFFF;}
 .dialogMsg{min-height:100px;}
-.dialogBox{width:540px; height:200px; margin-left:-280px; background-color: #FFFFFF; border: 1px solid #ddd; left: 50%;top: 260px;
+.dialogBox{width:540px; height:200px; margin-left:-280px; background-color: #fff; border:1px solid #ddd; left: 50%;top: 260px;
     z-index: 150;}
 
 /*-- messages.css -- messages ojbects --*/
@@ -911,18 +911,36 @@ border-top: 0 none;}
 .lightBlueBox{background-color: #DDF4FB;}
 .lightGreyBox{background-color: #F5F5F5;}
 /*-- mobile Css (max-width:480) -- mobile objects --*/
-@media handheld, only screen and (max-width: 480px), only screen and (max-device-width:480px){
-	.left{float:none;}
-	.right{float:none;}
-	.header{ width:auto;}
-	.headerM{ width:auto;}
-	.container{ width:auto; padding:5px;}
-	.logo{ width:auto;}
-	.sidebar{ width:auto;}
-	.loginform{ width:auto; margin:auto;}
-	.mainRight{ margin:0;}
-	textarea {height: 200px; width:100%;}
-	.socialFooter{width:auto;}
+@media handheld, only screen and (max-width: 980px),only screen and (device-width: 768px){
+html, .body{width:100%;}
+.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {float:none;margin-right:0;width:100%;}
+.append-1,.append-2,.append-3,.append-4,.append-5,.append-6,.append-7,.append-8,.append-9,.append-10,.append-11,.append-12,.append-13,.append-14,.append-15,.append-16,.append-17,.append-18,.append-19,.append-20,.append-21,.append-22,.append-23,
+.prepend-1,.prepend-2,.prepend-3,.prepend-4,.prepend-5,.prepend-6,.prepend-7,.prepend-8,.prepend-9,.prepend-10,.prepend-11,.prepend-12,.prepend-13,.prepend-14,.prepend-15,.prepend-16,.prepend-17,.prepend-18,.prepend-19,.prepend-20,.prepend-21,.prepend-22,.prepend-23 {padding-left:0; padding-right:0;}
+.logo{width:40%;}
+.l,.left{float:none!important;}
+.r,.right{float:none!important;}
+.header{ width:100%;}  
+.headerM{ width:100%;}  
+.mainRight{ margin:0;}
+textarea {height: 150px; width:90%;}
+.socialFooter{width:100%;}
+.container{width:100%;}
+.sidebar{ width:100%;}
+.sidebarM{ width:100%;}
+.sidebarL{ width:100%;}
+.loginform{ width:100%;}
+.commonLable{ width:25%;}
+.commonTextarea{ width:60%;}
+.wf-30{width:33.3%;}
+input.title,input.text,input[type="text"]{padding:10px 5px; width:auto;}
+input.title{font-size: 16px;}
+input.text,input[type="text"]{font-size: 15px;}
+fieldset{padding:5px;}
+pre{white-space: normal;}
+.dialogBox{width:90%!important; left:2%!important; margin-left:0!important;}
+.mainLeftL { margin-right: 0;}
+.headerM { height: auto; min-height: 70px; padding-bottom: 2px;}
+.pagination a{width:100%;}
 }
 
 /**-- dojo.css  dojo objects and components --**/

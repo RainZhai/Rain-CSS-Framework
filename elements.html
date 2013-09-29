@@ -2,21 +2,21 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
     <title>Blueprint HTML Elements Tests</title>
-
-    <!-- Framework CSS -->
-    <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
-    <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/>
-    <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/><![endif]-->
-		<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection"/>
-		<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
   </head>
   <body class="showgrid">
 		<div class="header headerBlue">
 		  <nav class="lsn posr clearfix">
-		    <a href="#" class="headerLink headerLinkBlue l pr pl block tdn">link1</a>
-		    <a href="#" class="headerLink headerLinkBlue l pr pl block tdn">link2</a>
-		    <a href="#" class="headerLink headerLinkBlue l pr pl block tdn">link3</a>
+    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link1</a>
+    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a>
+    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a>
 		  </nav>
 		</div>
 		<div class="headerM headerGrey">
@@ -302,12 +302,15 @@ pre tab</pre>
 				<p class="fs-10 bottom">text with class <code>fs-10</code></p>
 			</div> 
       <hr/>
+
+      <footer class="footer socialFooter c borderTop">
+        <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
+      </footer> 
       <p>
         <a href="http://validator.w3.org/check?uri=referer">
           <img src="images/valid.png" alt="Valid HTML 4.01 Strict" height="31" width="88" class="top"/>
         </a>
       </p>
-
     </div>
   </body>
 </html>
