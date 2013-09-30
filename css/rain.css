@@ -711,7 +711,8 @@ select {border:1px solid #bbb;}
 					box-shadow: 0px 1px 3px #fff inset,0px 0px 8px #39F; /* Opera 10.5, IE 9.0 */
 					border:1px solid #39F!important;
 }
-/*-- buttons.css -- button object and sub-objects --*/	
+/*-- buttons.css -- button object and sub-objects --*/
+.buttongroup button{float:left!important;}
 .btn,.button{
 		text-shadow: 0 1px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 1px rgba(0, 0, 0, 0.1);
@@ -924,7 +925,7 @@ html, .body{width:100%;}
 .mainRight{ margin:0;}
 textarea {height: 150px; width:90%;}
 .socialFooter{width:100%;}
-.container{width:100%;}
+.container{width:100%; margin:0;}
 .sidebar{ width:100%;}
 .sidebarM{ width:100%;}
 .sidebarL{ width:100%;}
@@ -941,6 +942,9 @@ pre{white-space: normal;}
 .mainLeftL { margin-right: 0;}
 .headerM { height: auto; min-height: 70px; padding-bottom: 2px;}
 .pagination a{width:100%;}
+.buttongroup button{float:left!important;}
+/*备用的浮动,在移动端使用*/
+.fr{float:right!important;}
 }
 
 /**-- dojo.css  dojo objects and components --**/
