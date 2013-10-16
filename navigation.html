@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 <style type="text/css">
-.transitionBg{ left:0; bottom: 0; height:30px; width:55px; transition:left 1s ease 0s;}
-.transitionLink-2:hover .transitionBg{left:50px; transition: left 1s ease 0s;}
+.transitionBg{ left:0; bottom: 0; height:3px; width:53px; transition:all 1s ease 0s;}
+.transitionLink-2:hover .transitionBg{left:57px;transition: all 1s ease 0s;}
 </style>
 </head>
 
@@ -34,10 +34,8 @@
     <div class="content">
     	<div class="sidebar l posr">
         <div class="sidebox">
-				<h2 class="category">Web Navigations</h2>
-				<p>
-					Navigation with different styles
-				</p>
+			<h2 class="category">Web Navigations</h2>
+			<p>Navigation with different styles</p>
         </div>
       </div>
       
@@ -82,8 +80,8 @@
 				<div class='tabswrap-1'>
 				<ul class='lsn nop norm borderBottom heightL clearfix'>
 					<li class='l mbn-1 mrss bgWhite ib border nobb css3_round_topS tdn pl pr itemColorBlack' href='#'>Home</li>
-					<li class='l mrss bgWhite ib css3_round_topS tdn pl pr itemLightGrey itemColorBlack' href='#'>Profile</li>
-					<li class='l bgWhite ib css3_round_topS tdn pl pr itemLightGrey itemColorBlack' href='#'>Messages</li>
+					<li class='l mrss bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Profile</li>
+					<li class='l bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Messages</li>
 				</ul>
 
 				<div class='c_tabpanel' id='tab-0' >
@@ -100,21 +98,21 @@
 				
 				<ul class="lsn nop norm heightM clearfix">
 					<li class="l ib mrss bgWhite">
-					<a class="ib bgBlue rounds tdn pl pr colorWhite" href="#">Home</a>
+					<a class="ib bgBlue rounds tdn pl pr colorWhite trans" href="#">Home</a>
 					</li>
-					<li class="l ib mrss bgWhite"><a class="ib rounds tdn pl pr itemLightGrey itemColorBlack" href="#">Profile</a></li>
-					<li class="l ib bgWhite"><a class="ib rounds tdn pl pr itemLightGrey itemColorBlack" href="#">Messages</a></li>
+					<li class="l ib mrss bgWhite"><a class="ib rounds tdn pl pr hoverlgrey itemColorBlack trans" href="#">Profile</a></li>
+					<li class="l ib bgWhite"><a class="ib rounds tdn pl pr hoverlgrey itemColorBlack trans" href="#">Messages</a></li>
 				</ul>
 				
 				<ul class="lsn nop norm heightM posr clearfix">
 					<li class="l ib mrss bgWhite">
-                        <a class="transitionLink ib bgBlue rounds tdn pl pr colorWhite" href="#">Home
-                            <span class="transitionBg bgBlue block bgBlue rounds positionA"></span>
+                        <a class="transitionLink ib bgBlue rounds tdn pl pr colorWhite" href="#">
+                            <span class="transitionBg block rounds posa"></span>Home
                         </a>
 					</li>
-					<li class="l ib mrss bgWhite"><a class="transitionLink-2 ib rounds tdn pl pr itemLightGrey itemColorBlack" href="#">Profile
-                    	<span class="transitionBg bgBlue block bgBlue rounds positionA"></span></a></li>
-					<li class="l ib bgWhite"><a class="transitionLink-3 ib rounds tdn pl pr itemLightGrey itemColorBlack" href="#">Messages</a></li>
+					<li class="l ib mrss bgWhite"><a class="transitionLink-2 ib rounds tdn pl pr itemColorBlack" href="#">
+                    	<span class="transitionBg bgBlue block rounds posa"></span>Profile</a></li>
+					<li class="l ib bgWhite"><a class="transitionLink-3 ib rounds tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a></li>
 				</ul>
 				
 				<ul class="rounds border lsn nop norm">
@@ -122,10 +120,10 @@
 						<a class="block heightL tdn pl pr css3_round_topS" href="#">Home</a>
 					</li>
 					<li class="borderBottom">
-						<a class="block heightL tdn pl pr itemLightGrey itemColorBlack" href="#">Profile</a>
+						<a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Profile</a>
 					</li>
 					<li class="css3_round_bottomS">
-						<a class="block heightL tdn pl pr itemLightGrey itemColorBlack css3_round_bottomS" href="#">Messages</a>
+						<a class="block heightL tdn pl pr hoverlgrey itemColorBlack css3_round_bottomS" href="#">Messages</a>
 					</li>
 				</ul>
 				
@@ -133,8 +131,8 @@
 					<li class="bgWhite marginBottomSS">
 						<a class="block heightL bgBlue rounds tdn pl pr colorWhite" href="#">Home</a>
 					</li>
-					<li class="bgWhite marginBottomSS"><a class="block heightL rounds tdn pl pr itemLightGrey itemColorBlack" href="#">Profile</a></li>
-					<li class="bgWhite"><a class="block heightL rounds tdn pl pr itemLightGrey itemColorBlack" href="#">Messages</a></li>
+					<li class="bgWhite marginBottomSS"><a class="block heightL rounds tdn pl pr hoverlgrey itemColorBlack" href="#">Profile</a></li>
+					<li class="bgWhite"><a class="block heightL rounds tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a></li>
 				</ul>
 				
 				<h2>Nav list</h2>				
@@ -163,69 +161,69 @@
       <div class="main mainRight posr">
 				<h2>Pagination</h2>
 				<div class='fullw clearfix'>	
-        <nav class="pagination btn border rounds posr clearfix marginBottomS l">
-            <span class="ptss pbss pl pr block l borderGrey_1_Right tdn">40 pages</span>
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l borderGrey_1_Right tdn">&lt;&lt;</a>
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l borderGrey_1_Right tdn active">1</a> 
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l borderGrey_1_Right tdn">2</a> 
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l borderGrey_1_Right tdn">3</a> 
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l borderGrey_1_Right tdn">4</a> 
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l borderGrey_1_Right tdn">5</a> 
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l borderGrey_1_Right tdn">&gt;&gt;</a>
-            <a href="#" class="ptss pbss pl pr itemLightGrey block l tdn">Lastest</a>
+        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+            <span class="ptss pbss pl pr block l bgrey_1r tdn">40 pages</span>
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">&lt;&lt;</a>
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn active">1</a> 
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">2</a> 
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">3</a> 
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">4</a> 
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">5</a> 
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">&gt;&gt;</a>
+            <a href="#" class="ptss pbss pl pr hoverlgrey block l tdn">Lastest</a>
         </nav></div>
-        <nav class="pagination block btn border rounds posr clearfix marginBottomS l">
-            <span class="paginationLink block l borderGrey_1_Right tdn">40 pages</span>
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">&larr; Previous</a>
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn active">1</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">2</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">3</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">4</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">5</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">Next &rarr;</a>
-            <a href="#" class="paginationLink block l tdn">Lastest</a>
+        <nav class="pagination block btn border rounds posr clearfix mbs l tac">
+            <span class="pagelink block l bgrey_1r tdn">40 pages</span>
+            <a href="#" class="pagelink block l bgrey_1r tdn">&larr; Previous</a>
+            <a href="#" class="pagelink block l bgrey_1r tdn active">1</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">2</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">3</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">4</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">5</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">Next &rarr;</a>
+            <a href="#" class="pagelink block l tdn">Lastest</a>
         </nav>
-        <nav class="pagination btn border rounds posr clearfix marginBottomS l">
-            <span class="paginationLink block l borderGrey_1_Right tdn">40 pages</span>
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">&lt;&lt; Previous</a>
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn active">1</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">2</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">3</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">4</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">5</a> 
-            <a href="#" class="paginationLink block l borderGrey_1_Right tdn">Next &gt;&gt;</a>
-            <a href="#" class="paginationLink block l tdn">Lastest</a>
+        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+            <span class="pagelink block l bgrey_1r">40 pages</span>
+            <a href="#" class="pagelink block l bgrey_1r tdn">&lt;&lt; Previous</a>
+            <a href="#" class="pagelink block l bgrey_1r tdn active">1</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">2</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">3</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">4</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">5</a> 
+            <a href="#" class="pagelink block l bgrey_1r tdn">Next &gt;&gt;</a>
+            <a href="#" class="pagelink block l tdn">Lastest</a>
         </nav>
-        <nav class="pagination btn border rounds posr clearfix marginBottomS l">
-            <span class="pts pbs pll prl block l borderGrey_1_Right tdn">40 pages</span>
-            <a href="#" class="pts pbs pll prl itemLightGrey block l borderGrey_1_Right tdn">&lt;&lt;</a>
-            <a href="#" class="pts pbs pll prl itemLightGrey block l borderGrey_1_Right tdn active">1</a> 
-            <a href="#" class="pts pbs pll prl itemLightGrey block l borderGrey_1_Right tdn">2</a> 
-            <a href="#" class="pts pbs pll prl itemLightGrey block l borderGrey_1_Right tdn">3</a> 
-            <a href="#" class="pts pbs pll prl itemLightGrey block l borderGrey_1_Right tdn">4</a> 
-            <a href="#" class="pts pbs pll prl itemLightGrey block l borderGrey_1_Right tdn">5</a> 
-            <a href="#" class="pts pbs pll prl itemLightGrey block l borderGrey_1_Right tdn">&gt;&gt;</a>
-            <a href="#" class="pts pbs pll prl itemLightGrey block l tdn">Lastest</a>
+        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+            <span class="pts pbs pll prl block l bgrey_1r">40 pages</span>
+            <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">&lt;&lt;</a>
+            <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn active">1</a> 
+            <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">2</a> 
+            <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">3</a> 
+            <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">4</a> 
+            <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">5</a> 
+            <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">&gt;&gt;</a>
+            <a href="#" class="pts pbs pll prl hoverlgrey block l tdn">Lastest</a>
         </nav>
-        <nav class="pagination btn border rounds posr clearfix marginBottomS l">
-            <span class="pt pb plll prll block l borderGrey_1_Right tdn">40 pages</span>
-            <a href="#" class="pt pb plll prll itemLightGrey block l borderGrey_1_Right tdn">&lt;&lt;</a>
-            <a href="#" class="pt pb plll prll itemLightGrey block l borderGrey_1_Right tdn active">1</a> 
-            <a href="#" class="pt pb plll prll itemLightGrey block l borderGrey_1_Right tdn">2</a> 
-            <a href="#" class="pt pb plll prll itemLightGrey block l borderGrey_1_Right tdn">3</a> 
-            <a href="#" class="pt pb plll prll itemLightGrey block l borderGrey_1_Right tdn">4</a> 
-            <a href="#" class="pt pb plll prll itemLightGrey block l borderGrey_1_Right tdn">5</a> 
-            <a href="#" class="pt pb plll prll itemLightGrey block l borderGrey_1_Right tdn">&gt;&gt;</a>
-            <a href="#" class="pt pb plll prll itemLightGrey block l tdn">Lastest</a>
+        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+            <span class="pt pb plll prll block l bgrey_1r tdn">40 pages</span>
+            <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">&lt;&lt;</a>
+            <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn active">1</a> 
+            <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">2</a> 
+            <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">3</a> 
+            <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">4</a> 
+            <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">5</a> 
+            <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">&gt;&gt;</a>
+            <a href="#" class="pt pb plll prll hoverlgrey block l tdn">Lastest</a>
         </nav>
-				<h2 class="c">Pager</h2>
-        <nav class="pagination posr clearfix marginBottomS width-20">
-	        <a href="#" class="paginationLink block btn l borderGrey_1 tdn">&larr; Previous</a> 
-	        <a href="#" class="paginationLink block btn r borderGrey_1 tdn">Next &rarr;</a>
+		<h2 class="c">Pager</h2>
+        <nav class="pager posr clearfix mbs width-20">
+	        <a href="#" class="pagelink ib btn l bgrey_1 tdn">&larr; Previous</a> 
+	        <a href="#" class="pagelink ib btn r bgrey_1 tdn">Next &rarr;</a>
         </nav>
-        <nav class="pagination posr clearfix marginBottomS width-20">
-	        <a href="#" class="paginationLink block btn l css3_round-15 borderGrey_1 tdn">&larr; Previous</a> 
-	        <a href="#" class="paginationLink block btn r css3_round-15 borderGrey_1 tdn">Next &rarr;</a>
+        <nav class="pager posr clearfix mbs width-20">
+	        <a href="#" class="pagelink ib btn l round-15 bgrey_1 tdn">&larr; Previous</a> 
+	        <a href="#" class="pagelink ib btn r round-15 bgrey_1 tdn">Next &rarr;</a>
         </nav>
       </div>
 
@@ -237,7 +235,7 @@
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.tabs.js"></script>
 <script type="text/javascript">
-$('.tabswrap-1').tabs({event:'mouseover',currentClass:'gekkkk'});
+$('.tabswrap-1').tabs({event:'click',currentClass:'gekkkk'});
 </script>
 </body>
 </html>

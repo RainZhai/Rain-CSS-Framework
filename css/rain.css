@@ -671,7 +671,7 @@ p .right {margin:1em 1em 1em 0;}
 	.postItem{ margin-bottom:1.2em;}
 		.articleTitleWrap{margin-top:1em;} 
 	.pagination{font-size:1.2em;}
-		.paginationLink{padding:6px 14px;}
+		.paginationLink,.pagelink{padding:6px 14px;}
 		.paginationLink:hover{ background-color:#F5F5F5;}
 		.active{ background-color:#F5F5F5;}
 	.commonTitle{ font-size:1.5em;}
@@ -932,7 +932,7 @@ textarea {height: 150px; width:90%;}
 .loginform{ width:100%;}
 .commonLable{ width:25%;}
 .commonTextarea{ width:60%;}
-.wf-30{width:33.3%;}
+.wf-30{width:32%;}
 input.title,input.text,input[type="text"]{padding:10px 5px; width:auto;}
 input.title{font-size: 16px;}
 input.text,input[type="text"]{font-size: 15px;}
@@ -941,7 +941,7 @@ pre{white-space: normal;}
 .dialogBox{width:90%!important; left:2%!important; margin-left:0!important;}
 .mainLeftL { margin-right: 0;}
 .headerM { height: auto; min-height: 70px; padding-bottom: 2px;}
-.pagination a{width:100%;}
+.pagination a,.pagination span{width:100%; padding:0!important;}
 .buttongroup button{float:left!important;}
 /*备用的浮动,在移动端使用*/
 .fr{float:right!important;}
@@ -1288,21 +1288,13 @@ pre{white-space: normal;}
           transform: perspective(2);
 }
 
-.css3_transition {
-     -moz-transition: all 3s linear;  /* FF3.7+ */
-       -o-transition: all 3s linear;  /* Opera 10.5 */
-  -webkit-transition: all 3s linear;  /* Saf3.2+, Chrome */
-		  transition: all 3s linear; 
+.trans,.css3_transition {
+     -moz-transition: all 1s linear;  /* FF3.7+ */
+       -o-transition: all 1s linear;  /* Opera 10.5 */
+  -webkit-transition: all 1s linear;  /* Saf3.2+, Chrome */
+		  transition: all 1s linear; 
 }
 
-.css3_transition:hover {
-     -moz-transition: all 5s linear;  /* FF3.7+ */
-       -o-transition: all 5s linear;  /* Opera 10.5 */
-  -webkit-transition: all 5s linear;  /* Saf3.2+, Chrome */
-					transition: all 5s linear;
-		background-color:green;
-}
- 
 @font-face {
   font-family: 'WebFont';
   src: url('myfont.eot');  /* IE6+ */
