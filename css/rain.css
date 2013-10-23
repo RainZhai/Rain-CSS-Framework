@@ -719,8 +719,12 @@ select {border:1px solid #bbb;}
  -webkit-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 1px rgba(0, 0, 0, 0.1);
 		 box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset, 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
-.greybtn:hover,.greyButton:hover{    
-	background-color: #CCCCCC;
+.greybtn,.greyButton{
+	border:1px solid #999;
+	color: #000;
+}
+.greybtn:hover,.greyButton:hover{
+	background-color: #CCCCCC; color:#000;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#CCCCCC)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #ffffff, #CCCCCC); /* Chrome 10+, Saf5.1+, iOS 5+ */
 	background-image:    -moz-linear-gradient(top, #ffffff, #CCCCCC); /* FF3.6 */
@@ -730,35 +734,35 @@ select {border:1px solid #bbb;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#CCCCCC'); /* IE6–IE9 */
 }
 .greybtn:active,.greyButton:active{
-	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
--webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
-				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
+	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);	
 }
 .bluebtn,.blueButton{
 	border:1px solid #0064CD;
 	color: #FFF;
 }
 .bluebtn:hover,.blueButton:hover{    
-	background-color: #0154ab;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#049CDB), to(#0154ab)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(top, #049CDB, #0154ab); /* Chrome 10+, Saf5.1+, iOS 5+ */
-	background-image:    -moz-linear-gradient(top, #049CDB, #0154ab); /* FF3.6 */
-	background-image:     -ms-linear-gradient(top, #049CDB, #0154ab); /* IE10 */
-	background-image:      -o-linear-gradient(top, #049CDB, #0154ab); /* Opera 11.10+ */
-	background-image:         linear-gradient(top, #049CDB, #0154ab);
-						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#049CDB', EndColorStr='#0154ab'); /* IE6–IE9 */
+	background-color: #0154ab;color:#fff;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#049CDB), to(#0052a7)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #049CDB, #0052a7); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient(top, #049CDB, #0052a7); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #049CDB, #0052a7); /* IE10 */
+	background-image:      -o-linear-gradient(top, #049CDB, #0052a7); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #049CDB, #0052a7);
+						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#049CDB', EndColorStr='#0052a7'); /* IE6–IE9 */
 }
 .bluebtn:active,.blueButton:active{
-	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
--webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
-				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
+	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
 }
 .greenbtn,.greenButton{
 	border:1px solid #57A957;
 	color: #FFF;
 }
 .greenbtn:hover,.greenButton:hover{    
-	background-color: #4a974a;
+	background-color: #4a974a;color:#fff;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#62C462), to(#4a974a)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #62C462, #4a974a); /* Chrome 10+, Saf5.1+, iOS 5+ */
 	background-image:    -moz-linear-gradient(top, #62C462, #4a974a); /* FF3.6 */
@@ -768,9 +772,9 @@ select {border:1px solid #bbb;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#62C462', EndColorStr='#4a974a'); /* IE6–IE9 */
 }
 .greenbtn:active,.greenButton:active{
-   -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
--webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
-		box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
+	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);	
 }
 .redbtn,.redButton{
 	border:1px solid #C43C35;
@@ -778,7 +782,7 @@ select {border:1px solid #bbb;}
 }
 
 .redbtn:hover,.redButton:hover{    
-	background-color: #b8342d;
+	background-color: #b8342d;color:#fff;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#EE5F5B), to(#b8342d)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #EE5F5B, #b8342d); /* Chrome 10+, Saf5.1+, iOS 5+ */
 	background-image:    -moz-linear-gradient(top, #EE5F5B, #b8342d); /* FF3.6 */
@@ -789,16 +793,16 @@ select {border:1px solid #bbb;}
 }
 
 .redbtn:active,.redButton:active{
-	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
--webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
-				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
+	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);	
 }
 .yellowbtn,.yellowButton{
 	border:1px solid #D2B852;
-	color: #404040;
+	color: #000;
 }
 .yellowbtn:hover,.yellowButton:hover{    
-	background-color: #D2B852;
+	background-color: #D2B852;color:#000;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCEEC1), to(#D2B852)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #FCEEC1, #D2B852); /* Chrome 10+, Saf5.1+, iOS 5+ */
 	background-image:    -moz-linear-gradient(top, #FCEEC1, #D2B852); /* FF3.6 */
@@ -808,16 +812,16 @@ select {border:1px solid #bbb;}
 						filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FCEEC1', EndColorStr='#D2B852'); /* IE6–IE9 */
 }
 .yellowbtn:active,.yellowButton:active{
-	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
--webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
-				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
+	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 3px rgba(0, 0, 0, 0.4);	
 }
 .cyanbtn,.cyanButton{
 	border:1px solid #2F96B4;
 	color: #fff;
 }
 .cyanbtn:hover,.cyanButton:hover{    
-	background-color: #1D7D99;
+	background-color: #1D7D99;color:#fff;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#5BC0DE), to(#1D7D99)); /* Saf4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #5BC0DE, #1D7D99); /* Chrome 10+, Saf5.1+, iOS 5+ */
 	background-image:    -moz-linear-gradient(top, #5BC0DE, #1D7D99); /* FF3.6 */
@@ -828,9 +832,9 @@ select {border:1px solid #bbb;}
 }
 
 .cyanbtn:active,.cyanButton:active{
-	 -moz-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
--webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
-				box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2) inset, 0px 1px 2px rgba(0, 0, 0, 0.1);
+	 -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);	
 }
 /*-- table.css -- table object and sub-objects --*/
 thead th {background:#fff;}
@@ -1746,3 +1750,7 @@ pre{white-space: normal;}
 .icon-fullscreen{background-position:-456px -144px;}
 .close{float:right;font-size:20px;font-weight:bold;line-height:20px;color:#000000;text-shadow:0 1px 0 #ffffff;opacity:0.2;filter:alpha(opacity=20);}.close:hover,.close:focus{color:#000000;text-decoration:none;cursor:pointer;opacity:0.4;filter:alpha(opacity=40);}
 button.close{padding:0;cursor:pointer;background:transparent;border:0;-webkit-appearance:none;}
+/*mobile icon style*/
+.micon{width:25px; line-height: 24px;}
+.iconbtn-left{left:2%; top:7px;}
+.iconbtn-right{right:2%; top:7px;}
