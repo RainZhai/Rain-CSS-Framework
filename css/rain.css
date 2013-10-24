@@ -31,7 +31,7 @@ Atomic Css Objects
 .fwn,.fontWeightNormal{ font-weight:normal;} 
 .bord,.fontBord{ font-weight:bold;}
 .strong{ font-weight:bold;}
-.border,.fontBorder{ font-weight:bolder;}
+.fontb,.fontBorder{ font-weight:bolder;}
 .lighter,.fontLighter{ font-weight: lighter;}
 .fsxxs,.fontsizeXxsmall{ font-size:xx-small;}
 .fsxs,.fontsizeXsmall{ font-size: x-small;}
@@ -836,6 +836,18 @@ select {border:1px solid #bbb;}
 -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);	
 }
+.vgroup .btn{
+	border: 0 none;border-bottom: 1px solid #ccc;
+}
+.vgroup .btn:last-child{
+border-bottom: 0 none;
+}
+.hgroup .btn{
+	border: 0 none;border-right: 1px solid #ccc;
+}
+.hgroup .btn:last-child{
+border-right: 0 none;
+}
 /*-- table.css -- table object and sub-objects --*/
 thead th {background:#fff;}
 th,td{ color:#333; padding: 10px 10px 9px;}
@@ -949,6 +961,7 @@ pre{white-space: normal;}
 .buttongroup button{float:left!important;}
 /*备用的浮动,在移动端使用*/
 .fr{float:right!important;}
+.fl{float:left!important;}
 }
 
 /**-- dojo.css  dojo objects and components --**/
