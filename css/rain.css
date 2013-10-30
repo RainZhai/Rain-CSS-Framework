@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 /* -----------------------------------------------------------------------
  
@@ -136,6 +136,7 @@ Atomic Css Objects
 .tar,.textAlignRight{text-align:right;}
 .tac,.textAlignCenter{text-align:center;}
 .ti,.textIndent{text-indent:20px;}
+.tih,.textIndentHide{text-indent:-9999px;}
 .til,.textIndentL{text-indent:40px;}
 .ti-1,.textIndent-1{ text-indent:10px;}
 .ti-2,.textIndent-2{ text-indent:20px;}
@@ -1310,6 +1311,12 @@ pre{white-space: normal;}
        -o-transition: all 1s linear;  /* Opera 10.5 */
   -webkit-transition: all 1s linear;  /* Saf3.2+, Chrome */
 		  transition: all 1s linear; 
+}
+.trans-q,.css3_transition-q {
+     -moz-transition: all .5s linear;  /* FF3.7+ */
+       -o-transition: all .5s linear;  /* Opera 10.5 */
+  -webkit-transition: all .5s linear;  /* Saf3.2+, Chrome */
+		  transition: all .5s linear; 
 }
 
 @font-face {
