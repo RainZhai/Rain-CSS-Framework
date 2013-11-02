@@ -1,4 +1,5 @@
 $.fn.extend({
+	//最新更新可以支持任意子元素绑定tabs效果
 	tabs : function(obj) {
 		var o = $.extend({
 			tabSelector:null,
@@ -19,18 +20,21 @@ $.fn.extend({
 		tabClass = o.currentClass,
 		//未选中tablink的hover类
 		hoverClass = o.hoverClass;
-		_this.children(temp_panel).hide();
-		$(_this.find(temp_tab)[0]).addClass(tabClass).removeClass(hoverClass);
-		$(_this.children(temp_panel)[0]).show();
-		_this.find(temp_tab).bind(tabE,function(){  
-				if(tabsize>0){
-					$(temp_tab).removeClass(tabClass).addClass(hoverClass);
-					$(this).addClass(tabClass).removeClass(hoverClass);	
-					var i = $(this).index();
-					_this.children(temp_panel).hide();
-					$(_this.children(temp_panel)[i]).show();
-				}
-		});	
+		var tabs = _this.find(temp_tab);
+		var panels = _this.find(temp_panel).hide();
+		$(tabs[0]).addClass(tabClass).removeClass(hoverClass);
+		$(panels[0]).show();
+		function tabsHandler(event) {
+			if (tabsize > 0) {
+				$(temp_tab).removeClass(tabClass).addClass(hoverClass);
+				$(this).addClass(tabClass).removeClass(hoverClass);
+				panels.hide();
+				$(panels[event.data.index]).show();
+			}
+		}
+		for(var i =0; i<tabs.length; i++){
+			$(tabs[i]).bind(tabE, {index : i}, tabsHandler);
+		}
 		return _this;
 	}
 });
