@@ -31,13 +31,13 @@
 		contentClass:'',
 		btnsWrapStyle:{'text-align':'right'},
 		btnsWrapClass:'',
-		buttonsStyle:[{}],
-		buttonsClass:['heightS css3_roundS css3_gradient_blue button blueButton marginLeft'],
+		buttonsStyle:[{}],//按钮组style
+		buttonsClass:['heightS css3_roundS css3_gradient_blue button blueButton marginLeft'],//按钮class组
 		closeCallback: function(){},
-		buttons:null,
-		buttonsArray:[],
-		buttonsCallback:{},
-		buttonsAttr:[],
+		buttons:null,//常用按钮
+		buttonsArray:[],//按钮组
+		buttonsCallback:{},//按钮的回调
+		buttonsAttr:[],//按钮的属性
 		beforeShow:function(){},
 		afterShow:function(){},
 		beforeClose:function(){},
@@ -152,6 +152,7 @@
 		//设置按钮
 		var buttonsWrap = html.find(".c_btnWrap");
 		if (o.buttons && typeof(o.buttons)==='string') {
+			alert(o.buttons);
 				function btnHandler(event) {
 					o.beforeClose(event);
 					o.close();
@@ -183,7 +184,7 @@
 				var btnClass = o.buttonsClass[i] || '';
 				var btnStyle = o.buttonsStyle[i] || {};
 				var btnAttr = o.buttonsAttr[i] || {};
-				var buttons = $("<input type='button' value='" + buttonsArray[i] + "' class='c_button " + btnClass + "' />").css(btnStyle).attr(btnAttr);
+				var buttons = $("<a href='javascript:;' class='c_button ib tdn "+btnClass+"'>"+buttonsArray[i]+"</a>").css(btnStyle).attr(btnAttr);
 				buttons.bind("click", {index : i}, btnsHandler);
 				buttonsWrap.append(buttons);
 				o.jqbtns.push(buttons);
@@ -193,11 +194,15 @@
 	} 
 	o.initHtml = function(){
 		if(o.header){
+			var closehtml = '';
+			if(o.showClose){
+				closehtml = '<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span>';
+			}
 			html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 			'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
 			'<div class="c_dialogBox dialogBox positionFix"> '+
-			'<div class="c_dialogTitle padding"><span class="c_titletext bottom">'+o.titleText+'</span>'+
-			'<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span> </div>'+
+			'<div class="c_dialogTitle padding"><span class="c_titletext bottom">'+o.titleText+'</span>'+closehtml+
+			 '</div>'+
 			'<div class="c_contentWrap pl pr"></div><p class="c_btnWrap margin"> </p></div></div>');
 		}else{
 			html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
@@ -223,9 +228,6 @@
 		if(o.draggable){
 			$('.'+dialogHandleClass).show().find('.c_dialogBox').draggable({cursor:'move', handle:'.c_dialogTitle', scroll:false, containment: 'html'});
 		}
-		//获取dialog宽度和高度
-		var _width = $('body').width()/5+150; 
-		var _height = html.find('.c_contentWrap').height() + html.find('.c_dialogTitle').height() + html.find('.c_btnWrap').height() +100;
 		//设置上传控制
 		if(o.upload){ o.initUpload(); } 
 
@@ -240,9 +242,14 @@
 		html.find(".c_bgColor").height($("body").height()).css({ "background-color": o.bgColor});
 		html.find("."+closeClass).css(o.closeStyle).addClass(o.headClass);
 		if(o.dialogStyle) html.find(".c_dialogBox").css(o.dialogStyle);
+		if(o.dialogClass) html.find(".c_dialogBox").addClass(o.dialogClass);
 		html.find(".c_dialogTitle").css(o.headStyle).addClass(o.headClass);
 		html.find(".c_contentWrap").css(o.contentStyle).addClass(o.contentClass);
 		html.find(".c_btnWrap").css(o.btnsWrapStyle).addClass(o.btnsWrapClass);
+		//获取dialog宽度和高度
+		var _width = $('body').width()/5+150; 
+		var _height = html.find('.c_contentWrap').height() + html.find('.c_dialogTitle').height() + html.find('.c_btnWrap').height() +100;
+		
 		//计算弹出层的大小和位置
 		if(o.width>0 && o.height>0){
 			html.find(".c_dialogBox").css({ "width": o.width, "height":o.height, "top":o.top, "left":o.left });
