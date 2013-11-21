@@ -181,10 +181,10 @@ pre-line 	合并空白符序列，但是保留换行符。
 .fullh,.fullHeight{height:100%;}
 .wauto,.widthAuto{width:auto;}
 .hauto,.heightAuto{height: auto;}
-.hs,.heightS{ height:25px; line-height:25px;}
-.hm,.heightM{ height:30px; line-height:30px;}
-.hl,.heightL{ height:35px; line-height:35px;}
-.hll,.heightLL{ height:40px; line-height:40px;}
+.hs,.heightS{ height:25px; line-height:25px!important;}
+.hm,.heightM{ height:30px; line-height:30px!important;}
+.hl,.heightL{ height:35px; line-height:35px!important;}
+.hll,.heightLL{ height:40px; line-height:40px!important;}
 
 .ws,.widthS{ width:80px;}
 .wm,.widthM{ width:110px;}
@@ -274,6 +274,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .wf-20,.width-fluid-20{width:20%;}
 .wf-25,.width-fluid-25{width:25%;}
 .wf-30,.width-fluid-30{width:30%;}
+.wf-33,.width-fluid-33{width:33%;}
 .wf-35,.width-fluid-35{width:35%;}
 .wf-40,.width-fluid-40{width:40%;}
 .wf-45,.width-fluid-45{width:45%;}
@@ -949,13 +950,12 @@ textarea {height: 150px; width:90%;}
 .loginform{ width:100%;}
 .commonLable{ width:25%;}
 .commonTextarea{ width:60%;}
-.wf-30{width:32%;}
 input.title,input.text,input[type="text"]{padding:10px 5px; width:auto;}
 input.title{font-size: 16px;}
 input.text,input[type="text"]{font-size: 15px;}
 fieldset{padding:5px;}
 pre{white-space: normal;}
-.dialogBox{width:90%!important; left:2%!important; margin-left:0!important;}
+.dialogBox{width:90%!important; left:5%!important; margin-left:0!important;}
 .mainLeftL { margin-right: 0;}
 .headerM { height: auto; min-height: 70px; padding-bottom: 2px;}
 .pagination a,.pagination span{width:100%; padding:0!important;}
@@ -966,7 +966,6 @@ pre{white-space: normal;}
 }
 
 /**-- dojo.css  dojo objects and components --**/
-
 /* progress bar code */
 .progressBarAnim{background: #EFEFEF url(../dijit/themes/claro/images/progressBarAnim.gif) repeat-x center top;}
 .dijitProgressBarFull{z-index:-1;}
