@@ -50,8 +50,21 @@
 			dialogHandleClass = o.dialogHandleClass+randomStr,
 			html = null;
 		o.init = function(){
-			o.initHtml();
-			o.initBtns();
+			o.initHtml().initBtns().initModule();
+		};
+		o.getDialogID = function(){
+			return dialogHandleClass;
+		};
+		o.setContent = function(obj){
+			var html = o.getHtml();
+			if(typeof(obj)==='string'){
+				html.find('.c_contentWrap').append($('<p>'+obj+'</p>'));
+			}	else if((contentObj instanceof jQuery)){
+				html.find('.c_contentWrap').append(obj.show());
+			} else if(obj && 'nodeName' in obj){
+				html.find('.c_contentWrap').append($(obj).show());
+			}
+			return o;
 		};
 		o._show = function(callback){
 			if($('body').find('.'+dialogHandleClass).length==0){
@@ -79,7 +92,7 @@
 			return null;
 		};
 		o.setHeight = function(h/*number*/){
-			if(typeof(h)==='number'){if(o.html){o.getHtml().find(".c_dialogBox").height(h);}}
+			if(typeof(h)==='number'){if(o.html){o.html.find(".c_dialogBox").height(h);}}
 			return o;
 		};
 		o.setHandle = function(obj){
@@ -203,7 +216,7 @@
 				if(o.showClose){
 					closehtml = '<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span>';
 				}
-				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
+				html = $('<div id="'+dialogHandleClass+'" class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
 				'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
 				'<div class="c_dialogBox dialogBox positionFix"> '+
 				'<div class="c_dialogTitle padding"><span class="c_titletext bottom">'+o.titleText+'</span>'+closehtml+
@@ -228,7 +241,12 @@
 					html.find('.c_contentWrap').append($(contentObj).show());
 				} 
 			}
-
+			o.html = html;
+			html = null;
+			return o;
+		};
+		o.initModule = function(){
+			var html = o.getHtml();
 			//控制框是否可以拖拽
 			if(o.draggable){
 				$('.'+dialogHandleClass).show().find('.c_dialogBox').draggable({cursor:'move', handle:'.c_dialogTitle', scroll:false, containment: 'html'});
@@ -251,25 +269,23 @@
 			html.find(".c_dialogTitle").css(o.headStyle).addClass(o.headClass);
 			html.find(".c_contentWrap").css(o.contentStyle).addClass(o.contentClass);
 			html.find(".c_btnWrap").css(o.btnsWrapStyle).addClass(o.btnsWrapClass);
-
-			o.html = html;
-			html = null;
-			$('body').append(o.html.addClass('vf'));
-			o._setDialogHeight(o.html);
-			o.html.removeClass('vf').addClass('hide');
+			$('body').append(html.addClass('vf'));
+			o._setDialogHeight(html.removeClass('vf'));
+			html.hide();
 			return o;
 		};
 		
 		o._setDialogHeight = function(obj){
 			//获取dialog宽度和高度
 			var _width = $('body').width()/5+150;
-			var _height = obj.find('.c_contentWrap').height() + obj.find('.c_dialogTitle').height() + obj.find('.c_btnWrap').height() +100;
+			var _height = obj.find('.c_contentWrap').outerHeight(true) + obj.find('.c_dialogTitle').outerHeight(true) + obj.find('.c_btnWrap').outerHeight(true);
 			//计算弹出层的大小和位置
 			if(o.width>0 && o.height>0){
 				obj.find(".c_dialogBox").css({ "width": o.width, "height":o.height, "top":o.top, "left":o.left });
 			}else{
 				obj.find(".c_dialogBox").css({ "width": _width, "height":_height, "top":o.top, "left":o.left });
 			}
+			return o;
 		};
 		o.getHtml = function(){
 			return o.html;

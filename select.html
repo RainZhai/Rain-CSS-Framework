@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rain CSS > Select</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" /> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all" />
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+</head>
+<style>
+.ui-select select{
+	-webkit-appearance: none;
+	filter: Alpha(Opacity=0);
+	opacity: 0;
+	left: -9999px;
+	top: -9999px;
+	position: absolute;
+}
+.icon-pos{
+	right: .75em;
+	top: 35%;
+}
+</style>
+</head>
+<body class="body" id="body">
+	<div class="header headerBlue">
+		<nav class="listStyleNo posr clearfix"> <a href="#"
+			class="headerLink headerLinkBlue l pr pl ib tdn">link1</a> <a
+			href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a> <a
+			href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a> </nav>
+	</div>
+	<div class="headerM headerGrey">
+		<div class="container posr">
+			<div class="l">
+				<a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt">
+		<div class="content">
+			<div class="sidebar l posr">
+				<h2 class="category">Select component with CSS2</h2>
+				<p>This part is the webpage Select component</p>
+			</div>
+			<div class="main mainRight posr">
+				<h1>Select</h1>
+				<div id="j_select" class="ui-select gb btn bluebtn round-10 posr oh">
+					<i class="icon-chevron-down posa iconbtn-right"> </i>
+					<span class="j_innerbtn paddingL tac toe block oh wsn fs-1">QQ</span>
+					<select>
+						<option>111</option>
+						<option>222</option>
+						<option>33</option>
+						<option>111</option>
+						<option>222</option>
+						<option>33</option>
+					</select>
+				</div>
+			</div>
+			<footer class="footer socialFooter c borderTop">
+			<p class="bottom pt pb">Copyright 2010-2013 Web Development
+				Machine All rights reserved.</p>
+			</footer>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/jquery.dialog.js"></script>
+	<script type="text/javascript" src="js/util.js"></script>
+	
+<script type="text/javascript">
+(function($) {
+/**
+*	@description 通用selects
+*	@class
+*	@param {object} 对象
+*/
+$.selects = function(obj) {
+	var o = $.extend({
+		event : 'click',
+		selectHandler: '#j_select', 
+	}, obj || {});
+	var _event=o.event;
+	var selectobj=$(o.selectHandler);
+	var ulobj=null;
+	var lis = '';
+	o.ulobj = '';
+	
+	o.getUlobj = function(){
+		return o.ulobj;
+	};
+	o.setValue = function(v){
+		selectobj.find(".j_innerbtn").text(v);
+	}
+	o.setDialog = function(d){
+		o.dialog = d;
+		return o;
+	}
+	o.getDialog = function(){
+		return o.dialog;
+	}
+	selectobj.on(_event, function() {
+		o.getDialog().show();
+	});
+	o.init = function(){
+		$.each(selectobj.find("option"),function(i,elem){
+			if(i==0){selectobj.find(".j_innerbtn").text($(elem).text());}
+			lis += '<li val='+$(elem).text()+'><a class="ggrey btn greybtn block tdn p tac posr" href=javascript:;>'+
+			'<span class="iconbtn-right ib hs micon tac posa icon-ok-sign icon-white"></span>'+
+			$(elem).text()+'</a></li>';
+		});
+		o.ulobj = $("<ul class='c_ul vgroup round-10 oh border nop lsn'></ul>").append(lis);
+		o.ulobj.find('li').on(_event,function(){
+			o.ulobj.find('li').attr('state','n');
+			o.ulobj.find('li').find('span').addClass('icon-white');
+			$(this).attr('state','s');
+			$(this).find('span').removeClass('icon-white');
+		});
+		return o;
+	}
+	o.init();
+	return o;
+};
+})(jQuery);
+var s = new $.selects({
+	event : 'click',
+	selectHandler: '#j_select'
+});
+
+var d =new $.dialog({
+	top : '5%',
+	titleText : "Select dialog",
+	content: s.getUlobj(),
+	contentStyle:{
+		"height": $( window ).height()*0.65,
+		"overflow":"auto"
+	},
+	btnsWrapStyle : {'text-align' : 'center'},
+	buttonsClass : ["hs rounds gb btn bluebtn ml ib w-5", "hs rounds gb btn bluebtn ml ib w-5"],
+	buttonsArray : ['ok','cancel'],
+	buttonsCallback : {'ok':function(){
+		var v = d.getHtml().find('.c_ul').find('[state=s]').attr('val');
+		s.setValue(v);
+		d.close();
+	},'cancel':function(){
+		d.close();
+	}}
+});
+s.setDialog(d);
+</script>
+</body>
+</html>
