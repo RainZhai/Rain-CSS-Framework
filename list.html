@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -10,8 +10,18 @@
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<script type="text/javascript" src='js/jquery-1.7.2.js'></script>
+    <style type="text/css">
+     .filter input[type='text']{margin: 0;padding: 0;min-height: 36px;line-height: 26px;width: 100%;}
+     .filter .iconbtn-left{top: 8px;left:8px;}
+     .filter .iconbtn-right{top: 8px;right:8px;}
+     .round-20,.css3_round-20 {
+         -moz-border-radius: 20px; /* FF1+ */
+         -webkit-border-radius: 20px; /* Saf3+, Chrome */
+         border-radius: 20px; /* Opera 10.5, IE 9 */
+     }
+    </style>
 </head>
-
 <body class="body">
 	<div class="header headerBlue">
   	<nav class="lsn posr clearfix">
@@ -99,11 +109,77 @@
 						</a></li>
 					</ul> 
 				</fieldset>
+                <fieldset>
+                    <legend>Filter</legend>
+                    <div class="filter" id="filter">
+                        <div class="search posr bl bright bt bb round-20 pl-3 pr-3">
+                            <input class="nob nom nob" type="text" placeholder="Search fruits..."/>
+                            <span class="micon iconbtn-left ib bggrey roundall tac posa"><i class="icon-search icon-white"></i></span>
+                            <span class="fclose micon iconbtn-right ib bggrey roundall tac posa hide"><i class="icon-remove icon-white"></i></span>
+                        </div>
+                        <ul class='listview vgroup round-10 oh border mt nop lsn'>
+                            <li><a href='javascritp:;' class='listitem ggrey btn greybtn block tdn p posr'>
+                                <span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-chevron-right icon-white"></i></span>
+                                apple
+                            </a></li>
+                            <li><a href='javascritp:;' class='listitem ggrey btn greybtn block tdn p posr'>
+                                <span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-chevron-right icon-white"></i></span>
+                                banana
+                            </a></li>
+                            <li><a href='javascritp:;' class='listitem ggrey btn greybtn block tdn p posr'>
+                                <span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-chevron-right icon-white"></i></span>
+                                peary
+                            </a></li>
+                        </ul>
+                    </div>
+                </fieldset>
 			</div>
 	      <footer class="footer socialFooter c borderTop">
 	        <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
 	      </footer>
 		</div>
 	</div>
+    <script type="text/javascript">
+        $.Filter = {
+            init: function (opt) {
+                var opts = $.extend({
+                    event: 'input propertychange',
+                    filter: '#filter'
+                }, {}, opt);
+                var _filter = $(opts.filter);
+                var _search = _filter.find("input[type='text']");
+                var _list = _filter.find('.listview');
+                var _close = _filter.find('.fclose');
+                var event = opts.event;
+                var mark = true;
+
+                var listStatic = function (opt) {
+                    opt ? _list.show() : _list.hide();
+                };
+                _search.on(event, function () {
+                    var str = $(this).attr('value');
+                    var _item = _filter.find('.listitem');
+                    listStatic(true);
+                    mark = false;
+                    str == '' ? _close.hide() : _close.show();
+                    _item.each(function (i) {
+                        if (!$.trim(_item.eq(i).text()).indexOf(str)) {
+                            _item.eq(i).parent('li').show();
+                            mark = true;
+                        } else {
+                            _item.eq(i).parent('li').hide();
+                        }
+                    });
+                    listStatic(mark);
+                });
+                _close.on('click', function () {
+                    _search.attr({value: ''});
+                    _close.hide();
+                    _list.show().find('li').show();
+                });
+            }
+        };
+        $.Filter.init();
+    </script>
 </body>
 </html>

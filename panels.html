@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Rain CSS > Panels</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css"
+	media="all" />
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css"
+	media="print" />
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all" />
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+</head>
+<style>
+.ui-panel{
+	top: 0px;
+	left: 0px;
+	width: 50%;
+	min-height: 100%;
+	max-height: none;
+	z-index:9999;
+}
+
+.spn,.ui-panel-display {
+	-moz-box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.15); /* FF3.5+ */
+	-webkit-box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.25);
+	/* Saf3.0+, Chrome */
+	box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9.0 */
+}
+</style>
+<body class="body" id="body">
+
+	<div class="bglBk white  posa ui-panel spn paddingL c-Panlover hide">
+		<div class="paddingL">
+			<h3>Left Panel: Overlay</h3>
+			<p>This panel is positioned on the left with the overlay display
+				mode. The panel markup is after the header, content and footer in the
+				source order.</p>
+			<a href="#"
+				class="round-10 ggrey btn greybtn ib tdn ps tac c-pelClose"> <em
+				class="micon ib bggrey roundall tac"><i
+					class="icon-remove icon-white"></i></em> button
+			</a>
+		</div>
+	</div>
+
+	<div class="bglBk white  posa ui-panel spn  c-Panrevl hide">
+		<div class="paddingL">
+			<h3>Left Panel: Overlay</h3>
+			<p>This panel is positioned on the left with the overlay display
+				mode. The panel markup is after the header, content and footer in
+				the source order.</p>
+			<a href="#"
+				class="round-10 ggrey btn greybtn ib tdn ps tac c-pelClose"> <em
+				class="micon ib bggrey roundall tac"><i
+					class="icon-remove icon-white"></i></em> button
+			</a>
+		</div>
+	</div>
+
+	<div class="c-paneConet">
+		
+		<div class="header headerBlue">
+			<nav class="listStyleNo  clearfix"> <a href="#"
+				class="headerLink headerLinkBlue l pr pl ib tdn">link1</a> <a
+				href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a>
+			<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a>
+			</nav>
+		</div>
+		
+		<div class="headerM headerGrey">
+			<div class="container">
+				<div class="l">
+					<a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a>
+				</div>
+			</div>
+		</div>
+		<div class="container mt">
+			<div class="content">
+				<div class="sidebar l">
+					<h2 class="category">Panels component with CSS3</h2>
+					<p>This part is the webpage Panels component</p>
+				</div>
+				<div class="main mainRight ">
+					<h1>CSS3 Panels</h1>
+					<form method="post" action="">
+						<fieldset>
+							<legend>Basic Panels</legend>
+							<div class="panelWarp">
+								<div
+									class="bglBk white  posa ovlay-panel spn paddingL  c-Palrev hide">
+									<h3>Left Panel: Overlay</h3>
+									<p>This panel is positioned on the left with the overlay
+										display mode. The panel markup is after the header, content
+										and footer in the source order.</p>
+									<a href="#"
+										class="round-10 ggrey btn greybtn ib tdn ps tac c-pelClose">
+										<em class="micon ib bggrey roundall tac"><i
+											class="icon-remove icon-white"></i></em> button
+									</a>
+								</div>
+								
+								<div class="">
+									<a href="#"
+										class="round-10 ggrey btn greybtn ib tdn ps tac c-Overlay">Overlay</a>
+									<a href="#"
+										class="round-10 ggrey btn greybtn ib tdn ps tac c-Reveal ml">Reveal</a>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript">
+		var panel = {};
+		/* 
+		*一个panel 的对象支持在手机端的可伸展。
+		*@param {Object} obj Object对象。可以自定义传入的参数
+		*
+		*/
+		panel.paneObj = function(obj) {
+			var o = $.extend({
+				peltipSelector : ".c-Overlay",
+				panelSelector : ".c-Panlover",
+				btnclsSelector : ".c-pelClose",
+				contenSelector:".c-paneConet",
+				event : "click",
+				callback:$.noop
+			}, obj || {});
+			var $pentips = $(o.peltipSelector), //点击出现panel的小tip按钮。
+			$BtnClose = $(o.btnclsSelector), //Button效果的关闭按钮
+			$Panels = $(o.panelSelector), //panel的选择器。
+			$Content=$(o.contenSelector)//除panel之外的内容
+			_panels = o.panelSelector.substring(1);
+			_event = o.event;
+			/* 
+			*点击出现panel
+			*/
+			$pentips.on(_event, function() {
+				if ($Panels.hasClass("hide")) {
+					$Panels.removeClass("hide");
+					if(typeof o.callback==='function'){
+						o.callback();
+						if($(".c-hide").length){
+							$(".c-hide").on(_event,function(){
+								$Panels.addClass('hide');
+							})
+						}
+					};
+					return false;
+				}
+			});
+			/* 
+			*点击关闭按钮关闭panel
+			*/
+			$BtnClose.on(_event, function() {
+				$(this).parents(panelSelector).addClass("hide");
+			})
+			/* 
+			*点击任何除啦panel之外的地方关闭panel
+			*/
+			$("body").on(_event, function(e) {
+				if(o.callback){
+					$Content.removeClass("posr").removeAttr("left");
+					$(".c-hide").addClass('vf');
+				};
+				if ($(e.target).hasClass(_panels)) {
+					return;
+				} else {
+					$Panels.addClass("hide");
+				}
+			});
+		};
+		
+		
+		/*这是Overlay的panel */
+		//new panel.paneObj();
+		
+		/*这是Reveal的panel */
+		  new panel.paneObj({
+			peltipSelector : ".c-Reveal",
+			panelSelector : ".c-Panrevl",
+			btnclsSelector : ".c-pelClose",
+			contenSelector:".c-paneConet",
+			callback:function(){
+				$(".c-paneConet").addClass("posr").css("left",$( ".c-Panrevl").width())
+				.prepend("<i class='icon-remove mls posa c-hide'> </i>");
+			}
+		});  
+	</script>
+
+</body>
+</html>

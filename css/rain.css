@@ -61,6 +61,7 @@ Atomic Css Objects
 .bglb,.bgLightBlue{background-color: #DDF4FB!important;}
 .bglgrey,.bgLightGrey{background-color: #F5F5F5!important;}
 .bglgrey2,.bgLightGrey2{background-color: #eee!important;}
+.bglBk,.bgLightBlack{background-color: #414141!important;}
 .bgy,.bgYellow{background-color: #D2B852!important;}
 .bgr,.bgRed{background-color: #C00!important;}
 .bgg,.bgGreen{background-color: #57A957!important;}
@@ -232,6 +233,8 @@ pre-line 	合并空白符序列，但是保留换行符。
 .w-50,.width-50{ width:500px;}
 .w-60,.width-60{ width:600px;}
 .w-70,.width-70{ width:700px;}
+.w-mx,.width-max{ width:9999px;}
+
 
 .h-1,.height-1{ height:10px;}
 .h-2,.height-2{ height:20px;}
@@ -267,6 +270,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .h-50,.height-50{ height:500px;}
 .h-60,.height-60{ height:600px;}
 .h-70,.height-70{ height:700px;}
+.h-mx,.height-max{ height:9999px;}
 
 .wf-5,.width-fluid-5{width:5%;}
 .wf-10,.width-fluid-10{width:10%;}
@@ -1773,3 +1777,13 @@ button.close{padding:0;cursor:pointer;background:transparent;border:0;-webkit-ap
 .micon{width:20px; line-height: 20px;}
 .iconbtn-left{left:2%; top:25%;}
 .iconbtn-right{right:2%; top:25%;}
+.touchWrap{margin:0;padding:0;border:none;background:rgba(255,255,255,0.01); -webkit-tap-highlight-color:rgba(0,0,0,0);top:0px;left:0px;z-index:-1;}
+/*hide select,checkBox property*/
+.ui-checkbox,.ui-select select{
+	-webkit-appearance: none;
+	filter: Alpha(Opacity=0);
+	opacity: 0;
+	left: -9999px;
+	top: -9999px;
+	position: absolute;
+}

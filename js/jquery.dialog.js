@@ -56,14 +56,15 @@
 			return dialogHandleClass;
 		};
 		o.setContent = function(obj){
-			var html = o.getHtml();
+			var html = o.getHtml().addClass('vf');
 			if(typeof(obj)==='string'){
-				html.find('.c_contentWrap').append($('<p>'+obj+'</p>'));
+				html.find('.c_contentWrap').empty().append($('<p>'+obj+'</p>'));
 			}	else if((contentObj instanceof jQuery)){
-				html.find('.c_contentWrap').append(obj.show());
+				html.find('.c_contentWrap').empty().append(obj.show());
 			} else if(obj && 'nodeName' in obj){
-				html.find('.c_contentWrap').append($(obj).show());
+				html.find('.c_contentWrap').empty().append($(obj).show());
 			}
+			o._setDialogHeight(html.removeClass('vf'));
 			return o;
 		};
 		o._show = function(callback){
@@ -183,7 +184,7 @@
 					if(o.buttons==='YesNoCancel') 
 						button.push($("<input type='button' value='是' class='c_button' />"),$("<input type='button' value='否' class='c_button marginLeftS' />"),$("<input type='button' value='取消' class='c_button marginLeftS' />"));
 					for ( var i = 0; i < button.length; i++) {
-						button[i].bind("click", {name : o.buttons,type: button[i].attr('btype')}, btnHandler);
+						button[i].on("click", {name : o.buttons,type: button[i].attr('btype')}, btnHandler);
 						buttonsWrap.append(button[i]);
 					}
 			} else {
@@ -191,10 +192,9 @@
 				var buttonsArray = o.buttonsArray;
 				var buttonsCallback = o.buttonsCallback;
 				var buttonDom = _html.find(".c_button");
-				function btnsHandler(event) {
-					var _callback = buttonsArray[event.data.index];
-					if (typeof buttonsCallback[_callback] == 'function')
-						buttonsCallback[_callback]();
+				function btnsHandler(e) {
+					var _callback = buttonsArray[e.data.index];
+					if (typeof buttonsCallback[_callback] == 'function') {buttonsCallback[_callback](e);}
 				}
 				o.jqbtns = []; 
 				// 按钮绑定事件
@@ -202,31 +202,33 @@
 					var btnClass = o.buttonsClass[i] || '';
 					var btnStyle = o.buttonsStyle[i] || {};
 					var btnAttr = o.buttonsAttr[i] || {};
-					var buttons = $("<a href='javascript:;' class='c_button ib tdn "+btnClass+"'>"+buttonsArray[i]+"</a>").css(btnStyle).attr(btnAttr);
-					buttons.bind("click", {index : i}, btnsHandler);
+					var buttons = $("<a href='javascript:void(0);' class='c_button ib tdn "+btnClass+"'>"+buttonsArray[i]+"</a>").css(btnStyle).attr(btnAttr);
+					buttons.on("click", {index : i}, btnsHandler);
 					buttonsWrap.append(buttons);
 					o.jqbtns.push(buttons);
 				}
 			}
+			buttonsWrap.append('<div class="touchWrap posa fullw fullh"></div>');
 			return o;
 		};
 		o.initHtml = function(){
 			if(o.header){
 				var closehtml = '';
 				if(o.showClose){
-					closehtml = '<span class="'+closeClass+' close displayBlock positionA overflowHide textAlignCenter fontBord">X</span>';
+					closehtml = '<span class="'+closeClass+' close block posa oh tac fontBord">X</span>';
 				}
-				html = $('<div id="'+dialogHandleClass+'" class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
-				'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
-				'<div class="c_dialogBox dialogBox positionFix"> '+
-				'<div class="c_dialogTitle padding"><span class="c_titletext bottom">'+o.titleText+'</span>'+closehtml+
-				 '</div>'+
-				'<div class="c_contentWrap pl pr"></div><p class="c_btnWrap margin"> </p></div></div>');
+				html = $('<div id="'+dialogHandleClass+'" class="'+dialogHandleClass+' dialogWrap tal posf">'+
+				'<div class="dialogWrapIE o posa c_bgColor"></div>'+
+				'<div class="c_dialogBox dialogBox posa"> '+
+					'<div class="c_dialogTitle p"><span class="c_titletext bottom">'+o.titleText+'</span>'+closehtml+'</div>'+
+					'<div class="c_contentWrap pl pr"></div>'+
+					'<p class="c_btnWrap m posr"> </p>'+
+				'</div></div>');
 			}else{
-				html = $('<div class="'+dialogHandleClass+' dialogWrap textAlignLeft positionFix">'+
-						'<div class="dialogWrapIE opacity positionA c_bgColor"></div>'+
-						'<div class="c_dialogBox dialogBox positionFix"> '+
-						'<div class="c_contentWrap padding"></div><p class="c_btnWrap margin"> </p></div></div>');
+				html = $('<div class="'+dialogHandleClass+' dialogWrap tal posf">'+
+						'<div class="dialogWrapIE o posa c_bgColor"></div>'+
+						'<div class="c_dialogBox dialogBox posa"> '+
+						'<div class="c_contentWrap p"></div><p class="c_btnWrap m posr"> </p></div></div>');
 			}
 			if(obj && (typeof(obj)==='string' || obj instanceof jQuery || 'nodeName' in obj)){
 				html.find("."+closeClass).hide();

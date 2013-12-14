@@ -11,20 +11,6 @@
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all" />
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 </head>
-<style>
-.ui-select select{
-	-webkit-appearance: none;
-	filter: Alpha(Opacity=0);
-	opacity: 0;
-	left: -9999px;
-	top: -9999px;
-	position: absolute;
-}
-.icon-pos{
-	right: .75em;
-	top: 35%;
-}
-</style>
 </head>
 <body class="body" id="body">
 	<div class="header headerBlue">
@@ -51,14 +37,8 @@
 				<h1>Select</h1>
 				<div id="j_select" class="ui-select gb btn bluebtn round-10 posr oh">
 					<i class="icon-chevron-down posa iconbtn-right"> </i>
-					<span class="j_innerbtn paddingL tac toe block oh wsn fs-1">QQ</span>
+					<span class="j_innerbtn paddingL tac toe block oh wsn fs-1"></span>
 					<select>
-						<option>111</option>
-						<option>222</option>
-						<option>33</option>
-						<option>111</option>
-						<option>222</option>
-						<option>33</option>
 					</select>
 				</div>
 			</div>
@@ -68,67 +48,19 @@
 			</footer>
 		</div>
 	</div>
-	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-	<script type="text/javascript" src="js/jquery.dialog.js"></script>
-	<script type="text/javascript" src="js/util.js"></script>
-	
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/jquery.dialog.js"></script>
+<script type="text/javascript" src="js/jquery.select.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript">
-(function($) {
-/**
-*	@description 通用selects
-*	@class
-*	@param {object} 对象
-*/
-$.selects = function(obj) {
-	var o = $.extend({
-		event : 'click',
-		selectHandler: '#j_select', 
-	}, obj || {});
-	var _event=o.event;
-	var selectobj=$(o.selectHandler);
-	var ulobj=null;
-	var lis = '';
-	o.ulobj = '';
-	
-	o.getUlobj = function(){
-		return o.ulobj;
-	};
-	o.setValue = function(v){
-		selectobj.find(".j_innerbtn").text(v);
-	}
-	o.setDialog = function(d){
-		o.dialog = d;
-		return o;
-	}
-	o.getDialog = function(){
-		return o.dialog;
-	}
-	selectobj.on(_event, function() {
-		o.getDialog().show();
-	});
-	o.init = function(){
-		$.each(selectobj.find("option"),function(i,elem){
-			if(i==0){selectobj.find(".j_innerbtn").text($(elem).text());}
-			lis += '<li val='+$(elem).text()+'><a class="ggrey btn greybtn block tdn p tac posr" href=javascript:;>'+
-			'<span class="iconbtn-right ib hs micon tac posa icon-ok-sign icon-white"></span>'+
-			$(elem).text()+'</a></li>';
-		});
-		o.ulobj = $("<ul class='c_ul vgroup round-10 oh border nop lsn'></ul>").append(lis);
-		o.ulobj.find('li').on(_event,function(){
-			o.ulobj.find('li').attr('state','n');
-			o.ulobj.find('li').find('span').addClass('icon-white');
-			$(this).attr('state','s');
-			$(this).find('span').removeClass('icon-white');
-		});
-		return o;
-	}
-	o.init();
-	return o;
-};
-})(jQuery);
 var s = new $.selects({
 	event : 'click',
-	selectHandler: '#j_select'
+	selectHandler: '#j_select',
+	next: null,
+	data: {list:[{ "name": "1", "value":"1" },
+					{ "name": "2", "value":"2" }]
+	},
+	dataUrl:'./data/select.json'
 });
 
 var d =new $.dialog({
@@ -144,7 +76,8 @@ var d =new $.dialog({
 	buttonsArray : ['ok','cancel'],
 	buttonsCallback : {'ok':function(){
 		var v = d.getHtml().find('.c_ul').find('[state=s]').attr('val');
-		s.setValue(v);
+		var t = d.getHtml().find('.c_ul').find('[state=s]').attr('text');
+		s.setValue(v).setText(t);
 		d.close();
 	},'cancel':function(){
 		d.close();
