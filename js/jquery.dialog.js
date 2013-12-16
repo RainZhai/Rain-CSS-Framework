@@ -48,9 +48,13 @@
 			contentObj = o.content,
 			closeClass = o.closeHandleClass+randomStr,
 			dialogHandleClass = o.dialogHandleClass+randomStr,
+			contentwrapid = 'contentwrap'+randomStr,
 			html = null;
 		o.init = function(){
 			o.initHtml().initBtns().initModule();
+		};
+		o.getContentWrapID =function(){
+			return contentwrapid;
 		};
 		o.getDialogID = function(){
 			return dialogHandleClass;
@@ -228,7 +232,7 @@
 				html = $('<div class="'+dialogHandleClass+' dialogWrap tal posf">'+
 						'<div class="dialogWrapIE o posa c_bgColor"></div>'+
 						'<div class="c_dialogBox dialogBox posa"> '+
-						'<div class="c_contentWrap p"></div><p class="c_btnWrap m posr"> </p></div></div>');
+						'<div id="'+contentwrapid+'" class="c_contentWrap p"></div><p class="c_btnWrap m posr"> </p></div></div>');
 			}
 			if(obj && (typeof(obj)==='string' || obj instanceof jQuery || 'nodeName' in obj)){
 				html.find("."+closeClass).hide();

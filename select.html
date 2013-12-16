@@ -27,40 +27,43 @@
 		</div>
 	</div>
 
-	<div class="container mt">
+	<div class="container mt posr">
 		<div class="content">
 			<div class="sidebar l posr">
-				<h2 class="category">Select component with CSS2</h2>
+				<h2 class="category">Select component</h2>
 				<p>This part is the webpage Select component</p>
 			</div>
 			<div class="main mainRight posr">
 				<h1>Select</h1>
-				<div id="j_select" class="ui-select gb btn bluebtn round-10 posr oh">
-					<i class="icon-chevron-down posa iconbtn-right"> </i>
-					<span class="j_innerbtn paddingL tac toe block oh wsn fs-1"></span>
-					<select>
-					</select>
-				</div>
+				<div id="j_select"></div><br/>
+				<div id="j_select_1"></div>
 			</div>
-			<footer class="footer socialFooter c borderTop">
-			<p class="bottom pt pb">Copyright 2010-2013 Web Development
-				Machine All rights reserved.</p>
+			<footer class="footer socialFooter c borderTop mt posf bggrey fullw"  style='bottom:0px;'>
+			<p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
 			</footer>
 		</div>
 	</div>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.dialog.js"></script>
 <script type="text/javascript" src="js/jquery.select.js"></script>
+<script type="application/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript">
 var s = new $.selects({
 	event : 'click',
 	selectHandler: '#j_select',
-	next: null,
-	data: {list:[{ "name": "1", "value":"1" },
-					{ "name": "2", "value":"2" }]
-	},
+	selectClass:'ui-select ggrey btn greybtn round-10 posr oh',
+	next: s1,
+	data: {list:[{ "name": "1", "value":"1" },{ "name": "2", "value":"2" }]},
 	dataUrl:'./data/select.json'
+});
+var s1 = new $.selects({
+	event : 'click',
+	selectHandler: '#j_select_1',
+	selectClass:'ui-select ggrey btn greybtn round-10 posr oh',
+	next: null,
+	data: {list:[{ "name": "1", "value":"1" },{ "name": "2", "value":"2" }]
+	}
 });
 
 var d =new $.dialog({
@@ -69,21 +72,27 @@ var d =new $.dialog({
 	content: s.getUlobj(),
 	contentStyle:{
 		"height": $( window ).height()*0.65,
-		"overflow":"auto"
+		"overflow": "auto"
 	},
 	btnsWrapStyle : {'text-align' : 'center'},
-	buttonsClass : ["hs rounds gb btn bluebtn ml ib w-5", "hs rounds gb btn bluebtn ml ib w-5"],
+	buttonsClass : ["hs rounds ggrey btn greybtn ml ib w-5", "hs rounds ggrey btn greybtn ml ib w-5"],
 	buttonsArray : ['ok','cancel'],
 	buttonsCallback : {'ok':function(){
 		var v = d.getHtml().find('.c_ul').find('[state=s]').attr('val');
 		var t = d.getHtml().find('.c_ul').find('[state=s]').attr('text');
 		s.setValue(v).setText(t);
+		$('.footer').addClass('posf').removeClass('posa');
 		d.close();
 	},'cancel':function(){
+		$('.footer').addClass('posf').removeClass('posa');
 		d.close();
 	}}
 });
 s.setDialog(d);
+s1.setDialog(d);
+//var id = d.getContentWrapID();
+//var myScroll = new iScroll('id');//√˜ÃÏ ‘ ‘ø¥
 </script>
+<script src="http://192.168.1.101:8080/target/target-script-min.js#anonymous"></script>
 </body>
 </html>

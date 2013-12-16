@@ -9,6 +9,8 @@ $.selects = function(obj) {
 		event : 'click',
 		selectHandler: '#j_select', 
 		next: null,//设置下一个联动select
+		selectClass:'ui-select ggrey btn greybtn round-10 posr oh',
+		selectStyle:{},
 		data: {},
 		dataUrl: null,
 		dataParams:{}
@@ -16,6 +18,7 @@ $.selects = function(obj) {
 	var _event=o.event;
 	var selectobj=$(o.selectHandler);
 	var lis = '';
+	var nextData={};
 	o.ulobj = $("<ul class='c_ul vgroup round-10 oh border nop lsn'></ul>");
 	
 	o.getUlobj = function(){
@@ -57,6 +60,7 @@ $.selects = function(obj) {
 	selectobj.on(_event, function() {
 		var i = $(this).find('select')[0].selectedIndex;
 		o.checkUlItem(o.getUlobj().find('li').eq(i));
+		$('.footer').removeClass('posf').addClass('posa');
 		o.getDialog().show();
 	});
 	o._transOptionToLi = function(){
@@ -70,6 +74,12 @@ $.selects = function(obj) {
 		o.setUlobj(lis);
 		return o;
 	};
+	o.setNextData = function(o){
+		nextData = o;
+	};
+	o.getNextData = function(o){
+		return nextData;
+	};
 	o._parseData = function(data){
 		var d = data.list,options='',lis='';
 		for(var i =0,l = d.length;i<l;i++){
@@ -80,8 +90,21 @@ $.selects = function(obj) {
 		o.getNativeSelect().append(options);
 		o.setText(d[0].name);
 		o.setUlobj(lis);
+		o.setNextData(d[0]);
+	};
+	o.initUI = function(){
+		selectobj.addClass(o.selectClass).css(o.selectStyle);
+	};
+	o.buildHtml = function(){
+		var _html = '<i class="icon-chevron-down posa iconbtn-right"></i>'+
+		'<span class="j_innerbtn paddingL tac toe block oh wsn fs-1"></span>'+
+		'<select></select>';
+		selectobj.append(_html);
+		return o;
 	};
 	o.init = function(){
+		o.initUI();
+		o.buildHtml();
 		if(o.dataUrl){
 			$.getJSON(o.dataUrl, o.dataParams , function(data){
 				o._parseData(data);
@@ -89,7 +112,7 @@ $.selects = function(obj) {
 		}else if(o.data){
 			o._parseData(o.data);
 		}
-	}
+	};
 	o.init();
 	return o;
 };
