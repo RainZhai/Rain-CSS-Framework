@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Rain CSS > Select</title>
 <!-- Framework CSS -->
@@ -10,9 +10,11 @@
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all" />
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<style>
+.footer{bottom:0;}
+</style>
 </head>
-</head>
-<body class="body" id="body">
+<body class="body posr" id="body">
 	<div class="header headerBlue">
 		<nav class="listStyleNo posr clearfix"> <a href="#"
 			class="headerLink headerLinkBlue l pr pl ib tdn">link1</a> <a
@@ -38,24 +40,25 @@
 				<div id="j_select"></div><br/>
 				<div id="j_select_1"></div>
 			</div>
-			<footer class="footer socialFooter c borderTop mt posf bggrey fullw"  style='bottom:0px;'>
-			<p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
-			</footer>
 		</div>
 	</div>
+			<footer class="footer socialFooter c borderTop mt posf fullw">
+			<p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
+			</footer>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.dialog.js"></script>
 <script type="text/javascript" src="js/jquery.select.js"></script>
-<script type="application/javascript" src="js/iscroll.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript">
+$(function(){
 var s = new $.selects({
 	event : 'click',
 	selectHandler: '#j_select',
 	selectClass:'ui-select ggrey btn greybtn round-10 posr oh',
 	next: s1,
-	data: {list:[{ "name": "1", "value":"1" },{ "name": "2", "value":"2" }]},
-	dataUrl:'./data/select.json'
+	data: {list:[{ "name": "1", "value":"1" },{ "name": "2", "value":"2" }
+	]},
+	//dataUrl:'./data/select.json'
 });
 var s1 = new $.selects({
 	event : 'click',
@@ -75,24 +78,20 @@ var d =new $.dialog({
 		"overflow": "auto"
 	},
 	btnsWrapStyle : {'text-align' : 'center'},
-	buttonsClass : ["hs rounds ggrey btn greybtn ml ib w-5", "hs rounds ggrey btn greybtn ml ib w-5"],
-	buttonsArray : ['ok','cancel'],
+	buttonsClass : ["hm rounds ggrey btn greybtn ib wf-45", "hm rounds ggrey btn greybtn ml ib wf-45"],
+	buttonsArray : ['cancel','ok'],
 	buttonsCallback : {'ok':function(){
 		var v = d.getHtml().find('.c_ul').find('[state=s]').attr('val');
 		var t = d.getHtml().find('.c_ul').find('[state=s]').attr('text');
 		s.setValue(v).setText(t);
-		$('.footer').addClass('posf').removeClass('posa');
 		d.close();
 	},'cancel':function(){
-		$('.footer').addClass('posf').removeClass('posa');
 		d.close();
 	}}
 });
 s.setDialog(d);
 s1.setDialog(d);
-//var id = d.getContentWrapID();
-//var myScroll = new iScroll('id');//√˜ÃÏ ‘ ‘ø¥
-</script>
-<script src="http://192.168.1.101:8080/target/target-script-min.js#anonymous"></script>
+});
+</script> 
 </body>
 </html>

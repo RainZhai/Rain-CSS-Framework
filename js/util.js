@@ -1,11 +1,18 @@
-Rain CSS Framework License
-----------------------------------------------------------------
+/**
+*	define util function
+*/ 
+(function(){
+	if(!window.console){window.console = function(){};window.console.info = window.console.debug = window.console.warn = window.console.log = window.console.error = function(str){alert(str);}};
 
-Copyright (c) 2010-2012 webdevelopmentmachine.com
-Based on Blueprint CSS Framework(blueprintcss.org)
-The Rain CSS Framework is available for use in all personal or
-commercial projects, under the (modified) MIT license.
-
-
-The (modified) MIT License
-------------------------------------------
+	window.log = function(){
+		if(arguments.length>0){
+			var s='';
+			for(var i=0,l=arguments.length;i<l; i++){s = s + arguments[i]+',';} 
+			console.log(util.clearLastComma(s));
+		}
+	};
+	window.util = util = {};
+	util.clearLastComma =function(str){
+		return str=str.replace(/,$/,'');
+	};
+}());

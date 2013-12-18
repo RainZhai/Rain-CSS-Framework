@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Rain CSS > Dialog</title>
 <!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
@@ -94,28 +94,25 @@
 </div>
 
 <!-- script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script -->
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script> 
+<script type="text/javascript" src="js/jquery-1.7.2.js?=1"></script> 
 <script type="text/javascript" src="js/jquery.dialog.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript">
-	var b = $.dialog({
-		width: 540,
-		height: 300,
-		top:'20%',
-		draggable: false,
+	var b =new $.dialog({ 
+		top:'10%',
+		draggable: true,
 		content:$(".c_testwrap2"),
 		titleText:"hello dialog 2",
 		dialogStyle:{"border":"8px solid #ededed"},
 		titleStyle:{"background":"#F5F5F5"},
 		btnsWrapStyle:{'text-align':'right'},
-		buttonsClass:["hs rounds gb btn bluebtn ml","hs rounds ggrey bgrey_2 btn greybtn ml"],
-		buttonsStyle:[{width:80}],
+		buttonsClass:["hs rounds gb btn bluebtn","hs rounds ggrey btn greybtn ml"],
 		closeCallback: function(){},
 		buttons:"OKCancel",
 		beforeClose:function(e){ log(e.data.name);log(e.data.type);},
 		afterClose:function(e){ log(e.data.name);},
-		upload:false
-	}).show(1000);
+		upload:true
+	}).show(); 
 	var temp = document.getElementById('c_testwrap3');
 	//var a = $.dialog($('<p>你好！</p>'));
 	//a.show().close();

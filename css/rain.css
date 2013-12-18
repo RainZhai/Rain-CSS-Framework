@@ -6,10 +6,10 @@
  http://www.webdevelopmentmachine.com
 
 		@  Copyright (c) Web Development Machine All rights reserved.
-		@  version  2.0.3
-		@  author: Rain.Zhai 
+		@  version  2.0.4
+		@  author: Rain Zhai,heimanba,Yangming Zhang
 		@  date: 2010.6.27
-		@  update date: 2012.4.18
+		@  update date: 2013.12.16
 
 ----------------------------------------------------------------------- */
 
@@ -842,6 +842,8 @@ select {border:1px solid #bbb;}
 -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);	
 }
+.vgroup li:first-child{border-radius: 10px 10px 0 0;}
+.vgroup li:last-child{border-radius: 0 0 10px 10px;}
 .vgroup .btn{
 	border: 0 none;border-bottom: 1px solid #ccc;
 }
