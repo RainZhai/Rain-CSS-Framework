@@ -65,10 +65,10 @@
 						<div class="c_touch posr" id="">
 							<div class=" c_touhWap posr touhWap oh">
 								<ul class=" lsn c_touhDet posa nom nop w-mx clearfix">
-									<li class="fl l"><img src="images/s1.jpg" /></li>
-									<li class="fl l"><img src="" src3="images/s2.jpg"/></li>
-									<li class="fl l"><img src="" src3="images/s1.jpg"/></li>
-									<li class="fl l"><img src="" src3="images/s3.jpg" /></li>
+									<li class="fl l"><a href='#'><img src="images/s1.jpg" /></a></li>
+									<li class="fl l"><a href='#'><img src="" src3="images/s2.jpg"/></a></li>
+									<li class="fl l"><a href='#'><img src="" src3="images/s1.jpg"/></a></li>
+									<li class="fl l"><a href='#'><img src="" src3="images/s3.jpg" /></a></li>
 								</ul>
 							</div>
 							<ul class="lsn clearfix posa tipCir">
@@ -96,14 +96,14 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-	<script type="text/javascript">
-		var SwipeEvent = {};
+	<script type="text/javascript"> 
+	(function($) {	
 		/**
 		 *一个在手机端自动轮播,并且可以有滑动效果的插件---基于jquery.
 		 * @param {Object} obj Object对象。可以自定义传入的参数。
 		 * @return {Function} 返回的是一个公有的函数。
 		 */
-		SwipeEvent.swipe = function(obj) {
+		$.swipe = function(obj) {
 			var o = $.extend({
 				touchSelector : ".c_touhDet",
 				wapperSelector : ".c_touch",
@@ -111,7 +111,7 @@
 				time : 1500
 			}, obj || {});
 			var TouchDel = $(o.touchSelector), //图片的父级选择器
-			$tips = $(o.tipSelector), $touch = $(o.wapperSelector), startX = 0, //开始点击的位置
+			$tips = $(o.tipSelector), touchobj = $(o.wapperSelector), startX = 0, //开始点击的位置
 			timer = o.time;
 			i = 0, //图片计数器
 			items = TouchDel.find("li"), len = items.length, //图片的数目
@@ -123,9 +123,9 @@
 			 *
 			 */
 			o.bindEvent = function() {
-				 $touch[0].addEventListener('touchstart', o.touchSatrtFunc, false);
-				 $touch[0].addEventListener('touchmove', o.touchMoveFunc, false);
-				 $touch[0].addEventListener('touchend', o.touchEndFunc, false);
+				 touchobj[0].addEventListener('touchstart', o.touchSatrtFunc, false);
+				 touchobj[0].addEventListener('touchmove', o.touchMoveFunc, false);
+				 touchobj[0].addEventListener('touchend', o.touchEndFunc, false);
 			};
 			/**
 			 *懒加载函数。
@@ -170,9 +170,7 @@
 					//左划
 					if (i === len - 1) {
 						var lens = length;
-						if (lens <= -_width / 2) {
-							return;
-						} else {
+						if(lens >= -_width / 2){
 							TouchDel.css({
 								"left" : -i * _width + lens
 							})
@@ -186,9 +184,7 @@
 					//右划
 					if (i === 0) {
 						var tempLen = length;
-						if (tempLen >= _width / 2) {
-							return;
-						} else {
+						if (tempLen <= _width / 2) {
 							TouchDel.css({
 								"left" : tempLen
 							});
@@ -266,10 +262,11 @@
 				o.tipShow();
 			};
 			o.timeHanlder = setInterval(o.setTime, timer);
-			return o.bindEvent();
+			o.bindEvent();
+			return o;
 		}
-
-		new SwipeEvent.swipe();
+	})(jQuery);
+	var o = new $.swipe();
 	</script>
 </body>
 </html>

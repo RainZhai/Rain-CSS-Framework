@@ -25,6 +25,19 @@
 * });
 *
 */ 
+  $.nav={};
+  $.nav.pushState = function(obj){
+    if (history && history.pushState) {
+    var opt = $.extend({data:{}, title:'newpage'}, obj || {});
+    history.pushState(opt.data, opt.title, opt.url);
+    }
+  };
+  $.nav.replaceState = function(obj){
+    if (history && history.replaceState) {
+    var opt = $.extend({data:{}, title:'newpage'}, obj || {});
+    history.replaceState(opt.data, opt.title, opt.url);
+    }
+  };
   $.dialog = function(obj) {
     var opt = $.extend({
       "width":540,
@@ -91,6 +104,12 @@
         o.initHtml();
         o.initBtns();
         o.initModule();
+        o.registerStateChange(function(){
+          if(history){
+          var s = history.state;
+          if(!s){ o.close();}
+          }
+        });
       },
       /**@method 获取内容块id*/
       "getContentWrapID":function() {
@@ -178,11 +197,13 @@
        *	@param {function} 回调函数
        */
       "_show":function(callback) {
-        if ($("body").find("." + dialogHandleClass).length == 0) {
-          $("body").append(o.html);
-        } else {
-          $("." + dialogHandleClass).show(callback);
-        }
+          if ($("body").find("." + dialogHandleClass).length == 0) {
+            $("body").append(o.html);
+          } else {
+            if (typeof callback === "function") { $("." + dialogHandleClass).show(callback);}else{
+              $("." + dialogHandleClass).show();
+            }
+          } 
       },
       /**	@method 显示dialog
        *  @public
@@ -192,16 +213,12 @@
       "show":function(s, callback) {
         opt.beforeShow();
         if (s) {
-          setTimeout(function() {
-            o._show(callback);
-          }, s);
+          setTimeout(function() {o._show(callback);}, s);
         } else {
           o._show(callback);
         }
         opt.afterShow();
-        if (typeof callback === "function") {
-          callback();
-        }
+        $.nav.pushState({data:{name:'show'},title:'show',url:'?=show'});
         return o;
       },
       /**	@method 关闭dialog
@@ -214,6 +231,7 @@
           callback();
         }
         o.hide = o.close;
+        $.nav.replaceState({data:null,title:'show',url:null});
         return o;
       },
       /**	@method 初始化上传控件
@@ -396,7 +414,12 @@
           });
         }
         return o;
+      },
+      "registerStateChange":function(callback){
+        $(window).on("popstate",function(){callback();});
+        return o;
       }
+      
     };
     o.init();
     return o;
