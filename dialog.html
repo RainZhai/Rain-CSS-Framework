@@ -109,10 +109,11 @@
 		buttonsClass:["hs rounds gb btn bluebtn","hs rounds ggrey btn greybtn ml"],
 		closeCallback: function(){},
 		buttons:"OKCancel",
+		beforeShow:function(e){ $.nav.pushState({data:{name:'show'},title:'dialog',url:'?show'});},
 		beforeClose:function(e){ log(e.data.name);log(e.data.type);},
 		afterClose:function(e){ log(e.data.name);},
-		upload:true
-	}).show(); 
+		upload: false
+	}).show();
 	var temp = document.getElementById('c_testwrap3');
 	//var a = $.dialog($('<p>你好！</p>'));
 	//a.show().close();

@@ -34,7 +34,7 @@
   };
   $.nav.replaceState = function(obj){
     if (history && history.replaceState) {
-    var opt = $.extend({data:{}, title:'newpage'}, obj || {});
+    var opt = $.extend({data:{}, title:'newpage',url:''}, obj || {});
     history.replaceState(opt.data, opt.title, opt.url);
     }
   };
@@ -104,10 +104,12 @@
         o.initHtml();
         o.initBtns();
         o.initModule();
+        var urlparam = location.href.split("?")[1];
+        if(urlparam==='show'){o._show();} 
         o.registerStateChange(function(){
           if(history){
           var s = history.state;
-          if(!s){ o.close();}
+          if(!s){o.close();}else{o._show();}
           }
         });
       },
@@ -203,7 +205,7 @@
             if (typeof callback === "function") { $("." + dialogHandleClass).show(callback);}else{
               $("." + dialogHandleClass).show();
             }
-          } 
+          }
       },
       /**	@method 显示dialog
        *  @public
@@ -218,7 +220,6 @@
           o._show(callback);
         }
         opt.afterShow();
-        $.nav.pushState({data:{name:'show'},title:'show',url:'?=show'});
         return o;
       },
       /**	@method 关闭dialog
@@ -226,12 +227,13 @@
        *	@param {function} 回调函数
        */
       "close":function(callback) {
-        $("." + dialogHandleClass).hide();
         if (typeof callback === "function") {
-          callback();
+          $("." + dialogHandleClass).hide(callback);
+        }else{
+          $("." + dialogHandleClass).hide();
         }
         o.hide = o.close;
-        $.nav.replaceState({data:null,title:'show',url:null});
+        //$.nav.pushState({data:{name:'close'},title:'dialog',url:'?=close'});
         return o;
       },
       /**	@method 初始化上传控件
@@ -277,15 +279,12 @@
             opt.afterClose(event);
           }
           var button = [];
-          if (btns === "OK") button.push($("<input type='button' value='确定' class='c_button' />"));
-          if (btns === "OKCancel") button.push($("<input type='button' value='确定' class='c_button' />").attr("btype", "ok"), $("<input type='button' value='取消' class='c_button marginLeftS' />").attr("btype", "canel"));
-          if (btns === "YesNo") button.push($("<input type='button' value='是' class='c_button' />"), $("<input type='button' value='否' class='c_button marginLeftS' />"));
-          if (btns === "YesNoCancel") button.push($("<input type='button' value='是' class='c_button' />"), $("<input type='button' value='否' class='c_button marginLeftS' />"), $("<input type='button' value='取消' class='c_button marginLeftS' />"));
+          if (btns === "OK") button.push($("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>确定</a>"));
+          if (btns === "OKCancel") button.push($("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>确定</a>").attr("btype", "ok"), $("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>取消</a>").attr("btype", "canel"));
+          if (btns === "YesNo") button.push($("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>是</a>"), $("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>否</a>"));
+          if (btns === "YesNoCancel") button.push($("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>是</a>"), $("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>否</a>"), $("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>取消</a>"));
           for (var i = 0; i < button.length; i++) {
-            button[i].on("click", {
-              "name":btns,
-              "type":button[i].attr("btype")
-            }, btnHandler);
+            button[i].on("click", {"name":btns,"type":button[i].attr("btype")}, btnHandler);
             buttonsWrap.append(button[i]);
           }
         } else {
