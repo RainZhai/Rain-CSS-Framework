@@ -35,178 +35,28 @@
         </div>
         <div class="main mainRight posr">
             <h2>slide</h2>
-            <ul class="lsn">
-                <li class="pb-2 p">
-                    <fieldset>
-                        <legend>slide</legend>
-                        <p>slide</p>
-                        <div id="slide" class="slide b oh">
-                            <ul class="slidewrap lsn nop w-mx posr">
-                                <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="images/figure1.jpg" alt=""/></a></li>
-                                <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="images/figure2.jpg" alt=""/></a></li>
-                                <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="images/figure3.jpg" alt=""/></a></li>
-                                <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="images/figure4.jpg" alt=""/></a></li>
-                                <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="images/figure5.jpg" alt=""/></a></li>
-                            </ul>
-                        </div>
-                        <button class="left">left</button>
-                        <button class="right">right</button>
-                        <p id='msg'></p>
-                    </fieldset>
-                </li>
-            </ul>
+            <fieldset>
+                <legend>slide</legend>
+                <p>slide</p>
+                <div id="slide" class="slide lazyload b oh posr">
+                    <ul class="slidewrap lsn nop w-mx posa">
+                        <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="" src3="images/figure1.jpg" alt=""/></a></li>
+                        <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="" src3="images/figure2.jpg" alt=""/></a></li>
+                        <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="" src3="images/figure3.jpg" alt=""/></a></li>
+                        <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="" src3="images/figure4.jpg" alt=""/></a></li>
+                        <li class="l fl"><a href="javascript:;"><img class="b round-5 ms" src="" src3="images/figure5.jpg" alt=""/></a></li>
+                    </ul>
+                </div>
+            </fieldset>
         </div>
         <footer class="footer socialFooter c borderTop">
             <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
         </footer>
     </div>
 </div>
+<script src="js/slide.js" type="text/javascript"></script>
 <script>
-/**
- * slide插件，完成图片滑动，定时轮播。
- * @author mingdd。
- * @param  {object} 配置 。
- */
-    (function ($) {
-        $.extend({
-            "slide": function (opt) {
-                var o = $.extend({
-                    box: '.slide',  //滑动的块
-                    wrap: '.slidewrap',     //li的包装集
-                    fix: true,  //是否固定大小
-                    width: 250, //宽
-                    height: 120, //高
-                    images: 3,  //展示图片的格式
-                    slides: 2,  //每次滑动图片个数
-                    length: 40, //触屏最小滑动长度
-                    auto: true, //自动轮播
-                    speed: 300, //滑动速度
-                    delay: 3000 //滚动间隔
-                }, {}, opt);
-                var _box = $(o.box), _wrap = $(o.wrap);
-                var s = _wrap.find('li').size();
-                var sls = o.slides, imgs = o.images;
-                var i = 0;
-                var starX = 0;
-                var timer;
-                /**
-                 * 根据fix的值更改box的宽和高。
-                 */
-                var width, h;
-                if (o.fix) {
-                    width = o.width;
-                    h = o.height;
-                    _box.width(width).height(h);
-                } else {
-                    width = _box.width();
-                    h = _box.height();
-                }
-                var h = _box.height();
-                var w = (width / imgs).toFixed(1);
-                var m = parseInt(_wrap.find('img').css('margin'));
-
-                /**
-                 * 初始化样式。
-                 */
-                _wrap.find('li').slice(0, s).clone(true).appendTo('.slidewrap');
-                _wrap.find('li').slice(0, s).clone(true).prependTo('.slidewrap');
-                _wrap.css({marginLeft: -s * w}).find('li').each(function () {
-                    $(this).width(w).height(h).find('img').width(w - 2 * m).height(h - 2 * m);
-                });
-
-                /**
-                 * 向左滑动。
-                 */
-                o.leftMove = function () {
-                    if (!_wrap.is(":animated")) {
-                        _wrap.stop().animate({"left": "-=" + sls * w}, o.speed, function () {
-                            i += sls;
-                            if (i >= s) {
-                                i = i - s;
-                                _wrap.css({left: -i * w});
-                            }
-                        });
-                    }
-                };
-                /**
-                 * 向右滑动。
-                 */
-                o.rightMove = function () {
-                    if (!_wrap.is(":animated")) {
-                        _wrap.stop().animate({"left": "+=" + sls * w}, o.speed, function () {
-                            i -= sls;
-                            if (i <= -s + sls) {
-                                i = i + s;
-                                _wrap.css({left: -i * w});
-                            }
-                        });
-                    }
-                };
-                /**
-                 * 触摸开始的时候触发。
-                 * @param  {object} event事件对象
-                 */
-                o.touchStar = function (event) {
-                    event.preventDefault();
-                    o.endLoop();
-                    starX = parseInt(event.touches[0].clientX, 10);
-                };
-                /**
-                 * 手指在屏幕上滑动的时候触发。
-                 * @param  {object} event事件对象
-                 */
-                o.touchMove = function (event) {
-                    event.preventDefault();
-                    o.endLoop();
-                };
-                /**
-                 * 触摸结束的时候触发。
-                 * @param  {object} event事件对象
-                 */
-                o.touchEnd = function (event) {
-                    event.preventDefault();
-                    var endX = parseInt(event.changedTouches[0].clientX, 10);
-                    $('#msg').html("endX:" + endX + "   starX:" + starX);
-                    var d = parseInt((endX - starX), 10);
-                    if (d < -o.length) {
-                        o.leftMove();
-                    } else if (d > o.length) {
-                        o.rightMove();
-                    }
-                    o.startLoop();
-                };
-                /**
-                 * 开始轮播。
-                 */
-                o.startLoop = function () {
-                    if (o.auto) {
-                        timer = setInterval(o.leftMove, o.delay);
-                    }
-                };
-                /**
-                 * 结束轮播。
-                 */
-                o.endLoop = function () {
-                    if (o.auto && timer) {
-                        clearInterval(timer);
-                    }
-                };
-                /**
-                 * 绑定事件。
-                 */
-                $('.left').on({"click": o.leftMove});
-                $('.right').on({"click": o.rightMove});
-
-                _box.on({'click': o.endLoop}).on({"mouseenter": o.endLoop}).on({"mouseleave": o.startLoop});
-                o.startLoop();
-
-                _box[0].addEventListener("touchstart", o.touchStar, false);
-                _box[0].addEventListener("touchend", o.touchEnd, false);
-                _box[0].addEventListener("touchmove", o.touchMove, false);
-            }
-        });
-    })(jQuery);
-    $.slide();
+    var s = new $.slide();
 </script>
 </body>
 </html>

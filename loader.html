@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Rain CSS > loader</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css"
+	media="all" />
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css"
+	media="print" />
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all" />
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+</head>
+<style>
+.ui-loader{
+	z-index: 9999999;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+}
+.ui-body-loader{
+	opacity: .88;
+	box-shadow: 0 1px 1px -1px #fff;
+	padding: .625em;
+}
+
+.ui-icon-loading{
+	background-color: #000;
+	display: block;
+	width: 2.75em;
+	height: 2.75em;
+	padding: .0625em;
+	background: url(images/ajax-loader.gif);
+	background-size: 3em 3em;
+}
+</style>
+<body class="body" id="body">
+	<div class="header headerBlue">
+		<nav class="listStyleNo posr clearfix"> <a href="#"
+			class="headerLink headerLinkBlue l pr pl ib tdn">link1</a> <a
+			href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a> <a
+			href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a> </nav>
+	</div>
+	<div class="headerM headerGrey">
+		<div class="container posr">
+			<div class="l">
+				<a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a>
+			</div>
+		</div>
+	</div>
+	<div class="container mt">
+		<div class="content">
+			<div class="sidebar l posr">
+				<h2 class="category">loader component with CSS3</h2>
+				<p>This part is the webpage loader component</p>
+			</div>
+			<div class="main mainRight posr">
+				<h1>CSS3 loader</h1>
+				<form method="post" action="">
+					<fieldset>
+						<legend>Basic loader</legend>
+							<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps loader-show">show</div>
+							<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps ml loader-hide">hide</div>
+					</fieldset>
+				</form>
+				
+				<div class="c-loader" >
+					<span class="ui-icon-loading center roundall"></span>
+					<div class="tac"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(".loader-show").on("click",function(){
+		lo.show();
+	})
+	$(".loader-hide").on("click",function(){
+		lo.hide();
+	})
+	
+	var loader={};
+	loader.loading=function(obj){
+		var o = $.extend({
+			loaderSelector:'.c-loader',
+			content:"loading",
+			loadingStyle:{"background":"#2a2a2a","color":"#fff"},
+			loadingClass:"ui-loader ui-body-loader",
+			textStyle:{"font-size":"1.5em"},
+			textClass:""
+		}, obj || {});
+		var $loadermain=$(o.loaderSelector),
+		loaderIcon=$loadermain.find("span"),
+		_content=o.content;
+		var loaderText=$loadermain.find("div");
+		
+		o.init=function(){
+			if(o.loadingClass){
+				$loadermain.addClass(o.loadingClass);
+			}
+			if(o.loadingStyle){
+				$loadermain.css(o.loadingStyle);
+			}
+			if(o.textStyle){
+				loaderText.css(o.textStyle);
+			}
+			if(o.textClass){
+				loaderText.addClass(o.textClass);
+			}
+			if(o.content){
+				loaderText.html(_content);
+			}
+		}
+		o.setContent=function(cont){
+			loaderText.html(cont);
+		}
+		o.show=function(){
+			$loadermain.removeClass("hide");
+		}
+		o.hide=function(){
+			$loadermain.addClass("hide");
+		}
+		o.init();
+		return o;
+	}
+	var lo=new loader.loading();
+	lo.setcontent('hdsjfhdsfkdshfkjdhffkjsdhfkds f dsfkhj sfdsfds dsf');
+</script>
+</body>
+</html>
