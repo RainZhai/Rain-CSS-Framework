@@ -134,7 +134,6 @@
 			o.touchSatrtFunc = function(evt) {
 				 o.lazyLoad(i+1,items);
 				clearInterval(o.timeHanlder);
-				evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
 				var touch = evt.touches[0]; //获取第一个触点
 				var x = parseInt(touch.pageX, 10); //页面触点X坐标
 				//记录触点初始位置
@@ -148,7 +147,6 @@
 			 */
 			o.touchMoveFunc = function(evt) {
 			  var w = o.getWidth();
-				evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
 				var touch = evt.touches[0]; //获取第一个触点
 				var x = parseInt(touch.pageX, 10); //页面触点X坐标
 				//判断滑动方向
@@ -221,7 +219,6 @@
 			 *@param {Object} evt Object对象,事件对象。
 			 */
 			o.touchEndFunc = function(evt) {
-				evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
 				o._touchends();
 			};
 

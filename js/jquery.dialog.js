@@ -27,17 +27,22 @@
 */ 
   $.nav={};
   $.nav.pushState = function(obj){
-    if (history && history.pushState) {
-    var opt = $.extend({data:{}, title:'newpage'}, obj || {});
+    if (history && util.checkprop('pushState',history)) {
+    var opt = $.extend({data:{}, title:''}, obj || {});
     history.pushState(opt.data, opt.title, opt.url);
     }
   };
   $.nav.replaceState = function(obj){
-    if (history && history.replaceState) {
-    var opt = $.extend({data:{}, title:'newpage',url:''}, obj || {});
+    if (history && util.checkprop('replaceState',history)) {
+    var opt = $.extend({data:{}, title:'',url:''}, obj || {});
     history.replaceState(opt.data, opt.title, opt.url);
     }
   };
+  $.nav.state = function(){
+    if(history && util.checkprop('state',history)){
+      return history.state;
+    }
+  }
   $.dialog = function(obj) {
     var opt = $.extend({
       "width":540,
@@ -105,12 +110,9 @@
         o.initBtns();
         o.initModule();
         var urlparam = location.href.split("?")[1];
-        if(urlparam==='show'){o._show();} 
+        if(urlparam==='show'){o._show();}
         o.registerStateChange(function(){
-          if(history){
-          var s = history.state;
-          if(!s){o.close();}else{o._show();}
-          }
+          if(!$.nav.state()){o.close();}else{o._show();}
         });
       },
       /**@method 获取内容块id*/

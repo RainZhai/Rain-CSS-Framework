@@ -34,6 +34,7 @@
       </div>
       <div class="main mainRight posr">
     	<h1>Dialogs</h1>
+     <p> <button onclick='javascript:b.show();'>dffdsf</button> </p>
       </div>
       
       <footer class="footer socialFooter c borderTop">
@@ -94,11 +95,11 @@
 </div>
 
 <!-- script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script -->
-<script type="text/javascript" src="js/jquery-1.7.2.js?=1"></script> 
-<script type="text/javascript" src="js/jquery.dialog.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script> 
+<script type="text/javascript" src="js/jquery.dialog.js?=22"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript">
-	var b =new $.dialog({ 
+	var b =new $.dialog({
 		top:'10%',
 		draggable: true,
 		content:$(".c_testwrap2"),
@@ -109,11 +110,17 @@
 		buttonsClass:["hs rounds gb btn bluebtn","hs rounds ggrey btn greybtn ml"],
 		closeCallback: function(){},
 		buttons:"OKCancel",
-		beforeShow:function(e){ $.nav.pushState({data:{name:'show'},title:'dialog',url:'?show'});},
+		beforeShow:function(e){
+		  if(!$.nav.state()){
+				$.nav.pushState({data:{name:'show'},title:'dialog',url:'?show'});
+ 		  }else{
+		  	$.nav.replaceState({data:{name:'show'},title:'dialog',url:'?show'});
+		  } 
+		},
 		beforeClose:function(e){ log(e.data.name);log(e.data.type);},
 		afterClose:function(e){ log(e.data.name);},
 		upload: false
-	}).show();
+	});
 	var temp = document.getElementById('c_testwrap3');
 	//var a = $.dialog($('<p>你好！</p>'));
 	//a.show().close();
