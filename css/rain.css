@@ -1782,11 +1782,7 @@ button.close{padding:0;cursor:pointer;background:transparent;border:0;-webkit-ap
 .iconbtn-right{right:2%; top:25%;}
 .touchWrap{margin:0;padding:0;border:none;background:rgba(255,255,255,0.01); -webkit-tap-highlight-color:rgba(0,0,0,0);top:0px;left:0px;z-index:-1;}
 /*hide select,checkBox property*/
-.ui-checkbox,.ui-select select{
-	-webkit-appearance: none;
-	filter: Alpha(Opacity=0);
-	opacity: 0;
-	left: -9999px;
-	top: -9999px;
-	position: absolute;
-}
+.ui-checkbox,.ui-select select{-webkit-appearance: none;filter: Alpha(Opacity=0);opacity: 0;left: -9999px;top: -9999px;position: absolute;}
+/*loarder style class*/
+.ui-loader{z-index: 9999999;top: 45%;left: 45%;max-width: 200px;}
+.ui-icon-loading{width: 2.75em;height: 2.75em;background: url(../images/ajax-loader.gif) no-repeat 50% 50%;}

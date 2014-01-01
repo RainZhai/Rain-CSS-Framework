@@ -6,15 +6,14 @@
 <title>Rain CSS > Mobile</title>
 <!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
-<link rel="stylesheet" href="css/rain.css" type="text/css" media="screen, projection,handheld"/>
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
 </head>
-
 <body class="body">
   <div class="headerBlue">
-  	<nav class="lsn">
-    	<a href="#" class="lh-3 headerLinkBlue wf-30 ib tac tdn">link1</a>
-    	<a href="#" class="lh-3 headerLinkBlue wf-30 ib tac tdn">link2</a>
-    	<a href="#" class="lh-3 headerLinkBlue wf-30 ib tac tdn">link3</a>
+  	<nav class="lsn clearfix">
+    	<a href="#" class="lh-3 headerLinkBlue wf-33 l fl ib tac tdn">link1</a>
+    	<a href="#" class="lh-3 headerLinkBlue wf-33 l fl ib tac tdn">link2</a>
+    	<a href="#" class="lh-3 headerLinkBlue wf-33 l fl ib tac tdn">link3</a>
     </nav>
   </div>
 	<div class="headerM headerGrey">
@@ -23,75 +22,40 @@
     </div>
   </div>
   
-	<div class="container marginTop"> 
+	<div class="container mt"> 
     <div class="content">
-    	<div class="sidebar positionR">
-        <div class="sidebox">
-          <h2 class="category">Web Design and Applications</h2>
-          <ul class="theme listStyleNo last">
-            <li>
-            <a href="#" style="width:180px; display:block; white-space:nowrap;text-overflow:ellipsis; overflow:hidden;">Math on the Web Math on the WebMath on the WebMath on the WebMath on the Web</a>
-            </li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Mobile Web</a></li>
-            <li><a href="#">Internationalization</a></li>
-            <li><a href="#">Accessibility</a></li>
-            <li><a href="#">Audio and Video</a></li>
-            <li><a href="#">Graphics</a></li>
-            <li><a href="#">Scripting and Ajax</a></li>
-            <li><a href="#">HTML &amp; CSS</a></li> 
-          </ul> 
-        </div>
-        
+    	<div class="sidebar l posr">
+      	<h2 class="category">Basic component</h2>
+      	<p>Basic component are the instance can use all situation</p>
       </div>
       
-      <div class="main positionR">
-      	<div class="entry mainBox">  
-          <h1 class="entryTitle">HTML &amp; CSS</h1>
-          <p><a href="#">ran</a> 发表于 , 分类:<a href="#"></a>, Tips, <a href="#">6条评论 »</a>,10次阅读</p> 
-          <p>HTML (the Hypertext Markup Language) and CSS  (Cascading Style Sheets) are two of the core technologies 
-          for building Web pages. HTML provides the structure of the page, CSS the (visual and aural) layout, for a 
-          variety of devices. Along with graphics and scripting, HTML and CSS are the basis of building Web pages and 
-          Web Applications. Learn more below about:</p>
-					<h2>What is HTML?</h2>
-        </div>
-        
-        <div class="relativeArticle mainBox">
-          <h2 class="commonTitle">相关文章</h2>
-          <ul>
-            <li><a href="#">aaaaaaaaaaaaaaa</a></li>
-            <li><a href="#">aaaaaaaaaaaaaaa</a></li>
-            <li><a href="#">aaaaaaaaaaaaaaa</a></li> 
-          </ul> 
-        </div>
-        
-        <div class="comments mainBox">
-          <h2 class="commonTitle">文章评论</h2>
-          <ol class="commentsList">
-            <li>
-              <p class=""><a href="#">rain</a> 在 17 日 之前 说：</p>
-              <p>demo</p> 
-            </li> 
-          </ol>
-        </div>
-        
-        <div class="addComment mainBox">
-          <h2 class="commonTitle">发表评论</h2>
-          <form action="" method="post" id="commonform" class="commonform">
-            <p class="bottom"><input type="text" name="username"/><span>呢称</span></p>
-            <p class="bottom"><input type="text" name="email"/><span>邮件</span></p>
-            <p class="bottom"><input type="text" name="website"/><span>网站</span></p>
-            <p class="bottom"><textarea name="comment" id="comment_text" cols="20" rows="5"></textarea></p>
-            <p><input type="submit" value="OK" name="submit" id="comment_submit"/></p>
-          </form>
-        </div>
-        
-      </div> 
-
+			<div class="main mainRight posr">
+				<h1>CSS3 loader</h1>
+				<form method="post" action="#">
+					<fieldset>
+						<legend>Basic loader</legend>
+							<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps loader-show">show</div>
+							<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps ml loader-hide">hide</div>
+					</fieldset>
+				</form> 
+			</div>
+   
     <footer class="footer socialFooter c borderTop">
       <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
     </footer> 
     </div>
   </div>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript">
+var lo = util.loading({loadingClass:'bglg'});
+lo.setContent('hdsjf hdsfkds hfkjdhffkjsdhfkds f dsfkhj sfdsfds dsf');
+$(".loader-show").on("click",function(){
+ lo.show();
+});
+$(".loader-hide").on("click",function(){
+ lo.hide();
+});
+</script>
 </body>
 </html>

@@ -42,7 +42,14 @@
     if(history && util.checkprop('state',history)){
       return history.state;
     }
-  }
+  };
+  $.nav.getTitle = function(){
+    var t = $("title");
+    if(t.length >0){ 
+       return t.eq(0).text(); 
+    }
+    return '';
+  };
   $.dialog = function(obj) {
     var opt = $.extend({
       "width":540,
@@ -127,7 +134,7 @@
        *	@param {Object} 参数对象
        */
       "setContent":function(obj) {
-        var html = o.getHtml().addClass("vf");
+        var html = o.getHtml();
         if (typeof obj === "string") {
           html.find(".c_contentWrap").empty().append(obj);
         } else if (contentObj instanceof jQuery) {
@@ -135,14 +142,13 @@
         } else if (obj && "nodeName" in obj) {
           html.find(".c_contentWrap").empty().append($(obj).show());
         }
-        o._setDialogHeight(html.removeClass("vf"));
         return o;
       },
       /**	@method 设置内容
        *	@param {Object} 参数对象
        */
       "addContent":function(obj) {
-        var html = o.getHtml().addClass("vf");
+        var html = o.getHtml();
         if (typeof obj === "string") {
           html.find(".c_contentWrap").append(obj);
         } else if (contentObj instanceof jQuery) {
@@ -150,7 +156,7 @@
         } else if (obj && "nodeName" in obj) {
           html.find(".c_contentWrap").append($(obj).show());
         }
-        o._setDialogHeight(html.removeClass("vf"));
+        o._setDialogHeight(html);
         return o;
       },
       /**	@method 获取button对象
@@ -202,10 +208,12 @@
        */
       "_show":function(callback) {
           if ($("body").find("." + dialogHandleClass).length == 0) {
-            $("body").append(o.html);
+            $("body").append(o.html.removeClass('vf'));
           } else {
-            if (typeof callback === "function") { $("." + dialogHandleClass).show(callback);}else{
-              $("." + dialogHandleClass).show();
+            if (typeof callback === "function") { $("." + dialogHandleClass).removeClass('vf');
+            callback();
+            }else{
+              $("." + dialogHandleClass).removeClass('vf');
             }
           }
       },
@@ -230,9 +238,10 @@
        */
       "close":function(callback) {
         if (typeof callback === "function") {
-          $("." + dialogHandleClass).hide(callback);
+          $("." + dialogHandleClass).addClass('vf');
+          callback();
         }else{
-          $("." + dialogHandleClass).hide();
+          $("." + dialogHandleClass).addClass('vf');
         }
         o.hide = o.close;
         //$.nav.pushState({data:{name:'close'},title:'dialog',url:'?=close'});
@@ -327,9 +336,9 @@
             if (opt.showClose) {
               closehtml = '<span class="' + closeClass + ' close block posa oh tac fontBord">X</span>';
             }
-            html = $('<div id="' + dialogHandleClass + '" class="' + dialogHandleClass + ' dialogWrap tal posf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div class="c_dialogTitle p"><span class="c_titletext bottom">' + opt.titleText + "</span>" + closehtml + "</div>" + '<div class="c_contentWrap pl pr"></div>' + '<p class="c_btnWrap m posr"> </p>' + "</div></div>");
+            html = $('<div id="' + dialogHandleClass + '" class="' + dialogHandleClass + ' dialogWrap tal posf vf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div class="c_dialogTitle p"><span class="c_titletext bottom">' + opt.titleText + "</span>" + closehtml + "</div>" + '<div class="c_contentWrap pl pr"></div>' + '<p class="c_btnWrap m posr"> </p>' + "</div></div>");
           } else {
-            html = $('<div class="' + dialogHandleClass + ' dialogWrap tal posf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div id="' + contentwrapid + '" class="c_contentWrap p"></div><p class="c_btnWrap m posr"> </p></div></div>');
+            html = $('<div class="' + dialogHandleClass + ' dialogWrap tal posf vf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div id="' + contentwrapid + '" class="c_contentWrap p"></div><p class="c_btnWrap m posr"> </p></div></div>');
           }
         }
         o.html = html;
@@ -370,9 +379,9 @@
           opt.afterClose(e);
         });
         o._initUI();
-        $("body").append(html.addClass("vf"));
-        o._setDialogHeight(html.removeClass("vf"));
-        html.hide();
+        $("body").append(html);
+        o._setDialogHeight(html);
+        //html.hide();
         return o;
       },
       /**	@method 初始化UI

@@ -18,10 +18,11 @@
 			data : {},
 			dataUrl : null,
 			dataParams : {},
-			multiData : true,
+			mark:false
 		}, obj || {});
 		var selectobj = $(opt.selectHandler), lis = '';
 		var o = {
+		  selectIndex:0,
 			/** @method 弹出框UL对象 */
 			ulobj : $("<ul class='c_ul vgroup round-10 oh border mts nop lsn'></ul>"),
 			/**
@@ -55,40 +56,28 @@
 			setUlobj : function(c) {
 				o.getUlobj().empty().append(c);
 				o.getUlobj().find('li').on(opt.event, function() {
-					o.checkUlItem($(this),false);
+					o.checkUlItem($(this),$(this).index());
 				});
 				return o;
 			},
-			checkLiItem : function(obj) {
-				o.getUlobj().find('li').attr('state', 'n');
-				o.getUlobj().find('li').find('span').addClass('icon-white');
-				if (obj.index() < 10) {
-					obj.attr('state', 's');
-					obj.find('span').removeClass('icon-white');
-				} else {
-					console.log(obj)
-					o.getUlobj().find('li').eq(4).attr('state', 's');
-					o.getUlobj().find('li').eq(4).find('span').removeClass('icon-white');
-				}
-			},
-
 			/** @method 设置selectUL对象 内容 */
-			checkUlItem : function(obj,flag) {
-				o.getUlobj().find('li').attr('state', 'n');
-				o.getUlobj().find('li').find('span').addClass('icon-white');
-				if (flag) {
-					if (obj.index() < 10) {
-						obj.attr('state', 's');
-						obj.find('span').removeClass('icon-white');
-					} else {
-						o.getUlobj().find('li').eq(4).attr('state', 's');
-						o.getUlobj().find('li').eq(4).find('span').removeClass('icon-white');
-					}
-				} else {
-					obj.attr('state', 's');
-					obj.find('span').removeClass('icon-white');
-				}
-				return o;
+			checkUlItem : function(obj,i) {
+			  var li = o.getUlobj().find('li');
+		    li.attr('state','n');
+		    li.find('span').addClass('icon-white');
+		    obj.attr('state','s');
+		    obj.find('span').removeClass('icon-white');
+		    o.selectIndex = i;
+		    return o;
+			},
+			remark: function(){
+			  var i = o.selectIndex;
+	      if(opt.mark && i > 5) {
+	        var li = o.getUlobj().find('li');
+	        (li.eq(i)).insertAfter(li.eq(3));
+	        o.selectIndex = 4;
+	      }
+	      return o;
 			},
 			/**
 			 * @method 设置select对象的dialog
@@ -112,8 +101,13 @@
 			registerEvents : function() {
 				/* 输入框事件控制 */
 				selectobj.on(opt.event, function() {
-					var i = $(this).find('select')[0].selectedIndex;
-					o.checkUlItem(o.getUlobj().find('li').eq(i),opt.multiData);
+				  var i = 0;
+				  if(opt.mark){
+					 i =o.selectIndex;
+				  } else{
+				    i = $(this).find('select')[0].selectedIndex;
+				  }
+					o.checkUlItem(o.getUlobj().find('li').eq(i),i);
 					o.getDialog().show();
 				});
 			},

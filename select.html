@@ -80,10 +80,18 @@ var d =new $.dialog({
 	btnsWrapStyle : {'text-align' : 'center'},
 	buttonsClass : ["hm rounds ggrey btn greybtn ib wf-45", "hm rounds ggrey btn greybtn ml ib wf-45"],
 	buttonsArray : ['cancel','ok'],
+	beforeShow:function(e){
+	  var t = $.nav.getTitle();
+	  if(!$.nav.state()){
+			$.nav.pushState({data:{name:'show'},title:t,url:'?show'});
+		  }else{
+	  	$.nav.replaceState({data:{name:'show'},title:t,url:'?show'});
+	  }
+	},
 	buttonsCallback : {'ok':function(){
 		var v = d.getHtml().find('.c_ul').find('[state=s]').attr('val');
 		var t = d.getHtml().find('.c_ul').find('[state=s]').attr('text');
-		s.setValue(v).setText(t);
+		s.setValue(v).setText(t).remark();
 		d.close();
 	},'cancel':function(){
 		d.close();

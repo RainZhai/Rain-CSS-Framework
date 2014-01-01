@@ -111,10 +111,11 @@
 		closeCallback: function(){},
 		buttons:"OKCancel",
 		beforeShow:function(e){
+		  var t = $.nav.getTitle();
 		  if(!$.nav.state()){
-				$.nav.pushState({data:{name:'show'},title:'dialog',url:'?show'});
+				$.nav.pushState({data:{name:'show'},title:t,url:'?show'});
  		  }else{
-		  	$.nav.replaceState({data:{name:'show'},title:'dialog',url:'?show'});
+		  	$.nav.replaceState({data:{name:'show'},title:t,url:'?show'});
 		  } 
 		},
 		beforeClose:function(e){ log(e.data.name);log(e.data.type);},

@@ -11,7 +11,7 @@
           fix: false,  //是否固定大小
           width: 250, //宽
           height: 120, //高
-          images: 3,  //展示图片的格式
+          images: 2,  //展示图片的格式
           slides: 2,  //每次滑动图片个数
           length: 40, //触屏最小滑动长度
           auto: true, //自动轮播
@@ -24,14 +24,12 @@
       var i = 0;
       var starX = 0;
       var timer;
-      var width, w, h, m;
   
       var o = {
           /** 初始化UI */
           initUI: function () {
             var width = o.getWidth(), h = o.getHeight();
             var itemw = o.getItemWidth();
-            //var m = parseInt(_wrap.find('img').css('margin'),10);
             _wrap.find('li').slice(0, s).clone(true).appendTo(opts.wrap);
             _wrap.find('li').slice(0, s).clone(true).prependTo(opts.wrap);
             /** 对于不定高的，根据加载的第一张图片高度设置容器的高 */
@@ -78,32 +76,33 @@
           /** 图片向左滚动 */
           leftMove: function () {
               if (!_wrap.is(":animated")) {
-                  o.lazyLoad(i+sls,imgs);
-                  _wrap.stop().animate({"left": "-=" + sls * w}, opts.speed, function () {
+                  o.lazyLoad(i + sls, imgs > sls ? imgs : sls);
+                  _wrap.stop().animate({"left": "-=" + sls * o.getItemWidth()}, opts.speed, function () {
                       i += sls;
                       if (i >= s) {
                           i = i - s;
-                          _wrap.css({left: -i * w});
+                          _wrap.css({left: -i * o.getItemWidth()});
                       }
                   });
               }
-              o.lazyLoad();
           },
           /**
            * 图片向右滚动
            */
           rightMove: function () {
               if (!_wrap.is(":animated")) {
-                  o.lazyLoad(i-sls,imgs);
-                  _wrap.stop().animate({"left": "+=" + sls * w}, opts.speed, function () {
+                  o.lazyLoad(i - sls, imgs > sls ? imgs : sls);
+                  if (i <= -s + 2*sls) {
+                      o.lazyLoad(i - sls + s, imgs);
+                  }
+                  _wrap.stop().animate({"left": "+=" + sls * o.getItemWidth()}, opts.speed, function () {
                       i -= sls;
                       if (i <= -s + sls) {
                           i = i + s;
-                          _wrap.css({left: -i * w});
+                          _wrap.css({left: -i * o.getItemWidth()});
                       }
                   });
               }
-              o.lazyLoad();
           },
           /**
            * touchStar事件
@@ -139,9 +138,8 @@
            */
           startLoop: function () {
               if (opts.auto) {
-                  timer = setInterval(o.leftMove, opts.delay);
+                  timer = setInterval(o.rightMove, opts.delay);
               }
-              o.lazyLoad();
           },
           /**
            * 停止轮播
