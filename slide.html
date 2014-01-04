@@ -28,25 +28,22 @@
 </div>
 
 <div class="container mt">
-    <div class="paddingTop">
+    <div class="paddingTop p">
         <div class="sidebar l posr">
             <h2 class="category">slide</h2>
             <p>This part are use for mobile slide</p>
         </div>
-        <div class="main mainRight posr">
+        <div class="main mainRight posr pb-3">
             <h2>slide</h2>
-            <fieldset>
-                <legend>slide</legend>
-                <p>slide</p>
-                <div id="slide" class="slide b oh posr">
-                    <ul class="slidewrap lsn nop w-mx posa">
-                        <li class="l fl oh"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="" src3="images/figure1.jpg" alt=""/><span class="ms block tac oh wwn toe">111</span></a></li>
-                        <li class="l fl oh"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="" src3="images/figure2.jpg" alt=""/><span class="ms block tac oh wwn toe">222</span></a></li>
-                        <li class="l fl oh"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="" src3="images/figure3.jpg" alt=""/><span class="ms block tac oh wwn toe">33333333333333333333333333333333333333333333333333333</span></a></li>
-                        <li class="l fl oh"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="" src3="images/figure4.jpg" alt=""/><span class="ms block tac oh wwn toe">4444444444</span></a></li>
-                    </ul>
-                </div>
-            </fieldset>
+            <p>slide</p>
+            <div id="slide" class="slide oh b">
+                <ul class="slidewrap lsn nop nom w-mx">
+                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure1.jpg" alt=""/><span class="ms block tac oh wwn toe">111</span></a></li>
+                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure2.jpg" alt=""/><span class="ms block tac oh wwn toe">222</span></a></li>
+                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure3.jpg" alt=""/><span class="ms block tac oh wwn toe">33333333333333333333333333333333333333333333333333333</span></a></li>
+                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure4.jpg" alt=""/><span class="ms block tac oh wwn toe">4444444444</span></a></li>
+                </ul>
+            </div>
         </div>
         <footer class="footer socialFooter c borderTop">
             <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
@@ -55,7 +52,9 @@
 </div>
 <script src="js/slide.js" type="text/javascript"></script>
 <script>
-    var s = new $.slide();
+    $(function(){
+        var s = new $.slide();
+    });
 </script>
 </body>
 </html>

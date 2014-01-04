@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -86,51 +86,48 @@
 				<h1>List for Mobile</h1>
 				<fieldset>
 					<legend>Basic List</legend>
-					<ul class="vgroup round-10 oh border nop lsn">
-						<li><a href="#" class="ggrey btn greybtn block tdn p tac">button</a></li>
-						<li><a href="#" class="ggrey btn greybtn block tdn p tac">button</a></li>
-						<li><a href="#" class="ggrey btn greybtn block tdn p tac">button</a></li>
-					</ul>
+                    <div id='list1'></div>
 				</fieldset>
 				<fieldset>
 					<legend>Basic List with icon</legend>  
 					<ul class='vgroup round-10 oh border mt nop lsn'>
 						<li><a href='#' class='ggrey btn greybtn block tdn p tac posr'>
 						<span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-th icon-white"></i></span>
-						button
+                        item1
 						</a></li>
 						<li><a href='#' class='ggrey btn greybtn block tdn p tac posr'>
 						<span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-th icon-white"></i></span>
-						button
+                        item2
 						</a></li>
 						<li><a href='#' class='ggrey btn greybtn block tdn p tac posr'>
 						<span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-th icon-white"></i></span>
-						button
+                        item3
 						</a></li>
 					</ul> 
 				</fieldset>
                 <fieldset>
+                    <legend>Horizontal group(type1)</legend>
+                    <ul class="hgroup round-10 oh ib border clearfix lsn nop">
+                        <li class="l fl">
+                            <a href='javascript:;' class=" ggrey btn greybtn block tdn p">
+                                item1
+                            </a>
+                        </li>
+                        <li class="l fl">
+                            <a href='javascript:;' class=" ggrey btn greybtn block tdn p">
+                                <span class="pls">item2</span>
+                            </a>
+                        </li>
+                        <li class="l fl">
+                            <a href='javascript:;' class=" ggrey btn greybtn block tdn p">
+                                <span class="pls">item3</span>
+                            </a>
+                        </li>
+                    </ul>
+                </fieldset>
+                <fieldset>
                     <legend>Filter</legend>
                     <div class="filter" id="filter">
-                        <div class="search posr bl bright bt bb round-20 pl-3 pr-3">
-                            <input class="nob nom nob" type="text" placeholder="Search fruits..."/>
-                            <span class="micon iconbtn-left ib bggrey roundall tac posa"><i class="icon-search icon-white"></i></span>
-                            <span class="fclose micon iconbtn-right ib bggrey roundall tac posa hide"><i class="icon-remove icon-white"></i></span>
-                        </div>
-                        <ul class='listview vgroup round-10 oh border mt nop lsn'>
-                            <li><a href='javascritp:;' class='listitem ggrey btn greybtn block tdn p posr'>
-                                <span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-chevron-right icon-white"></i></span>
-                                apple
-                            </a></li>
-                            <li><a href='javascritp:;' class='listitem ggrey btn greybtn block tdn p posr'>
-                                <span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-chevron-right icon-white"></i></span>
-                                banana
-                            </a></li>
-                            <li><a href='javascritp:;' class='listitem ggrey btn greybtn block tdn p posr'>
-                                <span class="micon iconbtn-right ib bggrey roundall tac posa"><i class="icon-chevron-right icon-white"></i></span>
-                                peary
-                            </a></li>
-                        </ul>
                     </div>
                 </fieldset>
 			</div>
@@ -140,46 +137,218 @@
 		</div>
 	</div>
     <script type="text/javascript">
-        $.Filter = {
-            init: function (opt) {
+    /**
+     * list
+     * @author mingdd。
+     * @param  {object} 配置参数 。
+     */
+    (function ($) {
+        $.extend({
+            'List': function (opt) {
                 var opts = $.extend({
-                    event: 'input propertychange',
-                    filter: '#filter'
+                    box:'#list1',   //list盒子
+                    ulClass:'vgroup round-10 oh border nop lsn',    //ul的样式
+                    liClass:'', //li的样式
+                    itemClass:'ggrey btn greybtn block tdn p tac posr', // item的样式
+                    icon:true, //是否有图标
+                    iconClass:'micon ib bggrey roundall tac posa', //图标的样式
+                    iconSite:'right', //  图标的位置
+                    iconType:'icon-chevron-right icon-white',  //  图标的类型
+                    orientation: 'horizontal',  //horizontal或者vertical. //list的方向
+                    data: {item:['item1','item2','item3','item4']} //   数据
                 }, {}, opt);
-                var _filter = $(opts.filter);
-                var _search = _filter.find("input[type='text']");
-                var _list = _filter.find('.listview');
-                var _close = _filter.find('.fclose');
+                var _box=$(opts.box),_li;
+                var ulClass=opts.ulClass,liClass=opts.liClass,itemClass=opts.itemClass;
+
+                /**
+                 * 封装的list对象
+                 */
+                var L={
+                    /**
+                     * 初始UI
+                     */
+                    initUI:function(){
+                        var uls='<ul class="' + ulClass + '"></ul>';
+                        _box.append($(uls));
+                    },
+                    /**
+                     * 处理数据
+                     * @param  {[object]} obj [数据]
+                     */
+                    parseData:function(obj){
+                        var data=obj.item,lis='';
+                        $.each(data,function(i){
+                            lis +='<li class="'+liClass+'"><a href="#" class="'+itemClass+'">'+data[i]+'</a></li>';
+                        });
+                        _box.find('ul').append($(lis));
+                    },
+                    /**
+                     * 获取数据
+                     * @return {[object]} [数据]
+                     */
+                    getData:function(){
+                        return opts.data;
+                    },
+                    /**
+                     * 设置数据
+                     * @return {[object]} [L对象]
+                     */
+                    setData:function(){
+                        if (opts.data) {
+                            this.parseData(opts.data);
+                        }
+                        return L;
+                    },
+                    /**
+                     * 获取list
+                     * @return {[object]} [jquery包装集]
+                     */
+                    getList:function(){
+                        return _box.find('ul');
+                    },
+                    /**
+                     * 设置图标
+                     */
+                    setIcon:function(){
+                        if(opts.icon){
+                            var _item=_box.find('li').find('a');
+                            if (opts.iconSite) {
+                                opts.iconClass+=' iconbtn-'+opts.iconSite;
+                            }
+                            var icons='<span class="'+opts.iconClass+'"><i class="'+opts.iconType+'"></i></span>';
+                            _item.each(function(){
+                                $(this).append($(icons));
+                            });
+                        }
+                    },
+                    /**
+                     * 初始化
+                     */
+                    init:function(){
+                        this.initUI();
+                        this.setData();
+                        this.setIcon();
+                    }
+                };
+                L.init();
+                return L;
+            }
+        });
+        $.extend({
+            'Filter': function (opt) {
+                var opts = $.extend({
+                    filter: '#filter', //搜索盒子
+                    filterClass: 'search posr bl bright bt bb round-20 pl-3 pr-3 mb',  // 搜索框的样式
+                    inputClass: 'nob nom nob', //输入框的样式
+                    event: 'input propertychange', //事件
+                    placeholder: 'Search fruits...' //占位符
+                }, {}, opt);
+                var _filter = $(filter);
+                var _list, _search, _close;
                 var event = opts.event;
                 var mark = true;
 
-                var listStatic = function (opt) {
-                    opt ? _list.show() : _list.hide();
+                /**
+                 * 封装的搜索对象
+                 */
+                var F = {
+                    /**
+                     * 初始UI
+                     */
+                    initUI: function () {
+                        var filter = '<div class="' + opts.filterClass + '">'
+                                + '<input class="' + opts.inputClass + '" type="text" placeholder="' + opts.placeholder + '"/>'
+                                + '<span class="micon iconbtn-left ib bggrey roundall tac posa"><i class="icon-search icon-white"></i></span>'
+                                + '<span class="fclose micon iconbtn-right ib bggrey roundall tac posa hide"><i class="icon-remove icon-white"></i></span></div>';
+                        _filter.prepend($(filter));
+
+                        _search = _filter.find("input[type='text']");
+                        _close = _filter.find('.fclose');
+                    },
+
+                    /**
+                     * 设置list
+                     * @param {[object]} l [list对象]
+                     */
+                    setList: function (l) {
+                        F.list = l;
+                        _list = F.list.getList();
+                    },
+                    /**
+                     * 获取list
+                     * @return {[object]} [list对象]
+                     */
+                    getList: function () {
+                        return F.list;
+                    },
+                    /**
+                     *根据条件处理list的状态
+                     * @param  {[bool]} f [判断条件]
+                     */
+                    listStatic: function (f) {
+                        f ? _list.show() : _list.hide();
+                    },
+                    /**
+                     * 关联list，绑定相关事件。
+                     * @param  {[object]} l [list 对象]
+                     */
+                    joinList: function (l) {
+                        this.setList(l);
+                        _search.on(event, function () {
+                            var str = $(this).attr('value');
+                            var _item = _filter.find('a');
+                            F.listStatic(true);
+                            mark = false;
+                            str == '' ? _close.hide() : _close.show();
+                            _item.each(function (i) {
+                                if (!$.trim(_item.eq(i).text()).indexOf(str)) {
+                                    _item.eq(i).parent('li').show();
+                                    mark = true;
+                                } else {
+                                    _item.eq(i).parent('li').hide();
+                                }
+                            });
+                            F.listStatic(mark);
+                        });
+                        _close.on('click', function () {
+                            _list.show().find('li').show();
+                        });
+                    },
+                    /**
+                     * 绑定事件
+                     */
+                    bindEvent: function () {
+                        _search.on(event, function () {
+                            var str = $(this).attr('value');
+                            str == '' ? _close.hide() : _close.show();
+                        });
+                        _close.on('click', function () {
+                            _search.attr({value: ''});
+                            _close.hide();
+                        });
+                    },
+                    /**
+                     * 初始化
+                     */
+                    init: function () {
+                        this.initUI();
+                        this.bindEvent();
+                    }
                 };
-                _search.on(event, function () {
-                    var str = $(this).attr('value');
-                    var _item = _filter.find('.listitem');
-                    listStatic(true);
-                    mark = false;
-                    str == '' ? _close.hide() : _close.show();
-                    _item.each(function (i) {
-                        if (!$.trim(_item.eq(i).text()).indexOf(str)) {
-                            _item.eq(i).parent('li').show();
-                            mark = true;
-                        } else {
-                            _item.eq(i).parent('li').hide();
-                        }
-                    });
-                    listStatic(mark);
-                });
-                _close.on('click', function () {
-                    _search.attr({value: ''});
-                    _close.hide();
-                    _list.show().find('li').show();
-                });
+
+                F.init();
+                return F;
             }
-        };
-        $.Filter.init();
+        });
+    })(jQuery);
+    var l = new $.List();
+    var fl = new $.List({
+        box:'#filter',
+        itemClass:'listitem ggrey btn greybtn block tdn p posr',
+        data: {item:['apple','banana','peach']}
+    });
+    var f=new $.Filter();
+    f.joinList(fl);
     </script>
 </body>
 </html>

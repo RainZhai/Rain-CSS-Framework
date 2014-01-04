@@ -1,5 +1,5 @@
 /**
- * select 1.0.0 Anthor: zhaiyu Date: 2013.12.10 lastUpdate : 2013.12.18
+ * select 1.0.0 Anthor: zhaiyu Date: 2013.12.10 lastUpdate : 2014.1.2
  */
 (function($) {
 	/**
@@ -23,13 +23,14 @@
 		var selectobj = $(opt.selectHandler), lis = '';
 		var o = {
 		  selectIndex:0,
+		  dataParams:{},//查询数据参数
+		  next:null,
 			/** @method 弹出框UL对象 */
 			ulobj : $("<ul class='c_ul vgroup round-10 oh border mts nop lsn'></ul>"),
 			/**
 			 * @method 设置获取数据参数
 			 * @public
-			 * @param {object}
-			 *          参数对象
+			 * @param {object} 参数对象
 			 */
 			setParams : function(obj) {
 				o.dataParams = obj;
@@ -38,6 +39,18 @@
 			getParams : function() {
 				return o.dataParams;
 			},
+      /**
+       * @method 下一个联动对象
+       * @public
+       * @param {object} 参数对象
+       */
+      setNext : function(obj) {
+        o.next = obj;
+      },
+      /** @method 下一个联动对象 */
+      getNext : function() {
+        return o.next;
+      },      
 			/** @method 获取UL对象 */
 			getUlobj : function() {
 				return o.ulobj;
@@ -72,19 +85,18 @@
 			},
 			remark: function(){
 			  var i = o.selectIndex;
-	      if(opt.mark && i > 5) {
+	      if(opt.mark && i > 10) {
 	        var li = o.getUlobj().find('li');
 	        (li.eq(i)).insertAfter(li.eq(3));
 	        o.selectIndex = 4;
 	      }
 	      return o;
 			},
-			/**
-			 * @method 设置select对象的dialog
-			 * @public
-			 * @param {object}
-			 *          dialog对象
-			 */
+      /**
+       * @method 设置select对象的dialog
+       * @public
+       * @param {object} dialog对象
+       */
 			setDialog : function(d) {
 				o.dialog = d;
 				return o;
@@ -103,7 +115,7 @@
 				selectobj.on(opt.event, function() {
 				  var i = 0;
 				  if(opt.mark){
-					 i =o.selectIndex;
+				    i =o.selectIndex;
 				  } else{
 				    i = $(this).find('select')[0].selectedIndex;
 				  }
@@ -171,8 +183,9 @@
 			},
 			/** @method 设置对象数据 */
 			setData : function() {
+        var p  = o.getParams();
 				if (opt.dataUrl) {
-					$.getJSON(opt.dataUrl, opt.dataParams, function(data) {
+					$.getJSON(opt.dataUrl, p, function(data) {
 						o._parseData(data);
 					});
 				} else if (opt.data) {
@@ -185,6 +198,8 @@
 				o.initUI();
 				o.buildHtml();
 				o.registerEvents();
+        o.setParams(opt.dataParams);
+        o.setNext(opt.next);
 				o.setData();
 			}
 		};

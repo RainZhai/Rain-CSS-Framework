@@ -111,6 +111,7 @@
     }, obj || {});
     var randomStr = Math.round(Math.random() * 1e6 + 1) + "", contentObj = opt.content, closeClass = opt.closeHandleClass + randomStr, dialogHandleClass = opt.dialogHandleClass + randomStr, contentwrapid = "contentwrap" + randomStr, html = null;
     var o = {
+      handle:null,
       /**@method 对象初始化*/
       "init":function() {
         o.initHtml();
