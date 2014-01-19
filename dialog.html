@@ -26,7 +26,7 @@
     </div>
   </div>
   
-	<div class="container mt"> 
+	<div class="container mt">
     <div class="content">
     	<div class="sidebar l posr">
       	<h2 class="category">Dialog component with CSS2</h2>
@@ -34,7 +34,7 @@
       </div>
       <div class="main mainRight posr">
     	<h1>Dialogs</h1>
-     <p> <button onclick='javascript:b.show();'>dffdsf</button> </p>
+     <p> <button onclick='javascript:;'>dialog</button> </p>
       </div>
       
       <footer class="footer socialFooter c borderTop">
@@ -93,38 +93,7 @@
 <div class="c_testwrap3 hide" id='c_testwrap3'>
       <div class="dialogMsg m">这是第三个弹出框</div>
 </div>
-
 <!-- script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script -->
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script> 
-<script type="text/javascript" src="js/jquery.dialog.js?=22"></script>
-<script type="text/javascript" src="js/util.js"></script>
-<script type="text/javascript">
-	var b =new $.dialog({
-		top:'10%',
-		draggable: true,
-		content:$(".c_testwrap2"),
-		titleText:"hello dialog 2",
-		dialogStyle:{"border":"8px solid #ededed"},
-		titleStyle:{"background":"#F5F5F5"},
-		btnsWrapStyle:{'text-align':'right'},
-		buttonsClass:["hs rounds gb btn bluebtn","hs rounds ggrey btn greybtn ml"],
-		closeCallback: function(){},
-		buttons:"OKCancel",
-		beforeShow:function(e){
-		  var t = $.nav.getTitle();
-		  if(!$.nav.state()){
-				$.nav.pushState({data:{name:'show'},title:t,url:'?show'});
- 		  }else{
-		  	$.nav.replaceState({data:{name:'show'},title:t,url:'?show'});
-		  } 
-		},
-		beforeClose:function(e){ log(e.data.name);log(e.data.type);},
-		afterClose:function(e){ log(e.data.name);},
-		upload: false
-	});
-	var temp = document.getElementById('c_testwrap3');
-	//var a = $.dialog($('<p>你好！</p>'));
-	//a.show().close();
-</script>
+<script src="js/lib/require.js" data-main="js/dialogmain"></script>
 </body>
 </html>

@@ -39,8 +39,10 @@
 				<form method="post" action="">
 					<fieldset>
 						<legend>Vertical group checkbox</legend>
-						<div id="j_group">
-						</div>
+						<ul id="j_group">
+						</ul>
+						<ul id="j_group_1">
+						</ul>
 					</fieldset>
 				</form>
 
@@ -53,153 +55,150 @@
 	</div>
 
 	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/jquery.group.js"></script>
 	<script type="text/javascript">
 	
 	(function($) {
-		$.checkBox = function(obj) {
+		/**
+		 *基于jquery的在手机端显示的checkbox组件
+		 * @param {Object} obj Object对象。可以自定义传入的参数。
+		 */
+		$.checkBox = function(o) {
 			var opt = $.extend({
 				checkboxClass : "",
 				checkboxStyle : {},
 				position:'left',
 				content :['check1','check2','check3','check4','aa'],
-			}, obj || {});
-			o={
-				htmlobj : null,
-				boxNum:[],
+			}, o || {});
+			var obj={
+				boxHtml:[],
 				/**构建HTML*/
 				buildHtml:function(){
 					$.each(opt.content,function(i,num){
-						o.boxNum[i]=$('<input type="checkbox"class="ui-checkbox "/><div class="c_checkbox round-5 w-2 h-2 bggrey tac"><i class="icon-ok icon-white vf"></i></div><span class="pls">'+opt.content[i]+'</span>');
+						obj.boxHtml[i]=$('<input type="checkbox"class="ui-checkbox "/><div class="c_checkbox round-5 w-2 h-2 bggrey tac"><i class="icon-ok icon-white vf"></i></div><span class="pls">'+opt.content[i]+'</span>');
 					});
-					return o.boxNum;
+					return obj.boxHtml;
 				},
 				/** 初始化UI*/
 				initUI : function() {
 					$.each(opt.content,function(i){
-						$(o.boxNum[i][1]).addClass(opt.checkboxClass);
-						$(o.boxNum[i][1]).css(opt.checkboxStyle);
+						$(obj.boxHtml[i][1]).addClass(opt.checkboxClass);
+						$(obj.boxHtml[i][1]).css(opt.checkboxStyle);
 						if(opt.position==='left'){
-							$(o.boxNum[i][1]).addClass('l fl');
+							$(obj.boxHtml[i][1]).addClass('l fl');
 						}else if(opt.position==='right'){
-							$(o.boxNum[i][1]).addClass('r fr');
+							$(obj.boxHtml[i][1]).addClass('r fr');
 						}
 					});
 				},
 				/**得到content内容数组*/
-				getNum:function(){
+				getContent:function(){
 					return opt.content;
 				},
 				/**得到构建的HTML*/
 				getHtml:function(){
-					return o.boxNum;
+					return obj.boxHtml;
+				},
+				childEvents:function(){
+					$("#j_group_1").find(".c_box").on('click',function(){
+						var _this=$(this),Ok_icon=_this.find(".icon-ok"),checkedObj=_this.find(':checkbox');
+						Ok_icon.toggleClass("vf");
+						Ok_icon.parent().toggleClass("gb");
+						if(checkedObj.attr('checked')==undefined){
+							checkedObj.attr('checked',true);
+						}else{
+							checkedObj.attr('checked',false);
+						}
+					})
 				},
 				/** 初始化 */
 				init : function() {
-					o.buildHtml();
-					o.initUI();
+					obj.buildHtml();
+					obj.initUI();
 				},
 			};
-			o.init();
-			return o;
+			obj.init();
+			return obj;
 		}
 	})(jQuery);
-	var box=$.checkBox();	
 	
 	
-	(function($) {
-		$.group = function(obj) {
-			var opt = $.extend({
-				groupSelector : "",
-				groupClass : "",
-				groupStyle : {},
-				childObj:null,
-				align:'horizontal',
-				evtCallback:$.noop
-			}, obj || {});
-			var groupobj=$(opt.groupSelector);
-			var o = {
-				htmlobj : [],
-				ChildNum:[],
-				
-				/**得到子组件的数目*/
-				getChildNum:function(){
-						o.ChildNum=opt.childObj.getNum();
-						return o.ChildNum;
-				},
-				/** 初始化html*/
-				initHtml : function() {
-					o.getChildNum();
-					$.each(o.ChildNum,function(i,num){
-						o.htmlobj[i] = $('<a href="javascript:;" class="c_box ggrey btn greybtn block tdn p"></a>');
-					});
-					return o.htmlobj;
-				},
-				
-				/** 初始化UI*/
-				initUI : function() {
-					$.each(o.ChildNum,function(i){
-						o.htmlobj[i].addClass(opt.groupClass);
-						o.htmlobj[i].css(opt.groupStyle);
-						groupobj.append(o.htmlobj[i]);
-					});
-				},
-				/** 根据参数，设置子组件的显示*/
-				setChild : function() {
-					if (typeof opt.childObj === "object") {
-						o.initChild(opt.childObj);
-					}
-				},
-				/** 显示子组件*/
-				initChild:function(obj){
-					$('.c_box').each(function(i){
-						$(this).append(obj.getHtml()[i]);
-					});
-					o.alignBox();
-				},
-				/**设置组件是横向还是纵向排列*/
-				alignBox:function(){
-					if(opt.align==='vertical'){
-						groupobj.addClass('vgroup round-10 oh border');
-					}else if(opt.align==='horizontal'){
-						groupobj.addClass('hgroup round-10 oh ib border clearfix');
-						$('.c_box').each(function(){
-							$(this).addClass('l fl');
-						});
-					}
-				},
-				//绑定回调事件
-				 registerEvents:function(){
-					return opt.evtCallback();
-				} ,
-				/** 初始化 */
-				init : function() {
-					o.initHtml();
-					o.initUI();
-					o.setChild();
-					o.registerEvents();
-				}
-			};
-			o.init();
-			return o;
-		};
-	})(jQuery);
-
+	
+	$.inputText = function(o) {
+		var opt = $.extend({
+			checkboxClass : "",
+			checkboxStyle : {},
+			position:'left',
+			content :['name','password','email']
+		}, o || {});
+		var obj={
+			boxHtml:[],
+			/**构建HTML*/
+			buildHtml:function(){
+				$.each(opt.content,function(i,num){
+					obj.boxHtml[i]=$('<label>'+num+': '+'<input type="text" value=""> </label>');
+				});
+				return obj.boxHtml;
+			},	
+			/**得到content内容数组*/
+			getContent:function(){
+				return opt.content;
+			},
+			/**得到构建的HTML*/
+			getHtml:function(){
+				return obj.boxHtml;
+			},	
+			init:function(){
+				obj.buildHtml();
+			}
+		}
+		obj.init();
+		return obj;
+	};
+	
+	$.inputButton = function(o) {
+		var opt = $.extend({
+			checkboxClass : "",
+			checkboxStyle : {},
+			position:'left',
+			content :['submit','button','reset']
+		}, o || {});
+		var obj={
+			boxHtml:[],
+			/**构建HTML*/
+			buildHtml:function(){
+				$.each(opt.content,function(i){
+					obj.boxHtml[i]=$('<input type="button" value='+opt.content[i]+'>');
+				});
+				return obj.boxHtml;
+			},	
+			/**得到content内容数组*/
+			getContent:function(){
+				return opt.content;
+			},
+			/**得到构建的HTML*/
+			getHtml:function(){
+				return obj.boxHtml;
+			},	
+			init:function(){
+				obj.buildHtml();
+			}
+		}
+		obj.init();
+		return obj;
+	}
+	//测试group组件。
+	var inptext=new $.inputText();
+	var inpbtn=new $.inputButton();
+	 
+	var box=$.checkBox();
 	var g = new $.group({
-		groupSelector : "#j_group",
-		childObj:box,
-		evtCallback:function(){
-			$(".c_box").on('click',function(){
-				var _this=$(this),Ok_icon=_this.find("i"),checkedObj=_this.find(':checkbox');
-				Ok_icon.toggleClass("vf");
-				Ok_icon.parent().toggleClass("gb");
-				if(checkedObj.attr('checked')==undefined){
-					checkedObj.attr('checked',true);
-				}else{
-					checkedObj.attr('checked',false);
-				}
-			})
-		}
-	});
-	</script>
+		groupSelector : "#j_group_1",
+		align:'vertical',
+		icon : true,
+		childObj:[box]
+	}); 
+</script>
+
 </body>
 </html>

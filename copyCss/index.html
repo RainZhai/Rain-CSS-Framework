@@ -1,0 +1,69 @@
+<html>
+<body >
+	<div class="lightYellowBox itemLightGrey  headerLinkBlue " ></div>
+	<div class="colorly wauto fn hovercly">aaa</div>
+</body>
+</html>
+
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+<script>
+	(function($) {
+		
+		//遍历所有的节点的class,返回一个数组。
+		var getAllcss=function(){
+			var str = '';
+			$('*').each(function(i, n) {
+				if ($(n).attr('class')) {
+					str += ($(n).attr('class') + ",");
+				}
+			});
+			return  str.replace(/[,]$/g, "").split(",");
+		}
+		//将有多个class的放入到的新的数组中去。
+		var getFrmtdStr=function(arrStr){
+			var newArr = [];
+			$.each(arrStr, function(i, n) {
+				var sp = n.split(' ');
+				if (sp.length === 1) {
+					newArr.push(sp[0]);
+				} else {
+					$.each(sp, function(i, n) {
+						newArr.push(n);
+					});
+				}
+			});
+			return newArr;
+		}
+		
+		 //删除数组中的某个元素
+		ArrRemove=function(array,str){
+			var index = array.indexOf(str);
+			if (index != -1) {
+				array.splice(index, 1)
+			}
+			return array;
+		};
+		
+		//删除重复值并且去除空值,再从新组合成新的数组返回。		
+		arrDelFmt = function(array) {
+			var temp = new Array();
+			array.sort();
+			for ( var i = 0; len = array.length, i < len; i++) {
+				if (array[i] == array[i + 1]) {
+					continue;
+				}
+				temp[temp.length] = "."+array[i];
+			}
+			for ( var j = 0; len = temp.length, j < len; j++) {
+				if (temp[j] === ".") {
+					ArrRemove(temp,temp[j]);
+					break;
+				}
+			}
+			return temp;
+		}
+		window.onload=function(){
+			$.post(	"index.php",{postClass : arrDelFmt(getFrmtdStr(getAllcss()))},function(){},'text');
+		}
+	})(jQuery);
+</script>

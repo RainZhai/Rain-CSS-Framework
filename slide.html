@@ -36,13 +36,16 @@
         <div class="main mainRight posr pb-3">
             <h2>slide</h2>
             <p>slide</p>
-            <div id="slide" class="slide oh b">
+            <div id="slide" class="slide b">
                 <ul class="slidewrap lsn nop nom w-mx">
                     <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure1.jpg" alt=""/><span class="ms block tac oh wwn toe">111</span></a></li>
                     <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure2.jpg" alt=""/><span class="ms block tac oh wwn toe">222</span></a></li>
                     <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure3.jpg" alt=""/><span class="ms block tac oh wwn toe">33333333333333333333333333333333333333333333333333333</span></a></li>
-                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure4.jpg" alt=""/><span class="ms block tac oh wwn toe">4444444444</span></a></li>
+                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" data-src="images/figure4.jpg" alt=""/><span class="ms block tac oh wwn toe">4444444444</span></a></li>
+                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" data-src="images/figure5.jpg" alt=""/><span class="ms block tac oh wwn toe">5555555555</span></a></li>
                 </ul>
+                <button id="btnLeft">left</button>
+                <button id="btnRight">right</button>
             </div>
         </div>
         <footer class="footer socialFooter c borderTop">
@@ -51,9 +54,23 @@
     </div>
 </div>
 <script src="js/slide.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/util.js"></script>
 <script>
-    $(function(){
-        var s = new $.slide();
+    $(function () {
+        var s = new $.slide({
+            box: '.slide',  //滑动的块s
+            wrap: '.slidewrap',     //li的包装集
+            fix: false,  //是否固定大小
+            width: 320, //宽
+            height: 195, //高
+            images: 2,  //展示图片的格式
+            slides: 2,  //每次滑动图片个数
+            length: 40, //触屏最小滑动长度
+            loop: false, //是否是无缝轮播
+            auto: false, //自动轮播
+            speed: 500, //滑动速度
+            delay: 1000 //滚动间隔
+        });
     });
 </script>
 </body>

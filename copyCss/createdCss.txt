@@ -1,0 +1,6 @@
+.fn{font-style:normal;}
+.itemLightGrey:hover{background-color:#F5F5F5!important;}
+.colorly{color:#FDF5D9!important;}
+.hovercly:hover{color:#FDF5D9!important;}
+.wauto{width:auto;}
+.headerLinkBlue:hover{background-color:#12589a;color:#fff;}

@@ -4,7 +4,7 @@
 * Date: 2013.1.21
 * lastUpdate : 2013.12.17
 */
-(function($) {
+(function() {
 /**
 * @description dialog对象声明
 * @constructor
@@ -25,33 +25,10 @@
 * });
 *
 */ 
-  $.nav={};
-  $.nav.pushState = function(obj){
-    if (history && util.checkprop('pushState',history)) {
-    var opt = $.extend({data:{}, title:''}, obj || {});
-    history.pushState(opt.data, opt.title, opt.url);
-    }
-  };
-  $.nav.replaceState = function(obj){
-    if (history && util.checkprop('replaceState',history)) {
-    var opt = $.extend({data:{}, title:'',url:''}, obj || {});
-    history.replaceState(opt.data, opt.title, opt.url);
-    }
-  };
-  $.nav.state = function(){
-    if(history && util.checkprop('state',history)){
-      return history.state;
-    }
-  };
-  $.nav.getTitle = function(){
-    var t = $("title");
-    if(t.length >0){ 
-       return t.eq(0).text(); 
-    }
-    return '';
-  };
-  $.dialog = function(obj) {
-    var opt = $.extend({
+  function plugin($){
+  window.dialog = $.dialog = function(obj) {
+    this.obj = obj;
+    $.extend(this,{
       "width":540,
       // 弹出框宽度
       "height":0,
@@ -80,15 +57,11 @@
       // 设置弹出框样式
       "dialogClass":"",
       // 设置弹出框class
-      "headStyle":{
-        "background":"#F5F5F5"
-      },
+      "headStyle":{"background":"#F5F5F5"},
       "headClass":"",
       "contentStyle":{},
       "contentClass":"",
-      "btnsWrapStyle":{
-        "text-align":"right"
-      },
+      "btnsWrapStyle":{"text-align":"right"},
       "btnsWrapClass":"",
       "buttonsStyle":[ {} ],
       // 按钮组style
@@ -108,151 +81,152 @@
       "beforeClose":function() {},
       "afterClose":function() {},
       "upload":false
-    }, obj || {});
-    var randomStr = Math.round(Math.random() * 1e6 + 1) + "", contentObj = opt.content, closeClass = opt.closeHandleClass + randomStr, dialogHandleClass = opt.dialogHandleClass + randomStr, contentwrapid = "contentwrap" + randomStr, html = null;
-    var o = {
+    }, this.obj || {});
+    this.randomStr = Math.round(Math.random() * 1e6 + 1) + "", this.contentObj = this.content, this.closeClass = this.closeHandleClass + this.randomStr, this.dialogHandleClass = this.dialogHandleClass + this.randomStr, this.contentwrapid = "contentwrap" + this.randomStr, this.html = null;
+    this.init();
+  };
+  dialog.prototype = {
       handle:null,
       /**@method 对象初始化*/
       "init":function() {
-        o.initHtml();
-        o.initBtns();
-        o.initModule();
-        var urlparam = location.href.split("?")[1];
-        if(urlparam==='show'){o._show();}
-        o.registerStateChange(function(){
-          if(!$.nav.state()){o.close();}else{o._show();}
-        });
+        var _this = this;
+        if(_this.content){
+          _this.initHtml();
+          _this.initBtns();
+          _this.initModule();
+        }
+        return _this;
       },
       /**@method 获取内容块id*/
       "getContentWrapID":function() {
-        return contentwrapid;
+        return this.contentwrapid;
       },
       /**@method 获取dialog id*/
       "getDialogID":function() {
-        return dialogHandleClass;
+        return this.dialogHandleClass;
       },
-      /**	@method 设置内容
-       *	@param {Object} 参数对象
+      /** @method 设置内容
+       *  @param {Object} 参数对象
        */
       "setContent":function(obj) {
-        var html = o.getHtml();
+        var html = this.getHtml();
         if (typeof obj === "string") {
           html.find(".c_contentWrap").empty().append(obj);
-        } else if (contentObj instanceof jQuery) {
+        } else if (this.contentObj instanceof jQuery) {
           html.find(".c_contentWrap").empty().append(obj.show());
         } else if (obj && "nodeName" in obj) {
           html.find(".c_contentWrap").empty().append($(obj).show());
         }
-        return o;
+        return this;
       },
-      /**	@method 设置内容
-       *	@param {Object} 参数对象
+      /** @method 设置内容
+       *  @param {Object} 参数对象
        */
       "addContent":function(obj) {
-        var html = o.getHtml();
+        var html = this.getHtml();
         if (typeof obj === "string") {
           html.find(".c_contentWrap").append(obj);
-        } else if (contentObj instanceof jQuery) {
+        } else if (this.contentObj instanceof jQuery) {
           html.find(".c_contentWrap").append(obj.show());
         } else if (obj && "nodeName" in obj) {
           html.find(".c_contentWrap").append($(obj).show());
         }
-        o._setDialogHeight(html);
-        return o;
+        this._setDialogHeight(html);
+        return this;
       },
-      /**	@method 获取button对象
+      /** @method 获取button对象
        *  @public
-       *	@param {number} 索引
+       *  @param {number} 索引
        */
       "getBtn":function(i) {
-        if (i > -1 && o.jqbtns) {
-          return o.jqbtns[i];
+        if (i > -1 && this.jqbtns) {
+          return this.jqbtns[i];
         }
         return null;
       },
-      /**	@method 设置高度
+      /** @method 设置高度
        *  @public
-       *	@param {number} 高度值
+       *  @param {number} 高度值
        */
       "setHeight":function(h) {
         if (typeof h === "number") {
-          if (o.html) {
-            o.html.find(".c_dialogBox").height(h);
+          if (this.html) {
+            this.html.find(".c_dialogBox").height(h);
           }
         }
-        return o;
+        return this;
       },
-      /**	@method 设置dialog持有者
+      /** @method 设置dialog持有者
        *  @public
-       *	@param {object} 对象
+       *  @param {object} 对象
        */
       "setHandle":function(obj) {
-        o.handle = obj;
-        return o;
+        this.handle = obj;
+        return this;
       },
-      /**	@method 获取html对象
+      /** @method 获取html对象
        *  @public
        */
       "getHtml":function() {
-        return o.html;
+        return this.html;
       },
-      /**	@method 设置标题文本
+      /** @method 设置标题文本
        *  @public
        */
       "setTitleText":function(txt) {
-        o.getHtml().find(".c_titletext").text(txt);
-        return o;
+        this.getHtml().find(".c_titletext").text(txt);
+        return this;
       },
-      /**	@method 显示dialog
+      /** @method 显示dialog
        *  @private
-       *	@param {function} 回调函数
+       *  @param {function} 回调函数
        */
       "_show":function(callback) {
-          if ($("body").find("." + dialogHandleClass).length == 0) {
-            $("body").append(o.html.removeClass('vf'));
+          if ($("body").find("." + this.dialogHandleClass).length == 0) {
+            $("body").append(this.getHtml().removeClass('vf'));
           } else {
-            if (typeof callback === "function") { $("." + dialogHandleClass).removeClass('vf');
+            if (typeof callback === "function") { $("." + this.dialogHandleClass).removeClass('vf');
             callback();
             }else{
-              $("." + dialogHandleClass).removeClass('vf');
+              $("." + this.dialogHandleClass).removeClass('vf');
             }
           }
       },
-      /**	@method 显示dialog
+      /** @method 显示dialog
        *  @public
-       *	@param {number} 延迟时间
-       *	@param {function} 回调函数
+       *  @param {number} 延迟时间
+       *  @param {function} 回调函数
        */
       "show":function(s, callback) {
-        opt.beforeShow();
+        this.beforeShow();
         if (s) {
-          setTimeout(function() {o._show(callback);}, s);
+          setTimeout(function() {this._show(callback);}, s);
         } else {
-          o._show(callback);
+          this._show(callback);
         }
-        opt.afterShow();
-        return o;
+        this.afterShow();
+        return this;
       },
-      /**	@method 关闭dialog
+      /** @method 关闭dialog
        *  @public
-       *	@param {function} 回调函数
+       *  @param {function} 回调函数
        */
       "close":function(callback) {
+        history.back();
         if (typeof callback === "function") {
-          $("." + dialogHandleClass).addClass('vf');
+          $("." + this.dialogHandleClass).addClass('vf');
           callback();
         }else{
-          $("." + dialogHandleClass).addClass('vf');
+          $("." + this.dialogHandleClass).addClass('vf');
         }
-        o.hide = o.close;
-        //$.nav.pushState({data:{name:'close'},title:'dialog',url:'?=close'});
-        return o;
+        this.hide = this.close;
+        return this;
       },
-      /**	@method 初始化上传控件
+      /** @method 初始化上传控件
        *  @private
        */
       "_initUpload":function() {
-        var html = o.getHtml();
+        var html = this.getHtml();
         var uploadHtml = $('<div class="uploadBox margin">' + '<div class="hide c_picArea positionR">' + '<form enctype="multipart/form-data" method="post" action="#" id="upload-pic" target="iframe-post-form">' + '<input type="text" disabled="true" class="uploadFileName" id="txtFileName">' + '<span id="spanButtonPlaceHolder" class="valignMiddle"></span>' + '<label id="fsUploadProgress">正在上传...</label>' + "</form>" + '<span class="c_closeUploadBox closeUploadBox colorGrey positionA cursorPointer">X</span>' + "</div>" + '<a name="pic-area" class="c_lnPic" href="#">添加照片</a>' + "</div>");
         html.find(".c_contentWrap").append(uploadHtml);
         uploadHtml.find(".c_lnPic").on("click", function() {
@@ -260,8 +234,8 @@
           html.find(".c_dialogBox").css({
             "width":_width,
             "height":_height,
-            "top":opt.top,
-            "left":opt.left
+            "top":this.top,
+            "left":this.left
           });
           uploadHtml.find(".c_picArea").removeClass("hide");
         });
@@ -270,25 +244,26 @@
           html.find(".c_dialogBox").css({
             "width":_width,
             "height":_height,
-            "top":opt.top,
-            "left":opt.left
+            "top":this.top,
+            "left":this.left
           });
           uploadHtml.find(".c_picArea").addClass("hide");
         });
-        return o;
+        return this;
       },
-      /**	@method 初始化按钮
+      /** @method 初始化按钮
        *  @public
        */
       "initBtns":function() {
-        var _html = o.getHtml();
-        var btns = opt.buttons;
+        var _this = this;
+        var _html = this.getHtml();
+        var btns = this.buttons;
         var buttonsWrap = _html.find(".c_btnWrap");
         if (btns && typeof btns === "string") {
           var btnHandler = function(event) {
-            opt.beforeClose(event);
-            o.close();
-            opt.afterClose(event);
+            _this.beforeClose(event);
+            _this.close();
+            _this.afterClose(event);
           }
           var button = [];
           if (btns === "OK") button.push($("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>确定</a>"));
@@ -301,8 +276,8 @@
           }
         } else {
           // 遍历设置的按钮数组,将相应的按钮进行显示并绑定相应事件
-          var buttonsArray = opt.buttonsArray;
-          var buttonsCallback = opt.buttonsCallback;
+          var buttonsArray = this.buttonsArray;
+          var buttonsCallback = this.buttonsCallback;
           var buttonDom = _html.find(".c_button");
           function btnsHandler(e) {
             var _callback = buttonsArray[e.data.index];
@@ -310,55 +285,53 @@
               buttonsCallback[_callback](e);
             }
           }
-          o.jqbtns = [];
+          this.jqbtns = [];
           // 按钮绑定事件
           for (var i = 0; i < buttonsArray.length; i++) {
-            var btnClass = opt.buttonsClass[i] || "";
-            var btnStyle = opt.buttonsStyle[i] || {};
-            var btnAttr = opt.buttonsAttr[i] || {};
+            var btnClass = this.buttonsClass[i] || "";
+            var btnStyle = this.buttonsStyle[i] || {};
+            var btnAttr = this.buttonsAttr[i] || {};
             var buttons = $("<a href='javascript:void(0);' class='c_button ib tdn " + btnClass + "'>" + buttonsArray[i] + "</a>").css(btnStyle).attr(btnAttr);
             buttons.on("click", {
               "index":i
             }, btnsHandler);
             buttonsWrap.append(buttons);
-            o.jqbtns.push(buttons);
+            this.jqbtns.push(buttons);
           }
         }
         buttonsWrap.append('<div class="touchWrap posa fullw fullh"></div>');
-        return o;
+        return this;
       },
-      /**	@method 初始化html
+      /** @method 初始化html
        *  @public
        */
       "initHtml":function() {
-        if (!o.html) {
-          if (opt.header) {
+        if (!this.html) {
+          if (this.header) {
             var closehtml = "";
-            if (opt.showClose) {
-              closehtml = '<span class="' + closeClass + ' close block posa oh tac fontBord">X</span>';
+            if (this.showClose) {
+              closehtml = '<span class="' + this.closeClass + ' close block posa oh tac fontBord">X</span>';
             }
-            html = $('<div id="' + dialogHandleClass + '" class="' + dialogHandleClass + ' dialogWrap tal posf vf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div class="c_dialogTitle p"><span class="c_titletext bottom">' + opt.titleText + "</span>" + closehtml + "</div>" + '<div class="c_contentWrap pl pr"></div>' + '<p class="c_btnWrap m posr"> </p>' + "</div></div>");
+            this.html = $('<div id="' + this.dialogHandleClass + '" class="' + this.dialogHandleClass + ' dialogWrap tal posf vf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div class="c_dialogTitle p"><span class="c_titletext bottom">' + this.titleText + "</span>" + closehtml + "</div>" + '<div class="c_contentWrap pl pr"></div>' + '<p class="c_btnWrap m posr"> </p>' + "</div></div>");
           } else {
-            html = $('<div class="' + dialogHandleClass + ' dialogWrap tal posf vf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div id="' + contentwrapid + '" class="c_contentWrap p"></div><p class="c_btnWrap m posr"> </p></div></div>');
+            this.html = $('<div class="' + this.dialogHandleClass + ' dialogWrap tal posf vf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div id="' + this.contentwrapid + '" class="c_contentWrap p"></div><p class="c_btnWrap m posr"> </p></div></div>');
           }
         }
-        o.html = html;
-        html = null;
-        if (obj && (typeof obj === "string" || obj instanceof jQuery || "nodeName" in obj)) {
-          o.html.find("." + closeClass).hide();
-          o.html.find(".c_contentWrap").append(obj);
+        if (this.obj && (typeof this.obj === "string" || this.obj instanceof jQuery || "nodeName" in this.obj)) {
+          this.getHtml().find("." + this.closeClass).hide();
+          this.getHtml().find(".c_contentWrap").append(this.obj);
         } else {
-          o.setContent(contentObj);
+          this.setContent(this.contentObj);
         }
-        return o;
+        return this;
       },
-      /**	@method 初始化各个模块功能
+      /** @method 初始化各个模块功能
        *  @public
        */
       "initModule":function() {
-        var html = o.getHtml();
+        var html = this.getHtml();
         // 控制框是否可以拖拽
-        if (opt.draggable) {
+        if (this.draggable) {
           html.find(".c_dialogBox").draggable({
             "cursor":"move",
             "handle":".c_dialogTitle",
@@ -367,41 +340,35 @@
           });
         }
         // 设置上传控制
-        if (opt.upload) {
-          o._initUpload();
+        if (this.upload) {
+          this._initUpload();
         }
         //按钮绑定事件
-        html.find("." + closeClass).bind("click", {
-          "name":"closebtn",
-          "type":"close"
-        }, function(e) {
-          opt.beforeClose(e);
-          o.close(opt.closeCallback);
-          opt.afterClose(e);
+        html.find("." + this.closeClass).on("click", {"name":"closebtn","type":"close"}, function(e) {
+          this.beforeClose(e);
+          this.close(this.closeCallback);
+          this.afterClose(e);
         });
-        o._initUI();
+        this._initUI();
         $("body").append(html);
-        o._setDialogHeight(html);
-        //html.hide();
-        return o;
+        this._setDialogHeight(html);
+        return this;
       },
-      /**	@method 初始化UI
+      /** @method 初始化UI
        *  @private
        */
       "_initUI":function() {
-        var html = o.getHtml();
+        var html = this.getHtml();
         // 设置样式
-        html.find(".c_bgColor").height($(document).height()).css({
-          "background-color":opt.bgColor
-        });
-        html.find("." + closeClass).css(opt.closeStyle).addClass(opt.headClass);
-        if (opt.dialogStyle) html.find(".c_dialogBox").css(opt.dialogStyle);
-        if (opt.dialogClass) html.find(".c_dialogBox").addClass(opt.dialogClass);
-        html.find(".c_dialogTitle").css(opt.headStyle).addClass(opt.headClass);
-        html.find(".c_contentWrap").css(opt.contentStyle).addClass(opt.contentClass);
-        html.find(".c_btnWrap").css(opt.btnsWrapStyle).addClass(opt.btnsWrapClass);
+        html.find(".c_bgColor").height($(document).height()).css({"background-color":this.bgColor});
+        html.find("." + this.closeClass).css(this.closeStyle).addClass(this.headClass);
+        if (this.dialogStyle) html.find(".c_dialogBox").css(this.dialogStyle);
+        if (this.dialogClass) html.find(".c_dialogBox").addClass(this.dialogClass);
+        html.find(".c_dialogTitle").css(this.headStyle).addClass(this.headClass);
+        html.find(".c_contentWrap").css(this.contentStyle).addClass(this.contentClass);
+        html.find(".c_btnWrap").css(this.btnsWrapStyle).addClass(this.btnsWrapClass);
       },
-      /**	@method 设置dialog高度
+      /** @method 设置dialog高度
        *  @private
        */
       "_setDialogHeight":function(obj) {
@@ -409,30 +376,28 @@
         var _width = $("body").width() / 5 + 150;
         var _height = obj.find(".c_contentWrap").outerHeight(true) + obj.find(".c_dialogTitle").outerHeight(true) + obj.find(".c_btnWrap").outerHeight(true);
         // 计算弹出层的大小和位置
-        if (opt.width > 0 && opt.height > 0) {
+        if (this.width > 0 && this.height > 0) {
           obj.find(".c_dialogBox").css({
-            "width":opt.width,
-            "height":opt.height,
-            "top":opt.top,
-            "left":opt.left
+            "width":this.width,
+            "height":this.height,
+            "top":this.top,
+            "left":this.left
           });
         } else {
           obj.find(".c_dialogBox").css({
             "width":_width,
             "height":_height,
-            "top":opt.top,
-            "left":opt.left
+            "top":this.top,
+            "left":this.left
           });
         }
-        return o;
-      },
-      "registerStateChange":function(callback){
-        $(window).on("popstate",function(){callback();});
-        return o;
+        return this;
       }
-      
     };
-    o.init();
-    return o;
-  };
-})(jQuery);
+  }
+  if (typeof define !== 'undefined' && define.amd) {
+    define(['jquery'], plugin);
+  } else if (typeof jQuery !== 'undefined') {
+    plugin(jQuery);
+  }
+}());
