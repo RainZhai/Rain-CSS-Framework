@@ -10,15 +10,15 @@
     <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
     <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
-    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <!--<script type="text/javascript" src="js/jquery-1.7.2.js"></script>-->
 </head>
 
 <body class="body">
 <div class="header headerBlue">
-    <nav class="lsn posr clearfix">
-        <a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link1</a>
-        <a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a>
-        <a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a>
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" class="headerLink headerLinkBlue l pr pl ib tdn">首页home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" class="headerLink headerLinkBlue l pr pl ib tdn">博客blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" class="headerLink headerLinkBlue l pr pl ib tdn">游戏game</a>
     </nav>
 </div>
 <div class="headerM headerGrey">
@@ -36,16 +36,7 @@
         <div class="main mainRight posr pb-3">
             <h2>slide</h2>
             <p>slide</p>
-            <div id="slide" class="slide b">
-                <ul class="slidewrap lsn nop nom w-mx">
-                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure1.jpg" alt=""/><span class="ms block tac oh wwn toe">111</span></a></li>
-                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure2.jpg" alt=""/><span class="ms block tac oh wwn toe">222</span></a></li>
-                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure3.jpg" alt=""/><span class="ms block tac oh wwn toe">33333333333333333333333333333333333333333333333333333</span></a></li>
-                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" data-src="images/figure4.jpg" alt=""/><span class="ms block tac oh wwn toe">4444444444</span></a></li>
-                    <li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" data-src="images/figure5.jpg" alt=""/><span class="ms block tac oh wwn toe">5555555555</span></a></li>
-                </ul>
-                <button id="btnLeft">left</button>
-                <button id="btnRight">right</button>
+            <div id="slide" class="slide b oh">
             </div>
         </div>
         <footer class="footer socialFooter c borderTop">
@@ -53,25 +44,30 @@
         </footer>
     </div>
 </div>
-<script src="js/slide.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/util.js"></script>
-<script>
-    $(function () {
-        var s = new $.slide({
-            box: '.slide',  //滑动的块s
-            wrap: '.slidewrap',     //li的包装集
-            fix: false,  //是否固定大小
-            width: 320, //宽
-            height: 195, //高
-            images: 2,  //展示图片的格式
-            slides: 2,  //每次滑动图片个数
-            length: 40, //触屏最小滑动长度
-            loop: false, //是否是无缝轮播
-            auto: false, //自动轮播
-            speed: 500, //滑动速度
-            delay: 1000 //滚动间隔
-        });
-    });
-</script>
+<script src="js/lib/require.js" data-main="js/slidemain"></script>
+<!--<script src="js/slide.js" type="text/javascript"></script>-->
+<!--<script type="text/javascript" src="js/util.js"></script>-->
+<!--<script type="text/javascript" src="js/slidemain.js"></script>-->
+<!--<script>-->
+    <!--$(function () {-->
+         <!--new $.slide({-->
+             <!--hook: '#slide',  //滑动的块-->
+             <!--src: ['images/figure1.jpg', 'images/figure2.jpg', 'images/figure3.jpg', 'images/figure4.jpg', 'images/figure5.jpg'],    //图片的src-->
+             <!--alt: ['1111', '2222', '3333', '4444', '5555'],  //图片的alt-->
+             <!--text: ['1111', '2222', '3333', '4444', '5555'], //图片的text-->
+             <!--fix: false,  //是否固定大小-->
+             <!--width: 320, //宽-->
+             <!--height: 195, //高-->
+             <!--images: 3,  //展示图片的格式-->
+             <!--slides: 1,  //每次滑动图片个数-->
+             <!--length: 40, //触屏最小滑动长度-->
+             <!--control: true, //是有控制按钮-->
+             <!--loop: true, //是否是无缝轮播-->
+             <!--auto: true, //自动轮播-->
+             <!--speed: 800, //滑动速度-->
+             <!--delay: 5000 //滚动间隔-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
 </body>
 </html>

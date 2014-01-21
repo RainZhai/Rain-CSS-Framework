@@ -1,9 +1,7 @@
 /**
 * define util function
 */ 
-function plugin($){
-
-(function(win){
+(function(win,$){
   win.util = util = {};
   if(!win.console){win.console = function(){};win.console.info = win.console.debug = win.console.warn = win.console.log = win.console.error = function(str){alert(str);}};
   win.log = function(){
@@ -130,9 +128,7 @@ function plugin($){
       }
     }
   };
-  
-})(window);
-(function($) {
+
   /**
    * 通用loader对象
    * @param {Object} 参数对象
@@ -157,41 +153,41 @@ function plugin($){
         },
         /** 初始化html*/
         initHtml:function(){
-          if(!o.htmlobj){
-            o.htmlobj = $('<div id="j_loader'+randomStr+'" class="j_loader'+randomStr+' ui-loader round-5 ps posf hide"><span class="ui-icon-loading block center roundall o-5"></span><div class="j_content tac"></div></div>');
+          if(!o.html){
+            o.html = $('<div id="j_loader'+randomStr+'" class="j_loader'+randomStr+' ui-loader round-5 ps posf hide"><span class="ui-icon-loading block center roundall o-5"></span><div class="j_content tac"></div></div>');
           }
-          if(_content){o.htmlobj.find('.j_content').html(_content);}
-          return o.htmlobj;
+          if(_content){o.html.find('.j_content').html(_content);}
+          return o.html;
         },
         /** 设置样式*/
         initUI:function(){
-          o.htmlobj.addClass(opt.loadingClass);
-          o.htmlobj.css(opt.loadingStyle);
-          o.htmlobj.find('.j_content').css(opt.textStyle);
-          o.htmlobj.find('.j_content').addClass(o.textClass);
-          $('body').append(o.htmlobj);
+          o.html.addClass(opt.loadingClass);
+          o.html.css(opt.loadingStyle);
+          o.html.find('.j_content').css(opt.textStyle);
+          o.html.find('.j_content').addClass(o.textClass);
+          $('body').append(o.html);
         },
         /**
          * 设置文本内容
          * @param {string} 文本
          */
         setContent:function(s){
-           o.htmlobj.find('.j_content').html(s);
+           o.html.find('.j_content').html(s);
         },
         /** loading显示 */
         show:function(){
-          o.htmlobj.removeClass("hide");
+          o.html.removeClass("hide");
         },
         /** loading隐藏 */
         hide:function(){
-          o.htmlobj.addClass("hide");
+          o.html.addClass("hide");
         }
     };
 
     o.init();
     return o;
   };
-  $.listload = function(obj){
+  util.listload = $.listload = function(obj){
     var o = $.extend({
       lastItemHandle:'.list:last-child',
       loadlinkHandle:".loadlink",
@@ -216,10 +212,5 @@ function plugin($){
     o.init();
     return o;
   };
-})(jQuery);
-}
-if (typeof define !== 'undefined' && define.amd) {
-  define(['jquery'], plugin);
-} else if (typeof jQuery !== 'undefined') {
-  plugin(jQuery);
-}
+  return util;
+})(window,jQuery);

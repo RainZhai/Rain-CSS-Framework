@@ -4,7 +4,7 @@
 * Date: 2013.1.21
 * lastUpdate : 2013.12.17
 */
-(function() {
+(function ($) {
 /**
 * @description dialog对象声明
 * @constructor
@@ -24,8 +24,7 @@
 * afterClose:function(e){ log(e.data.name);}
 * });
 *
-*/ 
-  function plugin($){
+*/
   window.dialog = $.dialog = function(obj) {
     this.obj = obj;
     $.extend(this,{
@@ -212,7 +211,6 @@
        *  @param {function} 回调函数
        */
       "close":function(callback) {
-        history.back();
         if (typeof callback === "function") {
           $("." + this.dialogHandleClass).addClass('vf');
           callback();
@@ -394,10 +392,4 @@
         return this;
       }
     };
-  }
-  if (typeof define !== 'undefined' && define.amd) {
-    define(['jquery'], plugin);
-  } else if (typeof jQuery !== 'undefined') {
-    plugin(jQuery);
-  }
-}());
+})(jQuery);

@@ -1,23 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
-    <title>Blueprint HTML Elements Tests</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+  <title>Blueprint HTML Elements Tests</title>
 <!-- Framework CSS -->
-<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
-<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
-<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
-<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all" />
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
-  </head>
+</head>
   <body class="showgrid">
 		<div class="header headerBlue">
-		  <nav class="lsn posr clearfix">
-    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link1</a>
-    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a>
-    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a>
-		  </nav>
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" class="headerLink headerLinkBlue l pr pl ib tdn">首页 home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" class="headerLink headerLinkBlue l pr pl ib tdn">博客 blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" class="headerLink headerLinkBlue l pr pl ib tdn">游戏 game</a>
+    </nav>
 		</div>
 		<div class="headerM headerGrey">
 		  <div class="container posr">
@@ -25,44 +25,41 @@
 		  </div>
 		</div>
     <div class="container mt">
-      <h2>Tests for common HTML elements</h2>
+      <h2>测试通用html元素 Tests for common HTML elements</h2>
       <hr>
-      <h5>PARAGRAPHS <span class="alt">&amp;</span> BOXES</h5>
+      <h5>段落和盒子 PARAGRAPHS <span class="alt">&amp;</span> BOXES</h5>
       <div class="span-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <sub>sub text</sub> ut labore et <sup>sup text</sup> magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Rain css是一个基于单个css对象的前端框架,所有的单个css对象在screen.css和rain.css里面,所以的对象可以直接拿来调用,并且其完全支持css3, rain css的reset和基本html元素部分使用 blueprint框架.</p>
+        <p>Rain css is a CSS Object oriented implementing,and all object are set in screen.css and rain.css,so you can only invoke it now and it support all css3 properties, and the reset css use blueprint framework.</p>
       </div>
 
       <div class="span-8">
-        <p class="small">Use class <code>small</code>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p class="large">Use class <code>large</code>,Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="small">使用class<code>small</code>,可以说文本内容在视觉上显得更小. Use class <code>small</code>,can make the text more small in visual.</p>
+        <p class="large">而是用class <code>large</code>,则是的文本比普通显示的文本更大. Use class <code>large</code>,let the text more larger than common text.</p>
       </div>
 
       <div class="span-8 last">
         <div class="box">
-          <p class="last">Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p class="bottom">Class<code>box</code> 则显示一个淡灰色的内容块,在页面其可以起到着重提示的作用. Class<code>box</code> can show a content box with color light blue,and in a page it can tip the important content.</p>
         </div>
-        <blockquote>
-          <p>Use <code>&lt;blockquote&gt;</code> tag,Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <blockquote> 使用<code>&lt;blockquote&gt;</code>标签则可以标记那些需要用来引用的内容  Use <code>&lt;blockquote&gt;</code> tag,can mark the content that references to other article.
         </blockquote>
-        <blockquote class="pull-right">
-          <p>Use <code>&lt;blockquote class="pull-right"&gt;</code> Ut enim ad minim veniam,ut aliquip ex ea commodo consequat.</p>
+        <blockquote class="pull-right">使用 <code>&lt;blockquote class="pull-right"&gt;</code> 则将引用的竖线标识挪到内容的右边 
         </blockquote>
 
       </div>
       <hr>
 
-      <h5>LISTS</h5>
+      <h5>列表元素 LISTS</h5>
       <div class="span-8">
         <ul>
-          <li><code>&lt;ul&gt;</code>Unordered list test</li>
-          <li>Another list element. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+          <li><code>&lt;ul&gt;</code>无序列表 Unordered list test</li>
+          <li>Another list element.</li>
           <li>Yet another element in the list</li>
-          <li>Some long text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+          <li>Some long text.</li>
         </ul>
         <ol>
-          <li><code>&lt;ol&gt;</code>Ordered list test</li>
+          <li><code>&lt;ol&gt;</code>有序列表 Ordered list test</li>
           <li>Another list element</li>
           <li>Yet another element in the list</li>
         </ol>
@@ -70,11 +67,11 @@
 
       <div class="span-8">
         <ol>
-          <li>Ordered list</li>
-          <li>Here's a nested unordered list
+          <li>有序列表Ordered list</li>
+          <li>内嵌无序列表Here's a nested unordered list
           <ul>
-            <li>Nested Unordered list</li>
-            <li>Nested ordered list
+            <li>内嵌无序列表Nested Unordered list</li>
+            <li>内嵌有序列表Nested ordered list
             <ol>
               <li>The first</li>
               <li>And the second</li>
@@ -82,8 +79,8 @@
             </li>
           </ul>
           </li>
-          <li>Ordered List item</li>
-          <li>Nested Ordered list
+          <li>有序列表Ordered List item</li>
+          <li>内嵌有序列表Nested Ordered list
           <ol>
             <li>Some point</li>
             <li>Nested Unordered list
@@ -98,28 +95,28 @@
       </div>
 
       <div class="span-8 last">
-      	<p><code>&lt;dl&gt;</code>definition list</p>
+      	<p><code>&lt;dl&gt;</code>自定义列表definition list</p>
         <dl>
-          <dt><code>&lt;dt&gt;</code>definition term</dt>
-          <dd><code>&lt;dd&gt;</code>definition description</dd>
+          <dt><code>&lt;dt&gt;</code>定义的条目definition term</dt>
+          <dd><code>&lt;dd&gt;</code>定义的描述definition description</dd>
           <dt>definition list dt</dt>
           <dd>definition list dd</dd>
-          <dt>Lorem ipsum dolor sit amet</dt>
-          <dd>Lorem ipsum dolor sit amet</dd>
-          <dt>Lorem ipsum dolor sit amet</dt>
-          <dd>Lorem ipsum dolor sit amet</dd>
+          <dt>Rain CSS framework</dt>
+          <dd>Rain CSS framework</dd>
+          <dt>Rain CSS framework</dt>
+          <dd>Rain CSS framework</dd>
         </dl>
       </div>
       <hr>
 
-      <h5>HEADINGS</h5>
+      <h5>标题 HEADINGS</h5>
       <div class="span-8">
-        <h1>H1: Lorem ipsum dolor sit amet</h1>
-        <h2>H2: Lorem ipsum dolor sit amet, consectetur elit</h2>
-        <h3>H3: Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-        <h4>H4: Lorem ipsum dolor sit amet, consectetur adipisicing elit adipis</h4>
-        <h5>H5: Lorem ipsum dolor sit amet, consectetur adipisicing elit adipisicing elit adipisicing elit</h5>
-        <h6>H6: Lorem ipsum dolor sit amet, consectetur adipisicing elit adipisicing elit adipisicing elit</h6>
+        <h1>H1: Rain CSS framework</h1>
+        <h2>H2: Rain CSS framework</h2>
+        <h3>H3: Rain CSS framework</h3>
+        <h4>H4: Rain CSS framework</h4>
+        <h5>H5: Rain CSS framework</h5>
+        <h6>H6: Rain CSS framework</h6>
       </div>
 
       <div class="span-8">
@@ -141,7 +138,7 @@
       </div>
       <hr>
 
-      <h5>MISC ELEMENTS</h5>
+      <h5>杂项元素 Miscellaneous ELEMENTS</h5>
       <div class="span-8">
         <p>
           <strong>&lt;strong&gt;</strong><br>
@@ -159,16 +156,15 @@
         </p>
         <address>
           &lt;address&gt;<br>
-          Donald Duck<br>
-          Box 555<br>
-          Disneyland
+          唐老鸭Donald Duck<br>
+          555区 Box 555<br>
+          迪士尼Disneyland
         </address>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore.</p>
       </div>
 
       <div class="span-8">
         <table summary="This is the summary text for this table."  border="0" cellspacing="0" cellpadding="0">
-          <caption><em>A standard test table with a caption, tr, td elements</em></caption>
+          <caption><em>带有caption,tr,td的标准table元素 A standard test table with a caption, tr, td elements</em></caption>
           <tr>
             <th class="span-4">Table Header One</th>
             <th class="span-4 last">Table Header Two</th>
@@ -183,7 +179,7 @@
         </table>
 
         <table summary="This is the summary text for this table."  border="0" cellspacing="0" cellpadding="0">
-          <caption><em>A test table with a thead, tfoot, and tbody elements</em></caption>
+          <caption><em>带有thead, tfoot, 和 tbody的标准table元素 A test table with a thead, tfoot, and tbody elements</em></caption>
           <thead>
             <tr>
               <th class="span-4">Table Header One</th>
@@ -205,36 +201,21 @@
               <td>TD Two</td>
             </tr>
           </tbody>
-          <tbody>
-            <tr>
-              <td>TD One</td>
-              <td>TD Two</td>
-            </tr>
-            <tr>
-              <td>TD One</td>
-              <td>TD Two</td>
-            </tr>
-          </tbody>
         </table>
       </div>
 
       <div class="span-8 last">
-<pre>&lt;pre&gt;
-pre  space1
-pre  space1
-pre    space2
-pre    space2
-pre tab
-pre tab</pre>
+<pre>&lt;pre&gt;标签保留文本内容里面的空格
+pre  space1空格1
+pre    space2空格2
+pre tab制表</pre>
 
-        <code>&lt;code&gt;
-          Not indented
-          indent1
-          indent1
-          indent2
-          indent3</code>
-
-        <tt>&lt;tt&gt;
+<code>&lt;code&gt;标签则没有任何的缩进 Not indented 
+indent1 
+indent2 
+indent3</code>
+<br/>
+        <tt>&lt;tt&gt;tt标签下的文本必须等宽并且始终显示一行甚至是文本有换行空格和制表符
           This tt text should be monospaced
           and
           wrap as if
@@ -244,7 +225,7 @@ pre tab</pre>
         </tt> 
       </div>
       <hr/>
-			<h5>Text Element font property</h5>
+			<h5>文本元素的字体属性 Text Element font property</h5>
 			<div class="span-13 border">
 				<p class="fn">text with class <code>fn</code></p>
 				<p class="fi">text with class <code>fi</code></p>
@@ -284,11 +265,11 @@ pre tab</pre>
 				<p class="ti">text with class <code>ti</code></p>
 			</div>
 			<hr/>
-			<h5>Links with icons</h5>
+			<h5>带图标的链接 Links with icons</h5>
             <div>
             <a href="#" class="w-10 h-2 block"><img src="images/wdm_logo.jpg" class="l marginRightS" /><em>web DM</em></a>
             </div>
-			<h5>Text Element font size</h5>
+			<h5>文本元素字体大小 Text Element font size</h5>
 			<div>
 				<p class="fs-1 bottom">text with class <code>fs-1</code></p> 
 				<p class="fs-2 bottom">text with class <code>fs-2</code></p> 
@@ -304,7 +285,7 @@ pre tab</pre>
       <hr/>
 
       <footer class="footer socialFooter c borderTop">
-        <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
+        <p class="bottom pt pb">Copyright 2010-2014 Web Development Machine All rights reserved.</p>
       </footer> 
       <p>
         <a href="http://validator.w3.org/check?uri=referer">

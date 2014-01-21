@@ -2,13 +2,21 @@ require.config({
 	"baseUrl": "./js/",
 	paths: {
   	jquery: 'jquery-1.7.2',
-  	dialog: 'jquery.dialog',
-  	util:'util'
+  	dialog: 'jquery.dialog'
 	},
+  shim : {
+    'util' : {
+      deps : ['jquery'],
+      exports : 'util'
+    },
+    'dialog' : {
+      deps : ['jquery'],
+      exports : 'dialog'
+    }
+  },
   priority: ['jquery']
 });
-require(['jquery','dialog','util'], function ($,d,u){
-  var util = window.util;
+require(['jquery','dialog','util'], function ($,d,util){
   var b =new dialog({
     top:'10%',
     draggable: true,
@@ -29,7 +37,7 @@ require(['jquery','dialog','util'], function ($,d,u){
       }
     },
     beforeClose:function(e){ log(e.data.name,e.data.type);},
-    afterClose:function(e){ log(e.data.name);},
+    afterClose:function(e){ log(e.data.name); history.back();},
     upload: false
   });
   util.registerStateChange(function(){

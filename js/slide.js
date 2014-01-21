@@ -7,40 +7,59 @@
     $.extend({
         "slide": function (opt) {
             var opts = $.extend({
-                box: '.slide',  //滑动的块
-                wrap: '.slidewrap',     //li的包装集
+                hook: '#slide',  //滑动的块
+                src: ['images/figure1.jpg', 'images/figure2.jpg', 'images/figure3.jpg', 'images/figure4.jpg', 'images/figure5.jpg'],    //图片的src
+                alt: ['1111', '2222', '3333', '4444', '5555'],  //图片的alt
+                text: ['1111', '2222', '3333', '4444', '5555'], //图片的text
                 fix: false,  //是否固定大小
                 width: 320, //宽
                 height: 195, //高
                 images: 3,  //展示图片的格式
                 slides: 1,  //每次滑动图片个数
                 length: 40, //触屏最小滑动长度
+                control: true, //是有控制按钮
                 loop: false, //是否是无缝轮播
                 auto: true, //自动轮播
                 speed: 800, //滑动速度
                 delay: 5000 //滚动间隔
             }, {}, opt);
-            var box = opts.box, wrap = opts.wrap;
-            var _box = $(box), _wrap = $(wrap);
-            var s = _wrap.find('li').size();    //需要展示图片张数
+            var _hook = $(opts.hook), _wrap;
+            var src = opts.src, alt = opts.alt, text = opts.text;
+            var s = src.length;    //需要展示图片张数
             var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;    //slides每次滑动图片张数，images每次展示的图片张数，ms需要复杂的图片张数。
             var i = 0, starX = 0;   //i标记图片位置，straX标记触屏初始点
             var timer;  //计时器
             var width, w, h;
-            var finish= false;  //标记图片是否全部加载
+            var finish = false;  //标记图片是否全部加载
 
             var o = {
                 //初始化UI
                 initUI: function () {
+                    var html = '<ul class="slidewrap lsn nop nom w-mx clearfix">';
+                    for (var i = 0; i < src.length; i++) {
+                        if (i < images) {
+                            html += '<li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="' + src[i] + '" alt="' + alt[i] + '"/><span class="ms block tac oh wwn toe">' + text[i] + '</span></a></li>';
+                        } else {
+                            html += '<li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" data-src="' + src[i] + '" alt="' + alt[i] + '"/><span class="ms block tac oh wwn toe">' + text[i] + '</span></a></li>';
+                        }
+                    }
+                    html += '</ul>';
+                    if (opts.control) {
+                        html += '<button id="btnLeft">left</button><button id="btnRight">right</button>';
+                    }
+                    $(html).prependTo(_hook);
+
+                    _wrap = _hook.find('.slidewrap');
+
                     width = o.getWidth(), h = o.getHeight, w = o.getItemWidth();
                     if (opts.fix) {
-                        _box.width(width).height(h);
+                        _hook.width(width).height(h);
                     }
                     //判断是否需要复杂节点
                     if (opts.loop) {
                         //复制节点
-                        _wrap.find('li').slice(0, ms).clone(true).appendTo(wrap);
-                        _wrap.find('li').slice(s - ms, s).clone(true).prependTo(wrap);
+                        _wrap.find('li').slice(0, ms).clone(true).appendTo(_wrap);
+                        _wrap.find('li').slice(s - ms, s).clone(true).prependTo(_wrap);
                     } else {
                         ms = 0;
                     }
@@ -48,16 +67,16 @@
                     _wrap.css({marginLeft: -ms * w}).find('li').each(function () {
                         $(this).width(w);
                     });
-                    _box.width(width);
+                    _hook.width(width);
                 },
-                //获取box的宽
+                //获取hook的宽
                 getWidth: function () {
                     if (opts.fix) {
                         return opts.width;
                     }
-                    return _box.width();
+                    return _hook.width();
                 },
-                //获取box的高
+                //获取hook的高
                 getHeight: function () {
                     return opts.height;
                 },
@@ -190,11 +209,11 @@
                 },
                 //绑定触屏事件
                 bindTouchEvent: function () {
-                    _box[0].addEventListener("touchstart", o.touchStar, false);
-                    _box[0].addEventListener("touchend", o.touchEnd, false);
-                    _box[0].addEventListener("touchmove", o.touchMove, false);
+                    _hook[0].addEventListener("touchstart", o.touchStar, false);
+                    _hook[0].addEventListener("touchend", o.touchEnd, false);
+                    _hook[0].addEventListener("touchmove", o.touchMove, false);
                 },
-                bindCommonEvent:function(){
+                bindCommonEvent: function () {
                     $('#btnLeft').on('click', o.leftMove);
                     $('#btnRight').on('click', o.rightMove);
                 },
@@ -202,7 +221,7 @@
                 init: function () {
                     o.initUI();
                     //加载初次展示的图片，如果dom的初始就为src可以删去。
-                    o.lazyLoad('right', 0, images);
+                    //o.lazyLoad('right', 0, images);
                     o.startLoop();
                     //判断是否支持触屏事件。
                     if (util.supportTouch) {

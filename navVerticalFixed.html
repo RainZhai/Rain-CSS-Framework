@@ -14,7 +14,7 @@
 /** for a page fixed banner **/
 html,body{ height:100%; overflow:hidden;}
 .menuNav{ height:auto;}
-.banner{ height:100%; width:200px;}
+.banner{ height:100%; width:200px; z-index: 99999; }
 
 .container{ width:100%; height:100%!important; overflow:auto;}
 .content{width:auto; left:200px; top:0; height:1000px;}
@@ -25,12 +25,12 @@ html,body{ height:100%; overflow:hidden;}
 
 <body class="body posr"> 
 	<div class="banner posf positionFixForIE6 last">
-		<div class="header headerBlue">
-			<nav class="lsn positionR clearfix">
-    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link1</a>
-    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link2</a>
-    	<a href="#" class="headerLink headerLinkBlue l pr pl ib tdn">link3</a>
-			</nav>
+		<div class="headerBlue">
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue pl block tdn">首页home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue pl block tdn">博客blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue pl block tdn">游戏game</a>
+    </nav>
 		</div>
 		<div class="headerM headerGrey">
 			<div class="container posr">

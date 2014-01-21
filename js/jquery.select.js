@@ -8,7 +8,7 @@
 	 * @param {object}
 	 *          参数对象
 	 */
-	$.selects = function(obj) {
+	window.selects = $.selects = function(obj) {
 		var opt = $.extend({
 			event : 'click',
 			selectHandler : '#j_select',
