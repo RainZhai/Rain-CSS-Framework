@@ -30,7 +30,7 @@ require(['jquery','util','slide'], function ($,util,slide){
             images: 3,  //展示图片的格式
             slides: 1,  //每次滑动图片个数
             length: 40, //触屏最小滑动长度
-            control: true, //是有控制按钮
+            control: false, //是有控制按钮
             loop: true, //是否是无缝轮播
             auto: true, //自动轮播
             speed: 800, //滑动速度

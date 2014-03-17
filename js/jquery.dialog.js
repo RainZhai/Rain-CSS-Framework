@@ -210,13 +210,15 @@
        *  @public
        *  @param {function} 回调函数
        */
-      "close":function(callback) {
+      "close":function(e,callback) {
+        this.beforeClose(e);
         if (typeof callback === "function") {
           $("." + this.dialogHandleClass).addClass('vf');
           callback();
         }else{
           $("." + this.dialogHandleClass).addClass('vf');
         }
+        this.afterClose(e);
         this.hide = this.close;
         return this;
       },
@@ -259,9 +261,7 @@
         var buttonsWrap = _html.find(".c_btnWrap");
         if (btns && typeof btns === "string") {
           var btnHandler = function(event) {
-            _this.beforeClose(event);
-            _this.close();
-            _this.afterClose(event);
+            _this.close(event);
           }
           var button = [];
           if (btns === "OK") button.push($("<a href='javascript:;' class='c_button rounds ggrey btn greybtn ib tdn ps tac ml'>确定</a>"));
@@ -343,9 +343,7 @@
         }
         //按钮绑定事件
         html.find("." + this.closeClass).on("click", {"name":"closebtn","type":"close"}, function(e) {
-          this.beforeClose(e);
-          this.close(this.closeCallback);
-          this.afterClose(e);
+          this.close(e,this.closeCallback);
         });
         this._initUI();
         $("body").append(html);

@@ -9,13 +9,14 @@
 				checkboxStyle : {},
 				position:'left',
 				content :['check1','check2','check3','check4','aa'],
+				callback:function(){}
 			}, o || {});
 			var obj={
 				boxHtml:[],
 				/**构建HTML*/
 				buildHtml:function(){
 					$.each(opt.content,function(i,num){
-						obj.boxHtml[i]=$('<input type="checkbox"class="ui-checkbox "/><div class="c_checkbox round-5 w-2 h-2 bggrey tac"><i class="icon-ok icon-white vf"></i></div><span class="pls">'+opt.content[i]+'</span>');
+						obj.boxHtml[i]=$('<input type="checkbox" class="ui-checkbox "/><div class="c_checkbox round-5 w-2 h-2 bggrey tac"><i class="icon-ok icon-white vf"></i></div><span class="pls">'+opt.content[i]+'</span>');
 					});
 					return obj.boxHtml;
 				},
@@ -40,16 +41,7 @@
 					return obj.boxHtml;
 				},
 				childEvents:function(){
-					$("#j_group_1").find(".c_box").on('click',function(){
-						var _this=$(this),Ok_icon=_this.find(".icon-ok"),checkedObj=_this.find(':checkbox');
-						Ok_icon.toggleClass("vf");
-						Ok_icon.parent().toggleClass("gb");
-						if(checkedObj.attr('checked')==undefined){
-							checkedObj.attr('checked',true);
-						}else{
-							checkedObj.attr('checked',false);
-						}
-					})
+					return opt.callback();
 				},
 				/** 初始化 */
 				init : function() {

@@ -26,19 +26,23 @@
 			childContent : [],
 			childHtmlArr : [],
 			childHtml : [],
+			type : '',
 			/** 得到子组件的数目 */
 			getChildContent : function() {
+				var _content=[];
 				$.each(childObj, function(i) {
 					if (typeof childObj[i] === 'string') {
-						o.childContent.push(childObj[i]);
+						o.type='string';
+						_content.push(childObj[i]);
 					} else if ((typeof childObj[i] === 'object')) {
+						o.type='object';
 						childContArr = childObj[i].getContent();
 						$.each(childContArr, function(j) {
-							o.childContent.push(childContArr[j]);
+							_content.push(childContArr[j]);
 						});
-						return o.childContent;
 					}
 				});
+				return _content;
 			},
 			/** 得到控制器 */
 			getSelector : function() {
@@ -46,14 +50,13 @@
 			},
 			/** 初始化UI */
 			initUI : function() {
-				o.getChildContent();
+				o.childContent=o.getChildContent();
 				var _html = '';
 				groupobj.addClass(opt.groupClass);
 				groupobj.css(opt.groupStyle);
 				$.each(o.childContent, function(i) {
 					o.htmlobj[i] = $('<li class="c_box btn block tdn p posr"></li>');
-					(o.htmlobj[i]).addClass(opt.itemClass);
-					(o.htmlobj[i]).css(opt.itemStyle);
+					o.htmlobj[i].addClass(opt.itemClass).css(opt.itemStyle);
 					_html += (o.htmlobj[i][0].outerHTML);
 				});
 				groupobj.append($(_html));
@@ -75,17 +78,15 @@
 			},
 			/** 显示子组件 */
 			initChild : function(obj) {
-				$.each(childObj, function(i) {
-					if (typeof childObj[i] === 'string') {
+					if (o.type === 'string') {
 						groupobj.find('.c_box').each(function(j) {
 							$(this).append(o.childContent.pop());
 						});
-					} else if (typeof childObj[i] === 'object') {
+					} else if (o.type === 'object') {
 						groupobj.find('.c_box').each(function(i) {
 							$(this).append(o.getChildHtml()[i]);
 						});
 					}
-				});
 				o.alignBox();
 			},
 			/** 设置组件是横向还是纵向排列 */
@@ -94,7 +95,7 @@
 					groupobj.addClass('vgroup  oh  nop');
 				} else if (opt.align === 'horizontal') {
 					groupobj.addClass('hgroup oh ib  clearfix nop');
-					$('.c_box').each(function() {
+					groupobj.find('.c_box').each(function() {
 						$(this).addClass('l fl');
 					});
 				}

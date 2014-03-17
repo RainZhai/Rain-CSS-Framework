@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+<title>Rain CSS </title>
+<style>
+@-webkit-keyframes spin {from {-webkit-transform: rotateY(0)}to {-webkit-transform: rotateY(360deg)}}
+@-ms-keyframes spin {from {ms-transform: rotateY(0)}to {ms-transform: rotateY(360deg)}}
+@keyframes spin {from {transform: rotateY(0)}to {transform: rotateY(360deg)}}
+@-webkit-keyframes spin-vertical {from {-webkit-transform: rotateX(0)}to {-webkit-transform: rotateX(-360deg)}}
+@-ms-keyframes spin-vertical {from {ms-transform: rotateX(0)}to {ms-transform: rotateX(-360deg)}}
+@keyframes spin-vertical {from {transform: rotateX(0)}to {transform: rotateX(-360deg)}}
+.wrap {
+ -webkit-perspective: 400px;
+ -webkit-perspective-origin: 50% -150px;
+ -moz-perspective: 400px;
+ -moz-perspective-origin: 50% -150px;
+ -ms-perspective: 400px;
+ -ms-perspective-origin: 50% -150px;
+ perspective: 400px;
+ perspective-origin: 50% -150px;
+}
+
+.cube {
+ position: relative;
+ width: 100px;
+ height:200px;
+ margin: 20px auto;
+ -webkit-transform-style: preserve-3d;
+ -moz-transform-style: preserve-3d;
+ -ms-transform-style: preserve-3d;
+ transform-style: preserve-3d;
+ -webkit-animation: spin 1s infinite linear;
+ -moz-animation: spin 1s infinite linear;
+ -ms-animation: spin 1s infinite linear;
+ animation: spin 1s infinite linear;
+}
+
+.cube div {
+ position: absolute;
+ width: 100px;
+ height: 100px;
+ box-shadow: inset 0 0 30px rgba(200, 200, 200, 0.5);
+ font-size: 20px;
+ text-align: center;
+ line-height: 100px; 
+ font-family: sans-serif;
+ text-transform: uppercase;
+}
+
+.cube .back{
+ -webkit-transform: translateZ(-50px) rotateY(180deg);
+ -moz-transform: translateZ(-50px) rotateY(180deg);
+ -ms-transform: translateZ(-50px) rotateY(180deg);
+ transform: translateZ(-50px) rotateY(180deg)
+}
+
+.cube .right {
+ -webkit-transform: rotateY(-270deg) translateX(50px);
+ -webkit-transform-origin: right center;
+ -moz-transform: rotateY(-270deg) translateX(50px);
+ -moz-transform-origin: right center;
+ -ms-transform: rotateY(-270deg) translateX(50px);
+ -ms-transform-origin: right center;
+ transform: rotateY(-270deg) translateX(50px);
+ transform-origin: right center;
+}
+
+.cube .left {
+ -webkit-transform: rotateY(270deg) translateX(-50px);
+ -webkit-transform-origin: center left;
+ -moz-transform: rotateY(270deg) translateX(-50px);
+ -moz-transform-origin: center left;
+ -ms-transform: rotateY(270deg) translateX(-50px);
+ -ms-transform-origin: center left;
+ transform: rotateY(270deg) translateX(-50px);
+ transform-origin: center left
+}
+
+.cube .top {
+ background: rgba(50, 255, 50, 0.4); 
+ -webkit-transform: rotateX(-90deg) translateZ(-50px);
+ -webkit-transform-origin: center center;
+ -moz-transform: rotateX(-90deg) translateZ(-50px);
+ -moz-transform-origin: center center;
+ -ms-transform: rotateX(-90deg) translateZ(-50px);
+ -ms-transform-origin: center center;
+ transform: rotateX(-90deg) translateZ(-50px);
+ transform-origin: center center;
+}
+
+.cube .bottom {
+ background: rgba( 255,50, 50, 0.4); 
+ -webkit-transform: rotateX(90deg) translateZ(-50px);
+ -webkit-transform-origin: center center;
+ -moz-transform: rotateX(90deg) translateZ(-50px);
+ -moz-transform-origin: center center;
+ -ms-transform: rotateX(90deg) translateZ(-50px);
+ -ms-transform-origin: center center;
+ transform: rotateX(90deg) translateZ(-50px);
+ transform-origin: center center;
+}
+
+.cube .front{
+ -webkit-transform: translateZ(50px);
+ -moz-transform: translateZ(50px);
+ -ms-transform: translateZ(50px);
+ transform: translateZ(50px)
+}
+.wrap.flat {
+ -webkit-perspective: none;
+ -webkit-perspective-origin: 0 0;
+ -moz-perspective: none;
+ -moz-perspective-origin: 0 0;
+ -ms-perspective: none;
+ -ms-perspective-origin: 0 0;
+ perspective: none;
+ perspective-origin: 0 0
+}
+
+.borderimg{
+-webkit-border-image:url(../images/title_bg.png) 10/20px round; /* Safari 5 */
+-o-border-image:url(../images/title_bg.png) 10/20px round; /* Opera */
+border-image:url(../images/title_bg.png) 10/20px round;
+background: rgba(0, 0, 0, 0);
+}
+.round{
+width:100px; height:100px;
+border:2px solid #ccc;
+border-radius:150% 150% 0 0;
+-moz-border-radius:150% 150% 0 0;
+}
+.bg{
+border:1px red solid;padding:10px;
+width:300px; height:300px;
+background-image:url(../images/html5_logo.jpg),url(../images/robot_bg_1.jpg);
+-moz-background-size:60% 60%;
+background-size:60% 60%;
+background-repeat:no-repeat;
+background-origin:content-box;
+}
+.sd{width:100px; height:100px;  box-shadow:5px 2px 6px #000; }
+</style>
+</head>
+<body class="body">
+	<div class="container mt">
+   <div class="wrap">
+    <div class="cube">
+     <div class="front">前</div>
+     <div class="back">后</div>
+     <div class="top">上</div>
+     <div class="bottom">下</div>
+     <div class="left">左</div>
+     <div class="right">右</div>
+    </div>
+   </div>
+ </div>
+
+ <div class="borderimg"> sdfd</div><br/>
+ <div class="round"></div><br/>
+ <div class="bg"></div>
+
+ <div class="sd"></div>
+</body>
+</html>

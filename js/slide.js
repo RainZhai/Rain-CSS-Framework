@@ -7,7 +7,7 @@
     $.extend({
         "slide": function (opt) {
             var opts = $.extend({
-                hook: '#slide',  //滑动的块
+                selector: '#slide',  //滑动的块
                 src: ['images/figure1.jpg', 'images/figure2.jpg', 'images/figure3.jpg', 'images/figure4.jpg', 'images/figure5.jpg'],    //图片的src
                 alt: ['1111', '2222', '3333', '4444', '5555'],  //图片的alt
                 text: ['1111', '2222', '3333', '4444', '5555'], //图片的text
@@ -23,10 +23,10 @@
                 speed: 800, //滑动速度
                 delay: 5000 //滚动间隔
             }, {}, opt);
-            var _hook = $(opts.hook), _wrap;
+            var _selector = $(opts.selector), _wrap;
             var src = opts.src, alt = opts.alt, text = opts.text;
             var s = src.length;    //需要展示图片张数
-            var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;    //slides每次滑动图片张数，images每次展示的图片张数，ms需要复杂的图片张数。
+            var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;    //slides每次滑动图片张数，images每次展示的图片张数，ms需要复制的图片张数。
             var i = 0, starX = 0;   //i标记图片位置，straX标记触屏初始点
             var timer;  //计时器
             var width, w, h;
@@ -47,15 +47,15 @@
                     if (opts.control) {
                         html += '<button id="btnLeft">left</button><button id="btnRight">right</button>';
                     }
-                    $(html).prependTo(_hook);
+                    $(html).prependTo(_selector);
 
-                    _wrap = _hook.find('.slidewrap');
+                    _wrap = _selector.find('.slidewrap');
 
                     width = o.getWidth(), h = o.getHeight, w = o.getItemWidth();
                     if (opts.fix) {
-                        _hook.width(width).height(h);
+                        _selector.width(width).height(h);
                     }
-                    //判断是否需要复杂节点
+                    //判断是否需要复制节点
                     if (opts.loop) {
                         //复制节点
                         _wrap.find('li').slice(0, ms).clone(true).appendTo(_wrap);
@@ -67,16 +67,16 @@
                     _wrap.css({marginLeft: -ms * w}).find('li').each(function () {
                         $(this).width(w);
                     });
-                    _hook.width(width);
+                    _selector.width(width);
                 },
-                //获取hook的宽
+                //获取selector的宽
                 getWidth: function () {
                     if (opts.fix) {
                         return opts.width;
                     }
-                    return _hook.width();
+                    return _selector.width();
                 },
-                //获取hook的高
+                //获取selector的高
                 getHeight: function () {
                     return opts.height;
                 },
@@ -209,9 +209,9 @@
                 },
                 //绑定触屏事件
                 bindTouchEvent: function () {
-                    _hook[0].addEventListener("touchstart", o.touchStar, false);
-                    _hook[0].addEventListener("touchend", o.touchEnd, false);
-                    _hook[0].addEventListener("touchmove", o.touchMove, false);
+                    _selector[0].addEventListener("touchstart", o.touchStar, false);
+                    _selector[0].addEventListener("touchend", o.touchEnd, false);
+                    _selector[0].addEventListener("touchmove", o.touchMove, false);
                 },
                 bindCommonEvent: function () {
                     $('#btnLeft').on('click', o.leftMove);
