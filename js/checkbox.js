@@ -47,7 +47,7 @@
 				init : function() {
 					obj.buildHtml();
 					obj.initUI();
-				},
+				}
 			};
 			obj.init();
 			return obj;

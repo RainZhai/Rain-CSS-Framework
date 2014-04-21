@@ -3,6 +3,19 @@
 */ 
 (function(win,$){
   win.util = util = {};
+  util.touch = {
+      startX: 0,
+      startY: 0,
+      endX: 0,
+      endY: 0,
+      /** 触摸事件注册 */
+      registerEvent: function (selector, startfunc, movefunc, endfunc) {
+        if ($.isFunction(startfunc)) selector[0].addEventListener("touchstart", startfunc, false);
+        if ($.isFunction(movefunc)) selector[0].addEventListener("touchmove", movefunc, false);
+        if ($.isFunction(endfunc)) selector[0].addEventListener("touchend", endfunc, false);
+      }
+  };
+  
   if(!win.console){win.console = function(){};win.console.info = win.console.debug = win.console.warn = win.console.log = win.console.error = function(str){alert(str);}};
   win.log = function(){
     if(arguments.length>0){
@@ -128,7 +141,6 @@
       }
     }
   };
-
   /**
    * 通用loader对象
    * @param {Object} 参数对象
@@ -187,30 +199,114 @@
     o.init();
     return o;
   };
-  util.listload = $.listload = function(obj){
-    var o = $.extend({
+  util.listload = $.listload = function(obj,callback){
+    var opt = $.extend({
       lastItemHandle:'.list:last-child',
-      loadlinkHandle:".loadlink",
-      pagerHandle:'#aj_page',
-      dataHandle:'#listbox',
-      tipHandle:'#nocontenttips',
-      loading:null
+      loadurl:"",
+      params:null,
+      wrapHandle:'#listbox'
     }, obj || {});
     
     var win = $(window);
-    var pager = $(o.pagerHandle);
-    var databox = $(o.dataHandle);
-    var tiper = $(o.tipHandle);
-    o.init = function(){
+    var wrapbox = $(opt.wrapHandle);
+    var o ={
+    /**
+     * @method 获取列表容器对象
+     * @public
+     */
+    getDatabox : function() {
+      return wrapbox;
+    },
+    /**
+     * @method 设置获取数据参数
+     * @public
+     * @param {object} 参数对象
+     */
+    setParams : function(obj) {
+      opt.params = obj;
+    },
+    /** @method 设置获取数据参数 */
+    getParams : function() {
+      return opt.params;
+    },
+    /** @method 设置可用数据
+     *  @public
+     *  @param {object} 对象
+     */
+    setData: function(d){
+      o.data = d;
+    },
+    /** @method 获取可用数据 */
+    getData: function(){
+      return o.data
+    },
+    init : function(){
       win.scroll(function(){
           //手机端滚动到底部加载height=device-height;
-          if ($(o.lastItemHandle).is(':visible')){
-           if(win.scrollTop() + win.height() >= $(document).height()){}
+          if ($(opt.lastItemHandle).is(':visible')){
+           if(win.scrollTop() + win.height() >= $(document).height()){
+             if(opt.loadurl){
+               var p  = o.getParams();
+               $.getJSON(opt.loadurl, p, function(data) {
+                 o.setData(data);
+                 if($.isFunction(callback)) callback();
+               });
+             }
+           }
           }
       });
+    }
     };
     o.init();
     return o;
   };
-  return util;
+  
+  util.ob = $({});
+  $.subscribe = function () {
+    util.ob.on.apply(util.ob, arguments);
+  };
+
+  $.unsubscribe = function () {
+    util.ob.off.apply(util.ob, arguments);
+  };
+
+  $.publish = function () {
+    util.ob.trigger.apply(util.ob, arguments);
+  }; 
+  
+  //return util;
+  
+  //观察者模式
+  //发布者
+  function Publisher(){
+    this.subscribers = [];
+  };
+  //发布方法
+  Publisher.prototype.deliver = function(data){
+    this.subscribers.forEach(function(fn){
+      fn(data);
+    });
+    return this;
+  }
+  //订阅函数
+  Function.prototype.subscribe = function(publisher){
+    var that = this;
+    var alreadyExists = publisher.subscribers.some(function(el){
+      return el===that;
+    });
+    if(!alreadyExists){
+      publisher.subscribers.push(this);
+    }
+    return this;
+  }
+  //取消订阅
+  Function.prototype.unsubscribe = function(publisher){
+    var that = this;
+      //log(publisher.subscribers);
+    publisher.subscribers = publisher.subscribers.filter(function(el){
+      //log(el);
+      return el !==that;
+    });
+    return this;
+  }
 })(window,jQuery);

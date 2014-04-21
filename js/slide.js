@@ -8,24 +8,28 @@
         "slide": function (opt) {
             var opts = $.extend({
                 selector: '#slide',  //滑动的块
-                src: ['images/figure1.jpg', 'images/figure2.jpg', 'images/figure3.jpg', 'images/figure4.jpg', 'images/figure5.jpg'],    //图片的src
-                alt: ['1111', '2222', '3333', '4444', '5555'],  //图片的alt
-                text: ['1111', '2222', '3333', '4444', '5555'], //图片的text
-                fix: false,  //是否固定大小
-                width: 320, //宽
-                height: 195, //高
-                images: 3,  //展示图片的格式
-                slides: 1,  //每次滑动图片个数
-                length: 40, //触屏最小滑动长度
-                control: true, //是有控制按钮
-                loop: false, //是否是无缝轮播
-                auto: true, //自动轮播
-                speed: 800, //滑动速度
-                delay: 5000 //滚动间隔
+                // src: ['images/figure1.jpg', 'images/figure2.jpg', 'images/figure3.jpg', 'images/figure4.jpg', 'images/figure5.jpg'],    //图片的src
+                // alt: ['1111', '2222', '3333', '4444', '5555'],  //图片的alt
+                // text: ['1111', '2222', '3333', '4444', '5555'], //图片的text
+                src: [],   
+                alt:[],  
+                text: [], 
+                 fix: false,  //是否固定大小
+                 width: 320, //宽
+                 height: 195, //高
+                 images: 3,  //展示图片的格式
+                 slides: 1,  //每次滑动图片个数
+                 length: 40, //触屏最小滑动长度
+                 control: true, //是有控制按钮
+                 controlwidth:200,
+                 loop: true, //是否是无缝轮播
+                 auto: false, //自动轮播
+                 speed: 800, //滑动速度
+                 delay: 5000 //滚动间隔
             }, {}, opt);
             var _selector = $(opts.selector), _wrap;
             var src = opts.src, alt = opts.alt, text = opts.text;
-            var s = src.length;    //需要展示图片张数
+            var s = src.length||_selector.find('ul').find('li').size();    //需要展示图片张数
             var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;    //slides每次滑动图片张数，images每次展示的图片张数，ms需要复制的图片张数。
             var i = 0, starX = 0;   //i标记图片位置，straX标记触屏初始点
             var timer;  //计时器
@@ -35,26 +39,31 @@
             var o = {
                 //初始化UI
                 initUI: function () {
-                    var html = '<ul class="slidewrap lsn nop nom w-mx clearfix">';
-                    for (var i = 0; i < src.length; i++) {
-                        if (i < images) {
-                            html += '<li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="' + src[i] + '" alt="' + alt[i] + '"/><span class="ms block tac oh wwn toe">' + text[i] + '</span></a></li>';
-                        } else {
-                            html += '<li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" data-src="' + src[i] + '" alt="' + alt[i] + '"/><span class="ms block tac oh wwn toe">' + text[i] + '</span></a></li>';
+                    if(src.lenght){
+                        var html = '<div class="slidemain oh mlrauto"><ul class="slidewrap lsn nop nom w-mx clearfix">';
+                        for (var i = 0; i < src.length; i++) {
+                            if (i < images) {
+                                html += '<li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="' + src[i] + '" alt="' + alt[i] + '"/><span class="ms block tac oh wwn toe">' + text[i] + '</span></a></li>';
+                            } else {
+                                html += '<li class="l fl"><a class="block ps tac" href="javascript:;"><img class="fullw b round-5" data-src="' + src[i] + '" alt="' + alt[i] + '"/><span class="ms block tac oh wwn toe">' + text[i] + '</span></a></li>';
+                            }
                         }
+                        html += '</ul></div>';
+                        if (opts.control) {
+                            html += '<a id="btnLeft" class="black posa b" href="javascript:;"></a><a id="btnRight" class="black posa b" href="javascript:;"></a>';
+                        }
+                        $(html).prependTo(_selector);
                     }
-                    html += '</ul>';
-                    if (opts.control) {
-                        html += '<button id="btnLeft">left</button><button id="btnRight">right</button>';
-                    }
-                    $(html).prependTo(_selector);
+
 
                     _wrap = _selector.find('.slidewrap');
-
+                    _selector.find('#btnLeft').width(opts.controlwidth/2-10).height(200).css({left:0,top:10});
+                    _selector.find('#btnRight').width(opts.controlwidth/2-10).height(200).css({right:0,top:10});
                     width = o.getWidth(), h = o.getHeight, w = o.getItemWidth();
                     if (opts.fix) {
                         _selector.width(width).height(h);
                     }
+                    if(opts.control){ _selector.find('.slidemain').width(width-opts.controlwidth);}
                     //判断是否需要复制节点
                     if (opts.loop) {
                         //复制节点
@@ -82,7 +91,8 @@
                 },
                 //获取每个li的宽
                 getItemWidth: function () {
-                    return o.getWidth() / images;
+                  if (opts.control) return (o.getWidth()-opts.controlwidth) / images;
+                  return o.getWidth() / images;
                 },
                 //获取展示图片的张数
                 getimages: function () {
@@ -214,8 +224,10 @@
                     _selector[0].addEventListener("touchmove", o.touchMove, false);
                 },
                 bindCommonEvent: function () {
-                    $('#btnLeft').on('click', o.leftMove);
-                    $('#btnRight').on('click', o.rightMove);
+
+                    _selector.find('#btnLeft').on('click', o.leftMove);
+
+                   _selector.find('#btnRight').on('click', o.rightMove);
                 },
                 //初始化
                 init: function () {

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rain CSS > List</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<script type="text/javascript" src='js/jquery-1.7.2.js'></script>
+<style type="text/css">
+.filter input[type='text']{margin: 0;padding: 0;min-height: 36px;line-height: 26px;width: 100%;}
+.filter .iconbtn-left{top: 8px;left:8px;}
+.filter .iconbtn-right{top: 8px;right:8px;}
+.round-20,.css3_round-20 {
+    -moz-border-radius: 20px; /* FF1+ */
+    -webkit-border-radius: 20px; /* Saf3+, Chrome */
+    border-radius: 20px; /* Opera 10.5, IE 9 */
+}
+</style>
+</head>
+<body class="body">
+	<div class="header headerBlue">
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue l pr pl ib tdn">首页home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue l pr pl ib tdn">博客blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue l pr pl ib tdn">游戏game</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container posr">
+    	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
+    </div>
+  </div>
+  
+	<div class="container mt">
+    <div class="pt">
+        <div class="sidebar l posr">
+            <h2 class="category">Basic list</h2>
+            <p>Basic list</p>
+        </div>
+
+        <div class="main mainRight posr">
+            <h1>Basic List</h1>
+            <ul class="rounds border lsn nop norm oh" id="datalist">
+            	<li class="roundts bb">
+            		<a class="block heightL tdn pl pr" href="#">Home</a>
+            	</li>
+            	<li class="bb">
+            		<a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Profile</a>
+            	</li>
+            	<li class="roundbs bb">
+            		<a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
+            	</li>
+            </ul>
+        </div>
+		</div>
+		<div class="paddingTop">
+	      <footer class="footer socialFooter c bt">
+	        <p class="bottom pt pb">Copyright 2010-2014 Web Development Machine All rights reserved.</p>
+	      </footer>
+		</div>
+	</div>
+<script type="text/javascript" src='js/util.js'></script>
+<script type="text/javascript">
+var list = util.listload({
+  lastItemHandle:'#datalist li:last-child',
+  loadurl:"data/list.json",
+  params:{pager:0},
+  wrapHandle:'#datalist'
+},function(){
+		var data = list.getData(); 
+    var d = data.list, _html = '';
+    for ( var i = 0, l = d.length; i < l; i++) {
+      _html += '<li class="bb" value="' + d[i].value + '"><a  class="block hl tdn pl pr hoverlgrey hovercblack" href="#">' + d[i].name + '</a></li>';
+    }
+    list.getDatabox().append(_html);
+    var i = list.getParams().pager+1;
+  	console.log(i);
+    list.setParams({pager:i});
+});
+</script>
+</body>
+</html>

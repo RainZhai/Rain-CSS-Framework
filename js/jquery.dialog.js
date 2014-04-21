@@ -82,10 +82,10 @@
       "upload":false
     }, this.obj || {});
     this.randomStr = Math.round(Math.random() * 1e6 + 1) + "", this.contentObj = this.content, this.closeClass = this.closeHandleClass + this.randomStr, this.dialogHandleClass = this.dialogHandleClass + this.randomStr, this.contentwrapid = "contentwrap" + this.randomStr, this.html = null;
-    this.init();
   };
   dialog.prototype = {
-      handle:null,
+      "handle":null,
+      "inited":false,
       /**@method 对象初始化*/
       "init":function() {
         var _this = this;
@@ -197,6 +197,7 @@
        *  @param {function} 回调函数
        */
       "show":function(s, callback) {
+        if(!this.inited) {this.init();this.inited=true;}
         this.beforeShow();
         if (s) {
           setTimeout(function() {this._show(callback);}, s);
@@ -211,6 +212,7 @@
        *  @param {function} 回调函数
        */
       "close":function(e,callback) {
+        log(e);
         this.beforeClose(e);
         if (typeof callback === "function") {
           $("." + this.dialogHandleClass).addClass('vf');

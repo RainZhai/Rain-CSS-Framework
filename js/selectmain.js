@@ -28,7 +28,15 @@ require(['jquery','dialog','util','select'], function ($,d,util,select){
     selectClass:'ui-select ggrey btn greybtn round-10 posr oh',
     data: {list:[{ "name": "1", "value":"1" },{ "name": "2", "value":"2" }
     ]},
-    dataUrl:'./data/select.json'
+    dataUrl:'./data/select.json',
+    iconwrapStyle:{"top":"15px","right":"5px"},
+    callback: function (e) {
+      d.close(e,function(){
+          history.back();
+      });
+      s.checkReload();
+      //s.divData(5);
+  }
   });
   var s1 = new selects({
     event : 'click',
@@ -36,7 +44,8 @@ require(['jquery','dialog','util','select'], function ($,d,util,select){
     selectClass:'ui-select ggrey btn greybtn round-10 posr oh',
     next: null,
     data: {list:[{ "name": "1", "value":"1" },{ "name": "2", "value":"2" }]},
-    dataUrl:'./data/select.json'
+    dataUrl:'./data/select.json',
+    iconwrapStyle:{"top":"15px","right":"5px"}
   });
 
   var d =new dialog({
@@ -50,11 +59,13 @@ require(['jquery','dialog','util','select'], function ($,d,util,select){
     btnsWrapStyle : {'text-align' : 'center'},
     buttonsClass : ["hm rounds ggrey btn greybtn ib wf-45", "hm rounds ggrey btn greybtn ml ib wf-45"],
     buttonsArray : ['cancel','ok'],
-    beforeShow:function(e){
-      var t = util.getTitle();
-      if(!util.state()){ util.pushState({data:{name:'show'},title:t,url:'?show'});}else{
-        util.replaceState({data:{name:'show'},title:t,url:'?show'});
-      }
+    beforeShow: function () {
+        var t = util.getTitle();
+        if (!util.state()) {
+            util.pushState({data: {name: 'show', obj: 'd'}, title: t, url: '?show'});
+        } else {
+            util.replaceState({data: {name: 'show', obj: 'd'}, title: t, url: '?show'});
+        }
     },
     buttonsCallback : {'ok':function(){
       var v = d.getHtml().find('.c_ul').find('[state=s]').attr('val');
@@ -68,6 +79,7 @@ require(['jquery','dialog','util','select'], function ($,d,util,select){
       history.back();
       d.close();
     },'cancel':function(){
+      history.back();
       d.close();
     }}
   });
@@ -102,4 +114,12 @@ require(['jquery','dialog','util','select'], function ($,d,util,select){
   s.setNext(s1);
   s.setDialog(d);
   s1.setDialog(d1);
+  util.registerStateChange(function () {
+    if (!util.state() && d) {
+        d.close();
+    } else {
+        d._show();
+      }
+  });
+  util.initObjByUrl(d);
 });

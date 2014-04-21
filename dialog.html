@@ -95,6 +95,40 @@
       <div class="dialogMsg m">这是第三个弹出框</div>
 </div>
 <!-- script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script -->
-<script src="js/lib/require.js" data-main="js/dialogmain"></script>
+<!--<script src="js/lib/require.js" data-main="js/dialogmain"></script>-->
+<script src="js/jquery-1.7.2.js"></script>
+<script src="js/util.js"></script>
+<script src="js/jquery.dialog.js"></script>
+<script>
+b =new dialog({
+  top:'10%',
+  draggable: true,
+  titleText:"hello dialog 2",
+  dialogStyle:{"border":"8px solid #ededed"},
+  titleStyle:{"background":"#F5F5F5"},
+  btnsWrapStyle:{'text-align':'right'},
+  buttonsClass:["hs rounds gb btn bluebtn","hs rounds ggrey btn greybtn ml"],
+  closeCallback: function(){},
+  buttons:"OKCancel",
+  content:$(".c_testwrap2"),
+  beforeShow:function(e){
+    var t = util.getTitle();
+    if(!util.state()){
+      util.pushState({data:{name:'show',obj:'b'},title:t,url:'?show'});
+    }else{
+      util.replaceState({data:{name:'show',obj:'b'},title:t,url:'?show'});
+    }
+  },
+  beforeClose:function(e){ },
+  afterClose:function(e){history.back();},
+  upload: false
+});
+util.registerStateChange(function(){
+  if(!util.state() && b){b.close();}else{b._show();}
+});
+util.initObjByUrl(b);
+//util.augment(c,b);
+b.show();
+</script>
 </body>
 </html>
