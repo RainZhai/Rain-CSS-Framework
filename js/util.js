@@ -15,7 +15,6 @@
         if ($.isFunction(endfunc)) selector[0].addEventListener("touchend", endfunc, false);
       }
   };
-  
   if(!win.console){win.console = function(){};win.console.info = win.console.debug = win.console.warn = win.console.log = win.console.error = function(str){alert(str);}};
   win.log = function(){
     if(arguments.length>0){
@@ -50,6 +49,7 @@
     ns.cssPrefix = ns.isWebKit ? "webkit" : ns.isFirefox ? "Moz" : ns.isOpera ? "O" : ns.isIE ? "ms" : "";
   };
   detectBrowser(util);
+  /* 清除字符串尾部的逗号 */
   util.clearLastComma =function(str){ return str=str.replace(/,$/,'');};
   /*检查对象属性*/
   util.checkprop = function(propName, obj) { /*obj.hasOwnProperty */return propName in obj; };
@@ -90,7 +90,21 @@
   /*获取地址参数值并调用对象方法*/
   util.initObjByUrl=function(obj){
     var urlparam = location.href.split("?")[1];
-    if(urlparam){obj[urlparam]();}
+    if(urlparam && obj && urlparam in obj){obj[urlparam]();}
+  };
+  
+  /*添加本地存储*/
+  util.savedata = function(k,v){
+	  if(util.supportStorage && k && v){
+		  localStorage.setItem(k,v);
+	  }
+  };
+  /*获取本地存储*/
+  util.getdata = function(k){
+	  if(util.supportStorage && k){
+		  return localStorage.getItem(k);
+	  }
+	  return null;
   };
   /**
   * @description 类式继承
@@ -140,6 +154,80 @@
         }
       }
     }
+  };
+  var emptyConstructor = function() {};
+  /**
+   * 继承方法。
+   * @param {Function} childClass 子类。
+   * @param {Function} parentClass 父类。
+   */
+  util.inherit = function(childClass, parentClass){
+	emptyConstructor.prototype = parentClass.prototype;
+	childClass.superClass = parentClass.prototype;
+	childClass.prototype = new emptyConstructor();
+	childClass.prototype.constructor = childClass;
+  };
+  /**
+   * 把props参数指定的属性或方法复制到obj对象上。
+   * @param {Object} obj Object对象。
+   * @param {Object} props 包含要复制到obj对象上的属性或方法的对象。
+   * @param {Boolean} strict 指定是否采用严格模式复制。默认为false。
+   * @return {Object} 复制后的obj对象。
+   */
+  util.merge = function(obj, props, strict){
+  	for(var key in props){
+  		if(!strict || obj.hasOwnProperty(key) || obj[key] !== undefined) obj[key] = props[key];
+  	}
+  	return obj;
+  };
+  /**
+   * 把图片转换成dataURL格式的位图。
+   * @param {DisplayObject} obj 要缓存的显示对象。
+   * @param {Boolean} toImage 指定是否把缓存转为DataURL格式的。默认为false。
+   * @param {String} type 指定转换为DataURL格式的图片mime类型。默认为"image/png"。
+   * @return {Object} Image对象。
+   */
+  util.cacheImg = function(obj, type, callback){
+	  	var w = obj.width, h = obj.height;
+		var canvas = util.createDOM("canvas", {
+			width : w,
+			height : h
+		});
+		var image = new Image();
+		image.src = obj.src;
+		if (canvas == null){return false;}
+		var context = canvas.getContext("2d");
+		context.fillStyle = "#EEEEFF";
+		context.fillRect(0, 0, w, h);
+		image.onload = function() {
+			context.drawImage(image, 0, 0);
+			var img = new Image();
+			img.width = w;
+			img.height = h;
+			img.src = canvas.toDataURL(type || "image/png");
+			callback(img);
+		};
+  };
+  /**
+	 * 创建一个指定类型type和属性props的DOM对象。
+	 * 
+	 * @param {String}
+	 *            type 指定DOM的类型。比如canvas，div等。
+	 * @param {Object}
+	 *            props 指定生成的DOM的属性对象。
+	 * @return {HTMLElement} 新生成的DOM对象。
+	 */
+  util.createDOM = function(type, props){
+  	var dom = document.createElement(type);
+  	for(var p in props){
+  		var val = props[p];
+  		if(p == "style"){
+  			for(var s in val) dom.style[s] = val[s];
+  		}else{
+  			dom[p] = val;
+  		}
+  	}
+  	return dom;
   };
   /**
    * 通用loader对象
@@ -199,6 +287,11 @@
     o.init();
     return o;
   };
+  /**
+   * 通用列表加载方法
+   * @param {Object} 参数对象
+   * @return {function} 回调函数
+   */
   util.listload = $.listload = function(obj,callback){
     var opt = $.extend({
       lastItemHandle:'.list:last-child',
@@ -261,52 +354,4 @@
     return o;
   };
   
-  util.ob = $({});
-  $.subscribe = function () {
-    util.ob.on.apply(util.ob, arguments);
-  };
-
-  $.unsubscribe = function () {
-    util.ob.off.apply(util.ob, arguments);
-  };
-
-  $.publish = function () {
-    util.ob.trigger.apply(util.ob, arguments);
-  }; 
-  
-  //return util;
-  
-  //观察者模式
-  //发布者
-  function Publisher(){
-    this.subscribers = [];
-  };
-  //发布方法
-  Publisher.prototype.deliver = function(data){
-    this.subscribers.forEach(function(fn){
-      fn(data);
-    });
-    return this;
-  }
-  //订阅函数
-  Function.prototype.subscribe = function(publisher){
-    var that = this;
-    var alreadyExists = publisher.subscribers.some(function(el){
-      return el===that;
-    });
-    if(!alreadyExists){
-      publisher.subscribers.push(this);
-    }
-    return this;
-  }
-  //取消订阅
-  Function.prototype.unsubscribe = function(publisher){
-    var that = this;
-      //log(publisher.subscribers);
-    publisher.subscribers = publisher.subscribers.filter(function(el){
-      //log(el);
-      return el !==that;
-    });
-    return this;
-  }
 })(window,jQuery);

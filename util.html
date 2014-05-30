@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rain CSS > List</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<script type="text/javascript" src='js/jquery-1.7.2.js'></script>
+ 
+</head>
+<body class="body">
+	<div class="header headerBlue">
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue l pr pl ib tdn">首页home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue l pr pl ib tdn">博客blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue l pr pl ib tdn">游戏game</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container posr">
+    	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
+    </div>
+  </div>
+  
+	<div class="container mt">
+    
+		<div class="paddingTop">
+	      <footer class="footer socialFooter c bt">
+	        <p class="bottom pt pb">Copyright 2010-2014 Web Development Machine All rights reserved.</p>
+	      </footer>
+		</div>
+	</div>
+<script type="text/javascript" src='js/util.js'></script>
+<script type="text/javascript">
+
+
+util.ob = $({});
+$.subscribe = function () {
+  util.ob.on.apply(util.ob, arguments);
+};
+
+$.unsubscribe = function () {
+  util.ob.off.apply(util.ob, arguments);
+};
+
+$.publish = function () {
+  util.ob.trigger.apply(util.ob, arguments);
+};
+
+//return util;
+//观察者模式
+//发布者
+function Publisher(){
+  this.subscribers = [];
+};
+//发布方法
+Publisher.prototype.deliver = function(data){
+  this.subscribers.forEach(function(fn){
+    fn(data);
+  });
+  return this;
+};
+//订阅函数
+Function.prototype.subscribe = function(publisher){
+  var that = this;
+  var alreadyExists = publisher.subscribers.some(function(el){
+    return el===that;
+  });
+  if(!alreadyExists){
+    publisher.subscribers.push(this);
+  }
+  return this;
+};
+//取消订阅
+Function.prototype.unsubscribe = function(publisher){
+  var that = this;
+    //log(publisher.subscribers);
+  publisher.subscribers = publisher.subscribers.filter(function(el){
+    //log(el);
+    return el !==that;
+  });
+  return this;
+};
+//回调函数
+function handle(e, a) {
+    console.log(a);
+};
+//订阅
+$.subscribe("/some/topic", handle);
+//发布
+$.publish("/some/topic", ["dsfkdshfkdshfkhsdj"]); // 输出abc
+
+//用法
+var NewYorkTimes = new Publisher;
+var sdfds = new Publisher;
+var Joe = function(from) {
+    console.log('joe收到 '+from);
+};
+Joe.subscribe(NewYorkTimes).subscribe(sdfds);
+NewYorkTimes.deliver('NewYorkTimes 报纸');
+sdfds.deliver('好乱七八糟的 报纸');
+Joe.unsubscribe(NewYorkTimes);
+//获取base64编码图片
+var img =util.cacheImg({src:"images/logo.png",width:200,height:70},"image/png", function(img){
+	log(img.src);
+	$("body").append(img);
+});
+</script>
+</body>
+</html>

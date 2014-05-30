@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>alertBox</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/widget.js"></script>
+    <style>
+    *{padding: 0;margin: 0;}
+    .publish-ad-box{height: 60px;overflow: hidden;}
+    .publish-ad-box ul li{height: 30px;line-height: 30px;}
+    .red{color: red;}
+    </style>
+</head>
+<body>
+<div class="publish-ad-box" id="publish-ad-js">
+                <ul class="posr">
+                    <li>
+                        <a href="#">王牌召唤师：111逆天狂女</a>
+                    </li>
+                    <li>
+                        <a href="#">王牌召唤师：222逆天狂女</a>
+                    </li>
+                    <li>
+                        <a href="#">王牌召唤师：333逆天狂女</a>
+                    </li>
+                    <li>
+                        <a href="#">王牌召唤师：444逆天狂女</a>
+                    </li>
+                </ul>
+            </div>
+            <script src="../js/jquery-1.7.2.js"></script>
+            <script src="../js/util.js"></script>
+            <script src="js/widget.js"></script>
+            <script>
+            console.log(util);
+                        new util.NoticeScroll({
+                            box: "#publish-ad-js",
+                            size: 3
+                        });
+            </script>
+</body>
+</html>

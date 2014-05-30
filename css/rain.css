@@ -338,10 +338,10 @@ pre-line 	合并空白符序列，但是保留换行符。
 .mlrauto,.marginLRAuto{ margin-left:auto; margin-right:auto;}
 .center{ margin-left:auto; margin-right:auto;}
 .nom,.noMargin{ margin:0;}
-.nolm,.noLeftMargin{margin-left:0;}
-.norm,.noRightMargin{margin-right:0;}
-.notm,.noTopMargin{margin-top:0;}
-.nobm,.noBottomMargin{margin-bottom:0;}
+.nolm,.noLeftMargin{margin-left:0!important;}
+.norm,.noRightMargin{margin-right:0!important;}
+.notm,.noTopMargin{margin-top:0!important;}
+.nobm,.noBottomMargin{margin-bottom:0!important;}
 
 .mbn-1,.marginBottomNeg-1{margin-bottom:-1px;}
 

@@ -7,7 +7,7 @@ $.fn.extend({
 			'event':"click",
 			currentClass:'',
 			hoverClass:'',
-	    panelClass:'',
+	    	panelClass:'',
 			callback:$.noop
 		}, obj || {});
 		var _this =$(this),
@@ -22,7 +22,7 @@ $.fn.extend({
 		tabClass = o.currentClass,
 		//未选中tablink的hover类
 		hoverClass = o.hoverClass,
-	  panelClass = o.panelClass;
+	  	panelClass = o.panelClass,
 		call=o.callback;
 		function tabsHandler(event) {
 			if (tabsize > 0) {
@@ -40,7 +40,7 @@ $.fn.extend({
 			var tabs = $(_this[i]).find(tab);
 			var panels = $(_this[i]).find(panel).hide();
 			$(tabs[0]).addClass(tabClass).removeClass(hoverClass);
-		  $(panels[0]).addClass(panelClass).show();
+			$(panels[0]).addClass(panelClass).show();
 		  
 			for(var j =0; j<tabs.length; j++){
 				$(tabs[j]).on(tabE, {index : j, tabs: tabs, panels: panels ,callbacks:call}, tabsHandler);

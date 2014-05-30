@@ -15,26 +15,35 @@
 			next : null,// 设置下一个联动select
 			selectClass : 'ui-select ggrey btn greybtn round-10 posr oh',
 			selectStyle : {},
-      innerClass : 'paddingL tac toe block oh wsn fs-1',
-      innerStyle : {},
-      ULClass : 'vgroup round-10 oh border mts nop lsn',
-      ULStyle : {},
-      linkClass : 'ggrey btn greybtn block tdn p tac posr',
-      linkStyle : {},
+			innerClass : 'paddingL tac toe block oh wsn fs-1',
+			innerStyle : {},
+			ULClass : 'vgroup round-10 oh border mts nop lsn',
+			ULStyle : {},
+			linkClass : 'ggrey btn greybtn block tdn p tac posr',
+			linkStyle : {},
 			data : {},
 			dataUrl : null,
 			dataParams : {},
-      mark:false,
-      listiconClass:'iconbtn-right ib hs micon tac posa icon-ok-sign icon-white',
-      iconwrapClass: 'h-3 w-3 bgGreen2 ib posa tac',
-      iconwrapStyle:{"top":"0","right":"0"},
-      iconClass: 'icon-chevron-down',
-      iconStyle:{},
-      pageIndex: 0,
-      limit:10,
-      callback : function(){},
-      //判断是否一次加载完成 待完成
-      loadonce: false
+			mark : false,
+			//是否设置选中图标
+			listIcon: false,
+			listiconClass : 'iconbtn-right ib hs micon tac posa icon-ok-sign icon-white',
+			iconwrapClass : 'h-3 w-3 bgGreen2 ib posa tac',
+			iconwrapStyle : {
+				"top" : "0",
+				"right" : "0"
+			},
+			iconClass : 'icon-chevron-down',
+			iconStyle : {},
+			pageIndex : 0,
+			limit : 10,
+			initByHistory: true,
+			activeItemClass:"yellow",
+			activeItemStyle : {},
+			inActiveItemStyle : {},
+			callback : function() {},
+			//判断是否一次加载完成
+			loadonce : false
 		}, obj || {});
 		var selectobj = $(opt.selectHandler), lis = '';
         var o = {
@@ -44,9 +53,14 @@
             data: null,
             /** @method 弹出框UL对象 */
             ulobj: $("<ul class='c_ul " + opt.ULClass + "'></ul>"),
+            setSelectindex: function(i){
+            	o.selectIndex = i; 
+            },
+            getSelectindex: function(){
+            	return o.selectIndex;
+            },
             /**
              * @method 设置获取数据参数
-             * @public
              * @param {object} 参数对象
              */
             setParams: function (obj) {
@@ -62,7 +76,6 @@
             },
             /**
              * @method 下一个联动对象
-             * @public
              * @param {object} 参数对象
              */
             setNext: function (obj) {
@@ -86,12 +99,27 @@
                 o.getNativeSelect().val(v);
                 return o;
             },
+            /** @method 设置select值 */
+            setPageindex: function(i){
+            	o.pageIndex = i;
+            },
+            getPageindex: function(){
+            	return o.pageIndex;
+            },
+            /** @method 获取弹出框列表 */
+            getList: function(){
+            	return o.getUlobj().fint('li');
+            },
             /** @method 设置selectUL对象 内容 */
             setUlobj: function (c) {
                 o.getUlobj().empty().append(c);
                 //弹出选择列表绑定事件
                 o.getUlobj().find('li').on(opt.event, function (e) {
-                    o.checkUlItem(e,$(this), $(this).index());
+                	var _this = $(this);
+                    o.setSelectindex(_this.index());
+                    o.checkUlItem(_this);
+                    o.setValue(_this.attr('val')).setText(_this.attr('text'));
+                    opt.callback(e);
                 });
                 return o;
             },
@@ -100,28 +128,34 @@
                 o.getUlobj().append(c);
                 //弹出选择列表绑定事件
                 o.getUlobj().find('li').on(opt.event, function (e) {
-                    o.checkUlItem(e,$(this), $(this).index());
+                	var _this = $(this);
+                    o.setSelectindex(_this.index());
+                    o.checkUlItem(_this);
+                    o.setValue(_this.attr('val')).setText(_this.attr('text'));
+                    opt.callback(e);
                 });
                 return o;
             },
-            /** @method 设置selectUL对象 内容 */
-            checkUlItem: function (e, obj, i) {
-                var li = o.getUlobj().find('li');
-                li.attr('state', 'n');
-                //选择状态
-                li.find('span').addClass('icon-white');
+            /** @method 设置每个列表项选中状态和样式 */
+            checkUlItem: function (obj) {
+                var list = o.getUlobj().find('li');
+                list.attr('state', 'n');
                 obj.attr('state', 's');
-                obj.find('span').removeClass('icon-white');
-                o.selectIndex = i;
-                opt.callback();
+                if(opt.listIcon){
+	                list.find('.j_listlink').find('span').removeClass(opt.activeItemClass).css(opt.inActiveItemStyle);
+	                obj.find('.j_listlink').find('span').addClass(opt.activeItemClass).css(opt.activeItemStyle);
+                }else{
+	                list.find('.j_listlink').removeClass(opt.activeItemClass).css(opt.inActiveItemStyle);
+	                obj.find('.j_listlink').addClass(opt.activeItemClass).css(opt.activeItemStyle);
+                }
                 return o;
             },
             remark: function () {
-                var i = o.selectIndex;
+                var i = o.getSelectindex();
                 if (opt.mark && i > 10) {
                     var li = o.getUlobj().find('li');
                     (li.eq(i)).insertAfter(li.eq(3));
-                    o.selectIndex = 4;
+                    o.setSelectindex(4);
                 }
                 return o;
             },
@@ -148,30 +182,12 @@
                 selectobj.on(opt.event, function (e) {
                     var i = 0;
                     if (opt.mark) {
-                        i = o.selectIndex;
+                        i = o.getSelectindex();
                     } else {
                         i = $(this).find('select')[0].selectedIndex;
                     }
                     o.getDialog().show();
                 });
-            },
-            /** @method select对象的option转换为li */
-            _transOptionToLi: function () {
-                var iconhtml = '';
-                if (opt.listiconClass) {
-                    iconhtml = '<span class="' + opt.listiconClass + '"></span>';
-                }
-                $.each(selectobj.find("option"), function (i, elem) {
-                    if (i === 0) {
-                        selectobj.find(".j_innerbtn").text($(elem).text());
-                    }
-                    lis += '<li class="oh" val="' + $(elem).attr('value') + '" text= "' + $(elem).text()
-                        + '"><a class="j_listlink" href="javascript:;">'
-                        + iconhtml + $(elem).text()
-                        + '</a></li>';
-                });
-                o.setUlobj(lis);
-                return o;
             },
             /**
              * @method 设置下一select对象的所需数据
@@ -193,7 +209,7 @@
              */
              divData:function(threshold){
                 //游标操作来显示十条记录
-                var index = o.selectIndex;
+                var index = o.getSelectindex();
                 var min = 0;
                 var max = min+2*threshold;
                 if(index>threshold) {
@@ -216,11 +232,10 @@
              */
             _parseData: function (data) {
                 var iconhtml = '';
-                if (opt.listiconClass) {
+                if (opt.listIcon) {
                     iconhtml = '<span class="' + opt.listiconClass + '"></span>';
                 }
                 var d = data, options = '', lis = '';
-
                 for (var i = 0,l=d.length; i < l; i++) {
                     options += '<option value="' + d[i].value + '">' + d[i].name + '</option>';
                     lis += '<li state="n" val="' + d[i].value + '" text= "' + d[i].name
@@ -229,7 +244,6 @@
                         + '</a></li>';
                 }
                 o.getNativeSelect().append(options);
-                o.setText(d[0].name);
                 o.addUlobj(lis);
                 if (opt.next) {
                     opt.next.setParams(d[0]);
@@ -250,43 +264,77 @@
                 selectobj.append(_html);
                 return o;
             },
-            reloadData:function(){
-                $.getJSON(opt.dataUrl+"?pageIndex="+o.pageIndex+"&limit="+opt.limit, null, function (data) {
+            reloadData:function(callback){
+            	var i = o.getPageindex();
+                $.getJSON(opt.dataUrl+"?pageIndex="+i+"&limit="+opt.limit, null, function (data) {
                     o.data = data.list;
                     o._parseData(o.data);
+                    if(typeof(callback)=='function'){
+                    	callback();
+                    }
                 });
             },
             checkReload: function(){
-                console.log("o.selectIndex==="+o.selectIndex);
-                console.log("o.pageIndex==="+o.pageIndex);
-                console.log("o.getSize==="+o.getSize()); 
-                if(o.selectIndex >= o.getSize()-1){
-                    o.pageIndex ++;
-                    o.reloadData();
-                }
+            	if(!opt.loadonce){
+	                console.log("o.selectIndex==="+o.getSelectindex());
+	                console.log("o.pageIndex==="+o.getPageindex());
+	                console.log("o.getSize==="+o.getSize()); 
+	                if(o.getSelectindex() >= o.getSize()-1){
+	                	var i = o.getPageindex()+1;
+	                    o.setPageindex(i);
+	                    o.reloadData();
+	                }
+            	}
             },
             /** @method 设置对象数据 */
             setData: function () {
                 var p = o.getParams();
-                //判断数据是否加载
-                if(!o.data){
-                    if (opt.dataUrl) {
-                        $.getJSON(opt.dataUrl+"?pageIndex="+o.pageIndex+"&limit="+opt.limit, p, function (data) {
-                            o.data = data.list;
-                            o._parseData(o.data);
-                        });
-                    } else if (opt.data) {
-                        o.data = opt.data;
-                        o._parseData(o.data);
-                    }
+                if(!opt.initByHistory){
+	                //判断是否加载静态数据
+	                if(!o.data){
+	                	o.setPageindex(opt.pageIndex);
+	                    if (opt.dataUrl) {
+	                        var i = o.getPageindex();
+	                        $.getJSON(opt.dataUrl+"?pageIndex="+i+"&limit="+opt.limit, p, function (data) {
+	                            o.data = data.list;
+	                            o._parseData(o.data);
+	                            o.setText(o.getList().eq(0).attr('text')).setValue(o.getList().eq(0).attr('val'));
+	                            o.checkUlItem(o.getList().eq(0));
+	                        });
+	                    } else if (opt.data) {
+	                        o.data = opt.data;
+	                        o._parseData(o.data);
+	                        o.setText(o.getList().eq(0).attr('text')).setValue(o.getList().eq(0).attr('val'));
+                            o.checkUlItem(o.getList().eq(0));
+	                    }
+	                }else{
+	                    o._parseData(o.data);
+	                    o.setText(o.getList().eq(0).attr('text')).setValue(o.getList().eq(0).attr('val'));
+                        o.checkUlItem(o.getList().eq(0));
+	                }
                 }else{
-                    o._parseData(o.data);
+                	//从历史记录进行加载
+                	var chapterId = 15;
+                	o.pageIndex = o.setPageindex(parseInt(parseInt(chapterId)/opt.limit) + 1);
+                	o.prepageIndex = o.pageIndex;
+                	o.reloadData(function(){
+                		o.setSelectindex(parseInt(parseInt(chapterId)%opt.limit)-1);
+                    	var curItem= o.getSelectindex();
+                    	var curli = o.getUlobj().find("li").eq(curItem);
+                        var v = curli.attr('val');
+                        var t = curli.attr('text');
+                        if(v && t){
+                        	o.setText(t).setValue(v);
+                        }else{
+                            o.setText("  "+t);
+                        }
+                    	o.checkUlItem(curli);
+                	});
                 }
                 return o;
             },
             /** @method 对象初始化 */
             init: function () {
-                o.pageIndex = opt.pageIndex;
                 o.setParams(opt.dataParams);
                 o.setNext(opt.next);
                 o.setData();
