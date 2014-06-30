@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rain CSS &gt; scrollScreen</title>
+<meta content="rain css,rain_css,rain css framework,rain.css,html5前端框架,前端框架,front-end,css" name="description"/>
+<meta content="rain css,rain_css,rain css framework,rain.css,html5前端框架,前端框架,front-end,css" name="keywords"/>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<style type="text/css"> 
+.side_nav{top:40%; right:20px; z-index:99999;}
+.cycle{width:10px;height: 10px;display: inline-block; background-color:#666; margin: 5px 0;}
+.on .cycle{width:15px;height:15px;}
+.header{top:0;z-index:99999;}
+.scroll_box {left: 0;top: 0;}
+.ct_2{z-index: 10;left:0;top:0;width:0;}
+.ct_3{z-index: 10;left:auto; right:0; top:0;width:0;}
+.bullet_line {display: none;opacity: 0;height:1px; filter: alpha(opacity=0); z-index: 10000; position: absolute;width: 100%;white-space: nowrap;overflow: hidden;}
+.line_1 {left: -14%;top: 22.6%; border-bottom: 15px solid #000;}
+</style>
+</head>
+<body class="body posr oh">
+	<div class="header posr headerBlue">
+		<div class="posr clearfix">
+			<a href="http://www.webdevelopmentmachine.com"
+				class="headerLink headerLinkBlue l pr pl ib tdn">首页home</a> <a
+				href="http://www.webdevelopmentmachine.com/blog"
+				class="headerLink headerLinkBlue l pr pl ib tdn">博客blog</a> <a
+				href="http://www.webdevelopmentmachine.com/demo/game.html"
+				class="headerLink headerLinkBlue l pr pl ib tdn">游戏game</a>
+				<a href="javascript:;" id="test" class="headerLink headerLinkBlue l pr pl ib tdn">test</a>
+		</div>
+	</div>
+<div class="wrapper posr fullh" id="wrap">
+  <div class="side_nav posa w-2 h-20">
+    <ul id="nav" class="nav tac">
+      <li class="on"><i class="cycle roundall"></i></li>
+      <li><i class="cycle roundall"></i></li>
+      <li><i class="cycle roundall"></i></li>
+      <li><i class="cycle roundall"></i></li>
+      <li><i class="cycle roundall"></i></li>
+      <li><i class="cycle roundall"></i></li>
+    </ul>
+  </div>
+  <div class="scroll_box fullh fullw posa" id="scroll_box">
+    <div class="cont_item ct_1 fullh fullw bgr" id="main_ct1">这是第1张
+    </div>
+    
+    <div class="cont_item ct_2 fullh posa bgg oh" id="main_ct2">这是第2张
+    </div>
+    
+    <div class="cont_item ct_3 fullh fullw posa bgw" id="main_ct3">这是第3张
+    </div>
+    <div class="cont_item ct_4 fullh fullw posr bglb">这是第4张
+    </div>
+    <div class="cont_item ct_5 fullh fullw posr bgYellow">这是第5张
+    </div>
+    <div class="cont_item ct_6 fullh fullw posa bggrey">这是第6张
+    </div>
+  </div>
+  
+  <div class="j_bline bullet_line line_1" id="bullet_1"></div>
+</div>
+
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/lib/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+window.scrollScreen = $.scrollScreen = function(obj) {
+  this.obj = obj;
+  $.extend(this,{
+    width:540,
+    height:0,
+    N:0,//滚动轮播索引值
+    narrow:false,
+    narrowBox:$("#wrap"),
+    scrollBox: $('#scroll_box'),
+    navList: $("#nav").find("li")
+  }, this.obj || {});
+};
+scrollScreen.prototype = {
+    init: function() {
+		var _this = this;
+		_this.registerMousewheel();
+		_this.registerNarrow();
+		return _this;
+    },
+    registerNarrow: function(){
+    	var _this = this;
+    	var narrowBox = _this.narrowBox;
+    	$("#test").on("click",function(){
+	      	if(!_this.narrow){
+	      		_this.navList.hide();
+	    		narrowBox.animate({width:'100px',height:'50px','margin-left':'200px'},500,'easeInOutCubic',function(){
+	    			narrowBox.hide();
+	    			_this.narrow = true;
+	    		});
+	      	}else{
+	      		_this.navList.show();
+	    		narrowBox.show();
+	    		narrowBox.animate({width:'100%',height:'100%','margin-left':'0'},500,'easeInOutCubic',function(){
+	    			_this.narrow = false;
+	    		});
+	      	}
+    	});
+    },
+    registerMousewheel: function(){
+    	var _this = this;
+    	$('html,body').on("mousewheel",function(event,delta,deltaX,deltaY){
+    		if(delta<0){
+    			_this.btnDown();	
+    		}
+    		if(delta>0){
+    			_this.btnUp();	
+    		}
+    	});
+    },
+	btnDown: function(){
+		var _this = this;
+		var scrollBox = _this.scrollBox;
+	    if(!$('.cont_item,#scroll_box').is(":animated")){
+	    	if(_this.N==0){
+	    		$('#main_ct2').animate({width:'100%'},1000,'easeInOutCubic',function(){															 
+	    		});
+	    		_this.N++;
+	    	}
+	    	else if(_this.N==1){
+	    		$('.j_bline').show();
+	    		$('#main_ct3').animate({width:'100%'},1000,'easeInOutCubic',function(){
+	    		});
+	    		$('#bullet_1').animate({left:'100%',opacity:'1'},700);
+
+	    		_this.N++;
+	    	}
+	    	else if(_this.N==2){
+	    		scrollBox.stop().animate({top:'-100%'},1000,'easeInOutCubic'); 
+	    		_this.N++;
+	    	}
+	    	else if(_this.N==3){
+	    		scrollBox.animate({top:'-200%'},1000,'easeInOutCubic');
+	    		_this.N++;
+	    	}
+	    	else if(_this.N==4){
+	    		scrollBox.animate({top:'-300%'},1000,'easeInOutCubic');
+	    		$('#main_ct1').css('opacity','0');
+	    		_this.N++;
+	    	}
+	    	else if(_this.N==5){ 
+	    		scrollBox.css('top','0%');
+	  			$('.j_bullet').hide();
+	  			$('#bullet_1').css('left','-14%');
+	  			
+	    		$('#main_ct2').css('width','0%');
+	    		$('#main_ct3').css('width','0%');
+	    		$('#main_ct1').animate({opacity:'1'},1000,function(){
+	    		});
+	    		_this.N=0;
+	    	}
+	    	_this.navList.eq(_this.N).addClass('on').siblings().removeClass('on');
+	    }else{
+	    	return false;	
+	    }
+    },
+    btnUp: function(){
+  		var _this = this; 
+  		var scrollBox = _this.scrollBox;
+    	if(!$('.cont_item,#scroll_box').is(":animated")){
+    		if(_this.N==1){
+    			$('#main_ct2').animate({width:'0%'},1000,'easeInOutCubic')	
+    			_this.N--;
+    			if(_this.N<0){
+    				_this.N=0;	
+    			}
+    		}
+    		else if(_this.N==2){
+    			$('#main_ct3').animate({width:'0%'},1000,'easeInOutCubic',function(){
+    			});
+    			$('#bullet_1').animate({left:'0%',opacity:'0'},500);
+    			_this.N--;
+    		}
+    		else if(_this.N==3){
+    			scrollBox.stop().animate({top:'0%'},1000,'easeInOutCubic');
+    			_this.N--;
+    		}
+    		else if(_this.N==4){
+    			scrollBox.animate({top:'-100%'},1000,'easeInOutCubic');
+    			_this.N--;
+    		}
+    		else if(_this.N==5){
+    			scrollBox.animate({top:'-200%'},1000,'easeInOutCubic');
+    			$('#main_ct1').css('opacity','1');
+    			_this.N--;
+    		}
+    		_this.navList.eq(_this.N).addClass('on').siblings().removeClass('on');
+    	}else{
+    		return false;
+    	}
+    }
+} 
+var s = new scrollScreen();
+s.init();
+</script>
+</body>
+</html>
