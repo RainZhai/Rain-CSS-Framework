@@ -89,7 +89,7 @@
       /**@method 对象初始化*/
       "init":function() {
         var _this = this;
-        if(_this.content){
+        if(_this.content || (typeof _this.obj === "string" || _this.obj instanceof jQuery || "nodeName" in _this.obj)){
           _this.initHtml();
           _this.initBtns();
           _this.initModule();
@@ -212,7 +212,6 @@
        *  @param {function} 回调函数
        */
       "close":function(e,callback) {
-        log(e);
         this.beforeClose(e);
         if (typeof callback === "function") {
           $("." + this.dialogHandleClass).addClass('vf');
@@ -318,7 +317,7 @@
           }
         }
         if (this.obj && (typeof this.obj === "string" || this.obj instanceof jQuery || "nodeName" in this.obj)) {
-          this.getHtml().find("." + this.closeClass).hide();
+        	this.getHtml().find("." + this.closeClass).hide();
           this.getHtml().find(".c_contentWrap").append(this.obj);
         } else {
           this.setContent(this.contentObj);
