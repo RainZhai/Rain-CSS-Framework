@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Rain CSS App > index</title>
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="../css/rain.css" type="text/css" media="all"/>
+    <style>
+	.w320px{width:320px;}
+	</style>
+</head>
+
+<body class="body w320px">
+<div class="header headerBlue">
+	<div class="grid wf-100">
+	    <div class="l fl wf-25 ggrey"><div class="p fsm bord ts b nobr">应用名</div> </div>
+	    <div class="l fl wf-75 ggrey"><div class="p fsm bord ts b">B</div></div>
+	</div>
+</div>
+<div class="main mt">
+	<div class='c_touch'></div>
+    </div>
+<div class="grid wf-100 clearfix">
+    <div class="l fl wf-25 ggrey"><div class="p fsm bord ts b nobr">A</div></div>
+    <div class="l fl wf-25 ggrey"><div class="p fsm bord ts b nobr">B</div></div>
+    <div class="l fl wf-25 ggrey"><div class="p fsm bord ts b nobr">C</div></div>
+    <div class="l fl wf-25 ggrey"><div class="p fsm bord ts b">D</div></div>
+</div>
+<script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="../js/util.js"></script>
+<script type="text/javascript" src="../js/swipe.js"></script>
+<script type="text/javascript">
+var o = new $.swipe({
+	autorun:true,
+	imgArray:['../images/s1.jpg','../images/s2.jpg','../images/s1.jpg','../images/s3.jpg']
+});
+</script>
+</body>
+</html>
