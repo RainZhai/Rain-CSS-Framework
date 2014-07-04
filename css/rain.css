@@ -474,6 +474,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .m-6,.margin-6{ margin:60px;}
 
 .b{ border:1px #ccc solid!important;}
+.border{border:1px #ccc solid!important; margin:0;padding:0;}
 .bl,.borderLeft { border-left:1px #ccc solid!important;}
 .bright,.borderRight { border-right:1px #ccc solid!important;}
 .bt,.borderTop { border-top:1px #ccc solid!important;}
@@ -861,19 +862,17 @@ select {border:1px solid #bbb;}
 -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.4);	
 }
-.vgroup li:first-child{border-radius: 10px 10px 0 0;}
-.vgroup li:last-child{border-radius: 0 0 10px 10px;}
+.vgroup.round-10 .btn:first-child{border-radius: 10px 10px 0 0;}
+.vgroup.round-10 .btn:last-child{border-radius: 0 0 10px 10px;border-bottom: 0 none;}
 .vgroup .btn{
 	border: 0 none;border-bottom: 1px solid #ccc;
-}
-.vgroup .btn:last-child{
-border-bottom: 0 none;
-}
+} 
 .hgroup .btn{
 	border: 0 none;border-right: 1px solid #ccc;
 }
-.hgroup .btn:last-child{
-border-right: 0 none;
+.hgroup.round-10 .btn:first-child{border-radius: 10px 0 0 10px;}
+.hgroup.round-10 .btn:last-child{
+border-right: 0 none;border-radius:0 10px 10px 0;
 }
 /*-- table.css -- table object and sub-objects --*/
 thead th {background:#fff;}

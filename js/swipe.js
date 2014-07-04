@@ -8,6 +8,7 @@
 			var o = $.extend({
 				touchSelector : ".c_touch",
 				imgArray:['images/s1.jpg','images/s2.jpg','images/s1.jpg','images/s3.jpg'],
+				linksArray:['#1','#','#','#'],
 				time : 2500,
 				autorun: true,
 				width:320,
@@ -32,7 +33,7 @@
 					html='<div class="c_touhmain posr oh"><ul class=" lsn c_touhlist posa nom nop w-mx clearfix">',
 					IconHtml='<ul class="c_touchicon lsn clearfix posa nom nop tipCir">';
 					$.each(o.imgArray,function(i){
-						imgContent+='<li class="fl l"><a class="block fullw fullh" href="#"><img class="fullw fullh" src='+o.imgArray[i]+' /></a></li>';
+						imgContent+='<li class="fl l"><a class="block fullw fullh" href="'+o.linksArray[i]+'"><img class="fullw fullh" src='+o.imgArray[i]+' /></a></li>';
 						iconContent+='<li class="fl l posr c_tips mls"><i class="c_on round-10 w-1 h-1 block so bgw"></i></li>';
 					});
 					html=html+imgContent+'</ul></div>';
