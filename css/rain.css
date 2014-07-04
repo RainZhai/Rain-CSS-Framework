@@ -204,6 +204,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .hl,.heightL{ height:35px; line-height:35px!important;}
 .hll,.heightLL{ height:40px; line-height:40px!important;}
 .h45{height:45px!important; line-height:45px!important;}
+.h50{line-height:50px!important;}
 
 .ws,.widthS{ width:80px;}
 .wm,.widthM{ width:110px;}
@@ -416,7 +417,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .pt-3,.paddingTop-3{ padding-top:30px;}
 .pt-4,.paddingTop-4{ padding-top:40px;}
 .pt-5,.paddingTop-5{ padding-top:50px;}
-.pt-6,.paddingTop-6{ padding-top:50px;}
+.pt-6,.paddingTop-6{ padding-top:60px;}
 .pb-1,.paddingBottom-1{ padding-bottom:10px;}
 .pb-2,.paddingBottom-2{ padding-bottom:20px;}
 .pb-3,.paddingBottom-3{ padding-bottom:30px;}
@@ -649,7 +650,6 @@ Page Layout Css Objects
 ----------------------------------- 
 */
 /*-- header object define nav --*/
-.header{ height:30px;}
 .headerBlack{ background:#2D2D2D; border-bottom:1px solid #333;}
 .headerBlue{ background:#0c4a85; border-bottom:1px solid #0c4a85; width:100%;}
 .headerM{ height:70px;}

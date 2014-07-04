@@ -1,6 +1,6 @@
 (function($) {	
 		/**
-		 *一个在手机端自动轮播,并且可以有滑动效果的插件---基于jquery.
+		 * 一个在手机端自动轮播,并且可以有滑动效果的插件---基于jquery.
 		 * @param {Object} obj Object对象。可以自定义传入的参数。
 		 * @return {Function} 返回的是一个公有的函数。
 		 */
@@ -12,7 +12,8 @@
 				autorun: true,
 				width:320,
 				height:95,
-				responsive: true
+				responsive: true,
+				tipswrapStyle:{ bottom: "10px",left: "5px"}
 			}, opt || {});
 			var touchobj = $(o.touchSelector), startX = 0, //开始点击的位置
 			timer = o.time,
@@ -22,8 +23,8 @@
 			var obj={
 				touchbox : null,
 				touchlist : null,
-				$tips : null,
 				items : null,
+				tipsitems: null,     
 				len : null,
 				initHtml : function(){
 					var imgContent='',
@@ -41,7 +42,7 @@
 				initSelector:function(){
 				  obj.touchbox=	touchobj.find('.c_touhmain');
 				  obj.touchlist=touchobj.find('.c_touhlist');
-				  obj.$tips=touchobj.find('.c_tips');
+				  obj.tipsitems=touchobj.find('.c_tips');
 				  obj.items=obj.touchlist.find("li");
 				  obj.len= obj.items.length;
 				},
@@ -53,14 +54,14 @@
 				  return _width;
 				},
 				initUI : function(){
-				  
 				  obj.initSelector();
 				  obj.setWidth();
 				  var w = obj.getWidth();
 				  obj.touchbox.height(o.height).width(w);
 				  obj.touchlist.height(o.height);
 				  obj.touchlist.find("li").height(o.height).width(w);
-				  obj.$tips.first().find('.c_on').removeClass('bgw').addClass('bgy');
+				  obj.tipsitems.first().find('.c_on').removeClass('bgw').addClass('bgy');
+				  touchobj.find('.c_touchicon').css(o.tipswrapStyle);
 				},
 				/**
 				 *绑定事件函数:touchstart,touchmove,touchend
@@ -115,8 +116,8 @@
 				 */
 				tipShow : function() {
 					i === obj.len ? i = 0 : i;
-					obj.$tips.find('.c_on').addClass('bgw').removeClass('bgy');
-					obj.$tips.eq(i).find('.c_on').addClass('bgy').removeClass('bgw');
+					obj.tipsitems.find('.c_on').addClass('bgw').removeClass('bgy');
+					obj.tipsitems.eq(i).find('.c_on').addClass('bgy').removeClass('bgw');
 				},
 	
 				/**
