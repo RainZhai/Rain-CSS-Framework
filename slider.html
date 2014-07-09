@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="utf-8">
+<title>Rain CSS > slider</title>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<style type="text/css">
+.sliderbtn{top:50%;margin: -11px 0 0 -10px;left:0;}
+</style>
+</head>
+<body class="body">
+  <div class="headerBlue">
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">首页home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">博客blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">游戏game</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container posr">
+    	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
+    </div>
+  </div>
+  
+	<div class="container mt"> 
+    <div class="content">
+		<div class="sidebar l posr">
+			<h2 class="category">slider</h2>
+			<p>Sliders are used to enter numeric values along a continuum and can also be dual handle range sliders or flip switches.</p>
+		</div>
+      
+		<div class="main mainRight posr">
+			<h1>slider</h1>
+			<fieldset>
+				<legend>Basic loader</legend>
+				<div class="ui-slider">
+					<input type="number" data-type="range" name="slider-1" id="slider-1" min="0" max="100" value="50"
+						class="" />
+					<div role="application" class="j_sliderbar bglgrey2 rounds b so fullw h-1 posr ov">
+						<a href="javascript:;" class="j_sliderbtn1 sliderbtn ib w-2 h-2 bgw b rounds posa" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" aria-valuetext="30" title="30"
+							aria-labelledby="slider-1-label"></a>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+   
+    <footer class="footer socialFooter c bt">
+      <p class="bottom pt pb">Copyright 2010-2014 Web Development Machine All rights reserved.</p>
+    </footer> 
+    </div>
+  </div>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript">
+(function ($,doc) {
+window.slider = $.slider = function(obj) {
+  this.obj = obj;
+  $.extend(this,{
+    barHandler:".j_sliderbar",
+    btnHandler:".j_sliderbtn1",
+    outputHandler:".j_sliderbtn1",
+    max:100,
+    min:1
+  }, this.obj || {});
+  this.bar = $(this.barHandler),this.btn = $(this.btnHandler),this.output= $(this.outputHandler), this.drag=false,
+  this.value = 0,
+  this.x = 0,
+  this.y = 0,
+  this.leftValue = 0,
+  this.tempX = 0,
+  this.tempY = 0,
+  this.currentX = 0,
+  this.currentY = 0;
+  this.init();
+};
+slider.prototype = {
+	init:function(){
+		this.registerEvents();
+	},
+	setValue: function(i){
+		this.value = i;
+	},
+	getValue: function(){
+		return this.value;
+	},
+	setOutput:function(){
+		
+	},
+	registerEvents:function(){
+		var me = this;
+		me.btn.on("mousedown",function(e){
+			var _this = $(this);
+			me.drag = true;
+			me.leftValue = _this.position().left;
+			me.tempX=_this.offset().left;
+			me.tempY=_this.offset().top;
+			me.x=e.clientX;
+			me.y=e.clientY;
+			log(me.leftValue,me.tempX,me.tempY,me.x,me.y);
+		});
+		$(doc).on("mousemove",function(e){
+			var _this = $(this);
+			var w = me.bar.width();
+			me.currentX = me.leftValue + e.clientX-me.x;
+			me.currentY = e.clientY;
+			if(me.drag){
+				log(me.currentX,me.currentY,w);
+				if (me.currentX<0){
+					me.currentX=0;
+				}
+				if (me.currentX>w){me.currentX=w;}
+				me.btn.css({"left":me.currentX+"px"});
+			}
+		});
+		$(doc).on("mouseup",function(e){
+			var _this = $(this);
+			me.drag = false;
+			me.setValue(me.currentX);
+			//var nowleft = checkposition(currentX);
+			//$(".j_sliderbtn1").css({"left":nowleft+"px"});
+		});
+	}
+}
+})(jQuery,document);
+var slider = new slider({
+  barhandler:".j_sliderbar",
+  btnhandler:".j_sliderbtn1"
+});
+/* var drag=false;
+var x = 0;
+var y = 0;
+var leftValue = 0;
+var tempX = 0;
+var tempY = 0;
+var currentX = 0;
+var currentY = 0;
+$(".j_sliderbtn1").on("mousedown",function(e){
+	var _this = $(this);
+	drag = true;
+	leftValue = _this.position().left;
+	tempX=_this.offset().left;
+	tempY=_this.offset().top;
+	x=e.clientX;
+	y=e.clientY;
+	log(leftValue,tempX,tempY,x,y);
+});
+$(document).on("mousemove",function(e){
+	var _this = $(this);
+	var w = $(".j_sliderbar").width();
+	currentX = leftValue + e.clientX-x;
+	currentY = e.clientY;
+	if(drag && currentY<=tempY+20 && currentY >=tempY-20 ){
+		log(currentX,currentY,w);
+		if (currentX<0){
+			currentX=0;
+			drag=false;
+		}
+		if (currentX>w){currentX=w;}
+		$(".j_sliderbtn1").css({"left":currentX+"px"});
+	}
+});
+$(document).on("mouseup",function(e){
+	var _this = $(this);
+	drag = false;
+	//var nowleft = checkposition(currentX);
+	//$(".j_sliderbtn1").css({"left":nowleft+"px"});
+}); */
+</script>
+</body>
+</html>
