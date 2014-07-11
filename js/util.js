@@ -17,7 +17,7 @@
   };
   if(!win.console){win.console = function(){};win.console.info = win.console.debug = win.console.warn = win.console.log = win.console.error = function(str){alert(str);}};
   win.log = function(){
-    if(arguments.length>1){
+    if(arguments.length>0){
       var s='';
       for(var i=0,l=arguments.length;i<l; i++){s = s + arguments[i]+',';}
       console.log(util.clearLastComma(s));
