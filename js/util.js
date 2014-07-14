@@ -188,7 +188,7 @@
    * @return {Object} Image对象。
    */
   util.cacheImg = function(obj, type, callback){
-	  	var w = obj.width, h = obj.height;
+  	var w = obj.width, h = obj.height;
 		var canvas = util.createDOM("canvas", {
 			width : w,
 			height : h
@@ -228,6 +228,27 @@
   		}
   	}
   	return dom;
+  };
+  /**
+   * @method binarySearch
+   * @param {Object} 数组对象
+   * @param {Number} 要查找的值
+   * @return {Number} 返回一个索引值或最接近的较大值
+   */
+  util.binarySearch = function(srcArray, des) {
+  	var low = 0; 
+  	var high = srcArray.length-1;
+  	while(low <= high) {
+  	   var middle = parseInt((low + high)/2,10);
+  	   if(des == srcArray[middle].name) {
+  	       return middle; 
+  	   }else if(des <srcArray[middle].name) {
+  	       high = middle - 1; 
+  	   }else {
+  	       low = middle + 1; 
+  	   } 
+  	}
+  	return high+1;
   };
   /**
    * 通用loader对象

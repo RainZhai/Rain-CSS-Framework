@@ -4,9 +4,11 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
 <meta charset="utf-8">
 <title>Rain CSS > Mobile</title>
-<!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<style type="text/css">
+.sliderbtn{top:50%;margin: -11px 0 0 -10px;left:0;}
+</style>
 </head>
 <body class="body">
   <div class="headerBlue">
@@ -24,38 +26,262 @@
   
 	<div class="container mt"> 
     <div class="content">
-    	<div class="sidebar l posr">
-      	<h2 class="category">Basic component</h2>
-      	<p>Basic component are the instance can use all situation</p>
-      </div>
-      
-			<div class="main mainRight posr">
-				<h1>CSS3 loader</h1>
-				<form method="post" action="#">
-					<fieldset>
-						<legend>Basic loader</legend>
-							<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps loader-show">show</div>
-							<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps ml loader-hide">hide</div>
-					</fieldset>
-				</form> 
-			</div>
+		<div class="sidebar l posr">
+			<h2 class="category">基本组件 Basic component</h2>
+			<p>基本组件可以用来构建网页基本功能元素 Basic component are the instance can use build basic functionalities</p>
+		</div>
+
+		<div class="main mainRight posr">
+			<h1>基本组件 Basic component</h1>
+			<fieldset>
+				<legend>基本加载效果 Basic loader</legend>
+				<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps loader-show">show</div>
+				<div class="hs rounds ggrey bgrey_2 btn greybtn ib ps ml loader-hide">hide</div>
+			</fieldset>
+			<fieldset id="slider">
+				<legend>滑动条 Basic slider</legend>
+				<div class="ui-slider">
+					<input type="number" data-type="range" name="slider-1" id="slider-1" min="0" max="100" value="50" class="" />
+					<div role="application" class="j_sliderbar bglgrey2 rounds b so fullw h-1 posr ov">
+						<div class="j_sliderbg1 fullh posa"></div>
+						<div class="j_sliderbg2 fullh posa o-9"></div>
+						<a href="javascript:;" class="j_sliderbtn1 sliderbtn ib w-2 h-2 bgw b rounds posa" role="slider"></a>
+					</div>
+				</div>
+			</fieldset>
+			
+	      <fieldset id="Messages">
+	    	<legend>消息框  Messages</legend>
+	        <div class="rounds css3_gradient_green button greenButton p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p class="bottom">Styles for success, warning, and error messages or alerts</p>
+	        </div>
+	        <br />
+	        <div class="rounds css3_gradient_yellow button yellowButton p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p class="bottom">Styles for success, warning, and error messages or alerts</p>
+	        </div>
+	        <br />
+	        <div class="rounds css3_gradient_blue button blueButton p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p class="bottom">Styles for success, warning, and error messages or alerts</p>
+	        </div>
+	        <br />
+	        <div class="rounds css3_gradient_red button redButton p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p class="bottom">Styles for success, warning, and error messages or alerts</p>
+	        </div>
+	        
+	        <br />
+	        <div class="rounds lightYellowBox p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p>Styles for success, warning, and error messages or alerts</p>
+	          <p class="tal bottom">
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action one"/>  
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action two"/>      
+	          </p>
+	        </div>
+	        <br />
+	        <div class="rounds lightRedBox p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p>Styles for success, warning, and error messages or alerts</p>
+	          <p class="tal bottom">
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action one"/>  
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action two"/>      
+	          </p>
+	        </div>
+	        <br />
+	        <div class="rounds lightGreenBox p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p>Styles for success, warning, and error messages or alerts</p>
+	          <p class="tal bottom">
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action one"/>  
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action two"/>      
+	          </p>
+	        </div>
+	        <br />
+	        <div class="rounds lightBlueBox p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p>Styles for success, warning, and error messages or alerts</p>
+	          <p class="tal bottom">
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action one"/>  
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action two"/>      
+	          </p>
+	        </div>
+	        <br />
+	        <div class="rounds lightGreyBox p">
+	          <span class="close block r oh tac bord fr">X</span>
+	        	<p>Styles for success, warning, and error messages or alerts</p>
+	          <p class="tal bottom">
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action one"/>  
+				<input type="button" class="heightS rounds ggrey bgrey_2 button greybtn" value="action two"/>      
+	          </p>
+	        </div>
+	      </fieldset>
+	      
+	     <fieldset id="Labels">
+	   	   <legend>标签 Labels</legend>
+	       <p>
+	       	<span class="bggrey rounds ps white bord vm">Default</span><br /><br />
+					<code>&lt;span class="bgGrey rounds ps white bord vm"&gt;Default&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgGreen rounds ps white bord vm">Success</span><br /><br />
+					<code>&lt;span class="bgGreen rounds ps white bord vm"&gt;Success&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgYellow rounds ps white bord vm">Warning</span><br /><br />
+					<code>&lt;span class="bgYellow rounds ps white bord vm"&gt;Warning&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgRed rounds ps white bord vm">Important</span><br /><br />
+					<code>&lt;span class="bgRed rounds ps white bord vm"&gt;Important&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgBlue rounds ps white bord vm">Info</span><br /><br />
+					<code>&lt;span class="bgBlue rounds ps white bord vm"&gt;Info&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgBlack rounds ps white bord vm">Inverse</span><br /><br />
+					<code>&lt;span class="bgBlack rounds ps white bord vm"&gt;Inverse&lt;/span&gt;</code>
+	       </p>
+				
+	       <p>
+	       	<span class="bgLightGrey rounds ps blank bord vm">Default</span><br /><br />
+					<code>&lt;span class="bgLightGrey rounds ps blank bord vm"&gt;Default&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgLightGreen rounds ps blank bord vm">Success</span><br /><br />
+					<code>&lt;span class="bgLightGreen rounds ps blank bord vm"&gt;Success&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgLightYellow rounds ps blank bord vm">Warning</span><br /><br />
+					<code>&lt;span class="bgLightYellow rounds ps blank bord vm"&gt;Warning&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgLightRed rounds ps blank bord vm">Important</span><br /><br />
+					<code>&lt;span class="bgLightRed rounds ps blank bord vm"&gt;Important&lt;/span&gt;</code>
+	       </p>
+	       <p>
+	       	<span class="bgLightBlue rounds ps blank bord vm">Info</span><br /><br />
+					<code>&lt;span class="bgLightBlue rounds ps blank bord vm"&gt;Info&lt;/span&gt;</code>
+	       </p>
+	     </fieldset>
+	      
+			<fieldset id="CheckBox">
+				<legend>垂直多选框组 Vertical checkbox group</legend>
+				<ul id="j_group_1">
+				</ul>
+			</fieldset> 
+
+			<fieldset id="collapsibles">
+				<legend>基本可折叠组件 Basic collapsibles</legend>
+				<div class='c_collaps'>
+					<div class="c_colpsTile"></div>
+					<div class='c_colpsDet'></div>
+				</div>
+			</fieldset>
+			<fieldset id="swipe">
+				<legend>Basic swipe</legend>
+				<div class='c_touch'></div>
+			</fieldset>
+		</div>
    
     <footer class="footer socialFooter c borderTop">
-      <p class="bottom pt pb">Copyright 2010-2013 Web Development Machine All rights reserved.</p>
+      <p class="bottom pt pb">Copyright 2010-2014 Web Development Machine All rights reserved.</p>
     </footer> 
     </div>
   </div>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/jquery.slider.js"></script>
+<script type="text/javascript" src="js/checkbox.js"></script>
+<script type="text/javascript" src="js/jquery.group.js"></script>
+<script type="text/javascript" src="js/collapsibles.js"></script>
+<script type="text/javascript" src="js/swipe.js"></script>
 <script type="text/javascript">
+//创建loading弹出框效果
 var lo = util.loading({loadingClass:'bglg'});
-lo.setContent('hdsjf hdsfkds hfkjdhffkjsdhfkds f dsfkhj sfdsfds dsf');
+lo.setContent('the content is loading...');
 $(".loader-show").on("click",function(){
  lo.show();
 });
 $(".loader-hide").on("click",function(){
  lo.hide();
 });
+//创建滑动条
+var arr1 = [{name:0,val:0},{name:30,val:4},{name:60,val:8},{name:90,val:11.9},
+            {name:100,val:13},{name:150,val:19.1},{name:200,val:25},{name:250,val:30.7},{name:300,val:36.2},{name:350,val:41.4},
+            {name:400,val:46.5},{name:500,val:57},{name:600,val:67.1},{name:700,val:76.9},{name:800,val:86.2},{name:900,val:95.2},
+            {name:1000,val:103.8},{name:1200,val:124.3},{name:1500,val:152.8},{name:2000,val:200}];
+var slider = new slider({
+    barHandler:".j_sliderbar",
+    btnHandler:".j_sliderbtn1",
+    outputHandler:"#slider-1",
+    bgbarHandler:".j_sliderbg1",
+    bgbarStyle:{"background-color":"#ffb17d"},
+    bgbarHandler2:".j_sliderbg2",
+    bgbarStyle2:{"background-color":"#fc7c26"},
+    max:200,
+    min:10,
+    divs:0,
+    data: arr1,
+    initValue:121,
+    prevValue: 500,
+    before: function(){
+    	var d = slider.getData();
+    	var i = util.binarySearch(d,slider.initValue);
+    	slider.setMin((i+1)*10);
+    	if(slider.prevValue > slider.initValue){
+    		var j = util.binarySearch(d,slider.prevValue);
+      		slider.setValue((j+1)*10);
+    	}else{
+    		slider.setValue((i+1)*10);
+    	}
+    },
+    startCallback: function(){
+    	//slider.output.show();
+    },
+    endCallback: function(){
+    	//slider.output.hide();
+    }
+});
+slider.init();
+
+//创建checkbox对象
+var box = new $.checkBox({
+    callback: function () {
+        $("#j_group_1").find(".c_box").on('click', function () {
+            var _this = $(this), Ok_icon = _this.find(".icon-ok"), checkedObj = _this.find(':checkbox');
+            Ok_icon.toggleClass("vf").parent().toggleClass("gb");
+            if (checkedObj.attr('checked') == undefined) {
+                checkedObj.attr('checked', true);
+            } else {
+                checkedObj.attr('checked', false);
+            }
+        });
+    }
+});
+//创建group对象
+var g = new $.group({
+    groupSelector: "#j_group_1",
+    align: 'vertical',
+    icon: false,
+    childObj: [box]
+});
+
+//创建可折叠组件
+var grop=new $.group({
+	groupSelector : ".c_colpsDet",
+	align:'vertical',
+	icon : true,
+	groupClass:'',
+	childObj:['botton','text','wrong']
+});
+var colls=new $.collapsible();
+
+//创建滑动广告头部
+var o = new $.swipe({autorun:true});
 </script>
 </body>
 </html>

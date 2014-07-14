@@ -24,8 +24,9 @@
 	    data:[],//数据对应的数组
 	    initValue:0,//初始实际值
 	    prevValue: 0,//之前实际值
-	    before:function(){},
-	    callback:function(){}
+	    before:function(){},//对象执行之前的执行函数
+	    startCallback:function(){},//事件执行之前的回调
+	    endCallback:function(){}//事件执行之后的回调
 	  }, this.obj || {});
 	  this.bar = $(this.barHandler),this.btn = $(this.btnHandler),
 	  this.output= $(this.outputHandler),
@@ -153,7 +154,8 @@
 			var t = this;
 			var v = t.getValue();
 			t.output.css({"left":t.transValuetoWidth(t.getValue())-27+"px"});
-			if(t.data.length>0){
+			if(t.data.length>0 && t.divs>0){
+				t.output.val(v);
 				t.output.find(".j_slidervalue").text(t.data[v/10-1].name);
 			}else{
 				t.output.val(v);
@@ -194,7 +196,7 @@
 						me.tempY=_this.offset().top;
 						me.x=e.clientX || e.touches[0].pageX;
 						me.y=e.clientY || e.touches[0].pageX;
-						me.output.show();
+						me.startCallback();
 					},function(e){
 						e.preventDefault();
 						var _this = $(this);
@@ -221,8 +223,7 @@
 						e.preventDefault();
 						var _this = $(this);
 						me.drag = false;
-						me.output.hide();
-						me.callback();
+						me.endCallback();
 					}
 				);
 			}else{
@@ -234,7 +235,7 @@
 					me.tempY=_this.offset().top;
 					me.x=e.clientX || e.touches[0].pageX;
 					me.y=e.clientY || e.touches[0].pageX;
-					me.output.show();
+					me.endCallback();
 				});
 				$(doc).on("mousemove",function(e){
 					var _this = $(this);
@@ -261,8 +262,7 @@
 				$(doc).on("mouseup",function(e){
 					var _this = $(this);
 					me.drag = false;
-					me.output.hide();
-					me.callback();
+					me.endCallback();
 				});
 			}
 		}
