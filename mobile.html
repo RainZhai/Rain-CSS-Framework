@@ -185,6 +185,43 @@
 				<legend>Basic swipe</legend>
 				<div class='c_touch'></div>
 			</fieldset>
+			
+	        <fieldset id="slidebox">
+	            <legend>slide</legend>
+	            <div id="slide" class="slide b oh posr">
+	            <div class="slidemain oh mlrauto">
+	              <ul class="slidewrap lsn nop nom clearfix">
+	                <li class="l fl">
+	                    <a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure1.jpg" alt="1111"></a>
+	                    <span class="ms block tac oh wwn toe">1111</span>
+	                    <p>3点32个赞</p>
+	                </li>
+	                 <li class="l fl">
+	                    <a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure2.jpg" alt="1111"></a>
+	                    <span class="ms block tac oh wwn toe">2222</span>
+	                    <p>3点32个赞</p>
+	                </li>
+	                <li class="l fl">
+	                    <a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure3.jpg" alt="1111"></a>
+	                    <span class="ms block tac oh wwn toe">3333</span>
+	                    <p>3点32个赞</p>
+	                </li>
+	                <li class="l fl">
+	                    <a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure4.jpg" alt="1111"></a>
+	                    <span class="ms block tac oh wwn toe">4444</span>
+	                    <p>3点32个赞</p>
+	                </li>
+	                <li class="l fl">
+	                    <a class="block ps tac" href="javascript:;"><img class="fullw b round-5" src="images/figure5.jpg" alt="1111"></a>
+	                    <span class="ms block tac oh wwn toe">5555</span>
+	                    <p>3点32个赞</p>
+	                </li>
+	                </ul>
+	            </div>
+	            <a id="btnLeft" class="black posa b" href="javascript:;"></a>
+	            <a id="btnRight" class="black posa b" href="javascript:;"></a>
+	            </div>
+            </fieldset>
 		</div>
    
     <footer class="footer socialFooter c borderTop">
@@ -199,6 +236,7 @@
 <script type="text/javascript" src="js/jquery.group.js"></script>
 <script type="text/javascript" src="js/collapsibles.js"></script>
 <script type="text/javascript" src="js/swipe.js"></script>
+<script type="text/javascript" src="js/slide.js"></script>
 <script type="text/javascript">
 //创建loading弹出框效果
 var lo = util.loading({loadingClass:'bglg'});
@@ -282,6 +320,25 @@ var colls=new $.collapsible();
 
 //创建滑动广告头部
 var o = new $.swipe({autorun:true});
+//创建slide
+var slide = new $.slide({
+     selector: '#slide',  //滑动的块 
+     src: [],
+     alt:[],  
+     text: [], 
+     fix: false,  //是否固定大小
+     width: 320, //宽
+     height: 195, //高
+     images: 3,  //展示图片的格式
+     slides: 1,  //每次滑动图片个数
+     length: 40, //触屏最小滑动长度
+     control: true, //是有控制按钮
+     controlwidth:200,
+     loop: true, //是否是无缝轮播
+     auto: false, //自动轮播
+     speed: 800, //滑动速度
+     delay: 5000 //滚动间隔
+});
 </script>
 </body>
 </html>
