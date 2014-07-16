@@ -18,17 +18,11 @@
 	min-height: 100%;
 	max-height: none;
 	z-index:9999;
-}
-.spn,.ui-panel-display {
-	-moz-box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.15); /* FF3.5+ */
-	-webkit-box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.25);
-	/* Saf3.0+, Chrome */
-	box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9.0 */
-}
+} 
 </style>
 </head>
-<body class="body" id="body">
-	<div class="bglBk white  posa ui-panel spn paddingL c-Panlover hide">
+<body class="body oh" id="body">
+	<div class="bglBk white  posa ui-panel so paddingL c-Panlover hide">
 		<div class="paddingL">
 			<h3>Left Panel: Overlay</h3>
 			<p>This panel is positioned on the left with the overlay display
@@ -42,7 +36,7 @@
 		</div>
 	</div>
 
-	<div class="bglBk white  posa ui-panel spn  c-Panrevl hide">
+	<div class="bglBk white  posa ui-panel so c-Panrevl hide">
 		<div class="paddingL">
 			<h3>Left Panel: Overlay</h3>
 			<p>This panel is positioned on the left with the overlay display
@@ -115,8 +109,8 @@
 			var $pentips = $(o.peltipSelector), //点击出现panel的小tip按钮。
 			$BtnClose = $(o.btnclsSelector), //Button效果的关闭按钮
 			$Panels = $(o.panelSelector), //panel的选择器。
-			$Content=$(o.contenSelector)//除panel之外的内容
-			_panels = o.panelSelector.substring(1);
+			$Content=$(o.contenSelector),//除panel之外的内容
+			_panels = o.panelSelector.substring(1),
 			_event = o.event;
 			/* 
 			*点击出现panel
@@ -139,7 +133,7 @@
 			*点击关闭按钮关闭panel
 			*/
 			$BtnClose.on(_event, function() {
-				$(this).parents(panelSelector).addClass("hide");
+				$(this).parents(o.panelSelector).addClass("hide");
 			})
 			/* 
 			*点击任何除啦panel之外的地方关闭panel
