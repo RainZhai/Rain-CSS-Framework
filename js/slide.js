@@ -29,7 +29,7 @@ window.slide = $.slide = function (opt) {
   var _selector = $(opts.selector);
   var src = opts.src, alt = opts.alt, text = opts.text;
   var s = src.length||_selector.find('ul').find('li').size();    //需要展示图片张数
-  var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;    //slides每次滑动图片张数，images每次展示的图片张数，ms需要复制的图片张数。
+  var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;//slides每次滑动图片张数，images每次展示的图片张数，ms需要复制的图片张数。
   var i = 0, starX = 0;//i标记图片位置，straX标记触屏初始点
   var timer;  //计时器
   var finish = false;  //标记图片是否全部加载
@@ -60,17 +60,21 @@ window.slide = $.slide = function (opt) {
 	          log($(opts.selector).width());
           	o.setWidth($(opts.selector).width());
 	        }
-          _selector.find('#btnLeft').width(opts.controlwidth/2-10).height(200).css({left:0,top:10});
-          _selector.find('#btnRight').width(opts.controlwidth/2-10).height(200).css({right:0,top:10});
           //判断是否需要复制节点
-          if (opts.loop) {
+          if (opts.loop) { 
               //复制节点
               _wrap.find('li').slice(0, ms).clone(true).appendTo(_wrap);
               _wrap.find('li').slice(s - ms, s).clone(true).prependTo(_wrap);
           } else {
               ms = 0;
           }
-	        if(opts.control){ _selector.find('.slidemain').width(o.getWidth()-opts.controlwidth);}
+	        if(opts.control){
+		        _selector.find('.slidemain').width(o.getWidth()-opts.controlwidth);
+	          _selector.find('#btnLeft').width(opts.controlwidth/2-10).height(200).css({left:0,top:10});
+	          _selector.find('#btnRight').width(opts.controlwidth/2-10).height(200).css({right:0,top:10});
+	        }else{
+	        	_selector.find('.slidemain').width(o.getWidth());
+	        }
           //更改ul位置
           _wrap.css({"marginLeft": -ms * o.getItemWidth(),"width":"9999px"}).find('li').each(function () {
               $(this).width(o.getItemWidth());
