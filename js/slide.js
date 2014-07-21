@@ -20,11 +20,12 @@ window.slide = $.slide = function (opt) {
 		slides: 1,  //每次滑动图片个数
 		length: 40, //触屏最小滑动长度
 		control: true, //是有控制按钮
-		controlwidth:200,
+		controlwidth:100,//控制区用于放置按钮的宽
 		loop: true, //是否是无缝轮播
 		auto: false, //自动轮播
 		speed: 800, //滑动速度
-		delay: 5000 //滚动间隔
+		delay: 5000, //滚动间隔
+		before:function(){}
   }, {}, opt);
   var _selector = $(opts.selector);
   var src = opts.src, alt = opts.alt, text = opts.text;
@@ -36,6 +37,9 @@ window.slide = $.slide = function (opt) {
   var _wrap = _selector.find('.slidewrap');
   var o = {
   		mainwidth: 0,
+			getBox: function(){
+				return _selector;
+			},
       //初始化UI
       initUI: function () {
           if(src.length){
@@ -70,13 +74,13 @@ window.slide = $.slide = function (opt) {
           }
 	        if(opts.control){
 		        _selector.find('.slidemain').width(o.getWidth()-opts.controlwidth);
-	          _selector.find('#btnLeft').width(opts.controlwidth/2-10).height(200).css({left:0,top:10});
-	          _selector.find('#btnRight').width(opts.controlwidth/2-10).height(200).css({right:0,top:10});
+	          _selector.find('#btnLeft').css(opts.btnLeftStyle);
+	          _selector.find('#btnRight').css(opts.btnRightStyle);
 	        }else{
 	        	_selector.find('.slidemain').width(o.getWidth());
 	        }
           //更改ul位置
-          _wrap.css({"marginLeft": -ms * o.getItemWidth(),"width":"9999px"}).find('li').each(function () {
+          _wrap.css({"marginLeft": -ms * o.getItemWidth(),"width":"99999px"}).find('li').each(function () {
               $(this).width(o.getItemWidth());
           });
       },
@@ -189,17 +193,20 @@ window.slide = $.slide = function (opt) {
       },
       //touchStar事件
       touchStar: function (event) {
+					//event.preventDefault();
           o.endLoop();
           starX = parseInt(event.touches[0].clientX, 10);
       },
       //touchMove事件
       touchMove: function (event) {
-          o.endLoop();
+				event.preventDefault();
+				o.endLoop();
       },
       // touchEnd事件
       touchEnd: function (event) {
           var endX = parseInt(event.changedTouches[0].clientX, 10);
           var d = parseInt((endX - starX), 10);
+					event.preventDefault();
           if (d < -opts.length) {
               o.leftMove();
           } else if (d > opts.length) {
@@ -220,26 +227,28 @@ window.slide = $.slide = function (opt) {
           }
       },
       //绑定触屏事件
-      bindTouchEvent: function () {
+      bindEvent: function () {
+				if (util.supportTouch) {
           _selector[0].addEventListener("touchstart", o.touchStar, false);
           _selector[0].addEventListener("touchend", o.touchEnd, false);
           _selector[0].addEventListener("touchmove", o.touchMove, false);
+         _selector.find('#btnLeft')[0].addEventListener("touchstart", o.rightMove, false);
+         _selector.find('#btnRight')[0].addEventListener("touchstart", o.leftMove, false);
+				}else{
+         _selector.find('#btnLeft').on('click', o.rightMove);
+         _selector.find('#btnRight').on('click', o.leftMove);
+				}
       },
       bindCommonEvent: function () {
-          _selector.find('#btnLeft').on('click', o.leftMove);
-         _selector.find('#btnRight').on('click', o.rightMove);
       },
       //初始化
       init: function () {
+					opts.before();
           o.initUI();
           //加载初次展示的图片，如果dom的初始就为src可以删去。
           //o.lazyLoad('right', 0, images);
-          o.startLoop();
-          //判断是否支持触屏事件。
-            if (util.supportTouch) {
-                o.bindTouchEvent();
-            }
-            o.bindCommonEvent();
+          o.startLoop(); 
+          o.bindEvent();
         }
     };
     o.init();
