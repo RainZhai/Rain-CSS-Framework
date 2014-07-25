@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<title>d3</title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="../js/jquery-1.7.2.js"></script>
+<script src="../js/util.js"></script>
+<style type="text/css">  
+.axis path,  
+.axis line {  
+    fill: none;  
+    stroke: black;  
+    shape-rendering: crispEdges;  
+}  
+.axis text {  
+    font-family: sans-serif;  
+    font-size: 11px;  
+}  
+</style> 
+ </head>
+ <body>
+ <svg id="test2">
+ 
+ </svg><br/>
+		<script type="text/javascript">
+	 	var w = 500;
+	 	var h = 300;
+	 	var barPadding = 1;
+	 	 
+	 	var dataset = [
+         	[5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
+         	[410, 12], [475, 44], [25, 67], [85, 21], [220, 88]
+       	];
+	 	 
+	 	//Create SVG element
+	 	var svg = d3.select("body")
+	 	.append("svg")
+	 	.attr("width", w)
+	 	.attr("height", h);
+	 	 
+	 	svg.selectAll("rect")
+	 	.data(dataset)
+	 	.enter()
+	 	.append("circle")
+	 	.attr("cx", function(d) {
+	 	 	return d[0]+60;
+	 	 })
+	 	.attr("cy", function(d) {
+			return d[1];
+		}).attr("r", function(d) {
+		 	return Math.sqrt(h - d[1]);
+	 	}).attr("fill", function(d) {
+	 	 	return "rgb("+ util.getRandomNum(0,255) +", " + util.getRandomNum(0,255) + ", " + util.getRandomNum(0,255) + ")";
+	 	});
+	 	
+	 	svg.selectAll("text")
+	 	.data(dataset)
+	 	.enter()
+	 	.append("text")
+	 	.text(function(d) {
+	 		return d[0] + "," + d[1];
+	 	})
+	 	.attr("x", function(d) {
+	 	 	return d[0]+60;
+	 	})
+	 	.attr("y", function(d) {
+	 	return d[1];
+	 	})
+	 	.attr("font-size", "10px")
+	 	.attr("fill", "#666");
+	 	//设置缩放
+	 	//设置x轴缩放
+		var xScale = d3.scale.linear()
+		            .domain([0, d3.max(dataset, function(d) { return d[0]; })])
+		            .range([0, w]);
+	 	//设置y轴缩放
+		var yScale = d3.scale.linear()
+	    .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+	    .range([0, h]);
+	 	//半径的缩放
+		var rScale = d3.scale.linear()
+	    .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+	    .range([5, 10]);
+		//设置刻度的格式
+		var formatAsPercentage = d3.format(".1%");
+		
+		/** 设置缩放的效果 */
+	 	var svg2 = d3.select("#test2")
+	 	.attr("width", w)
+	 	.attr("height", h);
+	 	
+	 	svg2.selectAll("rect")
+	 	.data(dataset)
+	 	.enter()
+	 	.append("circle")
+	 	.attr("cx", function(d) {
+	 	 	return xScale(d[0]);
+	 	 })
+	 	.attr("cy", function(d) {
+	 		return yScale(d[1]);
+		}).attr("r", function(d) {
+			return rScale(d[1]);
+	 	}).attr("fill", function(d) {
+	 	 	return "rgb("+ util.getRandomNum(0,255) +", " + util.getRandomNum(0,255) + ", " + util.getRandomNum(0,255) + ")";
+	 	});
+	 	
+	 	svg2.selectAll("text")
+	 	.data(dataset)
+	 	.enter()
+	 	.append("text")
+	 	.text(function(d) {
+	 		return d[0] + "," + d[1];
+	 	})
+	 	.attr("x", function(d) {
+	 		return xScale(d[0]);
+	 	})
+	 	.attr("y", function(d) {
+	 		return yScale(d[1]);
+	 	})
+	 	.attr("font-size", "10px")
+	 	.attr("fill", "#666");
+	 	
+	// x轴 Define X axis  
+    var xAxis = d3.svg.axis()  
+                      .scale(xScale)
+                      .ticks(5)//最多刻度数，连上原点  
+                      .orient("bottom")  
+                      .tickFormat(formatAsPercentage);//添加刻度格式  
+    // y轴  Define Y axis  
+    var yAxis = d3.svg.axis()  
+                      .scale(yScale)  
+                      .orient("left")  
+                      .ticks(5)  
+                      .tickFormat(formatAsPercentage);  
+    //Create X axis  
+    svg.append("g")  
+        .attr("class", "axis")  
+        .attr("transform", "translate(0," + (h-20) + ")")//设置据下边界的距离  
+        .call(xAxis);  
+    //Create Y axis  
+    svg.append("g")  
+        .attr("class", "axis")  
+        .attr("transform", "translate(50,5)")//设置轴据左边界的距离  
+        .call(yAxis);
+		</script>
+
+	</body>
+</html>
