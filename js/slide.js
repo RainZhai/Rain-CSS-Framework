@@ -10,9 +10,6 @@ window.slide = $.slide = function (opt) {
 		src: [],//图片的src
 		alt: [],//图片的alt
 		text: [],//图片的text
-		src: [],   
-		alt: [],  
-		text: [], 
 		fix: false,  //是否固定大小
 		width: 320, //宽
 		height: 195, //高

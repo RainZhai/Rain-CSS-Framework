@@ -28,18 +28,19 @@
 	    startCallback:function(){},//事件执行之前的回调
 	    endCallback:function(){}//事件执行之后的回调
 	  }, this.obj || {});
-	  this.bar = $(this.barHandler),this.btn = $(this.btnHandler),
-	  this.output= $(this.outputHandler),
-	  this.bgbar = $(this.bgbarHandler),
-	  this.bgbar2 = $(this.bgbarHandler2),
-	  this.drag=false,
-	  this.value = 0,
-	  this.x = 0,
-	  this.y = 0,
-	  this.leftValue = 0,
-	  this.tempX = 0,
-	  this.tempY = 0,
-	  this.currentX = 0,
+	  this.bar = $(this.barHandler);
+	  this.btn = $(this.btnHandler);
+	  this.output= $(this.outputHandler);
+	  this.bgbar = $(this.bgbarHandler);
+	  this.bgbar2 = $(this.bgbarHandler2);
+	  this.drag=false;
+	  this.value = 0;
+	  this.x = 0;
+	  this.y = 0;
+	  this.leftValue = 0;
+	  this.tempX = 0;
+	  this.tempY = 0;
+	  this.currentX = 0;
 	  this.currentY = 0;
 	  var o = this;
 	  return o;
@@ -93,10 +94,11 @@
 		/** 初始化进度条*/
 		initProcess: function(){
 			var t = this;
+			var w = 0;
 			if(t.divs<1){
 				if(t.getMin()>1){
 					t.setValue(t.getMin());
-					var w = t.transValuetoWidth(t.getValue());
+					w = t.transValuetoWidth(t.getValue());
 					t.btn.css({"left":w+"px"});
 				}
 			}else{
@@ -117,7 +119,7 @@
 							}
 						}
 					}
-					var w = t.transValuetoWidth(t.getValue());
+					w = t.transValuetoWidth(t.getValue());
 					t.btn.css({"left":w+"px"});
 				}
 			}
@@ -233,19 +235,15 @@
 					me.leftValue = _this.position().left;
 					me.tempX=_this.offset().left;
 					me.tempY=_this.offset().top;
-					me.x=e.clientX || e.touches[0].pageX;
-					me.y=e.clientY || e.touches[0].pageX;
+					me.x=e.clientX;
+					me.y=e.clientY;
 					me.endCallback();
 				});
 				$(doc).on("mousemove",function(e){
 					var _this = $(this);
 					var w = me.bar.width();
-					if(e.clientX){
-						me.currentX = me.leftValue + e.clientX-me.x;
-					}else{
-						me.currentX = me.leftValue + e.touches[0].pageX-me.x;
-					}
-					me.currentY = e.clientY || e.touches[0].pageY;
+					me.currentX = me.leftValue + e.clientX-me.x;
+					me.currentY = e.clientY;
 					if(me.currentY<me.tempY-20 || me.currentY>me.tempY+20){ me.drag = false; return;}
 					if(me.drag){
 						if (me.currentX < me.transValuetoWidth(me.getMin())){

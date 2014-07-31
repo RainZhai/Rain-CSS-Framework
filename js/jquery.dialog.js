@@ -181,7 +181,7 @@
        *  @param {function} 回调函数
        */
       "_show":function(callback) {
-          if ($("body").find("." + this.dialogHandleClass).length == 0) {
+          if ($("body").find("." + this.dialogHandleClass).length === 0) {
             $("body").append(this.getHtml().removeClass('vf'));
           } else {
             if (typeof callback === "function") { $("." + this.dialogHandleClass).removeClass('vf');
@@ -286,13 +286,13 @@
           }
           this.jqbtns = [];
           // 按钮绑定事件
-          for (var i = 0; i < buttonsArray.length; i++) {
-            var btnClass = this.buttonsClass[i] || "";
-            var btnStyle = this.buttonsStyle[i] || {};
-            var btnAttr = this.buttonsAttr[i] || {};
-            var buttons = $("<a href='javascript:void(0);' class='c_button ib tdn " + btnClass + "'>" + buttonsArray[i] + "</a>").css(btnStyle).attr(btnAttr);
+          for (var j = 0; j < buttonsArray.length; j++) {
+            var btnClass = this.buttonsClass[j] || "";
+            var btnStyle = this.buttonsStyle[j] || {};
+            var btnAttr = this.buttonsAttr[j] || {};
+            var buttons = $("<a href='javascript:void(0);' class='c_button ib tdn " + btnClass + "'>" + buttonsArray[j] + "</a>").css(btnStyle).attr(btnAttr);
             buttons.on("click", {
-              "index":i
+              "index":j
             }, btnsHandler);
             buttonsWrap.append(buttons);
             this.jqbtns.push(buttons);

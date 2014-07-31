@@ -109,8 +109,7 @@
                     if (opt.iconSite) {
                         opt.iconClass += ' iconbtn-' + opt.iconSite;
                     }
-                    var icons = '<span class="micon ib tac posa ' + opt.iconClass + '"><i class="' + opt.iconType
-                        + '"></i></span>';
+                    var icons = '<span class="micon ib tac posa ' + opt.iconClass + '"><i class="' + opt.iconType + '"></i></span>';
                     _item.each(function () {
                         $(this).append($(icons));
                     });

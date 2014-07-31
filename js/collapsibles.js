@@ -17,8 +17,7 @@
 		var mainSelector = $(o.colpeSelector), titleSelector = $(o.titleSelector);
 		var obj = {
 			initHtml : function() {
-				var html = '<a href="javascript:;"class="micon ib gb bluebtn roundall tac c_icon  "> <i class="icon-minus icon-white"></i></a><span>'
-						+ o.titleContent + '</span>';
+				var html = '<a href="javascript:;" class="micon ib gb bluebtn roundall tac c_icon  "> <i class="icon-minus icon-white"></i></a><span>'+ o.titleContent + '</span>';
 				titleSelector.append(html);
 			},
 			initUI : function() {

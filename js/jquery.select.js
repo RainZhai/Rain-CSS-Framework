@@ -238,10 +238,7 @@
                 var d = data, options = '', lis = '';
                 for (var i = 0,l=d.length; i < l; i++) {
                     options += '<option value="' + d[i].value + '">' + d[i].name + '</option>';
-                    lis += '<li state="n" val="' + d[i].value + '" text= "' + d[i].name
-                        + '"><a class="j_listlink" href="javascript:;">'
-                        + iconhtml + d[i].name
-                        + '</a></li>';
+                    lis += '<li state="n" val="' + d[i].value + '" text= "' + d[i].name + '"><a class="j_listlink" href="javascript:;">'+ iconhtml + d[i].name+ '</a></li>';
                 }
                 o.getNativeSelect().append(options);
                 o.addUlobj(lis);
@@ -259,8 +256,7 @@
             },
             /** @method 构建html */
             buildHtml: function () {
-                var _html = '<span class="j_iconwrap"><i class="j_icon"></i></span>'
-                    + '<span class="j_innerbtn ' + opt.innerClass + '"></span>' + '<select></select>';
+                var _html = '<span class="j_iconwrap"><i class="j_icon"></i></span><span class="j_innerbtn ' + opt.innerClass + '"></span>' + '<select></select>';
                 selectobj.append(_html);
                 return o;
             },

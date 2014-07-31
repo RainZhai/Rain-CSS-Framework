@@ -126,7 +126,7 @@
 				 *@param {Object} evt Object对象,事件对象。
 				 */
 				_touchends :  function() {
-					if (dirvalue == 0) {return;}
+					if (dirvalue === 0) {return;}
 					var w = obj.getWidth();
 					if (dirvalue < 0) {
 						i++;

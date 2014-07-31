@@ -45,16 +45,28 @@
     ns.supportOrientation = "orientation" in win;
     ns.supportDeviceMotion = "ondevicemotion" in win;
     ns.supportTouch = "ontouchstart" in win;
-    ns.supportCanvas = document.createElement("canvas").getContext != null;
+    ns.supportCanvas = document.createElement("canvas").getContext !== null;
     ns.cssPrefix = ns.isWebKit ? "webkit" : ns.isFirefox ? "Moz" : ns.isOpera ? "O" : ns.isIE ? "ms" : "";
   };
   detectBrowser(util);
   /* 清除字符串尾部的逗号 */
-  util.clearLastComma =function(str){ return str=str.replace(/,$/,'');};
+  util.clearLastComma =function(str){
+  	str=str.replace(/,$/,'');
+  	return str;
+  };
   /*检查对象属性*/
   util.checkprop = function(propName, obj) { /*obj.hasOwnProperty */return propName in obj; };
   util.queryByTag = function(t){return document.getElementsByTagName(t);};
   util.queryById = function(t){return document.getElementById(t);};
+  /** 获取随机数 */
+  util.getRandomNum =function(min/*number*/,max/*number*/){
+  	if(max>min){
+		  var Range = max - min;   
+		  var Rand = Math.random();   
+		  return(min + Math.round(Rand * Range));
+  	}
+  	return 0;
+  }
   /*增加历史状态*/
   util.pushState = function(obj){
     if (history && util.checkprop('pushState',history)) {
@@ -128,7 +140,7 @@
   * @description 原型继承
   * @method
   * @param {object} object 对象 - 要进行克隆的对象
-  * @example var a = $.freehtml.clone(Person);
+  * @example var a = $.freehtml.clone(Person)
   */
   util.clone = function(object) {
     function F(){};
@@ -195,7 +207,7 @@
 		});
 		var image = new Image();
 		image.src = obj.src;
-		if (canvas == null){return false;}
+		if (canvas === null){return false;}
 		var context = canvas.getContext("2d");
 		context.fillStyle = "#EEEEFF";
 		context.fillRect(0, 0, w, h);
