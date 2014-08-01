@@ -1,0 +1,27 @@
+{
+  "name": "install-grunt",
+  "description": "Example project to demonstrate Grunt.",
+  "version": "0.1.0",
+  "file": "jquery-1.7.2",
+  "private": true,
+  "author": {
+    "name": "zhaiyu"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-browser-sync": "^1.3.0",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-qunit": "*",
+    "grunt-contrib-requirejs": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-strip": "*"
+  },
+  "dependencies": {
+    "express": "*"
+  }
+}

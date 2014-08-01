@@ -1,0 +1,17 @@
+{
+  "requirejs": {
+    "main": {
+      "options": {
+        "baseUrl": "",
+        "paths": {
+          "$": "src/jquery-1.7.2",
+          "d": "src/jquery.dialog"
+        },
+        "web": {
+          "include": ["$","d"],
+          "out": "dest/libsttt.js"
+        }
+      }
+    }
+  }
+}
