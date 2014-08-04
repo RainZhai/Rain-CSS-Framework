@@ -3,18 +3,64 @@
   <head>
 		<meta charset="utf-8">
 		<title>d3</title>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.v3.min.js"></script>
 <script src="../js/jquery-1.7.2.js"></script>
 <script src="../js/util.js"></script>
 <style type="text/css">  
+ /*(1)鼠标悬停时变色*/
+ /*
+ rect:hover{
+ fill :yellow;
+ }*/
+ /*(2)过渡效果*/
+  /*rect{
+ -moz-transiton:all 0.3s;
+ -o-transiton:all 0.3s;
+ -webkit-transition:all 0.3s;
+ transition:all 0.3s
+ }
+ */
+.hide{display: none;}
+#tooltip {
+ position:absolute;
+ width:200px;
+ height:auto;
+ padding:10px;
+ background-color:white;
  
+ -webkit-border-radius:10px;
+ -moz-border-radius:10px;
+ border-radius:10px;
+ 
+ -webkit-box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+ -moz-box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+ box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+
+ pointer-events:none;
+}
+
+#tooltip.hidden{
+ display:none;
+}
+
+#tooltip p{
+ margin:0;
+ font-family:sans-serif;
+ font-size:16px;
+ line-height:20px;
+}
 </style> 
 </head>
 <body> 
 <button>单击更新</button>  
-    <br>  
     <p id="remove">单击删除</p>  
-    <p id="add">单击添加</p> 
+    <p id="add">单击添加</p>
+    <a id="sort" href="#">排序</a>
+    <br>
+<div id="tooltip" class="hide">
+ <p><strong>提示：</strong></p>
+ <p><span id="value">100</span>%</p>
+</div>
 <script type="text/javascript">  
 //键值对数据集  
 var dataset = [   
@@ -61,7 +107,37 @@ var key=function(d){
 //(6)1/2 值函数      
 var value=function(d){  
     return d.value;  
-};  
+};
+var sortOrders=false;
+var sortBars=function(){
+	sortOrders=!sortOrders;//(3)每点击一次排序方向改变 
+	svg.selectAll("rect")  
+	.sort(function(a,b){//对数据集升序排序
+		if(sortOrders){
+	    	return d3.ascending(a.value,b.value);//这个地方注意是键值对所以要加上值的引用b.value
+		}else{
+			return d3.descending(a.value,b.value);//这个地方注意是键值对所以要加上值的引用b.value
+		}
+	})  
+	.transition()  
+	.duration(1000)  
+	.attr("x",function(d,i){//对排序之后的横坐标重排  
+	    return xScale(i);  
+	});  
+	svg.selectAll("text")
+	.sort(function(a,b){//对数据集升序排序  
+		if(sortOrders){
+		   	return d3.ascending(a.value,b.value);//这个地方注意是键值对所以要加上值的引用b.value
+		}else{
+			return d3.descending(a.value,b.value);//这个地方注意是键值对所以要加上值的引用b.value
+		}
+	})  
+	.transition()  
+	.duration(1000)  
+	.attr("x",function(d,i){//对排序之后的横坐标重排  
+	return xScale(i)+xScale.rangeBand()/2; 
+	});  
+}; 
 //Create SVG element  
 var svg = d3.select("body")//选中DOM中的目标元素  
         .append("svg")//为目标元素附加上一个svg子元素  
@@ -85,124 +161,162 @@ svg.selectAll("rect")//选中空元素，表示即将创建这样的元素
             return yScale(d.value);  
     })  
     .attr("fill", function(d) {//设置RGB颜色与数值的关系  
-            return "rgb(0, 0, " + (d.value * 10) + ")";  
-    });  
+            return "rgb(0, " + (d.value * 10) + ", " + (d.value * 10) + ")";  
+    })  
+    //(1)鼠标悬停时变为橘黄色  
+    .on("mouseover",function(){  
+        d3.select(this)  
+        .attr("fill","orange");  
+    })  
+    //(2)鼠标离开时恢复，利用之前学习的动画慢慢过渡  
+    .on("mouseout",function(d){  
+        d3.select(this) 
+        .transition()  
+        .duration(500)  
+        .attr("fill","rgb(0," + (d.value * 10) + ","+(d.value*10)+")");  
+    })
+/*     //(3)更新提示条的值和位置  
+    .on("mouseover",function(d){  
+    	//取得提示显示的位置  
+        var xPosition=parseFloat(d3.select(this).attr("x"))+xScale.rangeBand()/2;
+        var yPosition=parseFloat(d3.select(this).attr("y"))/2+h/2;
+        d3.select("#tooltip").classed("hide",false);
+        d3.select("#tooltip")
+        .style("left",xPosition+"px")
+        .style("top",yPosition+"px")
+        .select("#value")
+        .text(d.value);  
+    })  
+    //移除提示条   
+    .on("mouseout",function(){  
+        //(4)添加隐藏类  
+        d3.select("#tooltip").classed("hide",true);//ID 选择的语法："#tooltip"  
+    });  */ 
 //为条加上数值  
 svg.selectAll("text")  
-               .data(dataset,key)  
-               .enter()  
-               .append("text")  
-               .text(function(d) {  
-                    return d.value;  
-               })  
-               .attr("text-anchor", "middle")  
-               .attr("x", function(d, i) {  
-                    return xScale(i)+xScale.rangeBand()/2;  
-               })  
-               .attr("y", function(d) {  
-                    return h - yScale(d.value) + 14;  
-               })  
-               .attr("font-family", "sans-serif")  
-               .attr("font-size",function(d) {  
-                     return xScale.rangeBand()/2;  
-               })  
-               .attr("fill", "white");  
-//删除一条、添加一条  
-d3.select("p")  
-.on("click",function(){  
-//(1)根据ID确定点击的是哪个标签  
-var paragraphID=d3.select(this).attr("id") ;   
-console.log(paragraphID);  
-//(2)添加删除组合起来  
-if(paragraphID=="add"){  
-    //数据集最后添加数值  
-var maxValue=75;  
-var newNumber =Math.floor(Math.random()*maxValue);//0-24的整数  
-//(3)根据最后一个key添加一个值  
-var lastKeyValue=dataset[dataset.length-1].key;   
-    dataset.push({  
-        key:lastKeyValue+1,  
-        value:newNumber  
-    });  
-//更新X轴比例尺  
-xScale.domain(d3.range(dataset.length));  
-//选择所有条  
-var bars=svg.selectAll("rect")  
-.data(dataset,key); //绑定数据到元素集，返回更新的元素集  
-  
-var texts=svg.selectAll("text")  
-.data(dataset,key);  
-//添加条形元素到最右边  
-bars.enter()  
-.append("rect")  
-.attr("x",w);//在SVG最右边，不可见  
-//  
-texts.enter()  
-.append("text");  
-        
-//更新新矩形到可见范围内  
-//并在这个时候根据数据集为每个条设置对应的属性  
-bars.transition()  
-.duration(500)  
-.attr("x", function(d, i) {  
-     return xScale(i) ;  
- })//每个X对应到它相应的档位上  
-.attr("y", function(d) {  
-     return h - yScale(d.value) ;  
- })   
-.attr("width", xScale.rangeBand())//这里xScale比例尺已经设置间距了所以直接用  
-.attr("height", function(d) {  
-            return yScale(d.value);  
-    })  
-.attr("fill", function(d) {//设置RGB颜色与数值的关系  
-            return "rgb(0, 0, " + (d.value * 10) + ")";  
-    });  
-    //  
-texts.transition()  
-.duration(500)  
+.data(dataset,key)  
+.enter()  
+.append("text")  
 .text(function(d) {  
-                    return d.value;  
-               })  
-               .attr("text-anchor", "middle")  
-               .attr("x", function(d, i) {  
-                    return xScale(i)+xScale.rangeBand()/2;  
-               })  
-               .attr("y", function(d) {  
-                    return h - yScale(d.value) + 14;  
-               })  
-               .attr("font-family", "sans-serif")  
-               .attr("font-size", "12px")  
-               .attr("fill", "red");  
-}else if(paragraphID=="remove"){  
-  
-//(4)删除的操作  
-//选择所有条  
-dataset.shift();  
-//更新X轴比例尺  
-xScale.domain(d3.range(dataset.length));  
-  
-var bars=svg.selectAll("rect")  
-.data(dataset,key);   
-//从左侧退出  
-bars.exit()  
-.transition()  
-.duration(500)  
-.attr("x", -xScale.rangeBand())//w-xScale.rangeBand()间隙宽其实其他负数也行  
-.remove();  
-}  
-  
-});  
+     return d.value;  
+})  
+.attr("text-anchor", "middle")  
+.attr("x", function(d, i) {  
+     return xScale(i)+xScale.rangeBand()/2;  
+})  
+.attr("y", function(d) {  
+     return h - yScale(d.value) + 14;  
+})  
+.attr("font-family", "sans-serif")  
+.attr("font-size",function(d) {  
+      return xScale.rangeBand()/2;  
+})  
+.attr("fill", "white");
+
+d3.select("#sort").on("click",function(){
+    sortBars();
+});
+//删除一条、添加一条  
+d3.select("#add").on("click",function(){
+	//数据集最后添加数值  
+	var maxValue=25;  
+	var newNumber =Math.floor(Math.random()*maxValue+1);//0-24的整数  
+	//(3)根据最后一个key添加一个值  
+	var lastKeyValue=dataset[dataset.length-1].key;   
+	    dataset.push({  
+	        key:lastKeyValue+1,  
+	        value:newNumber  
+	    });  
+	//更新X轴比例尺  
+	xScale.domain(d3.range(dataset.length));  
+	//选择所有条  
+	var bars=svg.selectAll("rect")  
+	.data(dataset,key); //绑定数据到元素集，返回更新的元素集  
+	  
+	var texts=svg.selectAll("text")  
+	.data(dataset,key);  
+	//添加条形元素到最右边  
+	bars.enter()  
+	.append("rect")  
+	.attr("x",w)  
+	//(1)鼠标悬停时变为橘黄色  
+	.on("mouseover",function(){  
+	    d3.select(this)  
+	    .attr("fill","orange");  
+	})  
+	//(2)鼠标离开时恢复，利用之前学习的动画慢慢过渡  
+	.on("mouseout",function(d){  
+	    d3.select(this) 
+	    .transition()  
+	    .duration(500)  
+	    .attr("fill","rgb(0," + (d.value * 10) + ","+(d.value*10)+")");  
+	});
+	texts.enter()  
+	.append("text");  
+	        
+	//更新新矩形到可见范围内  
+	//并在这个时候根据数据集为每个条设置对应的属性  
+	bars.transition()  
+	.duration(500)  
+	.attr("x", function(d, i) {  
+	     return xScale(i) ;  
+	 })//每个X对应到它相应的档位上  
+	.attr("y", function(d) {  
+	     return h - yScale(d.value) ;  
+	 })   
+	.attr("width", xScale.rangeBand())//这里xScale比例尺已经设置间距了所以直接用  
+	.attr("height", function(d) {  
+    	return yScale(d.value);  
+    })  
+	.attr("fill", function(d) {//设置RGB颜色与数值的关系  
+    	return "rgb(0, " + (d.value * 10) + ", " + (d.value * 10) + ")";  
+    });
+	    //  
+	texts.transition()  
+	.duration(500)  
+	.text(function(d) {  
+		return d.value;  
+    })  
+    .attr("text-anchor", "middle")  
+    .attr("x", function(d, i) {  
+         return xScale(i)+xScale.rangeBand()/2;  
+    })  
+    .attr("y", function(d) {  
+         return h - yScale(d.value) + 14;  
+    })  
+    .attr("font-family", "sans-serif")  
+    .attr("font-size", "12px")  
+    .attr("fill", "red");  
+});
+
+d3.select("#remove").on("click",function(){
+	//(4)删除的操作  
+	//选择所有条  
+	dataset.shift();  
+	//更新X轴比例尺  
+	xScale.domain(d3.range(dataset.length));  
+	  
+	var bars=svg.selectAll("rect").data(dataset,key);   
+	//从左侧退出 
+	//w-xScale.rangeBand()间隙宽其实其他负数也行
+	bars.exit().transition().duration(500).attr("x", -xScale.rangeBand()).remove();
+	  
+	var texts=svg.selectAll("text").data(dataset,key);   
+	//从左侧退出 
+	//w-xScale.rangeBand()间隙宽其实其他负数也行
+	texts.exit().transition().duration(500).attr("x", -xScale.rangeBand()).remove();
+});
+
 // 更新条形数长短的代码,需要一个button标签配合  
 //特别注意：这里选中的元素必须在d3选择器之前，或许要先加载完了元素才能被选中  
-d3.select("button")  
-.on("click",function(){  
+d3.select("button").on("click",function(){  
 // 新数据集,随机数组  
 var numValues=dataset.length;  
 dataset=[];  
-var maxValue=75;  
+var maxValue=25;
 var newNumber;  
 for(var i=0;i<numValues;i++){  
-    newNumber=Math.floor(Math.random()*maxValue);//0-24的整数  
+    newNumber=Math.floor(Math.random()*maxValue+1);//0-24的整数  
     //(5)根据i添加一个值  
     dataset.push({  
         key:i,  
