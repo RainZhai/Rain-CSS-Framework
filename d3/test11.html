@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta content="telephone=no" name="format-detection" />
+<title>test11</title> 
+<style type="text/css">  
+body{font-size:12px;}
+polyline{ 
+ fill: none;
+} 
+</style> 
+</head>
+<body class="body w320px bg37">
+    <div class="pie-chart posr" id="pie-chart">
+    	<div id="paywrap" class="pay-wrap posa">
+    		<p>本月支出</p>
+    		<p>
+    			<span id="payval" class="cf fs30">00</span>
+    			<span>元</span>
+    		</p>
+    	</div>
+    </div> 
+<script src="d3.v3.min.js"></script>
+<script src="../js/jquery-1.7.2.js"></script>
+<script src="../js/util.js"></script>  
+<script src="main.js"></script>  
+<script type="text/javascript">
+mobile.showPay = function() {
+	$("#paywrap").fadeIn(3000, function() {
+/* 		$("#payval").numAnimate({
+			startNum: 0,
+			endNum: 140
+		}, 1000); */
+		var used = {
+			item0: {name:"流量",use:50,cost:120,sign:" M"},
+			item1: {name:"短信",use:555,cost:10,sign:" 条"},
+			item2: {name:"通话",use:10,cost:10,sign:" 分钟"}
+		}
+		var costsum = used.item0.use + used.item1.use + used.item2.use; 
+		var d1 = 360 * used.item0.use / costsum;
+		var d2 = 360 * used.item1.use / costsum;
+		var d3 = 360 * used.item2.use / costsum;
+		if(costsum===0){
+			d1 = d2 = d3 = 120;
+		}
+		log(d1,d2,d3);
+		mobile.showPie( [{
+			type: used.item0.name,
+			use: used.item0.use + used.item0.sign,
+			cost: used.item0.cost,
+			id: "arc-1",
+			radius: 42,
+			innerRadius: 50,
+			fill: "#ef2a79",
+			angularSize: d1,
+			startAngle: 0
+		}, {
+			type: used.item1.name,
+			use: used.item1.use + used.item1.sign,
+			cost: used.item1.cost,
+			id: "arc-2",
+			radius: 29,
+			innerRadius: 57,
+			fill: "#f8b13d",
+			angularSize: d2,
+			startAngle: d1
+		}, {
+			type: used.item2.name,
+			use: used.item2.use + used.item2.sign,
+			cost: used.item2.cost,
+			id: "arc-3",
+			radius: 23,
+			innerRadius: 60,
+			fill: "#2a95c7",
+			angularSize: d3,
+			startAngle: d1+d2
+		}],320,320);
+	});
+}
+mobile.showPay();
+</script>
+</body>
+</html>

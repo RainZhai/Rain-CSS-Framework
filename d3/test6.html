@@ -59,7 +59,8 @@ arcs.append("path")//每个g元素都追加一个path元素用绑定到这个g�
 .attr("fill",function(d,i){//填充颜色  
     return color(i);  
 })
-.attr("d",arc);//将角度转为弧度（d3使用弧度绘制）  
+.each(function() { this._current = {startAngle: 0, endAngle: 0}; });
+//.attr("d",arc);//将角度转为弧度（d3使用弧度绘制）  
 
 //实现饼图每块依次弹出
 d3.selectAll("path")
@@ -68,8 +69,15 @@ d3.selectAll("path")
 	return  i/dataset.length*1000;
 })
 .duration(1000)
-.ease("elastic")
-.attr("d",arc2);
+.ease("linear")
+.attrTween("d", function(d) {
+	var interpolate = d3.interpolate(this._current, d);
+	this._current = interpolate(0);
+	return function(t) {
+		return arc2(interpolate(t));
+	};
+});
+//attr("d",arc2);
 
   
 //(6)为组中每个元素添加文本  

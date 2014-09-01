@@ -68,10 +68,10 @@ svg.selectAll("rect")
 .duration(3000)//(10)加上动画的持续时间，以毫秒计算  
 .ease("elastic")//(11)缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）  
 .attr("y", function(d) {//设置纵坐标，纵坐标正方向是从上往下的，所以条有多长就要设置起点是相对于h再向上移动条长  
-return h - yScale(d);  
+	return h - yScale(d);  
 })  
 .attr("height", function(d) {  
-        return yScale(d);  
+	return yScale(d);  
 })  
 //(6)为条加上数值  
 svg.selectAll("text")  

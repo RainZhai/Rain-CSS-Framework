@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta content="telephone=no" name="format-detection" />
+<title>test10</title> 
+<style type="text/css">  
+polyline{ opacity: 0; fill: none; }
+text{ opacity: 0; }
+</style> 
+</head>
+<body class="w320px bg37">
+    <div class="pie-chart posr" id="pie-chart">
+    	<div id="paywrap" class="pay-wrap posa">
+    		<p>本月支出</p>
+    		<p>
+    			<span id="payval" class="cf fs30">00</span>
+    			<span>元</span>
+    		</p>
+    	</div>
+    </div> 
+<script src="d3.v3.min.js"></script>
+<script src="../js/jquery-1.7.2.js"></script>
+<script src="../js/util.js"></script>  
+<script type="text/javascript">
+var mobile = {};
+mobile.showPie = function(data) {
+
+	var typeset = [];
+	var useset = [];
+	var dataset = [];
+
+	var zoom=[1,0.8,06];
+
+	var _arc = d3.svg.arc()
+	    .startAngle(0 * (Math.PI/180)); //just radians
+
+
+	 _arc.endAngle(360 * (Math.PI/180))
+
+	for (var i = 0; i < data.length; i++) {
+		typeset.push(data[i].type);
+		useset.push(data[i].use);
+		dataset.push(parseFloat(data[i].cost));
+	}
+
+	//(1)转化数据为适合生成饼图的对象数组  
+	var pie = d3.layout.pie(dataset);
+	var h = 320;
+	var w = 320;
+	//外半径
+	var outerRadius = w / 2;
+	//圆环内半径  
+	var innerRadius = w / 2;
+	var radius = Math.min(w, h) / 2;
+	//(2)用svg的path绘制弧形的内置方法  设置弧度的内外径，等待传入的数据生成弧度  
+	var arc = d3.svg.arc().outerRadius(outerRadius * 0.35).innerRadius(innerRadius * 0.35);
+	//设置动画效果内外半径
+	var arc2 = d3.svg.arc().outerRadius(outerRadius * 0.5).innerRadius(innerRadius * 0.35);
+
+	var arc3 = d3.svg.arc().outerRadius(outerRadius * 0.5).innerRadius(innerRadius * 0.5);
+
+	var outerArc = d3.svg.arc().innerRadius(outerRadius * 0.6).outerRadius(outerRadius * 0.6);
+
+	var svg = d3.select("#pie-chart").append("svg").attr("width", w).attr("height", h);
+
+	//(3)颜色函数  
+	var colors = ['#ef2a79', '#f8b13d', '#2a95c7'];
+
+	//(4)准备分组,把每个分组移到图表中心  
+	var arcs = svg.selectAll("g.arc").data(pie(dataset)).enter().append("g").attr("class", "arc")
+		.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+
+	// //(5)为组中每个元素绘制弧形路路径  
+	// arcs.append("path")
+	// 	.attr("fill", function(d, i) {
+	// 		return colors[i];
+	// 	})
+	// 	.attr("stroke", "white")
+	// 	.attr("stroke-width", "2px")
+	// 	.attr("d", arc);
+
+	// //实现饼图每块依次弹出
+	// d3.selectAll("path")
+	// 	.transition()
+	// 	.delay(function(d, i) {
+	// 		return i / dataset.length * 1000;
+	// 	})
+	// 	.duration(1000)
+	// 	.ease("elastic")
+	// 	.attr("d", arc2);	
+
+
+
+	//(5)为组中每个元素绘制弧形路路径  
+	arcs.append("path")
+		.attr("fill", function(d, i) {
+			return colors[i];
+		})
+      		.each(function() { this._current = {startAngle: 0, endAngle: 0}; });
+
+	//旋转绘制饼图
+	d3.selectAll("path")
+		.transition()
+		.duration(1000)
+		.ease("bounce")
+		.attrTween("d", function(d) {
+			var interpolate = d3.interpolate(this._current, d);
+			this._current = interpolate(0);
+			return function(t) {
+				return arc2(interpolate(t));
+			};
+		});
+
+
+
+
+	svg.append("g").attr("class", "type").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+	var type = svg.select(".type").selectAll("text").data(pie(dataset));
+
+	type.enter()
+		.append("text")
+		.attr("dy", "2.6em")
+		.attr("fill", "#999")
+		.text(function(d, i) {
+			return typeset[i];
+		});
+
+
+	type.transition().duration(1000)
+		.attrTween("transform", function(d) {
+			this._current = this._current || d;
+			var interpolate = d3.interpolate(this._current, d);
+			this._current = interpolate(0);
+			return function(t) {
+				var d2 = interpolate(t);
+				var pos = outerArc.centroid(d2);
+				pos[0] = radius * 0.65 * (midAngle(d2) < Math.PI ? 1 : -1);
+				return "translate(" + pos + ")";
+			};
+		})
+		.styleTween("text-anchor", function(d){
+			this._current = this._current || d;
+			var interpolate = d3.interpolate(this._current, d);
+			this._current = interpolate(0);
+			return function(t) {
+				var d2 = interpolate(t);
+				return midAngle(d2) < Math.PI ? "start":"end";
+			};
+		})
+		.style("opacity", 1);
+
+	type.exit().remove();
+
+
+
+	svg.append("g").attr("class", "use").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+	var use = svg.select(".use").selectAll("text").data(pie(dataset));
+
+	use.enter()
+		.append("text")
+		.attr("dy", "0.4em")
+		.attr("fill", "#999")
+		.text(function(d, i) {
+			return useset[i];
+		});
+
+	use.transition().duration(1000)
+		.attrTween("transform", function(d) {
+			this._current = this._current || d;
+			var interpolate = d3.interpolate(this._current, d);
+			this._current = interpolate(0);
+			return function(t) {
+				var d2 = interpolate(t);
+				var pos = outerArc.centroid(d2);
+				pos[0] = radius * 0.65 * (midAngle(d2) < Math.PI ? 1 : -1);
+				return "translate(" + pos + ")";
+			};
+		})
+		.styleTween("text-anchor", function(d){
+			this._current = this._current || d;
+			var interpolate = d3.interpolate(this._current, d);
+			this._current = interpolate(0);
+			return function(t) {
+				var d2 = interpolate(t);
+				return midAngle(d2) < Math.PI ? "start":"end";
+			};
+		})
+		.style("opacity", 1);
+	use.exit().remove();
+
+	//创建提示线条
+	svg.append("g").attr("class", "lines").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+	var polyline = svg.select(".lines").selectAll("polyline").data(pie(dataset));
+
+	function midAngle(d) {
+		return d.startAngle + (d.endAngle - d.startAngle) / 2;
+	}
+	polyline.enter().append("polyline");
+
+	polyline.transition().duration(1000)
+	.attr("stroke", function(d, i) {
+		return colors[i];
+	})
+	.attr("stroke-width", "1px")
+	.attrTween("points", function(d) {
+		this._current = this._current || d;
+		var interpolate = d3.interpolate(this._current, d);
+		this._current = interpolate(0);
+		return function(t) {
+			var d2 = interpolate(t);
+			var pos = outerArc.centroid(d2);
+			pos[0] = outerRadius * 0.6 * (midAngle(d2) < Math.PI ? 1 : -1);
+			return [arc3.centroid(d2), outerArc.centroid(d2), pos];
+		};
+	}).style("opacity", 1);
+
+	polyline.exit().remove();
+};
+
+mobile.showPay = function() {
+	$("#paywrap").fadeIn(3000, function() {
+/* 		$("#payval").numAnimate({
+			startNum: 0,
+			endNum: 140
+		}, 1000);
+ */
+
+		mobile.showPie([{
+			'type': '流量',
+			'use': '100',
+			'cost': '50'
+		}, {
+			'type': '短信',
+			'use': '10',
+			'cost': '30'
+		}, {
+			'type': '通话',
+			'use': '10',
+			'cost': '20'
+		}]);
+	});
+}
+mobile.showPay();
+</script>
+</body>
+</html>
