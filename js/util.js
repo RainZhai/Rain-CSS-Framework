@@ -9,12 +9,76 @@
       endX: 0,
       endY: 0,
       /** 触摸事件注册 */
-      registerEvent: function (selector, startfunc, movefunc, endfunc) {
-        if ($.isFunction(startfunc)) selector[0].addEventListener("touchstart", startfunc, false);
-        if ($.isFunction(movefunc)) selector[0].addEventListener("touchmove", movefunc, false);
-        if ($.isFunction(endfunc)) selector[0].addEventListener("touchend", endfunc, false);
+      registerEvent : function (selector) {
+        if (arguments[1] && $.isFunction(arguments[1])){ selector[0].addEventListener("touchstart", arguments[1], false);}
+        if (arguments[2] && $.isFunction(arguments[2])){ selector[0].addEventListener("touchmove", arguments[2], false);}
+        if (arguments[3] && $.isFunction(arguments[3])){ selector[0].addEventListener("touchend", arguments[3], false);}
+      },
+      removeEvent : function(selector){
+        if (arguments[1] && $.isFunction(arguments[1])){ selector[0].removeEventListener("touchstart", arguments[1], false);}
+      },
+      initTap: function(){
+				// 基于jquery的tap
+				var touch = {}, tapTimeout;
+				var now, delta;
+				$(function(){
+				    $(document.body).on('touchstart', function(e) {
+				      now = Date.now();
+				      delta = now - (touch.last || now);
+				      var e = e.originalEvent;
+				      touch.el = $(e.touches[0].target);
+				      if (delta > 0 && delta <= 250) {touch.isDoubleTap = true;}
+				      touch.last = now
+				  }).on('touchmove', function(e) {
+				      var e = e.originalEvent;
+				      cancelAll()
+				  }).on('touchend', function(e) {
+				      if ('last' in touch)
+				          tapTimeout = setTimeout(function() {
+				              touch.el.trigger("tap");
+				              if (touch.isDoubleTap) {
+				                  touch.el.trigger('doubleTap')
+				                  touch = {}
+				              }
+				          }, 10);
+				  }).on('touchcancel', cancelAll);
+				});
+				function cancelAll() {
+				    if (tapTimeout) {clearTimeout(tapTimeout);}
+				    tapTimeout = null
+				    touch = {};
+				}
+				['doubleTap', 'tap'].forEach(function(m) {
+				    $.fn[m] = function(callback) {
+				        return this.on(m, callback);
+				    };
+				});
+      },
+      scrollable: function(scrollHandler){
+      	$(scrollHandler).css({
+          "-webkit-overflow-scrolling" : "touch",
+        	"overflow-y" : "auto"
+      	});
+      	//Uses document because document will be topmost level in bubbling
+      	$(document).on('touchmove',function(e){
+      		e.preventDefault();
+      	});
+      	//Uses body because jQuery on events are called off of the element they are
+      	//added to, so bubbling would not work if we used document instead.
+      	$('body').on('touchstart', scrollHandler, function(e) {
+	      	if (e.currentTarget.scrollTop === 0) {
+	      		e.currentTarget.scrollTop = 1;
+	      	} else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
+	      		e.currentTarget.scrollTop -= 1;
+	      	}
+      	});
+      	//Stops preventDefault from being called on document if it sees a scrollable div
+      	$('body').on('touchmove', scrollHandler, function(e) {
+      		e.stopPropagation();
+      	});
       }
   };
+  util.touch.initTap();
   if(!win.console){win.console = function(){};win.console.info = win.console.debug = win.console.warn = win.console.log = win.console.error = function(str){alert(str);}};
   win.log = function(){
     if(arguments.length>0){
@@ -23,6 +87,8 @@
       console.log(util.clearLastComma(s));
     }
   };
+  
+
   /**
    * 浏览器的特性的简单检测，并非精确判断。
    */
