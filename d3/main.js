@@ -130,6 +130,9 @@ snnet = {
         canvas3.width = 640;
         canvas3.height = 520;
         canvas3.style.opacity = 0;
+				for(var i = 1;i<=3;i++){
+				  $('#pieGraphText'+i).css({'top':0,'left':'50%','margin-left':-1*$('#pieGraphText'+i).width()/2});
+				}
         //计算总支出
         var sum = 0;
         for (var i = 0; i < dataSet.length; i++) {
@@ -347,6 +350,7 @@ snnet = {
                 lineone();
                 //绘制折线
                 function lineone(){
+                		ctxText1.clearRect(0,0,canvas1.width,canvas1.height);
                     ctxText1.beginPath()
                     ctxText1.moveTo(hx, hy);
                     ctxText1.lineTo(tx, ty);
@@ -421,6 +425,7 @@ snnet = {
                 ctx.closePath();
 
                 //绘制折线
+                ctxText2.clearRect(0,0,canvas2.width,canvas2.height);
                 ctxText2.beginPath()
                 ctxText2.moveTo(hx, hy);
                 ctxText2.lineTo(tx, ty);
@@ -498,6 +503,7 @@ snnet = {
 
                 
                 // 绘制折线
+                ctxText3.clearRect(0,0,canvas3.width,canvas3.height);
                 ctxText3.beginPath()
                 ctxText3.moveTo(hx, hy);
                 ctxText3.lineTo(tx, ty);
@@ -742,7 +748,8 @@ mobile.drawLineChart = function (obj) {
 		tipXDeviation: 0, //提示框偏差
 		tipYDeviation: 0, //提示框偏差
 		showcurval:true,//是否显示当前文本值
-		showtip:true//默认是否显示提示框
+		showtip:true,//默认是否显示提示框
+		tipCallback:function(){}
 	},obj);
 	var parse = d3.time.format('%Y-%m-%d').parse;
 	var data1 = obj.data;
@@ -758,7 +765,7 @@ mobile.drawLineChart = function (obj) {
 	container = d3.select(obj.elementId),
 	svg = container.select('svg').attr('width', width).attr('height', height + margin.top),
 	xscale = d3.time.scale().range([0, width - marginWidth]).domain([data[0].date, data[data.length - 1].date]),
-	yscale = d3.scale.linear().range([height, 5]).domain([0, d3.max(data,function(d) { return d.value;}) + 230]),
+	yscale = d3.scale.linear().range([height, 22]).domain([0, d3.max(data,function(d) { return d.value;})]),
 	
 	//区域图
 	area = d3.svg.area().interpolate('linear').x(function(d) {
@@ -767,11 +774,11 @@ mobile.drawLineChart = function (obj) {
 		return yscale(d.value)
 	}),
 	//折线
-	line = d3.svg.line().interpolate('linear').x(function(d) {
+	line = d3.svg.line().x(function(d) {
 		return xscale(d.date) + marginWidth / 2;
 	}).y(function(d) {
 		return yscale(d.value);
-	}),
+	}).tension(0.1).interpolate("linear"),
 	startData = data.map(function(datum) {
 		return {
 			date: datum.date,
@@ -810,17 +817,45 @@ mobile.drawLineChart = function (obj) {
 					var yAxisTicks = d3.svg.axis().scale(yscale).ticks(obj.yTickamt).tickSize(obj.yTicksize).tickFormat('').orient('right');
 					svg.append('g').attr('class', 'lineChart-yAxisTicks').call(yAxisTicks);
 				}
-				svg.append('path').datum(startData).attr('class', 'lineChart-areaLine').attr('d', line).attr("stroke",obj.stroke).transition().duration(obj.duration)
+				//从下往上折线动画
+/*			svg.append('path').datum(startData).attr('class', 'lineChart-areaLine').attr("stroke",obj.stroke).transition().duration(obj.duration/2)
 				.delay(obj.duration/2)
-				.attrTween('d', o.tween(data, line))
+				.attrTween('d', o.tween(data, line)) 
 				.each('end',function(d,i) {
 					o.drawEachObjects(data);
+				});*/
+				var pathani = svg.append('path').datum(startData).attr("stroke",obj.stroke).transition().duration(obj.duration/2)
+				.delay(obj.duration/2)
+				//.attrTween('d', o.tween(data, line))
+				.attr("d", function() { return line(data); }).attr("stroke-dashoffset","1000").attr("stroke-dasharray","1000").attr('class', 'lineChart-areaLine')
+				.each('end',function(d,i) { 
+					o.drawEachObjects(data);
+					d3.select(this).attr('class', 'pathAnima'); 
 				});
+				//从左到右折线动画
 /*				svg.append('path').attr('class', 'lineChart-areaLine').attr("stroke",obj.stroke)
         .transition()
         .duration(obj.duration).delay(obj.duration / 2)
         .attrTween('d', getInterpolation).each('end',function(d,i) {
-					o.drawCircles(data);
+					o.drawEachObjects(data);
+				});*/
+				
+				o.drawMainChart();
+			},
+			drawMainChart: function(){
+				
+/*				svg.select("defs #graphs_clip_path rect").attr("x", xscale(data[0].date) + marginWidth/2).attr("y", 0).attr("width", obj.width).attr("height", obj.height);
+				var new_lines = svg.append('g').classed("line", true);
+				//新绘画一条折线 
+				new_lines.append("clipPath").attr("class", "clippath").attr("id", "clip_pathtemp").append("rect")
+				.attr("x", xscale(data[0].date) + marginWidth/2).attr("width", 0).attr("y", 0).attr("height", obj.height);
+				new_lines.append("path").attr("stroke", obj.stroke).attr("fill", "none").style("clip-path", "url(#clip_pathtemp)").attr("d", function() { return line(data); });
+				var left_to_right_appear_transition = new_lines.transition().duration(1000).ease("linear");
+				//.select(".clippath").remove()
+				left_to_right_appear_transition.select("rect").attr("width", obj.width);
+				left_to_right_appear_transition.select("path").each('end', function() {
+			    	o.drawEachObjects(data);
+				    return d3.select(this).style("clip-path", "url(#graphs_clip_path)");
 				});*/
 				
 				if(obj.area){
@@ -889,11 +924,12 @@ mobile.drawLineChart = function (obj) {
 				var yPosition =  yscale(data[i].value) + q;
 				d3.select(tooltipId).classed("hide",false);
 				d3.select(tooltipId).select(".j_value").text(data[i].value);
-				d3.select(tooltipId).attr("opacity",0)
+				d3.select(tooltipId).style("opacity",0)
 				.style("left",xPosition+"px")
-				.style("top",yPosition-10+"px")
-				.transition().duration(obj.duration/2).ease("elastic")
-				.style("top",yPosition+"px").attr("opacity",1);
+				.style("top",yPosition+"px")
+				.transition().duration(obj.duration/3)
+				.style("opacity",1);
+				obj.tipCallback();
 			},
 			//对单个小圆点设置样式
 			setCircleStyle: function(i,old,css){

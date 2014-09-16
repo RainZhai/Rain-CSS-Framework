@@ -48,6 +48,12 @@ body{font-size:12px;}
 .tooltip b {left: 20px;	bottom: -10px; color: #74799a;}
 .r_angle{left:auto!important;right:5px!important;}
 .tooltip b i {bottom: 1px;color: #1a1a22;}
+
+.pathAnima {
+	fill:none;
+	stroke-dashoffset: 0;
+	transition: stroke-dashoffset 1.595056250356918s ease-in-out 0s; 
+}
 </style> 
 </head>
 <body class="body w-40 bg37">
@@ -58,6 +64,9 @@ body{font-size:12px;}
 		      <stop class="lineChart-gradientBackgroundArea1-top" offset="0%" />
 		      <stop class="lineChart-gradientBackgroundArea1-bottom" offset="100%" />
 		    </linearGradient>
+            <clipPath id='graphs_clip_path'>
+              <rect></rect>
+            </clipPath>
 		  </defs>
 		</svg>
 		<div id="tooltip-1" class="tooltip hide">
@@ -82,11 +91,13 @@ body{font-size:12px;}
 			<p class="tac lh-1 oh ptss"><span class="j_value"></span>元</p>
 		</div>
       </div>
+      <input type="button" value="test" id="run" /> 
 <script src="d3.v3.min.js"></script>
 <script src="../js/jquery-1.7.2.js"></script>
 <script src="../js/util.js"></script>  
 <script src="main.js"></script>  
 <script type="text/javascript">
+var init = function(){
 var lineChart =  [{ date: '2006-02-1',label: '支出',value: 44.55},{	date: '2006-03-1',label: '支出',value: 61.00},{date: '2006-04-1',label: '支出',
 	value: 117},{date: '2006-05-1',label: '支出',value: 174.25},{date: '2006-06-1',label: '支出',value: 445.25},{date: '2006-07-1',	label: '支出',
 	value: 88.48}];
@@ -130,6 +141,11 @@ var lineChart =  [{ date: '2006-02-1',label: '支出',value: 44.55},{	date: '200
 		showcurval: false,
 		showtip:true
 	}); 
+}
+init();
+$("#run").on("click",function(){
+	init();
+});
 	//折线图数据
 	var lineChart1 = [{ date: '2006-02-1',label: '支出',value: 51.55},{	date: '2006-03-1',label: '支出',value: 61.02},{date: '2006-04-1',label: '支出',
 		value: 47.22},{date: '2006-05-1',label: '支出',value: 74.25},{date: '2006-06-1',label: '支出',value: 245.88},{date: '2006-07-1',	label: '支出',
