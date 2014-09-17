@@ -54,28 +54,56 @@
 				    };
 				});
       },
+      /**
+       * @method 指定元素可滚动效果
+       * @param scrollHandler
+       */
       scrollable: function(scrollHandler){
-      	$(scrollHandler).css({
-          "-webkit-overflow-scrolling" : "touch",
-        	"overflow-y" : "auto"
-      	});
-      	//Uses document because document will be topmost level in bubbling
-      	$(document).on('touchmove',function(e){
+      	var css = {
+            "-webkit-overflow-scrolling" : "touch",
+          	"overflow-y" : "auto"
+        	};
+      	var preventDefault = function(e){
       		e.preventDefault();
-      	});
-      	//Uses body because jQuery on events are called off of the element they are
-      	//added to, so bubbling would not work if we used document instead.
-      	$('body').on('touchstart', scrollHandler, function(e) {
+      	};
+      	var stopPropagation = function(e) {
+      		e.stopPropagation();
+      	}
+      	var stopeve2 = function(e) {
 	      	if (e.currentTarget.scrollTop === 0) {
 	      		e.currentTarget.scrollTop = 1;
 	      	} else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
 	      		e.currentTarget.scrollTop -= 1;
 	      	}
-      	});
-      	//Stops preventDefault from being called on document if it sees a scrollable div
-      	$('body').on('touchmove', scrollHandler, function(e) {
-      		e.stopPropagation();
-      	});
+      	};
+      	if(arguments.length===1){
+	      	$(scrollHandler).css(css);
+	      	//Uses document because document will be topmost level in bubbling
+	      	$(document).on('touchmove',function(e){
+	      		preventDefault(e);
+	      	});
+	      	//Uses body because jQuery on events are called off of the element they are
+	      	//added to, so bubbling would not work if we used document instead.
+	      	$('body').on('touchstart', scrollHandler, function(e) {
+	      		stopeve2(e);
+	      	});
+	      	//Stops preventDefault from being called on document if it sees a scrollable div
+	      	$('body').on('touchmove', scrollHandler, function(e) {
+	      		stopPropagation(e);
+	      	});
+      	}
+      	if(arguments.length>1 && arguments[1]=="off"){
+	      	$(scrollHandler).css({});
+	      	$(document).off('touchmove',function(e){
+	      		preventDefault(e);
+	      	});
+	      	$('body').off('touchstart', scrollHandler, function(e) {
+	      		stopeve2(e);
+	      	});
+	      	$('body').off('touchmove', scrollHandler, function(e) {
+	      		stopPropagation(e);
+	      	});
+      	}
       }
   };
   util.touch.initTap();

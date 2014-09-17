@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta charset="utf-8">
 <title>Rain CSS > Mobile</title>
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
@@ -9,7 +9,7 @@
 <style type="text/css">
 .sliderbtn{top:50%;margin: -11px 0 0 -10px;left:0;}
 /* 密码明文显示开关*/
-.switchWrap{position: absolute; width:64px; height:30px; border-radius:30px; bottom: 5px; background: #eee;overflow: hidden; 
+.switchWrap{ width:64px; height:30px; border-radius:30px; background: #eee;overflow: hidden; 
 user-select:none; box-shadow:0px 1px 1px #c3c3c3 inset, 0 0 1px #e4e4e4; cursor: pointer;}
 .switch{width:100px;height: 25px; margin: 2px 0;margin-left:-30px; transition: margin-left .1s ease; }
 .switch-on{margin-left:0;}
@@ -239,6 +239,13 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
                 	<div class="j_switch switch"><span class="letter">Abc</span><div class="switchcyc"></div><span class="dot">● ● ●</span></div>
                 </div>
             </fieldset>
+	        <fieldset>
+	            <legend>div scrollable</legend>
+                <div id="scrollableBox" class="h-5 oa">
+                	<div style="height:300px;background-color:#57A957"></div>
+                </div>
+                <input id="resetScroll" type="button" value="reset" />
+            </fieldset>
 		</div>
    
     <footer class="footer socialFooter c borderTop">
@@ -366,7 +373,10 @@ $("#switchbox").on("click",function(){
 	}
 })
 //iOS Safari – How to disable overscroll but allow scrollable divs to scroll normally 待验证
-util.touch.scrollable("container");
+util.touch.scrollable("#scrollableBox");
+$("#resetScroll").on("click",function(){
+	//util.touch.scrollable("#scrollableBox","off");
+})
 </script>
 </body>
 </html>
