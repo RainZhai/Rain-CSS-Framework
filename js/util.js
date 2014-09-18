@@ -94,15 +94,9 @@
       	}
       	if(arguments.length>1 && arguments[1]=="off"){
 	      	$(scrollHandler).css({});
-	      	$(document).off('touchmove',function(e){
-	      		preventDefault(e);
-	      	});
-	      	$('body').off('touchstart', scrollHandler, function(e) {
-	      		stopeve2(e);
-	      	});
-	      	$('body').off('touchmove', scrollHandler, function(e) {
-	      		stopPropagation(e);
-	      	});
+	      	$(document).off('touchmove');
+	      	$('body').off('touchstart');
+	      	$('body').off('touchmove');
       	}
       }
   };

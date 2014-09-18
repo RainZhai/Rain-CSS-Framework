@@ -244,7 +244,8 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
                 <div id="scrollableBox" class="h-5 oa">
                 	<div style="height:300px;background-color:#57A957"></div>
                 </div>
-                <input id="resetScroll" type="button" value="reset" />
+                <input id="addScroll" type="button" value="addScroll" />
+                <input id="removeScroll" type="button" value="removeScroll" />
             </fieldset>
 		</div>
    
@@ -372,10 +373,12 @@ $("#switchbox").on("click",function(){
 		$("#pwdBox").prop("type","password");
 	}
 })
-//iOS Safari – How to disable overscroll but allow scrollable divs to scroll normally 待验证
-util.touch.scrollable("#scrollableBox");
-$("#resetScroll").on("click",function(){
-	//util.touch.scrollable("#scrollableBox","off");
+//iOS Safari – How to disable overscroll but allow scrollable divs to scroll normally
+$("#addScroll").on("click",function(){
+	util.touch.scrollable("#scrollableBox");
+})
+$("#removeScroll").on("click",function(){
+	util.touch.scrollable("#scrollableBox","off");
 })
 </script>
 </body>

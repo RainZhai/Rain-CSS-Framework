@@ -817,6 +817,10 @@ mobile.drawLineChart = function (obj) {
 					var yAxisTicks = d3.svg.axis().scale(yscale).ticks(obj.yTickamt).tickSize(obj.yTicksize).tickFormat('').orient('right');
 					svg.append('g').attr('class', 'lineChart-yAxisTicks').call(yAxisTicks);
 				}
+				
+				o.drawMainChart();
+			},
+			drawMainChart: function(){
 				//从下往上折线动画
 /*			svg.append('path').datum(startData).attr('class', 'lineChart-areaLine').attr("stroke",obj.stroke).transition().duration(obj.duration/2)
 				.delay(obj.duration/2)
@@ -824,6 +828,8 @@ mobile.drawLineChart = function (obj) {
 				.each('end',function(d,i) {
 					o.drawEachObjects(data);
 				});*/
+
+				//从左到右折线动画
 				var pathani = svg.append('path').datum(startData).attr("stroke",obj.stroke).transition().duration(obj.duration/2)
 				.delay(obj.duration/2)
 				//.attrTween('d', o.tween(data, line))
@@ -836,14 +842,9 @@ mobile.drawLineChart = function (obj) {
 /*				svg.append('path').attr('class', 'lineChart-areaLine').attr("stroke",obj.stroke)
         .transition()
         .duration(obj.duration).delay(obj.duration / 2)
-        .attrTween('d', getInterpolation).each('end',function(d,i) {
+        .attrTween('d', o.getInterpolation).each('end',function(d,i) {
 					o.drawEachObjects(data);
 				});*/
-				
-				o.drawMainChart();
-			},
-			drawMainChart: function(){
-				
 /*				svg.select("defs #graphs_clip_path rect").attr("x", xscale(data[0].date) + marginWidth/2).attr("y", 0).attr("width", obj.width).attr("height", obj.height);
 				var new_lines = svg.append('g').classed("line", true);
 				//新绘画一条折线 
@@ -1002,42 +1003,35 @@ mobile.drawLineChart = function (obj) {
 						return callback(i(t))
 					}
 				}
+			}, 
+			getInterpolation: function() {
+			  var interpolate = d3.scale.quantile().domain([0,1]).range(d3.range(1, data.length + 1));
+			  return function(t) {
+					var interpolatedLine = data.slice(0, interpolate(t));
+					return line(interpolatedLine);
+			  }
+			},
+			getSmoothInterpolation: function(data) {
+			  return function (d, i, a) {
+			      var interpolate = d3.scale.linear().domain([0,1]).range([1, data.length + 1]);
+			      return function(t) {
+			          var flooredX = Math.floor(interpolate(t));
+			          var weight = interpolate(t) - flooredX;
+			          var interpolatedLine = data.slice(0, flooredX);
+			          log(flooredX,weight,interpolatedLine);     
+			          if(flooredX > 0 && flooredX < 31) {
+									var weightedLineAverage = yscale(data[flooredX].value) * weight + yscale(data[flooredX-1].value) * (1-weight);
+									log(weightedLineAverage);
+									interpolatedLine.push({"x":interpolate(t)-1, "y":weightedLineAverage});
+							}
+			        return line(interpolatedLine);
+			    }
+			  }
 			}
 	};
 	o.init();
 	//o.initText();
 	o.initFlexline();
-	function getInterpolation() {
-	  
-	  var interpolate = d3.scale.quantile()
-	      .domain([0,1])
-	      .range(d3.range(1, data.length + 1));
-
-	  return function(t) {
-	      var interpolatedLine = data.slice(0, interpolate(t));
-	      return line(interpolatedLine);
-	      }
-	}
-	function getSmoothInterpolation(data) {
-	  return function (d, i, a) {
-	      var interpolate = d3.scale.linear()
-	          .domain([0,1])
-	          .range([1, data.length + 1]);
-
-	      return function(t) {
-	          var flooredX = Math.floor(interpolate(t));
-	          var weight = interpolate(t) - flooredX;
-	          var interpolatedLine = data.slice(0, flooredX);
-	          log(flooredX,weight,interpolatedLine);     
-	          if(flooredX > 0 && flooredX < 31) {
-	              var weightedLineAverage = yscale(data[flooredX].value) * weight + yscale(data[flooredX-1].value) * (1-weight);
-	  	          log(weightedLineAverage);
-	              interpolatedLine.push({"x":interpolate(t)-1, "y":weightedLineAverage});
-	              }
-	          return line(interpolatedLine);
-	          }
-	      }
-	  }
 	
 	return o;
 }
