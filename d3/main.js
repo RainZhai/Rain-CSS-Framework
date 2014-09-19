@@ -860,8 +860,21 @@ mobile.drawLineChart = function (obj) {
 				});*/
 				
 				if(obj.area){
-					svg.append('path').datum(startData).attr('class', 'lineChart-area').attr('d', area).transition().duration(obj.duration/2).attr('fill', obj.areafill)
-					.attrTween('d', o.tween(data, area));
+/*					svg.append('path').datum(startData).attr('class', 'lineChart-area').attr('d', area).transition().duration(obj.duration/2).attr('fill', obj.areafill)
+					.attrTween('d', o.tween(data, area));*/
+					
+					svg.select("defs #graphs_clip_path rect").attr("x", xscale(data[0].date) + marginWidth/2).attr("y", 0).attr("width", obj.width).attr("height", obj.height);
+					var new_lines = svg.append('g').classed("area", true);
+					//实现区域从左到右渐渐显示
+					new_lines.append("clipPath").attr("class", "clippath").attr("id", "clip_pathtemp").append("rect")
+					.attr("x", xscale(data[0].date) + marginWidth/2).attr("width", 0).attr("y", 0).attr("height", obj.height);
+					new_lines.append("path").attr("stroke", obj.stroke).attr("fill", obj.areafill).style("clip-path", "url(#clip_pathtemp)").attr("d", function() { return area(data); });
+					var left_to_right_appear_transition = new_lines.transition().duration(1000).ease("linear");
+					//.select(".clippath").remove()
+					left_to_right_appear_transition.select(".clippath").remove().select("rect").attr("width", obj.width);
+					left_to_right_appear_transition.select("path").each('end', function() {
+				    	o.drawEachObjects(data);
+					});
 				}
 			},
 			drawEachObjects: function(data){
