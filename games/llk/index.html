@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>连连看</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<SCRIPT LANGUAGE="JavaScript">
+		//定义图像的常量
+		var MyConstants = {
+			PicWidth  : 40,
+			PicHeight : 40,
+			PicShadowBlur : 3,
+			PicMargin	  : 5,  //每个图片之间的距离
+			PicRows		  :7,
+			PicCols		  :5,
+			BeginX		  :10, //开始画图的x坐标
+			BeginY		  :10,  //开始画图的y坐标
+			MaxPicType	  : 15 //最大的图片类型值
+		}
+		var allPicsArray=new Array(MyConstants.PicRows);
+		var AllPicTypes = [];//存储所有图片的类型，大小等于PicRows*PicCols
+		var nCurrCanvasTop=0;
+		var nCurrCanvasLeft=0;
+		var nCurrCanvasWidth=0;
+		var nCurrCanvasHeight=0;
+		var oLastClickPic=null;//上次单击图片
+		var minRoadPoint=1000;//最短路径格数
+		var roadPoint=new Array(8);
+		var gContext=null;
+		var mNoDynamicPicTypes=",4,5,6,8,9,";//不是动画的图片类型
+		var firstHelpPic=null;//提示时选中
+		var secondHelpPic=null;
+		
+		//初始化对象
+		window.onload=function(){
+			var currCanvas = document.getElementById('myCanvas');
+			gContext = currCanvas.getContext('2d');
+			
+			//记录画布相对父元素的位置
+			nCurrCanvasTop =currCanvas.offsetTop;// jqueryCanvas.offset().top;
+			nCurrCanvasLeft =currCanvas.offsetLeft;// jqueryCanvas.offset().left;
+			nCurrCanvasWidth=currCanvas.width;
+			nCurrCanvasHeight=currCanvas.height;
+			
+			//初始化图像
+			init(gContext);
+		}
+	</SCRIPT>
+	<style type="text/css">
+		body{
+			background-color:#FFC;
+			padding:0px;
+			margin:0px; 
+			overflow:hidden;
+		}
+		.pw_box_div{
+			width:320px;
+			height:600px;
+			text-align:center;
+			padding:0px;
+		}
+		.buttonDiv{
+			width:80px;
+			height:28px;
+			line-height:28px;
+			border:2px solid #b3b3b2;
+			background-color:#515051;
+		}
+		.button_a{
+			font-family:"宋体",Arial;
+			font-size:14px;
+			color:#FFFFFF;
+			text-decoration:none;
+			font-weight:bold;
+		}
+		a.button_a:link,a.button_a:visited{
+			color:#FFFFFF;
+			text-decoration:none;
+		}
+		a.button_a:hover{
+			color:#fd4895;
+			text-decoration:none;
+		}
+		.dv_region{
+			border:1px solid #c9c3b7;
+			background-color:#b39c7c;
+			text-align:center;
+		}
+	</style>
+	<script type="text/javascript" src="./index.js"></script> 
+</head>
+<body> 
+			<div class="pw_box_div" onclick="clickCanvas(this,event)">
+				<canvas id="myCanvas" style="margin-top:-20px;" width="320px" height="600px"></canvas>
+			</div> 
+       
+					<div class="buttonDiv" onclick="refreshMe();">
+						<a href="#" onclick="return false;" class="button_a">重新再来</a>
+					</div>
+				</div> 
+					<div class="buttonDiv" onclick="doHelp();">
+						<a href="#" onclick="return false;" class="button_a">给提示呗</a>
+					</div>
+				</div>
+			</div>
+</body>
+</html>
