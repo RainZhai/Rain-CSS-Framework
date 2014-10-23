@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+<title>Rain CSS > Article</title>
+<script type="text/javascript">
+  //画布
+var canvas;
+//上下文
+var context;
+ 
+//场景宽度
+var stageWidth=1024;
+ 
+//场景高度
+var stageHeight=768;
+ 
+//显示列表
+var displayObjectList = new Array();
+ 
+//创建画布上下文
+$(document).ready(function(){
+    canvas=$("#myCanvas");
+    context=canvas.get(0).getContext("2d");
+});
+
+//场景管理器
+function Stage2D()
+{
+    //初始化启动计时器
+    this.init=function()
+    {
+        setTimeout(paint,0);
+    }
+ 
+    //添加子对象
+    this.addChild=function(child)
+    {
+        if(indexOf(child)==-1)
+        {
+            displayObjectList.push(child);
+        }else
+        {
+            //错误修正
+            displayObjectList.splice(displayObjectList.indexOf(child),1);
+            displayObjectList.push(child);
+        }
+    }
+ 
+    //删除子对象
+    this.removeChild=function(child)
+    {
+        if(indexOf(child)!=-1)
+        {
+            displayObjectList.splice(child,1);
+        }
+    }
+}
+
+//显示列表
+var displayObjectList = new Array();
+
+//查询显示对象是否在数组中
+function indexOf(Object)
+{
+    for(var i = 0;i<displayObjectList.length;i++){  
+        if(displayObjectList[i] == Object){  
+           return i;  
+         }  
+    }  
+    return -1;  
+}
+</script>
+</head>
+
+<body class="body">
+ 
+</body>
+</html>
