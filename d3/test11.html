@@ -27,6 +27,181 @@ polyline{
 <script src="../js/util.js"></script>  
 <script src="main.js"></script>  
 <script type="text/javascript">
+var mobile = window.mobile = {};
+
+Number.prototype.degsToRads = function() {
+	return d3.scale.linear().domain([0, 360]).range([0, 2 * Math.PI])(this);
+};
+mobile.midAngle = function (d) {
+	return d.startAngle + (d.endAngle - d.startAngle) / 2;
+}; 
+mobile.showPie = function(data,h,w) {
+	var svg = d3.select("#pie-chart").append("svg").attr("width", w).attr("height", h);
+	var g = svg.append("g");
+	var colors = ['#ef2a79', '#f8b13d', '#2a95c7'];
+	var outerArea = g.append("g").attr("id", "outer-area");
+
+	var outerArcs = outerArea.selectAll("path").data(data).enter()
+		.append("path").each(function(d) {
+			this._current = {
+				startAngle: 0,
+				endAngle:0
+			};
+		})
+		.attr("id", function(d) {
+			return d.id;
+		})
+		.style("fill", function(d) {
+			return d.fill;
+		})
+		.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")")
+		.transition()
+		.delay(function(d, i) {
+			return i / data.length * 2000;
+		})
+		.duration(1000)
+		.ease("bounce") //有circle（加速）back elastic（伸缩），linear（匀速），bounce（弹跳）  
+		.attrTween("d", function(d) {
+			var arc2 = d3.svg.arc();
+			var _startAngle = d.startAngle.degsToRads(),
+				_angularSize = d.angularSize.degsToRads();
+			var interpolate = d3.interpolate(this._current, {
+				startAngle: _startAngle,
+				endAngle: _startAngle + _angularSize
+			});
+			return function(t) {
+				return arc2.innerRadius(d.innerRadius).outerRadius(d.innerRadius + d.radius)(interpolate(-t));
+			};
+		});
+
+	//类型(通话，语音，流量)文本
+	svg.append("g").attr("class", "type").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+	var type = svg.select(".type").selectAll("text").data(data);
+	mobile.drawText(type,'0em','1.2em','#999','type');
+	//使用量(通话，语音，流量)文本
+	svg.append("g").attr("class", "use").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+	var use = svg.select(".use").selectAll("text").data(data);
+	mobile.drawText(use,'0em','0em','#999','use');
+	//创建提示线条
+ 	svg.append("g").attr("class", "lines").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
+	var polyline = svg.select(".lines").selectAll("polyline").data(data);
+	
+	var cycles = svg.select(".lines").selectAll("circle").data(data);
+	mobile.drawCircle(cycles,colors,3);
+	polyline.enter().append("polyline").each(function(d) {
+		this._current = {
+			startAngle: 0,
+			endAngle:0
+		};
+	}); 
+	
+	polyline.transition().duration(1000)
+		.attr("stroke", function(d, i) {
+			return colors[i];
+		})
+		.attr("stroke-width", "1px")
+		.attrTween("points", function(d) {
+	 		var arc = d3.svg.arc().innerRadius(d.innerRadius).outerRadius(d.innerRadius);
+	 		var arc2 = d3.svg.arc().innerRadius(d.innerRadius*2).outerRadius(d.innerRadius*2);
+			var _startAngle = d.startAngle.degsToRads(),
+			_angularSize = d.angularSize.degsToRads();
+			var interpolate = d3.interpolate(this._current, {
+				startAngle: _startAngle,
+				endAngle: _startAngle + _angularSize
+			});
+			return function(t) {
+				var d2 = interpolate(-t);
+				var pos = arc2.centroid(d2);
+				pos[0] = d.innerRadius*2* (mobile.midAngle(d2) < -Math.PI ? 1 : -1);
+				return [arc.centroid(d2), arc2.centroid(d2), pos];
+			};
+		});
+
+	polyline.exit().remove();
+};
+
+mobile.drawCircle = function(obj,colors,r){
+	obj.enter()
+ 	.append("circle").each(function(d) {
+		this._current = {
+			startAngle: 0,
+			endAngle:0
+		};
+	})
+ 	.attr("cx", function(d) {
+ 		var arc = d3.svg.arc().innerRadius(d.innerRadius*2).outerRadius(d.innerRadius*2);
+		var _startAngle = d.startAngle.degsToRads(),
+		_angularSize = d.angularSize.degsToRads();
+		var d2 = {
+			startAngle: _startAngle,
+			endAngle: _startAngle + _angularSize
+		};
+		var pos = arc.centroid(d2);
+		pos[0] = d.innerRadius*2* (mobile.midAngle(d2) > Math.PI ? 1 : -1);
+		return pos[0]; 
+ 	 })
+ 	.attr("cy", function(d) {
+ 		var arc = d3.svg.arc().innerRadius(d.innerRadius*2).outerRadius(d.innerRadius*2);
+		var _startAngle = d.startAngle.degsToRads(),
+		_angularSize = d.angularSize.degsToRads();
+		var d2 = {
+			startAngle: _startAngle,
+			endAngle: _startAngle + _angularSize
+		};
+		var pos = arc.centroid(d2);
+		return pos[1]; 
+	}).attr("r", r).attr("fill", function(d,i) {
+ 	 	return colors[i];
+ 	});
+};
+
+mobile.drawText = function(obj,x,y,color,propname){
+	obj.enter()
+	.append("text")
+	.attr("dy", y)
+	.attr("dx", x)
+	.attr("fill", color)
+	.text(function(d) {
+		return d[propname];
+	}).each(function(d) {
+		this._current = {
+			startAngle: 0,
+			endAngle:0
+		};
+	});
+
+	obj.transition().duration(1000)
+		.attrTween("transform", function(d) {
+			var arc = d3.svg.arc().innerRadius(d.innerRadius*2).outerRadius(d.innerRadius*2.5);
+			var _startAngle = d.startAngle.degsToRads(),
+			_angularSize = d.angularSize.degsToRads();
+			var interpolate = d3.interpolate(this._current, {
+				startAngle: _startAngle,
+				endAngle: _startAngle + _angularSize
+			}); 
+			return function(t) {
+				var d2 = interpolate(-t);
+				var pos = arc.centroid(d2);
+				pos[0] = d.innerRadius*2.2 * (mobile.midAngle(d2) < -Math.PI ? 1 : -1);
+				//pos[0] = radius * 0.65 * (midAngle(d2) < Math.PI ? 1 : -1);
+				return "translate(" + pos + ")";
+			};
+		})
+		.styleTween("text-anchor", function(d) {
+			var _startAngle = d.startAngle.degsToRads(),
+			_angularSize = d.angularSize.degsToRads();
+			var interpolate = d3.interpolate(this._current, {
+				startAngle: _startAngle,
+				endAngle: _startAngle + _angularSize
+			});
+			return function(t) {
+				var d2 = interpolate(t); 
+				return mobile.midAngle(d2) > Math.PI ? "start" : "end";
+			};
+		});
+	obj.exit().remove();
+};
+
 mobile.showPay = function() {
 	$("#paywrap").fadeIn(3000, function() {
 /* 		$("#payval").numAnimate({

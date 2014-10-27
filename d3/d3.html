@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rain CSS D3 demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="../css/rain.css" type="text/css" media="all"/>
+<style type="text/css">  
+.axis path,  
+.axis line {  
+    fill: none;  
+    stroke: black;  
+    shape-rendering: crispEdges;  
+}  
+.axis text {  
+    font-family: sans-serif;  
+    font-size: 11px;  
+}  
+</style> 
+</head>
+<body>
+  <div class="headerBlue">
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">首页home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">博客blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">游戏game</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container posr">
+    	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
+    </div>
+  </div>
+
+	<div class="container mt"> 
+    <div class="content">
+		<div class="sidebar l posr">
+			<h2 class="category">D3示例  D3js demo</h2>
+			<p>使用d3.js来构建可视化图表</p>
+		</div>
+
+		<div class="main mainRight posr">
+			<h1>d3js示例</h1>
+			<fieldset>
+				<legend>柱状图  bar chart</legend>
+				<div id="demo1"></div>
+			</fieldset>
+			<fieldset>
+				<legend>热点图</legend>
+				<div>
+					<svg id="demo2"></svg>
+					<svg id="demo2-2"></svg>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>动态柱状图  bar chart</legend>
+				<p>
+				    <a href="javascript:;" id="updatebtn">更新</a>   
+				    <a href="javascript:;" id="addbtn">添加</a>   
+				    <a href="javascript:;" id="deletebtn">删除</a>  
+				</p>
+				<div id="demo3">
+				</div>
+			</fieldset>
+		</div>
+   
+    <footer class="footer socialFooter c borderTop">
+      <p class="bottom pt pb">Copyright 2010-2014 Web Development Machine All rights reserved.</p>
+    </footer>
+    </div>
+  </div>
+<script src="d3.v3.min.js"></script>
+<script type="text/javascript">
+var demo = demo || {};
+//柱状图
+demo.demo1 = function(){
+	var w = 500;
+	var h = 100;
+	var barPadding = 5;
+	//设置数据集
+	var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+	11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+	 
+	//创建svg元素
+	var svg = d3.select("#demo1")
+	.append("svg")
+	.attr("width", w)
+	.attr("height", h);
+	//选择所有rect元素，并设置器数据集,xy坐标，宽高还有填充色等
+	svg.selectAll("rect")
+	.data(dataset)
+	.enter()
+	.append("rect")
+	.attr("x", function(d, i) { return i * (w / dataset.length);})
+	.attr("y", function(d) { return  h-(d * 4);})
+	.attr("width", w / dataset.length - barPadding)
+	.attr("height", function(d) { return d * 4;	})
+	.attr("fill", function(d) {
+	 	return "rgb(180, 240, 0)";
+	});
+	//同上设置柱状图文本
+	svg.selectAll("text")
+	.data(dataset)
+	.enter()
+	.append("text")
+	.text(function(d) {	return d;})
+	.attr("text-anchor", "middle")
+	.attr("x", function(d, i) {
+	return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+	})
+	.attr("y", function(d) {
+	return h - (d * 4) + 14;
+	});
+}
+demo.demo1();
+//热点图
+demo.demo2 = function(){
+ 	var w = 500;
+ 	var h = 300;
+ 	var barPadding = 5;
+ 	 
+ 	var dataset = [[5, 20], [480, 90], [250, 50], [100, 33], [330, 95],[410, 12], [475, 44], [25, 67], [85, 21], [220, 88]];
+ 	var svg = d3.select("#demo2")
+ 	.attr("width", w)
+ 	.attr("height", h);
+ 	
+ 	svg.selectAll("rect")
+ 	.data(dataset)
+ 	.enter()
+ 	.append("circle")
+ 	.attr("cx", function(d) { return d[0]+70; })
+ 	.attr("cy", function(d) {return d[1]+50;})
+ 	.attr("r", function(d) {return Math.sqrt(d[1]/2);	})
+ 	.attr("fill", function(d) { return "rgb(180, 240, 0)"; });
+ 	
+ 	svg.selectAll("text")
+ 	.data(dataset)
+ 	.enter()
+ 	.append("text")
+ 	.text(function(d) { return d[0] + "," + d[1];}).attr("x", function(d) {return d[0]+70;}).attr("y", function(d){ return d[1]+50;}).attr("fill", "#666");
+ 	//设置x轴缩放
+	var xScale = d3.scale.linear().domain([0, d3.max(dataset, function(d) { return d[0]; })]).range([0, w-50]);
+ 	//设置y轴缩放
+	var yScale = d3.scale.linear().domain([0, d3.max(dataset, function(d) { return d[1]; })]).range([h-40,0]);
+ 	//半径的缩放
+	var rScale = d3.scale.linear().domain([0, d3.max(dataset, function(d) { return d[1]; })]).range([5, 10]);
+	//设置刻度的格式
+	var formatAsPercentage = d3.format("");
+	
+	/** 设置缩放的效果 */
+ 	var svg2 = d3.select("#demo2-2").attr("width", w).attr("height", h);
+ 	
+ 	svg2.selectAll("rect")
+ 	.data(dataset)
+ 	.enter()
+ 	.append("circle")
+ 	.attr("cx", function(d) {return xScale(d[0]) + 30;})
+ 	.attr("cy", function(d) {return yScale(d[1]) + 30;})
+ 	.attr("r", function(d) {return rScale(d[1]);})
+ 	.attr("fill", function(d) { return "rgb(180, 240, 0)"; });
+ 	
+ 	svg2.selectAll("text")
+ 	.data(dataset)
+ 	.enter()
+ 	.append("text")
+ 	.text(function(d) {return d[0] + "," + d[1];})
+ 	.attr("x", function(d) {return xScale(d[0]) + 30;})
+ 	.attr("y", function(d) {return yScale(d[1]) + 30;}) 
+ 	.attr("fill", "#666");
+ 	
+  var xAxis = d3.svg.axis().scale(xScale).ticks(5)//最多刻度数，连上原点  
+                    .orient("bottom")
+                    .tickFormat(formatAsPercentage);//添加刻度格式  
+  // y轴  Define Y axis  
+  var yAxis = d3.svg.axis()  
+                    .scale(yScale)  
+                    .orient("left")  
+                    .ticks(5)  
+                    .tickFormat(formatAsPercentage);  
+  //Create X axis  
+  svg.append("g")  
+      .attr("class", "axis")  
+      .attr("transform", "translate(50," + (h-20) + ")")//设置据下边界的距离  
+      .call(xAxis);  
+  //Create Y axis  
+  svg.append("g")  
+      .attr("class", "axis")  
+      .attr("transform", "translate(50, 20)")//设置轴据左边界的距离  
+      .call(yAxis);
+}
+demo.demo2();
+
+demo.demo3 = function(){
+	//(1)准备数据集  
+	var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];  
+	              
+	//(2)设置SVG的高宽  
+	var w=500;  
+	var h=150;   
+	var barPadding = 5;
+	//(3)定义序数比例尺  
+	var xScale=d3.scale.ordinal().domain(d3.range(dataset.length)).rangeRoundBands([0,w],0.25);
+	//y仍然是线性比例尺  
+	var yScale=d3.scale.linear().domain([0,d3.max(dataset)]).range([0,h]);          
+	//(4)Create SVG element  
+	var svg = d3.select("#demo3").append("svg").attr("width", w).attr("height", h);
+	//(5)为SVG添加条形  
+	svg.selectAll("rect")//选中空元素，表示即将创建这样的元素  
+	    .data(dataset)//对此后的方法都执行dataset.length遍  
+	    .enter()//数据元素值比前面选中的DOM元素多就创建一个新的DOM元素  
+	    .append("rect")//取得enter的占位元素，并把rect追加到对应的DOM中  
+	    .attr("x", function(d, i) {//设置横坐标，从0开始每次右移元素宽那么长(w / dataset.length)  
+		    //return i * (w / dataset.length);  
+		    return xScale(i);//这里使用序数比例尺，自己去找刚才划分好的档位  
+	    })  
+	    .attr("y", function(d) {//设置纵坐标，纵坐标正方向是从上往下的，所以条有多长就要设置起点是相对于h再向上移动条长  
+			return h;  
+	    })  
+	    //.attr("width", w / dataset.length - barPadding)//设置元素宽，留出间隙宽barPadding。  
+	    .attr("width", xScale.rangeBand())//这里xScale比例尺已经设置间距了所以直接用  
+	    .attr("height", function(d) {return 1;  })  
+	    .attr("fill", function(d) {
+	    	return "rgb(180, 240, 0)";
+	    }); 
+
+	//更新所有的矩形动画
+	svg.selectAll("rect")  
+	.data(dataset)  
+	.transition()//(9)加上过渡动画   
+	.delay(function(d,i){  
+	    return  i/dataset.length*1000;  
+	})//指定过度什么时间开始，可以用函数控制每一条的动画时间，这样就可得到钢琴版的效果  
+	.duration(3000)//(10)加上动画的持续时间，以毫秒计算  
+	.ease("elastic")//(11)缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）  
+	.attr("y", function(d) {//设置纵坐标，纵坐标正方向是从上往下的，所以条有多长就要设置起点是相对于h再向上移动条长  
+		return h - yScale(d);  
+	})  
+	.attr("height", function(d) {  
+		return yScale(d);  
+	})  
+	//(6)为条加上数值  
+	svg.selectAll("text")  
+	   .data(dataset)  
+	   .enter()  
+	   .append("text")  
+	   .text(function(d) {  
+	        return d;  
+	   })  
+	   .attr("text-anchor", "middle")  
+	   .attr("x", function(d, i) {  
+	        return xScale(i)+xScale.rangeBand()/2;  
+	   })  
+	   .attr("y", function(d) {  
+	        return h;
+	   })
+	   .attr("font-size",function(d) {  
+	         return xScale.rangeBand()/2;  
+	   })
+	//更新所有的文本动画
+	svg.selectAll("text")  
+	.data(dataset)  
+	.transition()//(9)加上过渡动画   
+	.delay(function(d,i){  
+	    return  i/dataset.length*1000;  
+	})//指定过度什么时间开始，可以用函数控制每一条的动画时间，这样就可得到钢琴版的效果  
+	.duration(3000)//(10)加上动画的持续时间，以毫秒计算  
+	.ease("elastic")//(11)缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）  
+	.attr("y", function(d) {//设置纵坐标，纵坐标正方向是从上往下的，所以条有多长就要设置起点是相对于h再向上移动条长  
+		return h - yScale(d) + 14;   
+	});
+
+	//(15)删除一条  
+	d3.select("#deletebtn").on("click",function(){  
+		//选择所有条  
+		dataset.shift();  
+		//更新X轴比例尺  
+		xScale.domain(d3.range(dataset.length));  
+		  
+		var bars=svg.selectAll("rect").data(dataset);   
+		  
+		bars.exit().transition().duration(500).attr("x", w).remove();
+		var texts = svg.selectAll("text").data(dataset);
+		texts.exit().transition().duration(500).attr("x", w).remove();
+	});  
+	//(14)添加一条  
+	d3.select("#addbtn").on("click",function(){  
+		//数据集最后添加数值  
+		var maxValue=25;  
+		var newNumber =Math.floor(Math.random()*maxValue+1);//0-24的整数  
+		    dataset.push(newNumber);  
+		//更新X轴比例尺  
+		xScale.domain(d3.range(dataset.length));  
+		//选择所有条  
+		var bars=svg.selectAll("rect")  
+		.data(dataset); //绑定数据到元素集，返回更新的元素集  
+		  
+		var texts=svg.selectAll("text")  
+		.data(dataset);  
+		//添加条形元素到最右边  
+		bars.enter()  
+		.append("rect")  
+		.attr("x",w);//在SVG最右边，不可见  
+		//  
+		texts.enter()
+		.append("text");  
+		        
+		//更新新矩形到可见范围内  
+		//并在这个时候根据数据集为每个条设置对应的属性  
+		bars.transition()  
+		.duration(500)  
+		.attr("x", function(d, i) {  
+		     return xScale(i) ;  
+		 })//每个X对应到它相应的档位上  
+		.attr("y", function(d) {  
+		     return h - yScale(d) ;  
+		 })   
+		.attr("width", xScale.rangeBand())//这里xScale比例尺已经设置间距了所以直接用  
+		.attr("height", function(d) {  
+			return yScale(d);  
+		})  
+		.attr("fill", function(d) {//设置RGB颜色与数值的关系  
+    		return "rgb(180, 240, 0)";
+		});  
+		 
+		texts.transition()  
+		.duration(500)  
+		.text(function(d) {  
+		     return d;  
+		})
+		.attr("text-anchor", "middle")  
+		.attr("x", function(d, i) {  
+		     return xScale(i)+xScale.rangeBand()/2;  
+		})
+		.attr("y", function(d) {
+		     return h - yScale(d) + 14;  
+		})
+	});  
+	//(7)更新条形数长短的代码,需要一个button标签配合  
+	//特别注意：这里选中的元素必须在d3选择器之前，或许要先加载完了元素才能被选中  
+	d3.select("#updatebtn").on("click",function(){
+		//(12)新数据集,随机数组  
+		var numValues=dataset.length;  
+		dataset=[];  
+		var maxValue=25;  
+		var newNumber;  
+		for(var i=0;i<numValues;i++){
+		    newNumber=Math.floor(Math.random()*maxValue+1);//0-24的整数  
+		    dataset.push(newNumber);  
+		}  
+		//(13)更新比例尺，免使纵坐标超出范围  
+		yScale.domain([0,d3.max(dataset)]);//只要更新定义域就行了，映射到的值域不变  
+	    //更新所有的矩形  
+	    svg.selectAll("rect")  
+	    .data(dataset)  
+	    .transition()//(9)加上过渡动画   
+	    .delay(function(d,i){  
+	        return  i/dataset.length*1000;  
+	    })//指定过度什么时间开始，可以用函数控制每一条的动画时间，这样就可得到钢琴版的效果  
+	    .duration(1000)//(10)加上动画的持续时间，以毫秒计算  
+	    .ease("elastic")//(11)缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）  
+	    .attr("y",function(d){ return h-yScale(d);})  
+	    .attr("height",function(d){ return yScale(d); });  
+	    //(8)更新条上的数值  
+	    svg.selectAll("text")  
+	    .data(dataset)
+	    .transition()//(9)加上过渡动画   
+	    .delay(function(d,i){ return  i/dataset.length*1000; })//指定过度什么时间开始，可以用函数控制每一条的动画时间，这样就可得到钢琴版的效果  
+	    .duration(1000)//(10)加上动画的持续时间，以毫秒计算  
+	    .ease("elastic")//(11)缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）  
+	    .text(function(d) { return d; })  
+	    .attr("text-anchor", "middle")  
+	    .attr("x", function(d, i) {  
+	         return xScale(i)+xScale.rangeBand()/2;  
+	    })  
+	    .attr("y", function(d) {  
+	         return h - yScale(d) + 14;  
+	    })
+	});   
+}
+demo.demo3();
+</script>
+
+	</body>
+</html>
