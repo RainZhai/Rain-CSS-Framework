@@ -7,16 +7,17 @@
 <link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="../css/rain.css" type="text/css" media="all"/>
 <style type="text/css">  
-.axis path,  
-.axis line {  
+.axis path,.axis line {  
     fill: none;  
     stroke: black;  
     shape-rendering: crispEdges;  
-}  
-.axis text {  
-    font-family: sans-serif;  
-    font-size: 11px;  
-}  
+}
+polyline{
+	opacity: 0;
+	stroke: #666;
+	stroke-width: 2px;
+	fill: none;
+}
 </style> 
 </head>
 <body>
@@ -58,9 +59,20 @@
 				<p>
 				    <a href="javascript:;" id="updatebtn">更新</a>   
 				    <a href="javascript:;" id="addbtn">添加</a>   
-				    <a href="javascript:;" id="deletebtn">删除</a>  
+				    <a href="javascript:;" id="deletebtn">删除</a>
+					<a href="javascript:;" id="sortbtn">排序</a>
 				</p>
 				<div id="demo3">
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>环图  Donut chart</legend>
+				<div id="demo4">
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>分子图</legend>
+				<div id="demo5">
 				</div>
 			</fieldset>
 		</div>
@@ -222,7 +234,13 @@ demo.demo3 = function(){
 	    .attr("height", function(d) {return 1;  })  
 	    .attr("fill", function(d) {
 	    	return "rgb(180, 240, 0)";
-	    }); 
+	    }).on("mouseover",function(){
+	  		d3.select(this).attr("fill","orange");  
+	  	}).on("mouseout",function(d){  
+	  	    d3.select(this).transition()
+	  	    .duration(500)
+	  	    .attr("fill","rgb(180, 240, 0)");  
+	  	});
 
 	//更新所有的矩形动画
 	svg.selectAll("rect")  
@@ -238,7 +256,7 @@ demo.demo3 = function(){
 	})  
 	.attr("height", function(d) {  
 		return yScale(d);  
-	})  
+	});
 	//(6)为条加上数值  
 	svg.selectAll("text")  
 	   .data(dataset)  
@@ -268,7 +286,7 @@ demo.demo3 = function(){
 	.ease("elastic")//(11)缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）  
 	.attr("y", function(d) {//设置纵坐标，纵坐标正方向是从上往下的，所以条有多长就要设置起点是相对于h再向上移动条长  
 		return h - yScale(d) + 14;   
-	});
+	})
 
 	//(15)删除一条  
 	d3.select("#deletebtn").on("click",function(){  
@@ -345,7 +363,7 @@ demo.demo3 = function(){
 		var maxValue=25;  
 		var newNumber;  
 		for(var i=0;i<numValues;i++){
-		    newNumber=Math.floor(Math.random()*maxValue+1);//0-24的整数  
+		    newNumber=Math.floor(Math.random()*maxValue+1);//0-24的整数
 		    dataset.push(newNumber);  
 		}  
 		//(13)更新比例尺，免使纵坐标超出范围  
@@ -354,12 +372,12 @@ demo.demo3 = function(){
 	    svg.selectAll("rect")  
 	    .data(dataset)  
 	    .transition()//(9)加上过渡动画   
-	    .delay(function(d,i){  
+	    .delay(function(d,i){
 	        return  i/dataset.length*1000;  
 	    })//指定过度什么时间开始，可以用函数控制每一条的动画时间，这样就可得到钢琴版的效果  
 	    .duration(1000)//(10)加上动画的持续时间，以毫秒计算  
 	    .ease("elastic")//(11)缓动函数：有circle（加速）elastic（伸缩），linear（匀速），bounce（弹跳）  
-	    .attr("y",function(d){ return h-yScale(d);})  
+	    .attr("y",function(d){ return h-yScale(d);})
 	    .attr("height",function(d){ return yScale(d); });  
 	    //(8)更新条上的数值  
 	    svg.selectAll("text")  
@@ -376,9 +394,273 @@ demo.demo3 = function(){
 	    .attr("y", function(d) {  
 	         return h - yScale(d) + 14;  
 	    })
-	});   
+	});
+	var sortOrders=false; 
+	//对柱状图进行排序
+	d3.select("#sortbtn").on("click",function(){
+		sortOrders=!sortOrders;//(3)每点击一次排序方向改变 
+		svg.selectAll("rect")  
+		.sort(function(a,b){//对数据集升序排序
+			if(sortOrders){
+		    	return d3.ascending(a,b);//这个地方注意是键值对所以要加上值的引用b.value
+			}else{
+				return d3.descending(a,b);//这个地方注意是键值对所以要加上值的引用b.value
+			}
+		})  
+		.transition()  
+		.duration(1000)  
+		.attr("x",function(d,i){//对排序之后的横坐标重排  
+		    return xScale(i);  
+		});  
+		svg.selectAll("text")
+		.sort(function(a,b){//对数据集升序排序  
+			if(sortOrders){
+			   	return d3.ascending(a,b);//这个地方注意是键值对所以要加上值的引用b.value
+			}else{
+				return d3.descending(a,b);//这个地方注意是键值对所以要加上值的引用b.value
+			}
+		})  
+		.transition()  
+		.duration(1000)  
+		.attr("x",function(d,i){//对排序之后的横坐标重排  
+		return xScale(i)+xScale.rangeBand()/2; 
+		});   
+	});
 }
 demo.demo3();
+
+demo.demo4 = function(){
+	var dataset=[5,10,20,40,6,25].sort();  
+	//(1)转化数据为适合生成饼图的对象数组  
+	var pie=d3.layout.pie(dataset);  
+	  
+	var h=200;  
+	var w=300;  
+	  
+	var outerRadius=w/3;//外半径  
+	//(7)圆环内半径  
+	var innerRadius=w/3;  
+	var radius = Math.min(w, h) / 2;
+	//(2)用svg的path绘制弧形的内置方法  设置弧度的内外径，等待传入的数据生成弧度  
+	var arc=d3.svg.arc()
+	.outerRadius(outerRadius*0.6)
+	.innerRadius(innerRadius*0.6);
+	//设置动画效果内外半径
+	var arc2=d3.svg.arc()
+	.outerRadius(outerRadius*0.8)
+	.innerRadius(innerRadius*0.6);
+	
+	var outerArc = d3.svg.arc()
+	.innerRadius(outerRadius * 0.95)
+	.outerRadius(outerRadius * 0.95);
+	
+	var svg=d3.select("#demo4").append("svg").attr("width",w).attr("height",h);
+	        
+	//(3)颜色函数  
+	var color=d3.scale.category10();//创建序数比例尺和包括10中颜色的输出范围  
+	//(4)准备分组,把每个分组移到图表中心  
+	var arcs=svg.selectAll("g.arc")
+	.data(pie(dataset))
+	.enter()
+	.append("g")
+	.attr("class","arc")
+	//移到图表中心
+	.attr("transform","translate("+w / 2+","+h / 2+")");//translate(a,b)a表示横坐标起点，b表示纵坐标起点  
+	
+	//(5)为组中每个元素绘制弧形路路径  
+	arcs.append("path")//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息   
+	.attr("fill",function(d,i){//填充颜色  
+	    return color(i);  
+	})
+	.each(function() { this._current = {startAngle: 0, endAngle: 0}; });
+	//.attr("d",arc);//将角度转为弧度（d3使用弧度绘制）  
+	
+	//实现饼图每块依次弹出
+	svg.selectAll("path")
+	.transition()
+	.delay(function(d,i){
+		return  i/dataset.length*1000;
+	})
+	.duration(1000)
+	.ease("linear")
+	.attrTween("d", function(d) {
+		var interpolate = d3.interpolate(this._current, d);
+		this._current = interpolate(0);
+		return function(t) {
+			return arc2(interpolate(t));
+		};
+	});
+	//attr("d",arc2);
+	
+	//(6)为组中每个元素添加文本  
+	arcs.append("text")//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息  
+	.attr("transform",function(d){
+	    return "translate("+arc2.centroid(d)+")";//计算每个弧形的中心点（几何中心）  
+	})
+	.attr("text-anchor","middle")
+	.text(function(d){
+	    return d.value;//这里已经转为对象了  
+	});
+	
+	svg.append("g").attr("class", "labels").attr("transform","translate("+w / 2+","+h / 2+")");
+	var key = function(d){ return d.data; };
+	var text = svg.select(".labels").selectAll("text").data(pie(dataset), key);
+	
+	text.enter()
+	  .append("text")
+	  .attr("dy", "0.35em")
+	  .text(function(d) {
+	    return d.data+"  "+d.value;
+	  });
+	
+	text.transition().duration(1000)
+	  .attrTween("transform", function(d) {
+	    this._current = this._current || d;
+	    var interpolate = d3.interpolate(this._current, d);
+	    this._current = interpolate(0);
+	    return function(t) {
+	      var d2 = interpolate(t);
+	      var pos = outerArc.centroid(d2);
+	      pos[0] = radius* 4/5 * (midAngle(d2) < Math.PI ? 1 : -1);
+	      return "translate("+ pos +")";
+	    };
+	  })
+	  .styleTween("text-anchor", function(d){
+	    this._current = this._current || d;
+	    var interpolate = d3.interpolate(this._current, d);
+	    this._current = interpolate(0);
+	    return function(t) {
+	      var d2 = interpolate(t);
+	      return midAngle(d2) < Math.PI ? "start":"end";
+	    };
+	  });
+	
+	text.exit().remove();
+	
+	//创建提示线条
+	svg.append("g").attr("class", "lines").attr("transform","translate("+w / 2+","+h / 2+")");
+	var polyline = svg.select(".lines").selectAll("polyline").data(pie(dataset));
+	function midAngle(d){
+		return d.startAngle + (d.endAngle - d.startAngle)/2;
+	}
+	polyline.enter().append("polyline");
+	
+	polyline.transition().duration(1000).attrTween("points", function(d){
+		this._current = this._current || d;
+		var interpolate = d3.interpolate(this._current, d);
+		this._current = interpolate(0);
+		return function(t) {
+			var d2 = interpolate(t);
+			var pos = outerArc.centroid(d2);
+			pos[0] = outerRadius * 0.9 * (midAngle(d2) < Math.PI ? 1 : -1);
+			return [arc2.centroid(d2), outerArc.centroid(d2), pos];
+		};			
+	}).style("opacity", .4)
+	
+	polyline.exit().remove();
+}
+demo.demo4();
+demo.demo5 = function(){
+	var h=200;  
+	var w=500;  
+	// 颜色函数  
+	var colors=d3.scale.category20()//创建序数比例尺和包括20中颜色的输出范围  
+	//(1)定义节点和联系对象数组  
+	var dataset={  
+	nodes:[//节点  
+	        { name:"Adam"},  
+	        { name:"Bob"},  
+	        { name:"Carride"},  
+	        { name:"Donovan"},  
+	        { name:"Edward"},  
+	        { name:"Felicity"},  
+	        { name:"George"},  
+	        { name:"Hannah"},  
+	        { name:"Iris"},  
+	        { name:"Jerry"}   ,  
+	        { name:"sdfsd"}  
+	    ],  
+	edges:[//边  
+	        { source:0,target:1,weight:1,color:1},  
+	        { source:0,target:2,weight:3,color:4},  
+	        { source:0,target:3,weight:4,color:6},  
+	        { source:0,target:4,weight:6,color:65},  
+	        { source:1,target:2,weight:3,color:444},  
+	        { source:1,target:5,weight:3,color:76},  
+	        { source:2,target:5,weight:8,color:879},  
+	        { source:2,target:5,weight:7,color:989},  
+	        { source:3,target:4,weight:9,color:643},  
+	        { source:5,target:8,weight:1,color:54},  
+	        { source:5,target:9,weight:3,color:54},   
+	        { source:6,target:7,weight:4,color:45},  
+	        { source:7,target:8,weight:1,color:43},  
+	        { source:2,target:8,weight:8,color:243},  
+	        { source:3,target:8,weight:1,color:43},  
+	        { source:5,target:8,weight:5,color:13},  
+	        { source:6,target:8,weight:3,color:351},  
+	        { source:8,target:9,weight:4,color:1},  
+	        { source:9,target:10,weight:4,color:25},  
+	        { source:10,target:0,weight:6,color:25}   
+	    ]  
+	};  
+	//(2)转化数据为适合生成力导向图的对象数组  
+	var force=d3.layout.force()  
+	.nodes(dataset.nodes)//加载节点数据  
+	.links(dataset.edges)//加载边数据  
+	.size([w,h])//设置有效空间的大小  
+	.linkDistance(50)//连线的长度  
+	.charge(-400)//负电荷量，相互排斥设置的负值越大越排斥  
+	.start();//设置生效  
+	var svg=d3.select("#demo5")  
+	.append("svg")  
+	.attr("width",w)  
+	.attr("height",h);  
+	//(3)创建作为连线的svg直线  
+	var edges=svg.selectAll("line")  
+	.data(dataset.edges)  
+	.enter()  
+	.append("line")  
+	.style("stroke",function(d){//  设置线的颜色  
+	    return colors(d.color);  
+	})  
+	.style("stroke-width",function(d,i){//设置线的宽度  
+	    return d.weight;  
+	});  
+	//(4) 创建作为连线的svg圆形  
+	var nodes=svg.selectAll("circle")  
+	.data(dataset.nodes)  
+	.enter()  
+	.append("circle")  
+	.attr("r",function(d){//设置圆点的半径，圆点的度越大weight属性值越大，可以对其做一点数学变换  
+	    return Math.log(d.weight)*10;  
+	}).style("fill",function(d){  
+	    return colors(d.weight*d.weight*d.weight);  
+	}).call(force.drag);//可以拖动  
+	
+	 //(5)打点更新，没有的话就显示不出来了  
+	force.on("tick",function(){  
+	    edges.attr("x1",function(d){  
+	        return  d.source.x;  
+	    })  
+	    .attr("y1",function(d){  
+	        return  d.source.y;  
+	    })  
+	    .attr("x2",function(d){  
+	        return  d.target.x;  
+	    })  
+	    .attr("y2",function(d){  
+	        return  d.target.y;  
+	    });  
+		//(6)设置节点坐标，节点先生成再确定坐标的  
+		nodes.attr("cx",function(d){//节点有坐标属性  
+	        return d.x;  
+	    })  
+	    .attr("cy",function(d){  
+	        return d.y;  
+	    });  
+	});
+}
+demo.demo5();
 </script>
 
 	</body>
