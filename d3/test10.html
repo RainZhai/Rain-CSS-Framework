@@ -12,13 +12,6 @@ text{ opacity: 0; }
 </head>
 <body class="w320px bg37">
     <div class="pie-chart posr" id="pie-chart">
-    	<div id="paywrap" class="pay-wrap posa">
-    		<p>本月支出</p>
-    		<p>
-    			<span id="payval" class="cf fs30">00</span>
-    			<span>元</span>
-    		</p>
-    	</div>
     </div> 
 <script src="d3.v3.min.js"></script>
 <script src="../js/jquery-1.7.2.js"></script>
@@ -26,17 +19,12 @@ text{ opacity: 0; }
 <script type="text/javascript">
 var mobile = {};
 mobile.showPie = function(data) {
-
 	var typeset = [];
 	var useset = [];
 	var dataset = [];
-
 	var zoom=[1,0.8,06];
 
-	var _arc = d3.svg.arc()
-	    .startAngle(0 * (Math.PI/180)); //just radians
-
-
+	var _arc = d3.svg.arc().startAngle(0 * (Math.PI/180)); //just radians
 	 _arc.endAngle(360 * (Math.PI/180))
 
 	for (var i = 0; i < data.length; i++) {
@@ -47,8 +35,8 @@ mobile.showPie = function(data) {
 
 	//(1)转化数据为适合生成饼图的对象数组  
 	var pie = d3.layout.pie(dataset);
-	var h = 320;
-	var w = 320;
+	var h = 200;
+	var w = 200;
 	//外半径
 	var outerRadius = w / 2;
 	//圆环内半径  
@@ -91,14 +79,10 @@ mobile.showPie = function(data) {
 	// 	.ease("elastic")
 	// 	.attr("d", arc2);	
 
-
-
 	//(5)为组中每个元素绘制弧形路路径  
-	arcs.append("path")
-		.attr("fill", function(d, i) {
+	arcs.append("path").attr("fill", function(d, i) {
 			return colors[i];
-		})
-      		.each(function() { this._current = {startAngle: 0, endAngle: 0}; });
+		}).each(function() { this._current = {startAngle: 0, endAngle: 0}; });
 
 	//旋转绘制饼图
 	d3.selectAll("path")
@@ -113,9 +97,6 @@ mobile.showPie = function(data) {
 			};
 		});
 
-
-
-
 	svg.append("g").attr("class", "type").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 	var type = svg.select(".type").selectAll("text").data(pie(dataset));
 
@@ -126,7 +107,6 @@ mobile.showPie = function(data) {
 		.text(function(d, i) {
 			return typeset[i];
 		});
-
 
 	type.transition().duration(1000)
 		.attrTween("transform", function(d) {
@@ -148,12 +128,9 @@ mobile.showPie = function(data) {
 				var d2 = interpolate(t);
 				return midAngle(d2) < Math.PI ? "start":"end";
 			};
-		})
-		.style("opacity", 1);
+		}).style("opacity", 1);
 
 	type.exit().remove();
-
-
 
 	svg.append("g").attr("class", "use").attr("transform", "translate(" + w / 2 + "," + h / 2 + ")");
 	var use = svg.select(".use").selectAll("text").data(pie(dataset));
@@ -219,30 +196,19 @@ mobile.showPie = function(data) {
 	polyline.exit().remove();
 };
 
-mobile.showPay = function() {
-	$("#paywrap").fadeIn(3000, function() {
-/* 		$("#payval").numAnimate({
-			startNum: 0,
-			endNum: 140
-		}, 1000);
- */
-
-		mobile.showPie([{
-			'type': '流量',
-			'use': '100',
-			'cost': '50'
-		}, {
-			'type': '短信',
-			'use': '10',
-			'cost': '30'
-		}, {
-			'type': '通话',
-			'use': '10',
-			'cost': '20'
-		}]);
-	});
-}
-mobile.showPay();
+mobile.showPie([{
+	'type': 'data1',
+	'use': '100',
+	'cost': '50'
+}, {
+	'type': 'data2',
+	'use': '10',
+	'cost': '30'
+}, {
+	'type': 'data3',
+	'use': '10',
+	'cost': '20'
+}]); 
 </script>
 </body>
 </html>
