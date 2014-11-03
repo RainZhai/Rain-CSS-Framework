@@ -72,10 +72,14 @@ polyline{
 			</fieldset>
 			<fieldset>
 				<legend>环图  Donut chart</legend>
+				<a href="javascript:;" id="demo4_run1">动画一</a> 
 				<div id="demo4">
 				</div>
+				<a href="javascript:;" id="demo4_run2">动画二</a> 
 				<div id="demo4-2">
-					<iframe src="test10.html" class="h-30 w-30"></iframe>
+				</div>
+				<a href="javascript:;" id="demo4_run3">动画三</a> 
+				<div id="demo4-3">
 				</div>
 			</fieldset>
 			<fieldset>
@@ -92,6 +96,7 @@ polyline{
     </div>
   </div>
 <script src="d3.v3.min.js"></script>
+<script src="../js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 var demo = demo || {};
 //柱状图
@@ -190,25 +195,13 @@ demo.demo2 = function(){
  	.attr("y", function(d) {return yScale(d[1]) + 30;}) 
  	.attr("fill", "#666");
  	
-  var xAxis = d3.svg.axis().scale(xScale).ticks(5)//最多刻度数，连上原点  
-                    .orient("bottom")
-                    .tickFormat(formatAsPercentage);//添加刻度格式  
+  var xAxis = d3.svg.axis().scale(xScale).ticks(5).orient("bottom").tickFormat(formatAsPercentage);//添加刻度格式  
   // y轴  Define Y axis  
-  var yAxis = d3.svg.axis()  
-                    .scale(yScale)  
-                    .orient("left")  
-                    .ticks(5)  
-                    .tickFormat(formatAsPercentage);  
+  var yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(5).tickFormat(formatAsPercentage);  
   //Create X axis  
-  svg.append("g")  
-      .attr("class", "axis")  
-      .attr("transform", "translate(50," + (h-20) + ")")//设置据下边界的距离  
-      .call(xAxis);  
+  svg.append("g").attr("class", "axis").attr("transform", "translate(50," + (h-20) + ")").call(xAxis);  
   //Create Y axis  
-  svg.append("g")  
-      .attr("class", "axis")  
-      .attr("transform", "translate(50, 20)")//设置轴据左边界的距离  
-      .call(yAxis);
+  svg.append("g").attr("class", "axis").attr("transform", "translate(50, 20)").call(yAxis);
 }
 demo.demo2();
 
@@ -439,59 +432,35 @@ demo.demo3 = function(){
 demo.demo3();
 
 demo.demo4 = function(){
-	var dataset=[5,10,20,40,6,25].sort();  
+	var dataset=[10,20,25].sort();  
 	//(1)转化数据为适合生成饼图的对象数组  
 	var pie=d3.layout.pie(dataset);  
-	  
 	var h=200;  
 	var w=300;  
-	  
 	var outerRadius=w/3;//外半径  
 	//(7)圆环内半径  
 	var innerRadius=w/3;  
 	var radius = Math.min(w, h) / 2;
 	//(2)用svg的path绘制弧形的内置方法  设置弧度的内外径，等待传入的数据生成弧度  
-	var arc=d3.svg.arc()
-	.outerRadius(outerRadius*0.6)
-	.innerRadius(innerRadius*0.6);
+	var arc=d3.svg.arc().outerRadius(outerRadius*0.6).innerRadius(innerRadius*0.6);
 	//设置动画效果内外半径
-	var arc2=d3.svg.arc()
-	.outerRadius(outerRadius*0.8)
-	.innerRadius(innerRadius*0.6);
-	
-	var outerArc = d3.svg.arc()
-	.innerRadius(outerRadius * 0.95)
-	.outerRadius(outerRadius * 0.95);
-	
+	var arc2=d3.svg.arc().outerRadius(outerRadius*0.8).innerRadius(innerRadius*0.6);
+	var outerArc = d3.svg.arc().innerRadius(outerRadius * 0.95).outerRadius(outerRadius * 0.95);
+	$("#demo4").empty();
 	var svg=d3.select("#demo4").append("svg").attr("width",w).attr("height",h);
 	        
 	//(3)颜色函数  
 	var color=d3.scale.category10();//创建序数比例尺和包括10中颜色的输出范围  
 	//(4)准备分组,把每个分组移到图表中心  
-	var arcs=svg.selectAll("g.arc")
-	.data(pie(dataset))
-	.enter()
-	.append("g")
-	.attr("class","arc")
-	//移到图表中心
-	.attr("transform","translate("+w / 2+","+h / 2+")");//translate(a,b)a表示横坐标起点，b表示纵坐标起点  
+	var arcs=svg.selectAll("g.arc").data(pie(dataset)).enter().append("g").attr("class","arc").attr("transform","translate("+w / 2+","+h / 2+")");//translate(a,b)a表示横坐标起点，b表示纵坐标起点  
 	
 	//(5)为组中每个元素绘制弧形路路径  
-	arcs.append("path")//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息   
-	.attr("fill",function(d,i){//填充颜色  
-	    return color(i);  
-	})
-	.each(function() { this._current = {startAngle: 0, endAngle: 0}; });
+	//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息   
+	arcs.append("path").attr("fill",function(d,i){return color(i);}).each(function() { this._current = {startAngle: 0, endAngle: 0}; });
 	//.attr("d",arc);//将角度转为弧度（d3使用弧度绘制）  
-	
+
 	//实现饼图每块依次弹出
-	svg.selectAll("path")
-	.transition()
-	.delay(function(d,i){
-		return  i/dataset.length*1000;
-	})
-	.duration(1000)
-	.ease("linear")
+	svg.selectAll("path").transition().delay(function(d,i){ return  i/dataset.length*1000;}).duration(1000).ease("linear")
 	.attrTween("d", function(d) {
 		var interpolate = d3.interpolate(this._current, d);
 		this._current = interpolate(0);
@@ -499,31 +468,15 @@ demo.demo4 = function(){
 			return arc2(interpolate(t));
 		};
 	});
-	//attr("d",arc2);
-	
-	//(6)为组中每个元素添加文本  
-	arcs.append("text")//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息  
-	.attr("transform",function(d){
-	    return "translate("+arc2.centroid(d)+")";//计算每个弧形的中心点（几何中心）  
-	})
-	.attr("text-anchor","middle")
-	.text(function(d){
-	    return d.value;//这里已经转为对象了  
-	});
+	//attr("d",arc2); 
 	
 	svg.append("g").attr("class", "labels").attr("transform","translate("+w / 2+","+h / 2+")");
 	var key = function(d){ return d.data; };
 	var text = svg.select(".labels").selectAll("text").data(pie(dataset), key);
 	
-	text.enter()
-	  .append("text")
-	  .attr("dy", "0.35em")
-	  .text(function(d) {
-	    return d.data+"  "+d.value;
-	  });
+	text.enter().append("text").attr("dy", "0.35em").text(function(d) {return d.data+"  "+d.value;});
 	
-	text.transition().duration(1000)
-	  .attrTween("transform", function(d) {
+	text.transition().duration(1000).attrTween("transform", function(d) {
 	    this._current = this._current || d;
 	    var interpolate = d3.interpolate(this._current, d);
 	    this._current = interpolate(0);
@@ -533,8 +486,7 @@ demo.demo4 = function(){
 	      pos[0] = radius* 4/5 * (midAngle(d2) < Math.PI ? 1 : -1);
 	      return "translate("+ pos +")";
 	    };
-	  })
-	  .styleTween("text-anchor", function(d){
+	  }).styleTween("text-anchor", function(d){
 	    this._current = this._current || d;
 	    var interpolate = d3.interpolate(this._current, d);
 	    this._current = interpolate(0);
@@ -564,11 +516,99 @@ demo.demo4 = function(){
 			pos[0] = outerRadius * 0.9 * (midAngle(d2) < Math.PI ? 1 : -1);
 			return [arc2.centroid(d2), outerArc.centroid(d2), pos];
 		};			
-	}).style("opacity", .4)
+	}).style("opacity", .4);
 	
 	polyline.exit().remove();
 }
+d3.select("#demo4_run1").on("click",function(){
+	demo.demo4();
+});
+d3.select("#demo4_run2").on("click",function(){
+	demo.demo44();
+});
+d3.select("#demo4_run3").on("click",function(){
+	demo.demo444();
+}); 
+demo.demo44 = function(){
+	var dataset=[10,20,25].sort();  
+	//(1)转化数据为适合生成饼图的对象数组  
+	var pie=d3.layout.pie(dataset);  
+	var h=200;  
+	var w=300;  
+	var outerRadius=w/3;//外半径  
+	//(7)圆环内半径  
+	var innerRadius=w/3;  
+	var radius = Math.min(w, h) / 2;
+	//(2)用svg的path绘制弧形的内置方法  设置弧度的内外径，等待传入的数据生成弧度  
+	var arc=d3.svg.arc().outerRadius(outerRadius*0.6).innerRadius(innerRadius*0.6);
+	//设置动画效果内外半径
+	var arc2=d3.svg.arc().outerRadius(outerRadius*0.8).innerRadius(innerRadius*0.6);
+	var outerArc = d3.svg.arc().innerRadius(outerRadius * 0.95).outerRadius(outerRadius * 0.95);
+	$("#demo4-2").empty();
+	var svg=d3.select("#demo4-2").append("svg").attr("width",w).attr("height",h);
+	//(3)颜色函数  
+	var color=d3.scale.category10();//创建序数比例尺和包括10中颜色的输出范围  
+	//(4)准备分组,把每个分组移到图表中心  
+	var arcs=svg.selectAll("g.arc").data(pie(dataset)).enter().append("g").attr("class","arc").attr("transform","translate("+w / 2+","+h / 2+")");//translate(a,b)a表示横坐标起点，b表示纵坐标起点  
+	
+	//(5)为组中每个元素绘制弧形路路径  
+	arcs.append("path")//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息   
+	.attr("fill",function(d,i){
+	    return color(i);
+	}).each(function() { this._current = {startAngle: 0, endAngle: 0}; });
+	
+	svg.selectAll("path").transition().duration(1000).ease("bounce").attrTween("d", function(d) {
+		var interpolate = d3.interpolate(this._current, d);
+		this._current = interpolate(0);
+		return function(t) {
+			return arc2(interpolate(t));
+		};
+	});
+	//(6)为组中每个元素添加文本  
+	arcs.append("text")//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息  
+	.attr("transform",function(d){
+	    return "translate("+arc2.centroid(d)+")";//计算每个弧形的中心点（几何中心）  
+	}).attr("text-anchor","middle")
+	.text(function(d){
+	    return d.value;
+	});
+}
+
+demo.demo444 = function(){
+	var dataset=[10,20,25].sort();  
+	//(1)转化数据为适合生成饼图的对象数组  
+	var pie=d3.layout.pie(dataset);  
+	var h=200;  
+	var w=300;  
+	var outerRadius=w/3;//外半径  
+	//(7)圆环内半径  
+	var innerRadius=w/3;  
+	var radius = Math.min(w, h) / 2;
+	//(2)用svg的path绘制弧形的内置方法  设置弧度的内外径，等待传入的数据生成弧度  
+	var arc=d3.svg.arc().outerRadius(outerRadius*0.6).innerRadius(innerRadius*0.6);
+	//设置动画效果内外半径
+	var arc2=d3.svg.arc().outerRadius(outerRadius*0.8).innerRadius(innerRadius*0.6); 
+	$("#demo4-3").empty();
+	var svg=d3.select("#demo4-3").append("svg").attr("width",w).attr("height",h);
+	//(3)颜色函数  
+	var color=d3.scale.category10();//创建序数比例尺和包括10中颜色的输出范围  
+	//(4)准备分组,把每个分组移到图表中心  
+	var arcs=svg.selectAll("g.arc").data(pie(dataset)).enter().append("g").attr("class","arc").attr("transform","translate("+w / 2+","+h / 2+")");//translate(a,b)a表示横坐标起点，b表示纵坐标起点  
+	
+	//(5)为组中每个元素绘制弧形路路径  
+	arcs.append("path")//每个g元素都追加一个path元素用绑定到这个g的数据d生成路径信息   
+	.attr("fill",function(d,i){ return color(i); })
+	.attr("stroke", "white")
+	.attr("stroke-width", "2px")
+	.attr("d", arc);
+	//实现饼图每块依次弹出
+	svg.selectAll("path").transition().delay(function(d, i) {return i / dataset.length * 1000;	}).duration(1000).ease("elastic").attr("d", arc2);
+	//(6)为组中每个元素添加文本  
+	arcs.append("text").attr("transform",function(d){return "translate("+arc2.centroid(d)+")";	}).attr("text-anchor","middle").text(function(d){ return d.value;});
+}
 demo.demo4();
+demo.demo44();
+demo.demo444();
 demo.demo5 = function(){
 	var h=200;  
 	var w=500;  

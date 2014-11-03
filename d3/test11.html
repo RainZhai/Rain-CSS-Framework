@@ -14,18 +14,10 @@ polyline{
 </head>
 <body class="body w320px bg37">
     <div class="pie-chart posr" id="pie-chart">
-    	<div id="paywrap" class="pay-wrap posa">
-    		<p>本月支出</p>
-    		<p>
-    			<span id="payval" class="cf fs30">00</span>
-    			<span>元</span>
-    		</p>
-    	</div>
     </div> 
 <script src="d3.v3.min.js"></script>
 <script src="../js/jquery-1.7.2.js"></script>
-<script src="../js/util.js"></script>  
-<script src="main.js"></script>  
+<script src="../js/util.js"></script>   
 <script type="text/javascript">
 var mobile = window.mobile = {};
 
@@ -202,16 +194,11 @@ mobile.drawText = function(obj,x,y,color,propname){
 	obj.exit().remove();
 };
 
-mobile.showPay = function() {
-	$("#paywrap").fadeIn(3000, function() {
-/* 		$("#payval").numAnimate({
-			startNum: 0,
-			endNum: 140
-		}, 1000); */
+mobile.showPay = function() { 
 		var used = {
-			item0: {name:"流量",use:50,cost:120,sign:" M"},
-			item1: {name:"短信",use:555,cost:10,sign:" 条"},
-			item2: {name:"通话",use:10,cost:10,sign:" 分钟"}
+			item0: {name:"文本1",use:50,cost:120,sign:" G"},
+			item1: {name:"文本2",use:555,cost:10,sign:" G"},
+			item2: {name:"文本3",use:10,cost:10,sign:" G"}
 		}
 		var costsum = used.item0.use + used.item1.use + used.item2.use; 
 		var d1 = 360 * used.item0.use / costsum;
@@ -251,8 +238,7 @@ mobile.showPay = function() {
 			fill: "#2a95c7",
 			angularSize: d3,
 			startAngle: d1+d2
-		}],320,320);
-	});
+		}],320,320); 
 }
 mobile.showPay();
 </script>
