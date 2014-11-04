@@ -49,7 +49,7 @@ mobile.showPie = function(data,h,w) {
 		.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")")
 		.transition()
 		.delay(function(d, i) {
-			return i / data.length * 2000;
+			return i / data.length;
 		})
 		.duration(1000)
 		.ease("bounce") //有circle（加速）back elastic（伸缩），linear（匀速），bounce（弹跳）  

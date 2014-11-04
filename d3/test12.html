@@ -12,7 +12,7 @@ body{font-size:12px;}
 /*折线图*/
 .chart-headline, .chart-subHeadline { text-align: center;}
 .chart-headline { position: relative; font-weight: 100; font-size: 28px;}
-.chart-headline:before { position: absolute; content: ''; bottom: 133%; left: 50%; width: 25%; margin: 0 0 0 -12.5%; border-top: 1px dashed #999999;
+.chart-headline:before { position: absolute; content: ''; bottom: 133%; left: 50%; width: 25%; margin: 0 0 0 -12.5%; border-top: 1px dashed #ccc;
 }
 .chart-subHeadline { font-weight: 400; font-size: 14px; letter-spacing: 1px;}
 .charts-container { background-color: white; width: 100%;}
@@ -30,7 +30,7 @@ body{font-size:12px;}
 .lineChart-xAxisTicks .domain, .lineChart-xAxis .domain, .lineChart-yAxisTicks .domain { display: none;}
 .lineChart-xAxis .tick line { display: none;}
 .lineChart-xAxis .tick text{fill:#999;}
-.lineChart-xAxisTicks .tick line, .lineChart-yAxisTicks .tick line {fill: none; stroke: #24252d; stroke-width: 1; }
+.lineChart-xAxisTicks .tick line, .lineChart-yAxisTicks .tick line {fill: none; stroke: #ccc; stroke-width: 1; }
 .pieChart-center-innerCircle {fill: #fff;}
 .pieChart-center-text { font-size: 28px;}
 .pieChart-center-outerCircle {fill: rgba(255, 255, 255, 0.75);}
@@ -42,12 +42,12 @@ body{font-size:12px;}
 .pieChart__blue { fill: #6bb7c7;}
 .pieChart__red { fill: #d79d91;}
 .hidden { display: none;}
-.tooltip {position:absolute;min-width:48px;	height:25px; padding:2px 2px 5px 2px;background-color:#1a1a22; border:1px solid #74799a; color:#fff; -webkit-border-radius:5px;	-moz-border-radius:5px;
+.tooltip {position:absolute;min-width:48px;	height:25px; padding:2px 2px 5px 2px;background-color:#fff; border:1px solid #666; color:#666; -webkit-border-radius:5px; -moz-border-radius:5px;
 	border-radius:5px;	pointer-events:none;}
 .tooltip b, .tooltip i {position: absolute;	left: 0;display: block;	font-family: Simsun;font-style: normal;}
-.tooltip b {left: 20px;	bottom: -10px; color: #74799a;}
+.tooltip b {left: 20px;	bottom: -10px; color: #666;}
 .r_angle{left:auto!important;right:5px!important;}
-.tooltip b i {bottom: 1px;color: #1a1a22;}
+.tooltip b i {bottom: 1px;color: #fff;}
 
 .pathAnima {
 	fill:none;
@@ -58,6 +58,7 @@ body{font-size:12px;}
 	stroke-dashoffset: 0;
 	transition: stroke-dashoffset 1.595056250356918s ease-in-out 0s; 
 }
+.o-0{opacity:0;}
 </style> 
 </head>
 <body class="body w-40 bg37">
@@ -75,8 +76,8 @@ body{font-size:12px;}
 		</svg>
 		<div id="tooltip-1" class="tooltip hide">
 			<b>◆<i>◆</i></b>
-			<p class="tac lh-1">当月支出</p>
-			<p class="tac lh-1 oh ptss"><span class="j_value"></span>元</p>
+			<p class="tac lh-1">当前值</p>
+			<p class="tac lh-1 oh ptss"><span class="j_value"></span></p>
 		</div>
 	</div>
 	
@@ -91,17 +92,18 @@ body{font-size:12px;}
         </svg>
 		<div id="tooltip" class="tooltip hide">
 			<b class="r_angle">◆<i>◆</i></b>
-			<p class="tac lh-1">本月支出</p>
-			<p class="tac lh-1 oh ptss"><span class="j_value"></span>元</p>
+			<p class="tac lh-1">当前值</p>
+			<p class="tac lh-1 oh ptss"><span class="j_value"></span></p>
 		</div>
       </div>
-      <input type="button" value="test" id="run" /> 
+      <input type="button" value="动画" id="run" /> 
 <script src="d3.v3.min.js"></script>
 <script src="../js/jquery-1.7.2.js"></script>
 <script src="../js/util.js"></script>  
 <script src="main.js"></script>  
 <script type="text/javascript">
 var init = function(){
+$("#tooltip-1").css({'opacity':0});
 var lineChart =  [{ date: '2006-02-1',label: '支出',value: 44.55},{	date: '2006-03-1',label: '支出',value: 61.00},{date: '2006-04-1',label: '支出',
 	value: 117},{date: '2006-05-1',label: '支出',value: 174.25},{date: '2006-06-1',label: '支出',value: 445.25},{date: '2006-07-1',	label: '支出',
 	value: 88.48}];
