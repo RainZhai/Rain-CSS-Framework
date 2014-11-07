@@ -21,29 +21,21 @@
 	.bgYellow{background-color: #ffa752!important;}
 	</style>
 </head>
-<body class="body posr bglgrey">
-<div class="header">
-	<div class="wf-100 clearfix">
-	    <div class="l fl wf-25 ggrey h-5 h50"><div class="fsm ts nobr tac">应用名</div> </div>
-	    <div class="l fl wf-75 ggrey tar h-5"><a class="ib fsm ts mtl pss mr" href="search.html"><i class="icon-search mt"></i></a></div>
-	</div>
-</div>
-	<div class='c_touch'></div>
+<body class="body posr bglgrey" id="body">
+<script id="mainbox" type="text/html"> 
+{{include 'nav-templ'}}
+{{include 'list-templ'}} 
+</script> 
+<script id="nav-templ" type="text/html">
 	<div class="mainitem wf-100 clearfix mts">
-	    <div class="l fl wf-25"><a class="hll mss tac block bgBlue white round-1" href="#">name1</a></div>
-	    <div class="l fl wf-25"><a class="hll mss tac block bgRed white round-1" href="#">name2</a></div>
-	    <div class="l fl wf-25"><a class="hll mss tac block bgGreen white round-1" href="#">name3</a></div>
-	    <div class="l fl wf-25"><a class="hll mss tac block bgYellow white round-1" href="#">name4</a></div>
+	    <div class="l fl wf-25"><a class="hll mss tac block bgBlue white round-1" href="#">{{nav.title1}}</a></div>
+	    <div class="l fl wf-25"><a class="hll mss tac block bgRed white round-1" href="#">{{nav.title2}}</a></div>
+	    <div class="l fl wf-25"><a class="hll mss tac block bgGreen white round-1" href="#">{{nav.title3}}</a></div>
+	    <div class="l fl wf-25"><a class="hll mss tac block bgYellow white round-1" href="#">{{nav.title4}}</a></div>
 	</div>
-<div class="main mts mlss mrss pb-6" id="gamelist">
-</div>
-	<div class="footer wf-100 clearfix posf">
-	    <div class="l fl wf-25 ggrey"><div class="p fsm ts tac">name1</div></div>
-	    <div class="l fl wf-25 ggrey"><div class="p fsm ts tac">name2</div></div>
-	    <div class="l fl wf-25 ggrey"><div class="p fsm ts tac">name3</div></div>
-	    <div class="l fl wf-25 ggrey"><div class="p fsm ts tac">name4</div></div>
-	</div>
+</script>
 <script id="list-templ" type="text/html">
+<div class="main mts mlss mrss pb-6" id="gamelist">
 {{each gamelist as value i}}
     <div class="listitem wf-100 h-7 clearfix bgw so mts rounds">
         <div class="l fl wf-25 fullh">
@@ -60,10 +52,8 @@
 		</div>
     </div>
 {{/each}}
+</div>
 </script>
 <script src="js/lib/require.js" data-main="js/main"></script>
-<script type="text/javascript">
-
-</script>
 </body>
 </html>

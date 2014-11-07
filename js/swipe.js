@@ -16,7 +16,7 @@
 				responsive: true,
 				tipswrapStyle:{ bottom: "10px",left: "5px"}
 			}, opt || {});
-			var touchobj = $(o.touchSelector), startX = 0, //开始点击的位置
+			var touchobj = $(o.touchSelector).length>0 ? $(o.touchSelector) : $('<div class="c_touch"></div>'), startX = 0, //开始点击的位置
 			timer = o.time,
 			i = 0, //图片计数器
 			dirvalue = 0, //用于判断向左向右滑动
@@ -154,8 +154,8 @@
 				},
 	
 				/**
-		  		 *定时轮播函数。
-		  		 */
+	  		 *定时轮播函数。
+	  		 */
 				setTime : function() {
 					var w = obj.getWidth();
 					i++;
@@ -178,9 +178,15 @@
 					  obj.touchlist.find('li').slice(0, 1).clone(true).appendTo('.c_touhlist');
 						obj.timeHanlder = setInterval(obj.setTime,timer);
 					}
+				},
+				/**
+				 * 返回已进行拼合和事件注册的jq对象
+				 */
+				getHtml:function(){
+					return touchobj;
 				}
 			}
 			obj.init();
-			return obj;
+			return obj.getHtml();
 		}
 	})(jQuery);
