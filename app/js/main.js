@@ -1,5 +1,5 @@
 require.config({
-	urlArgs: 'v='+new Date().getTime(),
+	//urlArgs: 'v='+new Date().getTime(),
 	"baseUrl": "./js/",
 	paths: {
 		jquery: 'lib/jquery-1.7.2',
@@ -67,9 +67,8 @@ require(['jquery','html','template','util','swipe','head','foot'], function ($,_
 	var gamelist = t("mainbox",data);
 	var foothtml = foot(footdata);
 	main.add(headhtml).add(s).add(gamelist).add(foothtml);
-/*	util.addRoute('/','home',function(){
-		main.add(headhtml).add(s).add(gamelist).add(foothtml);
-	});*/
-
-
+	util.registerHashchange();
+	util.addRoute('/home','home',function(){
+		alert(1);
+	});
 });

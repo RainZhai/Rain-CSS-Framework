@@ -255,19 +255,22 @@
 	    var url = location.hash.slice(1) || '/';
 	    //通过url获取路径
 	    var route = util.routes[url];
-	    debugger;
 	    //我们同时拥有一个视图和路径吗？   
 	    if(route && route.controller){
 	        //使用模板引擎渲染路径的模板   
 	        route.controller();
 	    }
 	};
-/*	if(window.onhashchange){
-		//监听哈希变化
-		window.addEventListener('hash change',util.router);
-		//监听页面载入
+  util.registerHashchange=function(){
+    if('onhashchange' in win){
+      win.onhashchange = util.router();
+    }
 		window.addEventListener('load',util.router);
-	}*/
+  };
+	//监听哈希变化
+	//window.onhashchange = util.router();
+	//监听页面载入
+	//window.addEventListener('load',util.router);
   /**
   * @description 类式继承
   * @method
