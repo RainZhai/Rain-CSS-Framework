@@ -206,6 +206,68 @@
 	  }
 	  return null;
   };
+  /**监听url变化
+ 	var o1 = new util.urlChanger();
+  var o2 = new util.urlObservers(function(){});
+  o1.addObserver(o2);
+  o1.changeUrl('/nav-2');
+   */
+  util.urlChanger = function() {
+      var _this = this;
+      _this.observers = [];
+      //添加观察者
+      _this.addObserver = function(obj) {
+      	_this.observers.push(obj);
+      };
+      //删除观察者
+      _this.deleteObserver = function(obj) {
+      	_this.observers.slice(0, _this.observers.length);};
+      //通知观察者
+      _this._notifyObservers = function() {
+          var length = _this.observers.length;
+          console.log(length);
+          for(var i = 0; i < length; i++) {
+              _this.observers[i].update();
+          }
+      };
+      //改变url
+      _this.changeUrl = function(hash) {
+          window.location.hash = hash;
+          _this._notifyObservers();
+      };
+  };
+  //监听类
+  util.urlObservers = function(callball) {
+      var _this = this;
+      if(typeof(callball)=='function'){
+      	_this.update = callball;
+      }
+  };
+  util.routes = {};
+  util.addRoute = function(path,templateId,controller){
+  	util.routes[path] = {templateId: templateId, controller: controller};
+  };
+  util.removeRoute = function(path){
+  	util.routes[path] = null;
+  };
+	util.router = function(){
+	    //目前的路径url（在哈希中去除"#"）
+	    var url = location.hash.slice(1) || '/';
+	    //通过url获取路径
+	    var route = util.routes[url];
+	    debugger;
+	    //我们同时拥有一个视图和路径吗？   
+	    if(route && route.controller){
+	        //使用模板引擎渲染路径的模板   
+	        route.controller();
+	    }
+	};
+/*	if(window.onhashchange){
+		//监听哈希变化
+		window.addEventListener('hash change',util.router);
+		//监听页面载入
+		window.addEventListener('load',util.router);
+	}*/
   /**
   * @description 类式继承
   * @method
@@ -475,4 +537,4 @@
     return o;
   };
   
-})(window,jQuery);
+})(window,jQuery||Zepto);
