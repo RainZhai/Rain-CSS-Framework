@@ -22,18 +22,6 @@
 	</style>
 </head>
 <body class="body posr bglgrey" id="body">
-<script id="mainbox" type="text/html"> 
-{{include 'nav-templ'}}
-{{include 'list-templ'}} 
-</script> 
-<script id="nav-templ" type="text/html">
-	<div class="mainitem wf-100 clearfix mts">
-	    <div class="l fl wf-25"><a class="hll mss tac block bgBlue white round-1" href="#/nav-1">{{nav.title1}}</a></div>
-	    <div class="l fl wf-25"><a class="hll mss tac block bgRed white round-1" href="#/nav-2">{{nav.title2}}</a></div>
-	    <div class="l fl wf-25"><a class="hll mss tac block bgGreen white round-1" href="#/nav-3">{{nav.title3}}</a></div>
-	    <div class="l fl wf-25"><a class="hll mss tac block bgYellow white round-1" href="#/nav-4">{{nav.title4}}</a></div>
-	</div>
-</script>
 <script id="list-templ" type="text/html">
 <div class="main mts mlss mrss pb-6" id="gamelist">
 {{each gamelist as value i}}
@@ -53,6 +41,13 @@
     </div>
 {{/each}}
 </div>
+</script>
+<script type="text/javascript">
+var require = {
+baseUrl: "",
+waitSeconds: 5,
+urlArgs : "bust="+new Date().getTime()
+};
 </script>
 <script src="js/lib/require.js" data-main="js/main"></script>
 </body>

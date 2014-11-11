@@ -244,8 +244,13 @@
       }
   };
   util.routes = {};
+  util.routeopen = false;
   util.addRoute = function(path,templateId,controller){
   	util.routes[path] = {templateId: templateId, controller: controller};
+  	if(!util.routeopen){
+  		util.routeopen = true;
+  		util.registerHashchange(); 
+  	}
   };
   util.removeRoute = function(path){
   	util.routes[path] = null;
@@ -263,9 +268,9 @@
 	};
   util.registerHashchange=function(){
     if('onhashchange' in win){
-      win.onhashchange = util.router();
+      win.onhashchange = function(){util.router();};
+      win.onload = function(){util.router();};
     }
-		window.addEventListener('load',util.router);
   };
 	//监听哈希变化
 	//window.onhashchange = util.router();

@@ -351,6 +351,7 @@
 				remove: function(ele/*string | jq | htmlobj*/){
 					if(ele){
 					var _ele = ele.jq || ele;
+					debugger;
 					o.jq.remove(_ele);
 					}else{
 					o.jq.empty();
