@@ -82,27 +82,7 @@ CanvasPicture.prototype = {
 function drawByPicType(_context,_canvasPic){
 	var currPicType=_canvasPic.picType;
 	if(currPicType==1){
-		//heart
-		var dScaleFator=0.4;
-		var nReDrawCount=0;
-		window.setInterval(function(){
-			if(dScaleFator<0.4){
-				dScaleFator=0.4;
-			}else if(dScaleFator>0.54){
-				dScaleFator=0.4;
-			}else{
-				dScaleFator+=0.02;
-			}
-			
-			if(_canvasPic.picType>0){
-				drawHeart(_context,_canvasPic,dScaleFator,"pink");
-			}else{
-				if(nReDrawCount<10){
-					_canvasPic.drawBG();
-					nReDrawCount++;
-				}
-			}
-		},500);
+		drawPic(_context,_canvasPic,'./images/h1.jpg');
 	}else if(currPicType==2){
 		//textClock
 		var nReDrawCount=0;
@@ -262,6 +242,15 @@ function drawBackward(_context,_canvasPic,_rotate){
 	
 	_context.restore();			
 }
+function drawPic(_context,_canvasPic,imgpath){
+	var fPointArray=getCenterXY(_canvasPic.indexX,_canvasPic.indexY);
+	_context.save();
+	_canvasPic.drawBG();//ÖØ»­±³¾°
+	_context.translate(fPointArray[0],fPointArray[1]);
+	var pic = new Image();
+	pic.src=imgpath;
+	_context.drawImage(pic,0,0);
+};
 function drawDownLoad(_context,_canvasPic){
 	var fPointArray=getCenterXY(_canvasPic.indexX,_canvasPic.indexY);
 	_context.save();
