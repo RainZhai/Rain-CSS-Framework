@@ -4,3 +4,4 @@
 .hovercly:hover{color:#FDF5D9!important;}
 .wauto{width:auto;}
 .headerLinkBlue:hover{background-color:#12589a;color:#fff;}
+.lightYellowBox{background-color:#FDF5D9;}

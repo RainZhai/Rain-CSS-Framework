@@ -67,12 +67,12 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 	var gamelist = t("list-templ",data);
 	var foothtml = foot(footdata);
 	var navhtml = nav(navdata);
-	main.add(headhtml).add(s).add(navhtml).add(gamelist).add(foothtml);
 	util.addRoute('/','',function(){
-		//main.add(headhtml).add(s).add(navhtml).add(gamelist).add(foothtml);
+		main.getJQobj().empty();
+		main.add(headhtml).add(s).add(navhtml).add(gamelist).add(foothtml);
 	});
 	util.addRoute('/nav1','#gamelist',function(){
-		//main.remove($('#gamelist'));
+		main.remove('#gamelist');
 	});
 	 
 
