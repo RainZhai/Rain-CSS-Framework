@@ -188,7 +188,7 @@
 		/** 注册事件 */
 		registerEvents:function(){
 			var me = this;
-			if(util.supportTouch){
+			if(util.supportTouch &&(util.isAndroid || util.isIphone)){
 				util.touch.registerEvent(me.btn,function(e){
 						e.preventDefault();
 						var _this = $(this);

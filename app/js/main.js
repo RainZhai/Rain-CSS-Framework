@@ -56,7 +56,7 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 	var s = new $.swipe({
 		touchSelector : ".c_touch",
 		imgArray: slidedata.data,
-		linksArray:['#','#','#','#'],
+		linksArray:['#/pic1','#','#','#'],
 		time : 5000,
 		autorun: true,
 		width: main.getJQobj().width(),
@@ -68,11 +68,14 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 	var foothtml = foot(footdata);
 	var navhtml = nav(navdata);
 	util.addRoute('/','',function(){
-		main.getJQobj().empty();
+		main.remove();
 		main.add(headhtml).add(s).add(navhtml).add(gamelist).add(foothtml);
 	});
 	util.addRoute('/nav1','#gamelist',function(){
 		main.remove('#gamelist');
+	});
+	util.addRoute('/pic1','#pic1',function(){
+		alert(1);
 	});
 	 
 
