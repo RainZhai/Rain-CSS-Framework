@@ -9,7 +9,8 @@ require.config({
 		swipe: 'lib/swipe',
 		head:'app/head',
 		foot:'app/foot',
-		nav:'app/nav'
+		nav:'app/nav',
+		gamelist:'app/data/gamelist'
 	},
   shim : {
     'util' : {
@@ -40,15 +41,10 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 			title3:'标题',
 			title4:'标题'
 	}
-	var data = {
-			gamelist:[{
-				url:'http://wande.me/gg/index.html',
-				imgurl:'http://wande.me/game/images/gameicons-2.jpg',
-				name:'帅哥爱消除',
-				intro:'一款帅哥消除游戏',
-				start:'开始游戏'
-			}]
-	};
+	var gamelist;
+	require(['gamelist'],function(d){
+	 gamelist = t("list-templ",d);
+	}); 
 	var slidedata = {data:['../images/s1.jpg','../images/s2.jpg','../images/s3.jpg','../images/s4.jpg']};
 	
 	var main = new html('#body');
@@ -64,7 +60,6 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 		responsive: false,
 		tipswrapStyle:{ bottom: "10px",right: "5px"}
 	});
-	var gamelist = t("list-templ",data);
 	var foothtml = foot(footdata);
 	var navhtml = nav(navdata);
 	util.addRoute('/','',function(){
