@@ -7,10 +7,13 @@ require.config({
 		template: 'lib/template',
 		util:'lib/util',
 		swipe: 'lib/swipe',
-		head:'app/head',
-		foot:'app/foot',
-		nav:'app/nav',
-		gamelist:'app/data/gamelist'
+		head:'app/view/head',
+		foot:'app/view/foot',
+		nav:'app/view/nav',
+		gamelist:'app/data/gamelist',
+		common:'app/data/common',
+		searchhead:'app/view/searchHead',
+		searchmain:'app/view/searchMain'
 	},
   shim : {
     'util' : {
@@ -26,45 +29,17 @@ require.config({
 });
 require(['jquery','html','template','util','swipe','head','nav','foot'], function ($,_html,t,util,swipe,head,nav,foot){
 	var html = _html.htmlObj;
-	var headdata = {
-			name: 'Rain CSS'
-	};
-	var navdata = {
-			title1:'标题',
-			title2:'标题',
-			title3:'标题',
-			title4:'标题'
-	}
-	var footdata = {
-			title1:'标题',
-			title2:'标题',
-			title3:'标题',
-			title4:'标题'
-	}
+	var headhtml;
+	var navhtml;
+	var foothtml;
 	var gamelist;
-	require(['gamelist'],function(d){
-	 gamelist = t("list-templ",d);
-	}); 
-	var slidedata = {data:['../images/s1.jpg','../images/s2.jpg','../images/s3.jpg','../images/s4.jpg']};
+	var slide;
 	
 	var main = new html('#body');
-	var headhtml = head(headdata);
-	var s = new $.swipe({
-		touchSelector : ".c_touch",
-		imgArray: slidedata.data,
-		linksArray:['#/pic1','#','#','#'],
-		time : 5000,
-		autorun: true,
-		width: main.getJQobj().width(),
-		height:95,
-		responsive: false,
-		tipswrapStyle:{ bottom: "10px",right: "5px"}
-	});
-	var foothtml = foot(footdata);
-	var navhtml = nav(navdata);
+
 	util.addRoute('/','',function(){
 		main.remove();
-		main.add(headhtml).add(s).add(navhtml).add(gamelist).add(foothtml);
+		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml);
 	});
 	util.addRoute('/nav1','#gamelist',function(){
 		main.remove('#gamelist');
@@ -72,6 +47,30 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 	util.addRoute('/pic1','#pic1',function(){
 		alert(1);
 	});
-	 
+	util.addRoute('/search','#body',function(){
+		main.remove();
+		require(['searchhead','searchmain'],function(h,m){
+			var sheadhtml = h({});
+			main.add(sheadhtml);
+		});
+	});
 
+	require(['common','gamelist'],function(s,g){
+		gamelist = t("list-templ",g);
+		headhtml = head(s.headdata);
+		foothtml = foot(s.footdata);
+		navhtml = nav(s.navdata);
+		slide = new $.swipe({
+			touchSelector : ".c_touch",
+			imgArray: s.slidedata.data,
+			linksArray: s.slidedata.srcs,
+			time : 5000,
+			autorun: true,
+			width: main.getJQobj().width(),
+			height:95,
+			responsive: false,
+			tipswrapStyle:{ bottom: "10px",right: "5px"}
+		});
+		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml);
+	}); 
 });
