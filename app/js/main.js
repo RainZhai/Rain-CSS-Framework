@@ -13,7 +13,8 @@ require.config({
 		gamelist:'app/data/gamelist',
 		common:'app/data/common',
 		searchhead:'app/view/searchHead',
-		searchmain:'app/view/searchMain'
+		searchmain:'app/view/searchMain',
+		getjson:'app/data/getjson'
 	},
   shim : {
     'util' : {
@@ -47,14 +48,29 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 	util.addRoute('/pic1','#pic1',function(){
 		alert(1);
 	});
+
+	/*搜索模块路由*/
 	util.addRoute('/search','#body',function(){
 		main.remove();
-		require(['searchhead','searchmain'],function(h,m){
+		require(['jquery','searchhead','searchmain','getjson'],function($,h,m,getjson){
 			var sheadhtml = h({});
-			main.add(sheadhtml);
+			var smainhtml;
+			main.add(sheadhtml); 
+			getjson.getJson("js/app/data/searchData.json",function(d){
+				debugger;
+	    	smainhtml = m(d);
+	    	main.add(smainhtml);
+			});
+/*			$.ajax({url:"js/app/data/searchData.json",success:function(d){
+						debugger;
+			    	smainhtml = m(d);
+			    	main.add(smainhtml);
+					}}
+			);*/
 		});
 	});
 
+	/*主页模块路由*/
 	require(['common','gamelist'],function(s,g){
 		gamelist = t("list-templ",g);
 		headhtml = head(s.headdata);
