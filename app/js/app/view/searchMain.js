@@ -4,16 +4,9 @@ define(['template'],function (t) {
 	'{{each gamelist as value i}}'+
 		'<div class="l fl wf-33">'+
 			'<a href="{{value.url}}" class="roundss block tdn p tac ms bgw so">'+
-			'<img src="{{value.imgurl}}" class="round" alt="{{value.name}}" width="50%"/>'+
+			'{{if value.showimg}}<img src="{{value.imgurl}}" class="round" alt="{{value.name}}" width="50%"/>{{/if}}'+
 			'<span class="ib wsn toe oh fullw">{{value.intro}}</span>'+
 			'</a>'+
-		'</div>'+
-	'{{/each}}'+
-	'{{each gamelist2 as value i}}'+
-		'<div class="l fl wf-33">'+
-		  '<a href="{{value.url}}" class="roundss block tdn p tac ms bgw so">'+
-		'<span class="ib wsn toe oh fullw">{{value.intro}}</span>'+
-		'</a>'+
 		'</div>'+
 	'{{/each}}'+
 '<div class="tac">'+

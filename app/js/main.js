@@ -14,7 +14,7 @@ require.config({
 		common:'app/data/common',
 		searchhead:'app/view/searchHead',
 		searchmain:'app/view/searchMain',
-		getjson:'app/data/getjson'
+		json:'app/service/json'
 	},
   shim : {
     'util' : {
@@ -52,21 +52,20 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 	/*搜索模块路由*/
 	util.addRoute('/search','#body',function(){
 		main.remove();
-		require(['jquery','searchhead','searchmain','getjson'],function($,h,m,getjson){
+		require(['jquery','searchhead','searchmain','json'],function($,h,m,json){
 			var sheadhtml = h({});
 			var smainhtml;
 			main.add(sheadhtml); 
-			getjson.getJson("js/app/data/searchData.json",function(d){
-				debugger;
+/*			$.getJSON("http://127.0.0.1/Rain-CSS-Framework/app/js/app/data/searchData.js",function(d){
 	    	smainhtml = m(d);
 	    	main.add(smainhtml);
-			});
-/*			$.ajax({url:"js/app/data/searchData.json",success:function(d){
+			});*/
+			$.ajax({url:"js/app/data/searchData.js",success:function(d){
 						debugger;
 			    	smainhtml = m(d);
 			    	main.add(smainhtml);
 					}}
-			);*/
+			);
 		});
 	});
 
