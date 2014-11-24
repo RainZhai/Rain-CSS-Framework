@@ -60,8 +60,7 @@ require(['jquery','html','template','util','swipe','head','nav','foot'], functio
 	    	smainhtml = m(d);
 	    	main.add(smainhtml);
 			});*/
-			$.ajax({url:"js/app/data/searchData.js",success:function(d){
-						debugger;
+			$.ajax({url:"js/app/data/searchData.php",cache:false,success:function(d){
 			    	smainhtml = m(d);
 			    	main.add(smainhtml);
 					}}
