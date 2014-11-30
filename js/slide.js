@@ -13,7 +13,7 @@ window.slide = $.slide = function (opt) {
 		fix: false,  //是否固定大小
 		width: 320, //宽
 		height: 195, //高
-		images: 3,  //展示图片的格式
+		images: 3,  //每屏展示图片的个数
 		slides: 1,  //每次滑动图片个数
 		length: 40, //触屏最小滑动长度
 		control: true, //是有控制按钮
@@ -22,12 +22,13 @@ window.slide = $.slide = function (opt) {
 		auto: false, //自动轮播
 		speed: 800, //滑动速度
 		delay: 5000, //滚动间隔
+    preloadamt:3,
 		before:function(){}
   }, {}, opt);
   var _selector = $(opts.selector);
   var src = opts.src, alt = opts.alt, text = opts.text;
   var s = src.length||_selector.find('ul').find('li').size();    //需要展示图片张数
-  var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;//slides每次滑动图片张数，images每次展示的图片张数，ms需要复制的图片张数。
+  var slides = opts.slides, images = opts.images, ms = slides > images ? slides : images;//slides每次滑动图片张数，images每屏展示图片的个数，ms需要复制的图片张数。
   var i = 0, starX = 0;//i标记图片位置，straX标记触屏初始点
   var timer;  //计时器
   var finish = false;  //标记图片是否全部加载
@@ -58,8 +59,7 @@ window.slide = $.slide = function (opt) {
           	o.setWidth(opts.width);
             _selector.width(opts.width).height(o.getHeight());
 	        }else{
-	          log($(opts.selector).width());
-          	o.setWidth($(opts.selector).width());
+          	o.setWidth(_selector.width());
 	        }
           //判断是否需要复制节点
           if (opts.loop) { 
@@ -105,7 +105,7 @@ window.slide = $.slide = function (opt) {
       leftMove: function () {
           w = o.getItemWidth();
           if (!_wrap.is(':animated')) {
-              o.lazyLoad('left', i + slides, images);
+              o.lazyLoad('left', i);
               //判断是否做无缝滚动
               if (!opts.loop && i + images + slides > s) {
                   _wrap.stop().animate({marginLeft: -(s - images) * w}, opts.speed, function () {
@@ -126,7 +126,7 @@ window.slide = $.slide = function (opt) {
       rightMove: function () {
           w = o.getItemWidth();
           if (!_wrap.is(':animated')) {
-              o.lazyLoad('right', i - slides, images);
+              o.lazyLoad('right', i);
               //判断是否做无缝滚动
               if (!opts.loop && i - slides < 0) {
                   _wrap.stop().animate({marginLeft: 0}, opts.speed, function () {
@@ -144,49 +144,38 @@ window.slide = $.slide = function (opt) {
           }
       },
       //图片懒加载
-      lazyLoad: function (towards, index, n) {
+      lazyLoad: function (towards, index) {
           if (!finish) {
-              //根据方向加载图片
-              switch (towards) {
-                  case 'left':
-                      if (index + slides > s) {
-                          index -= s;
-                      }
-                      break;
-                  case 'right':
-                      if (index < slides) {
-                          index += s;
-                      }
-                      break;
-              }
               var _img = _wrap.find('img');
               var _item;
-              //加载图片
-              for (var i = 0; i < n; i++) {
-                  _item = _img.eq(ms + i + index);
-                  if (_item.attr('data-src')) {
-                      _item.attr('src', _item.attr('data-src')).removeAttr('data-src');
-                  }
+              //根据方向加载图片
+              if (towards=="left") {
+                for (var i = 0; i < opts.preloadamt; i++) {
+                    _item = _img.eq(i + index+slides);
+                    if (_item.attr('data-src')) {
+                        _item.attr('src', _item.attr('data-src')).removeAttr('data-src');
+                    }
+                }
+                o.judge(_img);
               }
-              o.judge(_img);
+              if (towards=="right") {
+                for (var l= _img.length, i =l; i > l-opts.preloadamt; i--) {
+                    _item = _img.eq(i - index-slides);
+                    if (_item.attr('data-src')) {
+                        _item.attr('src', _item.attr('data-src')).removeAttr('data-src');
+                    }
+                }
+                o.judge(_img); 
+              } 
           }
       },
       //判断图片是否加载完
       judge: function (img) {
           finish = true;
-          for (var i = 0; i < s; i++) {
-              if (img.eq(ms + i).attr('data-src')) {
-                  finish = false;
-              }
-          }
-          //图片加载完，更改所有节点的data-src。
-          if (finish) {
-              for (i = 0; i < s + 2 * ms; i++) {
-                  if (img.eq(i).attr('data-src')) {
-                      img.eq(i).attr('src', img.eq(i).attr('data-src')).removeAttr('data-src');
-                  }
-              }
-          }
+          img.each(function(i){
+            finish = false;
+            return;
+          });
       },
       //touchStar事件
       touchStar: function (event) {
@@ -236,8 +225,6 @@ window.slide = $.slide = function (opt) {
          _selector.find('#btnRight').on('click', o.leftMove);
 				}
       },
-      bindCommonEvent: function () {
-      },
       //初始化
       init: function () {
 					opts.before();
@@ -251,4 +238,4 @@ window.slide = $.slide = function (opt) {
     o.init();
     return o;
 }
-})(jQuery);
+})(jQuery||Zepto);

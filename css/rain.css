@@ -1246,7 +1246,7 @@ pre{white-space: normal;}
           column-count: 2; column-gap: 15px; /* Opera 11+*/}
 
 .css3_flexbox { display: box; box-orient: horizontal; display: -webkit-box; -webkit-box-orient: horizontal; display: -moz-box; -moz-box-orient: horizontal; }
-.css3_flexbox > div{ -webkit-box-flex: 1; -moz-box-flex: 1; box-flex: 1; }
+.css3_flexbox > div,.css3_flexbox > p,.css3_flexbox > a{ -webkit-box-flex: 1; -moz-box-flex: 1; box-flex: 1; }
 .toc,.text-overflow-clip{ text-overflow:clip; }  
 .toe,.text-overflow-ellipsis{ text-overflow:ellipsis; }
 /* extend css3 objects */
