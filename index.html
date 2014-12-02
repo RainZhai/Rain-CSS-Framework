@@ -210,31 +210,38 @@ width: 38px;
       </footer> 
     </div>
   </div>
-	<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src='js/jquery.scrollUp.min.js'></script>
-  <a id="scrollUp" href="#top" class='scrollup posf block'></a>
-  <script type="text/javascript">
-  $.scrollUp({
-  	scrollName: 'scrollUp', // Element ID
-  	topDistance: '300', // Distance from top before showing element (px)
-  	topSpeed: 300, // Speed back to top (ms)
-  	animation: 'fade', // Fade, slide, none
-  	animationInSpeed: 200, // Animation in speed (ms)
-  	animationOutSpeed: 200, // Animation out speed (ms)
-  	scrollText: '', // Text for element
-  	activeOverlay: false // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-  }); 
-  </script>
-  <script type="text/javascript">
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	
-	<script type="text/javascript">
-	try{
-	var pageTracker = _gat._getTracker("UA-17127063-1");
-	pageTracker._trackPageview();
-	} catch(err) {}
-	</script>
+ <a id="scrollUp" href="#top" class='scrollup posf block'></a> 
+<script type="text/javascript">
+function loadJS( src, cb ){
+  "use strict";
+  var ref = window.document.getElementsByTagName( "script" )[ 0 ];
+  var script = window.document.createElement( "script" );
+  script.src = src;
+  script.async = true;
+  ref.parentNode.insertBefore( script, ref );
+  if (cb && typeof(cb) === "function") {
+    script.onload = cb;
+  }
+  return script;
+}
+window.onload=function(){
+loadJS("http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js",function(){
+	loadJS("js/jquery.scrollUp.min.js",function(){
+		$.scrollUp({
+			scrollName: 'scrollUp', // Element ID
+			topDistance: '300', // Distance from top before showing element (px)
+			topSpeed: 300, // Speed back to top (ms)
+			animation: 'fade', // Fade, slide, none
+			animationInSpeed: 200, // Animation in speed (ms)
+			animationOutSpeed: 200, // Animation out speed (ms)
+			scrollText: '', // Text for element
+			activeOverlay: false // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+		}); 
+	});
+});
+}
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F645f788e2c22c6df311adee9e3c514a0' type='text/javascript'%3E%3C/script%3E"));
+</script> 
 </body>
 </html>

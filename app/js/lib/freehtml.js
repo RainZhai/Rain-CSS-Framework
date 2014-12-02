@@ -347,8 +347,24 @@
 					o.jq.load(url);
 					return o;
 				},
+				/**	@method 查找指定元素*/
+				find: function(ele/*string*/){
+					if(ele){
+						return o.jq.find(ele);
+					}
+				},
 				/**	@method 清除标签内容*/
 				remove: function(ele/*string | jq | htmlobj*/){
+					if(ele){
+					var _ele = ele.jq || ele;
+					o.jq.find(_ele).remove();
+					}else{
+					o.jq.empty();
+					}
+					return o;
+				},
+				/**	@method 清除标签内容*/
+				empty: function(ele/*string | jq | htmlobj*/){
 					if(ele){
 					var _ele = ele.jq || ele;
 					o.jq.find(_ele).empty();

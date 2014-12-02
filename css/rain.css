@@ -1246,7 +1246,7 @@ pre{white-space: normal;}
           column-count: 2; column-gap: 15px; /* Opera 11+*/}
 
 .css3_flexbox { display: box; box-orient: horizontal; display: -webkit-box; -webkit-box-orient: horizontal; display: -moz-box; -moz-box-orient: horizontal; }
-.css3_flexbox > div,.css3_flexbox > p,.css3_flexbox > a{ -webkit-box-flex: 1; -moz-box-flex: 1; box-flex: 1; }
+.css3_flexbox > div,.css3_flexbox > p,.css3_flexbox > a,.css3_flexbox > span{ -webkit-box-flex: 1; -moz-box-flex: 1; box-flex: 1; }
 .toc,.text-overflow-clip{ text-overflow:clip; }  
 .toe,.text-overflow-ellipsis{ text-overflow:ellipsis; }
 /* extend css3 objects */
@@ -1531,5 +1531,6 @@ button.close{ padding:0; cursor:pointer; background:transparent; border:0; -webk
 /*hide select,checkBox property*/
 .ui-checkbox,.ui-select select{ -webkit-appearance: none; filter: Alpha(Opacity=0); opacity: 0; left: -9999px; top: -9999px; position: absolute; }
 /*loarder style class*/
-.ui-loader{ z-index: 9999999; top: 45%; left: 45%; max-width: 200px; }
+.ui-loader{ z-index: 9999999; top: 0; left:0; }
+.ui-loader .loadermain{max-width: 150px; margin-top: 45%;}
 .ui-icon-loading{ width: 2.75em; height: 2.75em; background: url(../images/ajax-loader.gif) no-repeat 50% 50%; }

@@ -445,15 +445,15 @@
         /** 初始化html*/
         initHtml:function(){
           if(!o.html){
-            o.html = $('<div id="j_loader'+randomStr+'" class="j_loader'+randomStr+' ui-loader round-5 ps posf hide"><span class="ui-icon-loading block center roundall o-5"></span><div class="j_content tac"></div></div>');
+            o.html = $('<div id="j_loader'+randomStr+'" class="j_loader'+randomStr+' ui-loader  posa fullh fullw hide"><div class="j_loadermain loadermain mlrauto round-5"><span class="ui-icon-loading block center roundall o-5"></span><div class="j_content tac"></div></div></div>');
           }
           if(_content){o.html.find('.j_content').html(_content);}
           return o.html;
         },
         /** 设置样式*/
         initUI:function(){
-          o.html.addClass(opt.loadingClass);
-          o.html.css(opt.loadingStyle);
+          o.html.find('.j_loadermain').addClass(opt.loadingClass);
+          o.html.find('.j_loadermain').css(opt.loadingStyle);
           o.html.find('.j_content').css(opt.textStyle);
           o.html.find('.j_content').addClass(o.textClass);
           $('body').append(o.html);
@@ -464,14 +464,17 @@
          */
         setContent:function(s){
            o.html.find('.j_content').html(s);
+           return o;
         },
         /** loading显示 */
         show:function(){
           o.html.removeClass("hide");
+           return o;
         },
         /** loading隐藏 */
         hide:function(){
           o.html.addClass("hide");
+           return o;
         }
     };
 
