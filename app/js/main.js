@@ -14,6 +14,9 @@ require.config({
 		common: 'app/data/common',
 		searchhead: 'app/view/searchHead',
 		searchmain: 'app/view/searchMain',
+		list: 'app/view/list',
+		cate: 'app/view/category',
+		catedata: 'app/data/category',
 		json: 'app/service/json'
 	},
 	shim: {
@@ -42,8 +45,16 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'head', 'nav', 'foot'], 
 		main.remove();
 		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml);
 	});
-	util.addRoute('/nav1', '#gamelist', function() {
-		main.remove('#gamelist');
+	//nav3路由
+	util.addRoute('/nav3', '#main', function() {
+		main.remove('#main');
+		require(['cate', 'catedata'], function(c, d) {
+			gamelist = t("list-templ", g);
+			headhtml = head(s.headdata);
+			foothtml = foot(s.footdata);
+			navhtml = nav(s.navdata); 
+			main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml);
+		});
 	});
 	util.addRoute('/pic1', '#pic1', function() {
 		alert(1);
@@ -52,11 +63,13 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'head', 'nav', 'foot'], 
 	/*搜索模块路由*/
 	util.addRoute('/search', '#body', function() {
 		main.remove();
-		require(['jquery', 'searchhead', 'searchmain'], function($, h, m) {
+		require(['jquery', 'searchhead', 'searchmain','list'], function($, h, m,l) {
 			var sheadhtml = h({});
-			var smainhtml;
+			var smainhtml; 
+			var searchtips = main.find("#searchtips");
 			//创建loading弹出框
-			var loading = util.loading({loadingClass:'bglgrey'});
+			var loading =new util.loading({loadingClass:'bglgrey'});
+			var tip = new util.loading({loadingClass:'bgw',icon:false});
 			main.add(sheadhtml);
 			//搜索控制
 			main.find("#searchbox").on("keyup", function() {
@@ -67,30 +80,43 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'head', 'nav', 'foot'], 
 					main.find("#clearbtn").hide();
 				}
 			});
+			main.find("#searchbtn").on("click", function() {
+				//debugger;
+				if(main.find("#searchbox").val()){
+					var param = util.filter(main.find("#searchbox").val());
+					log(param);
+					$.get("js/app/data/searchresult.php?p="+param, function(d){
+						main.remove("#main");
+						loading.hide(); 
+						smainhtml = l(d);
+						main.add(smainhtml);
+						main.find("#searchtips").show().text("共搜索到"+d.gamelist.length+"条结果");
+					});
+				}else{
+					tip.setContent("请输入搜索关键字").show(1000);
+				}
+			});
 			main.find("#clearbtn").on("click", function() {
 				main.find("#searchbox").val("").focus();
 				$(this).hide();
 			});
-			$.ajax({
-				url: "js/app/data/searchsuggest.php",
-				cache: false,
-				success: function(d) {
-					smainhtml = m(d);
-					main.add(smainhtml);
-					main.find("#reSuggest").live("click", function() {
-						loading.setContent('正在加载...').show();
-						$.ajax({
-							url: "js/app/data/searchsuggest.php",
-							cache: false,
-							success: function(d) {
-								main.remove("#main");
-								loading.hide();
-								smainhtml = m(d);
-								main.add(smainhtml);
-							}
-						});
+			$.get("js/app/data/searchsuggest.php", function(d){
+				smainhtml = m(d);
+				main.add(smainhtml);
+				//换一批推荐
+				main.find("#reSuggest").live("click", function() {
+					loading.setContent('正在加载...').show();
+					$.ajax({
+						url: "js/app/data/searchsuggest.php",
+						cache: false,
+						success: function(d) {
+							main.remove("#main");
+							loading.hide();
+							smainhtml = m(d);
+							main.add(smainhtml);
+						}
 					});
-				}
+				});
 			});
 		});
 	});

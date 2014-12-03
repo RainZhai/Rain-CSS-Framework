@@ -421,12 +421,26 @@
   	return high+1;
   };
   /**
+   * @method filter
+   * @param {String}
+   * @return {String} 返回已过滤特殊字符的字符串
+   */
+  util.filter = function(s) {
+    var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）&mdash;—|{}【】‘；：”“'。，、？ % + ]");
+    var rs = "";
+    for (var i = 0; i < s.length; i++) {
+      rs = rs + s.substr(i, 1).replace(pattern, '');
+    }
+    return rs;
+  }
+  /**
    * 通用loader对象
    * @param {Object} 参数对象
    * @return {Object} 返回一个公有对象
    */
   util.loading = $.fn.loading = $.loading = function(obj){
     var opt = $.extend({
+      icon: true,
       content:"",//文本
       loadingStyle:{},//loading的样式
       loadingClass:"",//loading class。
@@ -445,7 +459,7 @@
         /** 初始化html*/
         initHtml:function(){
           if(!o.html){
-            o.html = $('<div id="j_loader'+randomStr+'" class="j_loader'+randomStr+' ui-loader  posa fullh fullw hide"><div class="j_loadermain loadermain mlrauto round-5"><span class="ui-icon-loading block center roundall o-5"></span><div class="j_content tac"></div></div></div>');
+            o.html = $('<div id="j_loader'+randomStr+'" class="j_loader'+randomStr+' ui-loader  posa fullh fullw hide"><div class="j_loadermain loadermain mlrauto round-5"><span class="j_icon ui-icon-loading block center roundall o-5"></span><div class="j_content tac"></div></div></div>');
           }
           if(_content){o.html.find('.j_content').html(_content);}
           return o.html;
@@ -453,6 +467,7 @@
         /** 设置样式*/
         initUI:function(){
           o.html.find('.j_loadermain').addClass(opt.loadingClass);
+          if(!opt.icon){ o.html.find('.j_icon').hide();}
           o.html.find('.j_loadermain').css(opt.loadingStyle);
           o.html.find('.j_content').css(opt.textStyle);
           o.html.find('.j_content').addClass(o.textClass);
@@ -466,14 +481,29 @@
            o.html.find('.j_content').html(s);
            return o;
         },
+        /** loading图标隐藏 */
+        showIcon:function(v){
+          if(!v){
+            o.html.find('.j_loadermain').hide();
+          }else{
+            o.html.find('.j_loadermain').show();
+          } 
+           return o;
+        },
         /** loading显示 */
-        show:function(){
-          o.html.removeClass("hide");
+        show:function(delay){
+          o.html.show();
+         // debugger;
+          if(delay>0){
+            setTimeout(function(){
+               o.html.hide();
+             },delay);
+          }
            return o;
         },
         /** loading隐藏 */
         hide:function(){
-          o.html.addClass("hide");
+          o.html.hide();
            return o;
         }
     };
