@@ -17,6 +17,9 @@ require.config({
 		list: 'app/view/list',
 		cate: 'app/view/category',
 		catedata: 'app/data/category',
+		topic: 'app/view/topic',
+		topicdetail: 'app/view/topicdetail',
+		topicdata: 'app/data/topic',
 		json: 'app/service/json'
 	},
 	shim: {
@@ -38,6 +41,9 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'head', 'nav', 'foot'], 
 	var foothtml;
 	var gamelist;
 	var slide;
+	//创建loading弹出框
+	var loading =new util.loading({loadingClass:'bglgrey'});
+	var tip = new util.loading({loadingClass:'bgw',icon:false});
 
 	var main = new html('#body');
 
@@ -49,15 +55,50 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'head', 'nav', 'foot'], 
 	util.addRoute('/nav3', '#main', function() {
 		main.remove('#main');
 		require(['cate', 'catedata'], function(c, d) {
-			gamelist = t("list-templ", g);
-			headhtml = head(s.headdata);
-			foothtml = foot(s.footdata);
-			navhtml = nav(s.navdata); 
-			main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml);
+			var list = c(d); 
+			main.add(list);
 		});
 	});
-	util.addRoute('/pic1', '#pic1', function() {
-		alert(1);
+	//nav3路由
+	util.addRoute('/nav4', '#main', function() {
+		main.remove();
+		require(['topic'], function(t) {
+			loading.setContent('正在加载...').show();
+			$.get("js/app/data/topic.php", function(d){
+				if(d.list.length>0){
+					var list = t(d); 
+					main.add(headhtml).add(slide).add(navhtml).add(list).add(foothtml); 
+				}else{
+					tip.setContent("没有记录").show(1000);
+				}
+				loading.hide();
+			});
+		});
+	});
+	//分类路由
+	util.addRoute('/cate1', '#cate1', function() { 
+		log(url);
+		main.remove();
+		require(['list'], function(l) {
+			loading.show();
+			$.get("js/app/data/searchcate.php?c=1", function(d){
+				loading.hide(); 
+				smainhtml = l(d);
+				main.add(headhtml).add(smainhtml);
+			});
+		});
+	});
+	//主题路由
+	util.addRoute('/topic1', '#topic1', function() { 
+		main.remove();
+		require(['topicdetail'], function(l) {
+			loading.show();
+			$.get("js/app/data/searchtopic.php?c=1", function(d){
+				loading.hide(); 
+				smainhtml = l(d);
+				main.add(headhtml).add(smainhtml);
+			});
+		});
 	});
 
 	/*搜索模块路由*/
@@ -67,9 +108,6 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'head', 'nav', 'foot'], 
 			var sheadhtml = h({});
 			var smainhtml; 
 			var searchtips = main.find("#searchtips");
-			//创建loading弹出框
-			var loading =new util.loading({loadingClass:'bglgrey'});
-			var tip = new util.loading({loadingClass:'bgw',icon:false});
 			main.add(sheadhtml);
 			//搜索控制
 			main.find("#searchbox").on("keyup", function() {
@@ -84,7 +122,7 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'head', 'nav', 'foot'], 
 				//debugger;
 				if(main.find("#searchbox").val()){
 					var param = util.filter(main.find("#searchbox").val());
-					log(param);
+					loading.show();
 					$.get("js/app/data/searchresult.php?p="+param, function(d){
 						main.remove("#main");
 						loading.hide(); 
