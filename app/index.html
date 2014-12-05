@@ -3,56 +3,36 @@
 <head>
 <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
-    <title>Rain CSS App</title>
-    <link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="all"/>
-    <link rel="stylesheet" href="../css/rain.css" type="text/css" media="all"/>
+    <title>玩的么</title>
+    <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
 <style>
 @media screen and (min-width: 1020px) {
   body{
     width: 320px!important; margin:0 auto;
   } 
 }
-	.w320px{width:320px;}
-	.lh-7{line-height: 70px;}
-	.footer{bottom:0;left:0;}
-	.bgRed{background-color: #ff7770!important;}
-	.bgBlue{background-color: #6d93ff!important;}
-	.bgGreen{background-color: #9ac53e!important;}
-	.bgYellow{background-color: #ffa752!important;}
-	.search{border-radius:30px;}
-	.searchbox{margin:5px 0 5px 10px!important; padding:0!important; height: 20px;line-height: 20px;}
+.w320px{width:320px;}
+.lh-7{line-height: 70px;}
+.footer{bottom:0;left:0;}
+.bgRed{background-color: #ff7770!important;}
+.bgBlue{background-color: #6d93ff!important;}
+.bgGreen{background-color: #9ac53e!important;}
+.bgYellow{background-color: #ffa752!important;}
+.search{border-radius:30px;}
+.searchbox{margin:5px 0 5px 10px!important; padding:0!important; height: 20px;line-height: 20px;}
 .searchicon{top:5px; right:10px;}
 .clearbtn{top:5px; right:33px; line-height: 20px;}
 </style>
 </head>
 <body class="body posr bglgrey" id="body">
-<script id="list-templ" type="text/html">
-<div class="main mts mlss mrss pb-6" id="main">
-{{each gamelist as value i}}
-    <div class="listitem wf-100 h-7 clearfix bgw so mts rounds">
-        <div class="l fl wf-25 fullh">
-	        <a class="block tdn oh hf-80 ps" href="{{value.url}}" target="_blank">
-			<img src="{{value.imgurl}}" class="round-10" alt="{{value.name}}" height="100%"/>
-			</a>
-		</div>
-        <div class="l fl wf-40 fullh">
-			<a class="block tal tdn fs14px mtl" href="{{value.url}}" target="_blank">{{value.name}}</a>
-			<p class="oh">{{value.intro}}</p>
-		</div>
-        <div class="l fl wf-35 fullh lh-7 tar">
-		<a class="hm ib pl pr rounds gr btn redbtn tac mr" href="{{value.url}}" target="_blank">{{value.start}}</a>
-		</div>
-    </div>
-{{/each}}
-</div>
-</script>
-<script type="text/javascript">
+<!--script type="text/javascript">
 var require = {
 baseUrl: "",
 waitSeconds: 5,
 urlArgs : "bust="+new Date().getTime()
 };
-</script>
+</script-->
 <script src="js/lib/require.js" data-main="js/main"></script>
 </body>
 </html>

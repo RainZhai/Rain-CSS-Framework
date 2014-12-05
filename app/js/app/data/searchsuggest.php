@@ -1,5 +1,5 @@
 <?php 
-    header('Content-Type:text/json;charset=utf-8');
+    header('Content-Type:application/javascript;charset=utf-8');
 	$str = array
        (
           'gamelist'=>array(
@@ -56,5 +56,5 @@
        );
 
 	$jsonencode = json_encode($str);
-	echo $jsonencode;
+	echo "var data =".$jsonencode;
 ?>
