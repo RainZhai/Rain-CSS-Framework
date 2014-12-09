@@ -5,7 +5,7 @@
 		'list' => array(
 			array(
 				'showimg' => true,
-				'url' => '#/topic1',
+				'url' => 'javascript:;',
 				'imgurl' => 'images/t1.jpg',
 				'name' => '双十一，游戏也来年终大促！',
 				'date' => '2014-11-11',

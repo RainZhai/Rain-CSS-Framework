@@ -11,11 +11,11 @@ define({
 	},
 	footdata: {
 		title1: '首页',
-		title2: '美图',
+		title2: '妹纸图',
 		title3: '游戏图',
 		title4: '搞笑图',
 		url1: '#/',
-		url2: 'http://wande.me/game/kmm',
+		url2: '#/gamepic',
 		url3: 'http://wande.me/haowan/category/%E6%B8%B8%E6%88%8F/',
 		url4: 'http://wande.me/haowan/category/%E6%90%9E%E7%AC%91%E5%9B%BE/'
 	},
