@@ -1,8 +1,8 @@
 require.config({
 	urlArgs: 'v=' + new Date().getTime(),
-	//"baseUrl": "./js/",
+	"baseUrl": "./js/",
 	paths: {
-		jquery: 'lib/jquery-1.7.2',
+		jquery: 'lib/jquery-1.7.2.min',
 		html: 'lib/freehtml',
 		template: 'lib/template',
 		util: 'lib/util',
@@ -41,15 +41,15 @@ require.config({
 	},
 	priority: ['jquery']
 });
-require(['jquery', 'html', 'template', 'util', 'swipe', 'headview', 'navview', 'footview'], function($, _html, t, util, swipe, head, nav, foot) {
+require(['jquery', 'html', 'util'], function($, _html, util) {
 	var html = _html.htmlObj;
 	var headhtml;
 	var navhtml;
 	var foothtml;
 	var gamelist;
 	var slide;
-	var prefix = 'http://wande.me/app/';
-	//var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
+	//var prefix = 'http://wande.me/app/';
+	var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
 	//创建loading弹出框
 	var loading =new util.loading({loadingClass:'bglgrey'});
 	var tip = new util.loading({loadingClass:'bgw',icon:false});
@@ -249,7 +249,7 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'headview', 'navview', '
 	});
 
 	/*主页模块路由*/
-	require(['commondata','listview'], function(s, l) {
+	require(['commondata','listview', 'swipe', 'headview', 'navview', 'footview'], function(s, l, swipe, head, nav, foot) {
 		headhtml = head(s.headdata);
 		foothtml = foot(s.footdata);
 		navhtml = nav(s.navdata);
@@ -262,10 +262,7 @@ require(['jquery', 'html', 'template', 'util', 'swipe', 'headview', 'navview', '
 			width: main.getJQobj().width(),
 			height: 95,
 			responsive: false,
-			tipswrapStyle: {
-				bottom: "10px",
-				right: "5px"
-			}
+			tipswrapStyle: {bottom: "10px",right: "5px"}
 		});
 		main.add(headhtml).add(slide).add(navhtml);
 		loading.setContent('正在加载...').show();
