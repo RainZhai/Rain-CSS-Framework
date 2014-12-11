@@ -4,7 +4,7 @@
 	 * @param {Object} obj Object对象。可以自定义传入的参数。
 	 * @return {Function} 返回的是一个公有的函数。
 	 */
-	$.swipe = function(opt) {
+    window.swipe = $.swipe = function(opt) {
 		var o = $.extend({
 			touchSelector: ".c_touch",
 			imgArray: ['images/s1.jpg', 'images/s2.jpg', 'images/s1.jpg', 'images/s3.jpg'],

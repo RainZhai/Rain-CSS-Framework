@@ -1,13 +1,13 @@
 require.config({
-	urlArgs: 'v=' + new Date().getTime(),
+	//urlArgs: 'v=' + new Date().getTime(),
 	"baseUrl": "./js/",
 	paths: {
 		jquery: 'lib/jquery-1.7.2.min',
-		html: 'lib/freehtml',
+		html: 'lib/freehtml.min',
 		template: 'lib/template',
-		util: 'lib/util',
-		swipe: 'lib/swipe',
-		slide: 'lib/slide',
+		util: 'lib/util.min',
+		swipe: 'lib/swipe.min',
+		slide: 'lib/slide.min',
 		headview: 'app/view/head',
 		footview: 'app/view/foot',
 		navview: 'app/view/nav',
@@ -48,8 +48,8 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var foothtml;
 	var gamelist;
 	var slide;
-	//var prefix = 'http://wande.me/app/';
-	var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
+	var prefix = 'http://wande.me/app/';
+	//var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
 	//创建loading弹出框
 	var loading =new util.loading({loadingClass:'bglgrey'});
 	var tip = new util.loading({loadingClass:'bgw',icon:false});
