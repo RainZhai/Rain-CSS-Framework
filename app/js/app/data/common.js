@@ -16,7 +16,7 @@ define({
 		title4: '搞笑图',
 		url1: '#/',
 		url2: '#/gamepic',
-		url3: 'http://wande.me/haowan/category/%E6%B8%B8%E6%88%8F/',
+		url3: '#/gamepic2',
 		url4: 'http://wande.me/haowan/category/%E6%90%9E%E7%AC%91%E5%9B%BE/'
 	},
 	slidedata: {

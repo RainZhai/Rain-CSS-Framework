@@ -1,6 +1,6 @@
 //head moudule
 define(['template'],function (t) {
-	var source = 	'<div class="mainitem wf-100 clearfix mts">'+
+	var source = 	'<div id="mainnav" class="mainnav wf-100 clearfix mts">'+
   '<div class="l fl wf-25"><a class="hll mss tac block bgBlue white round-1" href="#/nav1">{{title1}}</a></div>'+
   '<div class="l fl wf-25"><a class="hll mss tac block bgRed white round-1" href="#/nav2">{{title2}}</a></div>'+
   '<div class="l fl wf-25"><a class="hll mss tac block bgGreen white round-1" href="#/nav3">{{title3}}</a></div>'+

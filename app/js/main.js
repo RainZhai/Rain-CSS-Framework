@@ -1,5 +1,5 @@
 require.config({
-	//urlArgs: 'v=' + new Date().getTime(),
+	urlArgs: 'v=' + new Date().getTime(),
 	"baseUrl": "./js/",
 	paths: {
 		jquery: 'lib/jquery-1.7.2.min',
@@ -23,6 +23,8 @@ require.config({
 		topicdetailview: 'app/view/topicdetail', 
 		gamepicview: 'app/view/gamepic',
 		gamepicdetailview: 'app/view/gamepicdetail',
+		wplistview: 'app/view/wplist',
+		wplistdetailview: 'app/view/wplistdetail',
 		json: 'app/service/json'
 	},
 	shim: {
@@ -50,10 +52,12 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var slide;
 	var prefix = 'http://wande.me/app/';
 	//var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
+	//prefix = 'http://10.24.50.152/Rain-CSS-Framework/app/';
 	//创建loading弹出框
 	var loading =new util.loading({loadingClass:'bglgrey'});
-	var tip = new util.loading({loadingClass:'bgw',icon:false});
-
+	var tip = new util.loading({loadingClass:'bglgrey',icon:false});
+	var event = "click";
+	if(util.isIOS || util.isAndroid){ event = 'tap';}
 	var main = new html('#body');
 
 	util.addRoute('/', '', function() {
@@ -105,7 +109,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		});
 	});
 	//分类页面加载
-	main.find(".j_catelist").live("click",function(){
+	main.find(".j_catelist").live(event,function(){
 		main.remove();
 		var c = this.name;
 		require(['listview'], function(l) {
@@ -120,7 +124,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		});
 	});
 	//专题详情页面加载
-	main.find(".j_topicitem").live("click",function(){
+	main.find(".j_topicitem").live(event,function(){
 		main.remove();
 		var c = this.name;
 		require(['topicdetailview'], function(l) {
@@ -134,7 +138,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 			});
 		});
 	}); 
-	//游戏图列表路由
+	//游戏图mm列表路由
 	util.addRoute('/gamepic', '#gamepic', function() { 
 		main.remove();
 		require(['gamepicview'], function(l) {
@@ -148,10 +152,9 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 			});
 		});
 	});
-	//游戏图详情页面加载
-	main.find(".j_picitem").live("click",function(){
+	//游戏图mm详情页面加载
+	main.find(".j_picitem").live(event,function(){
 		main.remove();
-		//debugger;
 		var i = parseInt(this.name);
 		require(['gamepicdetailview','slide'], function(l,s) {
 			loading.show();
@@ -190,10 +193,31 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 			});
 		});
 	}); 
+	var gpicdata;
+	//游戏图列表路由
+	util.addRoute('/gamepic2', '#gamepic2', function() { 
+		main.remove('#main').remove(slide).remove('#mainnav');
+		require(['wplistview'], function(l) {
+			loading.show();
+			if(gpicdata){
+				loading.hide(); 
+				smainhtml = l(d);
+				main.add(smainhtml);
+			}else{
+				//跨域callback参数为？不需要设置让wp生成
+				$.getJSON("http://wande.me/haowan/api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&read_more=More&count=5", function(d){
+					gpicdata= d; 
+					loading.hide(); 
+					smainhtml = l(d);
+					main.add(smainhtml);
+				});
+			}
+		});
+	});
 
 	/*搜索模块路由*/
 	util.addRoute('/search', '#body', function() {
-		main.remove();
+		main.remove('#header').remove('#main').remove(slide).remove('#mainnav');
 		require(['jquery', 'searchheadview', 'searchmainview','listview'], function($, h, m,l) {
 			var sheadhtml = h({});
 			var smainhtml; 
@@ -208,8 +232,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					main.find("#clearbtn").hide();
 				}
 			});
-			main.find("#searchbtn").on("click", function() {
-				//debugger;
+			main.find("#searchbtn").on(event, function() {
 				if(main.find("#searchbox").val()){
 					var param = util.filter(main.find("#searchbox").val());
 					loading.show();
@@ -222,10 +245,10 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 						main.find("#searchtips").show().text("共搜索到"+d.gamelist.length+"条结果");
 					});
 				}else{
-					tip.setContent("请输入搜索关键字").show(1000);
+					tip.setContent("请输入搜索关键字").show(1500);
 				}
 			});
-			main.find("#clearbtn").on("click", function() {
+			main.find("#clearbtn").on(event, function() {
 				main.find("#searchbox").val("").focus();
 				$(this).hide();
 			});
@@ -234,7 +257,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				smainhtml = m(d);
 				main.add(smainhtml);
 				//换一批推荐
-				main.find("#reSuggest").live("click", function() {
+				main.find("#reSuggest").live(event, function() {
 					loading.setContent('正在加载...').show();
 					$.getScript(prefix+"js/app/data/searchsuggest.php",function(d) {
 						main.remove("#main");

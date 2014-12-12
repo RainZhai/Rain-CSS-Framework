@@ -550,7 +550,6 @@
       /** loading显示 */
       show: function(delay) {
         o.html.show();
-        // debugger;
         if (delay > 0) {
           setTimeout(function() {
             o.html.hide();
@@ -562,6 +561,9 @@
       hide: function() {
         o.html.hide();
         return o;
+      },
+      getHtml:function(){
+        return o.html;
       }
     };
 
