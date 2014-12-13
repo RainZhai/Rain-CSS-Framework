@@ -17,7 +17,7 @@ define({
 		url1: '#/',
 		url2: '#/gamepic',
 		url3: '#/gamepic2',
-		url4: 'http://wande.me/haowan/category/%E6%90%9E%E7%AC%91%E5%9B%BE/'
+		url4: '#/gaoxiao'
 	},
 	slidedata: {
 		data: ['images/s1.jpg', 'images/s2.jpg', 'images/s3.jpg', 'images/s4.jpg'],

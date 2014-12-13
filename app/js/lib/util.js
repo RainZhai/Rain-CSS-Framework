@@ -580,11 +580,14 @@
       lastItemHandle: '.list:last-child',
       loadurl: "",
       params: null,
-      wrapHandle: '#listbox'
+      wrapHandle: '#listbox',
+      loading: null,//加载提示框对象
+      stop: false
     }, obj || {});
 
     var win = $(window);
     var wrapbox = $(opt.wrapHandle);
+    var stop = opt.stop;
     var o = {
       /**
        * @method 获取列表容器对象
@@ -616,13 +619,18 @@
       getData: function() {
         return o.data
       },
+      setStop: function(v /*Boolean*/){
+        stop = v;
+      },
       init: function() {
         win.scroll(function() {
           //手机端滚动到底部加载height=device-height;
-          if ($(opt.lastItemHandle).is(':visible')) {
+          log(stop);
+          if ( !stop && $(opt.lastItemHandle).is(':visible')) {
             if (win.scrollTop() + win.height() >= $(document).height()) {
               if (opt.loadurl) {
                 var p = o.getParams();
+                if(opt.loading) opt.loading.show();
                 $.getJSON(opt.loadurl, p, function(data) {
                   o.setData(data);
                   if ($.isFunction(callback)) callback();

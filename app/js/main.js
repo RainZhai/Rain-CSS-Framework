@@ -1,5 +1,5 @@
 require.config({
-	urlArgs: 'v=' + new Date().getTime(),
+	//urlArgs: 'v=' + new Date().getTime(),
 	"baseUrl": "./js/",
 	paths: {
 		jquery: 'lib/jquery-1.7.2.min',
@@ -51,6 +51,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var gamelist;
 	var slide;
 	var prefix = 'http://wande.me/app/';
+	var hwprefix = 'http://wande.me/haowan/';
 	//var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
 	//prefix = 'http://10.24.50.152/Rain-CSS-Framework/app/';
 	//创建loading弹出框
@@ -58,57 +59,49 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var tip = new util.loading({loadingClass:'bglgrey',icon:false});
 	var event = "click";
 	if(util.isIOS || util.isAndroid){ event = 'tap';}
-	var main = new html('#body');
-
+	var main = new html('#box');
+	var remove = function(){
+		main.remove('#searchhead').remove('#main').remove(slide).remove('#mainnav');
+	}
 	util.addRoute('/', '', function() {
 		main.remove();
-		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml);
+		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml); 
 	});
 	//nav1路由
 	util.addRoute('/nav1', '#main', function() {
 		main.remove();
-		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml);
+		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml); 
 	});
 	//nav2路由
+	var data2;
 	util.addRoute('/nav2', '#main', function() {
-		main.remove("#main");
+		main.remove();
 		loading.setContent('正在加载...').show(); 
-		$.getScript(prefix+"js/app/data/gamelist2.js",function() {
-			main.remove("#main");
-			loading.hide();
-			var d = data;
-			require(['listview'], function(l) {
-				var list = l(d);
-				main.add(list).add(foothtml);
-			});
+		require(['listview'], function(l) {
+			if (data2) {
+				loading.hide();
+				var list = l(data2);
+				main.add(headhtml).add(slide).add(navhtml).add(list).add(foothtml); 
+			} else {
+				$.getScript(prefix + "js/app/data/gamelist2.js", function() {
+					main.remove("#main");
+					loading.hide();
+					data2 = data;
+					var list = l(data2);
+					main.add(headhtml).add(slide).add(navhtml).add(list).add(foothtml); 
+				});
+			}
 		});
 	});
-	//nav3路由
+	//nav3分类列表页面路由
 	util.addRoute('/nav3', '#main', function() {
 		main.remove();
 		require(['cateview', 'catedata'], function(c, d) {
 			var list = c(d); 
-			main.add(headhtml).add(list).add(foothtml); 
+			main.add(headhtml).add(list);
 		});
 	});
-	//nav3路由-专题列表
-	util.addRoute('/nav4', '#main', function() {
-		main.remove();
-		require(['topicview'], function(t) {
-			loading.setContent('正在加载...').show();
-			$.getScript(prefix+"js/app/data/topic.php", function(d){
-				var d = data;
-				if(d.list.length>0){
-					var list = t(d); 
-					main.add(headhtml).add(list).add(foothtml); 
-				}else{
-					tip.setContent("没有记录").show(1000);
-				}
-				loading.hide();
-			});
-		});
-	});
-	//分类页面加载
+	//分类详情页面加载
 	main.find(".j_catelist").live(event,function(){
 		main.remove();
 		var c = this.name;
@@ -121,6 +114,30 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				main.add(headhtml).add(smainhtml);
 				window.location.hash = "catedetail";
 			});
+		});
+	});
+	//nav4路由-专题列表
+	var data4;
+	util.addRoute('/nav4', '#main', function() {
+		main.remove();
+		require(['topicview'], function(t) {
+			loading.setContent('正在加载...').show();
+			if (data4) {
+				loading.hide();
+				var list = t(data4);
+				main.add(headhtml).add(list);
+			} else {
+				$.getScript(prefix + "js/app/data/topic.php", function(d) {
+					data4 = data;
+					if (data4.list.length > 0) {
+						var list = t(data4);
+						main.add(headhtml).add(list);
+					} else {
+						tip.setContent("没有记录").show(1000);
+					}
+					loading.hide();
+				});
+			}
 		});
 	});
 	//专题详情页面加载
@@ -193,31 +210,82 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 			});
 		});
 	}); 
-	var gpicdata;
 	//游戏图列表路由
 	util.addRoute('/gamepic2', '#gamepic2', function() { 
-		main.remove('#main').remove(slide).remove('#mainnav');
+		main.empty('#main').remove('#searchhead').remove(slide).remove('#mainnav');
 		require(['wplistview'], function(l) {
 			loading.show();
-			if(gpicdata){
+			//跨域callback参数为？不需要设置让wp生成
+			$.getJSON(hwprefix + "api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&count=5", function(d){
+				var gpicdata= d; 
 				loading.hide(); 
-				smainhtml = l(d);
-				main.add(smainhtml);
-			}else{
-				//跨域callback参数为？不需要设置让wp生成
-				$.getJSON("http://wande.me/haowan/api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&read_more=More&count=5", function(d){
-					gpicdata= d; 
-					loading.hide(); 
-					smainhtml = l(d);
-					main.add(smainhtml);
+				smainhtml = l(gpicdata);
+				main.find("#main").append(smainhtml);
+				var i = 2;
+				var list = util.listload({
+					lastItemHandle: '#main .j_picitem:last-child',
+					loadurl: hwprefix+"api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&count=5",
+					params: {page: 2},
+					wrapHandle: '#main',
+					loading: loading
+				}, function() {
+					loading.hide();
+					if (i > gpicdata.pages || gpicdata.pages==0) {
+						list.setStop(true);
+						tip.setContent("没有记录╮(╯▽╰)╭").show(1000);
+					} else {
+						i++;
+						gpicdata = list.getData();
+						smainhtml = l(gpicdata);
+						list.getDatabox().append(smainhtml);
+						list.setParams({
+							page: i
+						});
+					}
 				});
-			}
+			});
+		});
+	});
+	var gxdata;
+	//搞笑图列表路由
+	util.addRoute('/gaoxiao', '#gaoxiao', function() { 
+		main.empty('#main').remove('#searchhead').remove(slide).remove('#mainnav');
+		require(['wplistview'], function(l) {
+			loading.show();
+			$.getJSON(hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=5", function(d){
+				var gpicdata= d; 
+				loading.hide(); 
+				smainhtml = l(gpicdata);
+				main.find("#main").append(smainhtml);
+				var i = 2;
+				var list = util.listload({
+					lastItemHandle: '#main .j_picitem:last-child',
+					loadurl: hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=5",
+					params: {page: 2},
+					wrapHandle: '#main',
+					loading: loading
+				}, function() {
+					loading.hide();
+					if (i > gpicdata.pages || gpicdata.pages==0) {
+						list.setStop(true);
+						tip.setContent("没有记录╮(╯▽╰)╭").show(1000);
+					} else {
+						i++;
+						gpicdata = list.getData();
+						smainhtml = l(gpicdata);
+						list.getDatabox().append(smainhtml);
+						list.setParams({
+							page: i
+						});
+					}
+				});
+			});
 		});
 	});
 
 	/*搜索模块路由*/
 	util.addRoute('/search', '#body', function() {
-		main.remove('#header').remove('#main').remove(slide).remove('#mainnav');
+		main.remove();
 		require(['jquery', 'searchheadview', 'searchmainview','listview'], function($, h, m,l) {
 			var sheadhtml = h({});
 			var smainhtml; 

@@ -1,6 +1,6 @@
 //search head moudule
 define(['template'],function (t) {
-	var source = '<div class="header">'+
+	var source = '<div class="header" id="searchhead">'+
 	'<div class="wf-100 clearfix">'+
 	'<div class="l fl wf-25 ggrey h-5 h50"><a class="fs14px nobr block tac" href="#/">返回</a> </div>'+
 	'<div class="l fl wf-75 ggrey tar h-5 oh">'+

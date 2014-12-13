@@ -40,6 +40,7 @@
         var _wrap = _selector.find('.slidewrap');
         var o = {
             mainwidth: 0,
+            //返回jq对象
             getBox: function() {
                 return _selector;
             },
@@ -236,7 +237,7 @@
             },
             //绑定触屏事件
             bindEvent: function() {
-                if (util.supportTouch) {
+                if (util.supportTouch ) {
                     _selector[0].addEventListener("touchstart", o.touchStar, false);
                     _selector[0].addEventListener("touchend", o.touchEnd, false);
                     _selector[0].addEventListener("touchmove", o.touchMove, false);
