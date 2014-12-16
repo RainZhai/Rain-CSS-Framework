@@ -179,7 +179,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				var d = data;
 				loading.hide(); 
 				smainhtml = l(d.list[i]);
-				main.add(headhtml).add(smainhtml).add(foothtml);
+				main.add(headhtml).add(smainhtml);
 				var slide = new $.slide({
 					selector: '#slide', //滑动的块 
 					src: [],

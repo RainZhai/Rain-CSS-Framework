@@ -1,6 +1,7 @@
 //gamepics detail templ moudule
 define(['template'],function (t) {
-	var source = '<div id="slide" class="slide oh posr fullh fullw bgBlack">'+
+	var source = '<div class="main" id="main">'+
+		 '<div id="slide" class="slide oh posr fullh fullw bgBlack">'+
 		 '<div class="slidemain oh mlrauto">'+
 		 '<ul class="slidewrap lsn nop nom clearfix oh">'+
 		   '<li class="l fl">'+
@@ -26,6 +27,7 @@ define(['template'],function (t) {
 		 '</div>'+
 		 '<a id="btnLeft" class="j_slidebtn posa bgWhite o-5 tac hll fs-1 roundall" href="javascript:;">&lt;</a>'+
 		 '<a id="btnRight" class="j_slidebtn posa bgWhite o-5 tac hll fs-1 roundall" href="javascript:;">&gt;</a>'+
+		 '</div>'+
 		 '</div>';
 
 	var render = t.compile(source);
