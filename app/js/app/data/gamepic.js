@@ -3,10 +3,10 @@ var data = {
         showimg: true,
         url: 'kmm.html',
         imgurl: 'http://ww3.sinaimg.cn/mw690/005vSBqygw1emzsan0ortj308c0hm40s.jpg',
-        name: '看美眉11期 lol',
+        name: '看美眉-lol',
         period: 1,
         date: '2014-11-11',
-        intro: 'lol 萌妹来袭，玩的们猛击入哦',
+        intro: 'lol 萌妹来袭，猛击入哦',
         imglist: [{
             imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1emzsamearmj308c0hmmzf.jpg',
             url: 'javascript:;'
@@ -39,6 +39,117 @@ var data = {
             url: 'javascript:;'
         }, {
             imgurl: 'http://ww2.sinaimg.cn/mw690/005vSBqygw1emzsat7qt9j308c0hm76d.jpg',
+            url: 'javascript:;'
+        }]
+    },{
+        showimg: true,
+        url: 'kmm.html',
+        imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1emrpvouhn0j30ia0nx78s.jpg',
+        name: '看美眉-炫舞',
+        period: 2,
+        date: '2014-11-28',
+        intro: '炫舞游戏图高清mm',
+        imglist: [{
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1emrpvn7s2ij30ia0ck0yn.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww3.sinaimg.cn/mw690/005vSBqygw1emrpvlhmlwj30ia0dqn2m.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww2.sinaimg.cn/mw690/005vSBqygw1emrpvptmfgj30dc0k043g.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1emrpvpasi6j30ck0lc0ty.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww3.sinaimg.cn/mw690/005vSBqygw1emrpvodeo9j307u0lcq34.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww3.sinaimg.cn/mw690/005vSBqygw1emrpvlxraoj309i0lcdg5.jpg',
+            url: 'javascript:;'
+        }]
+    },{
+        showimg: true,
+        url: 'kmm.html',
+        imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en0dy0grfwj30hs0vkaee.jpg',
+        name: '看美眉-雷霆归来',
+        period: 3,
+        date: '2014-12-12',
+        intro: '最终幻想13 雷霆归来两位美女主角',
+        imglist: [{
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1en0dy1llh6j30ia0aawiv.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1en0dy0z0jbj30ia0cfwgj.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en0dy2odg1j307n064aa4.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww2.sinaimg.cn/mw690/005vSBqygw1en0dy20dkjj30av0640st.jpg',
+            url: 'javascript:;'
+        }]
+    },{
+        showimg: true,
+        url: 'kmm.html',
+        imgurl: 'http://ww2.sinaimg.cn/mw690/005vSBqygw1en91oi9t8wj30fa0ukwhc.jpg',
+        name: '看美眉-机甲少女',
+        period: 4,
+        date: '2014-12-13',
+        intro: '动漫机甲少女战士',
+        imglist: [{
+            imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en91ohcxhbj30ia0odgt4.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en91od3ww4j30f50go75x.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en91occw86j30bt0godh7.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1en91obp4ttj30ia0odgx6.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1en91oafdb9j30da0gotaz.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en91o9mcvlj30bt0gowfr.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en91o8vmzoj308c0goaay.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww2.sinaimg.cn/mw690/005vSBqygw1en91o7wcszj30bs0goab7.jpg',
+            url: 'javascript:;'
+        }]
+    },{
+        showimg: true,
+        url: 'kmm.html',
+        imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en9ius0sdvj30ia0jh77q.jpg',
+        name: '看美眉-女神',
+        period: 5,
+        date: '2014-12-20',
+        intro: '女神联盟里的高清福利O(∩_∩)O哈哈~',
+        imglist: [{
+            imgurl: 'http://ww3.sinaimg.cn/mw690/005vSBqygw1en9iusnfnlj30am0f0t9r.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww4.sinaimg.cn/mw690/005vSBqygw1en9iutik5nj30ia0puq74.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww2.sinaimg.cn/mw690/005vSBqygw1en9iuxqvloj30ia0mvn0v.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww3.sinaimg.cn/mw690/005vSBqygw1en9iuqmgifj30ia0pugpr.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1en9iupuv06j30gk0ozjvy.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww2.sinaimg.cn/mw690/005vSBqygw1en9iund4sbj30ia0pvwjb.jpg',
+            url: 'javascript:;'
+        }, {
+            imgurl: 'http://ww1.sinaimg.cn/mw690/005vSBqygw1en9iuj5upij30ia0pvjx5.jpg',
             url: 'javascript:;'
         }]
     }],

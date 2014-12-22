@@ -7,7 +7,7 @@ define(['template'],function (t) {
 		   '<li class="l fl">'+
 		       '<h2 class="fs14px white pl pt"><a href="http://wande.me" class="white" style="text-decoration: underline;" target="_blank" >玩的么</a>《看美眉》 (第{{period}}期)</h2>'+
 		       '<p class="fs12px white pl">{{name}}</p>'+
-		       '<a class="block ps tac" href="javascript:;"><img class="fullw round-5" src="http://ww3.sinaimg.cn/mw690/005vSBqygw1emzsan0ortj308c0hm40s.jpg" /></a>'+
+		       '<a class="block ps tac" href="javascript:;"><img class="fullw round-5" src="{{imgurl}}" /></a>'+
 		    '</li>'+
 		 '{{each imglist as value i}} '+
 			 '<li class="l fl">'+
