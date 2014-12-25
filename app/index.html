@@ -28,6 +28,7 @@
 .listitem .topictitle{user-select:none; -webkit-user-select:none;}
 .wplistwrap .listitem img,.wplistwrap .listitem iframe,.wplistwrap .listitem embed{width: 100%!important;}
 </style>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 </head>
 <body class="body posr bglgrey pt-5" id="body">
 <div id="box" class="fullw fullh"></div>
@@ -39,5 +40,22 @@ urlArgs : "bust="+new Date().getTime()
 };
 </script> -->
 <script src="js/lib/require.min.js" data-main="js/mainmin"></script>
+<script type="text/javascript" charset="utf-8">
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    document.addEventListener("backbutton",onBackKeyDown, false);    
+}
+function onConfirm(i) {
+  if(i==1 && location.hash!=''){ navigator.app.exitApp(); }
+}
+function onBackKeyDown(){
+  navigator.notification.confirm(
+      '按确定退出!',
+      onConfirm,
+      '确定退出玩的么吗?',
+      ['确定','取消']
+  );
+}
+</script> 
 </body>
 </html>
