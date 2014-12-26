@@ -28,6 +28,7 @@
 .listitem .topictitle{user-select:none; -webkit-user-select:none;}
 .wplistwrap .listitem img,.wplistwrap .listitem iframe,.wplistwrap .listitem embed{width: 100%!important;}
 </style>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 </head>
 <body class="body posr bglgrey pt-5" id="body">
 <div id="box" class="fullw fullh"></div>
@@ -38,6 +39,32 @@ waitSeconds: 5,
 urlArgs : "bust="+new Date().getTime()
 };
 </script> -->
-<script src="js/lib/require.min.js" data-main="js/mainmin"></script>
+<script src="js/lib/require.min.js" data-main="js/main"></script>
+<script type="text/javascript" charset="utf-8">
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    document.addEventListener("backbutton",onBackKeyDown, false);
+    /* document.getElementsByClassName("j_start").addEventListener("click",function(){
+      var link = this.href1;
+    var ref = window.open(link, '_blank', 'location=no');
+    ref.addEventListener('loadstart', function() { alert(event.url); });
+    },false); */
+}
+function onConfirm(i) {
+  if(i==2){ navigator.app.exitApp(); }
+}
+function onBackKeyDown(){
+  if(location.hash=="#/gamepic" || location.hash=="#/gamepic2" || location.hash=="#/gaoxiao"|| location.hash=="#/"|| location.hash==""){
+    navigator.notification.confirm(
+        '按确定退出!',
+        onConfirm,
+        '确定退出玩的么吗?',
+        ['取消','确定']
+    );
+  }else{
+    history.back();
+  }
+}
+</script> 
 </body>
 </html>
