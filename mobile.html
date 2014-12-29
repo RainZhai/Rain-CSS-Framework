@@ -254,7 +254,8 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
     </footer> 
     </div>
   </div>
-<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/jquery.slider.js"></script>
 <script type="text/javascript" src="js/checkbox.js"></script>
@@ -315,7 +316,7 @@ slider.init();
 var box = new $.checkBox({
     callback: function () {
         $("#j_group_1").find(".c_box").on('click', function () {
-            var _this = $(this), Ok_icon = _this.find(".icon-ok"), checkedObj = _this.find(':checkbox');
+            var _this = $(this), Ok_icon = _this.find(".icon-ok"), checkedObj = _this.find('.ui-checkbox ');
             Ok_icon.toggleClass("vf").parent().toggleClass("gb");
             if (checkedObj.attr('checked') == undefined) {
                 checkedObj.attr('checked', true);

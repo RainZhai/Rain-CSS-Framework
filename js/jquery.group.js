@@ -135,4 +135,4 @@
         o.init();
         return o;
     };
-})(jQuery);
+})(window.jQuery || window.Zepto);

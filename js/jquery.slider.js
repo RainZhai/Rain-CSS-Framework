@@ -265,4 +265,4 @@
 			}
 		}
 	}
-	})(jQuery,document);
+	})(window.jQuery||window.Zepto, document);

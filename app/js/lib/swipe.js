@@ -4,7 +4,7 @@
 	 * @param {Object} obj Object对象。可以自定义传入的参数。
 	 * @return {Function} 返回的是一个公有的函数。
 	 */
-    window.swipe = $.swipe = function(opt) {
+	window.swipe = $.swipe = function(opt) {
 		var o = $.extend({
 			touchSelector: ".c_touch",
 			imgArray: ['images/s1.jpg', 'images/s2.jpg', 'images/s1.jpg', 'images/s3.jpg'],
@@ -173,18 +173,20 @@
 				var w = obj.getWidth();
 				i++;
 				if (i > obj.len - 1) {
-					obj.touchlist.stop().animate({
+					obj.touchlist.stop();
+					obj.touchlist.animate({
 						"left": -i * w
-					}, function() {
+					}, 1000, null, function() {
 						i = 0;
 						obj.touchlist.css({
 							"left": 0
 						});
 					});
 				} else {
-					obj.touchlist.stop().animate({
+					obj.touchlist.stop(); 
+					obj.touchlist.animate({
 						"left": -i * w
-					});
+					}, 1000, null, function() {});
 				}
 				obj.lazyLoad(i, obj.items);
 				obj.tipShow();
@@ -208,4 +210,4 @@
 		obj.init();
 		return obj.getHtml();
 	}
-})(jQuery);
+})(window.jQuery || window.Zepto);

@@ -645,4 +645,4 @@
     return o;
   };
 
-})(window, jQuery || Zepto);
+})(window, window.jQuery || window.Zepto);

@@ -237,7 +237,7 @@
             },
             //绑定触屏事件
             bindEvent: function() {
-                if (util.supportTouch ) {
+                if (util.supportTouch) {
                     _selector[0].addEventListener("touchstart", o.touchStar, false);
                     _selector[0].addEventListener("touchend", o.touchEnd, false);
                     _selector[0].addEventListener("touchmove", o.touchMove, false);
@@ -261,4 +261,4 @@
         o.init();
         return o;
     }
-})(jQuery || Zepto);
+})(window.jQuery || window.Zepto);
