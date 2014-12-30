@@ -5,7 +5,7 @@ require.config({
 		jquery: 'lib/jquery-1.7.2.min',
 		html: 'lib/freehtml.min',
 		template: 'lib/template',
-		util: 'lib/util.min',
+		util: 'lib/util',
 		swipe: 'lib/swipe.min',
 		slide: 'lib/slide.min',
 		headview: 'app/view/head',
@@ -24,6 +24,7 @@ require.config({
 		gamepicview: 'app/view/gamepic',
 		gamepicdetailview: 'app/view/gamepicdetail',
 		wplistview: 'app/view/wplist',
+		wpgamelistview: 'app/view/wpgamelist',
 		wplistdetailview: 'app/view/wplistdetail',
 		json: 'app/service/json'
 	},
@@ -52,6 +53,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var slide;
 	var prefix = 'http://wande.me/app/';
 	var hwprefix = 'http://wande.me/haowan/';
+	var hgprefix = 'http://wande.me/games/';
 	//var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
 	//prefix = 'http://10.24.50.152/Rain-CSS-Framework/app/';
 	//创建loading弹出框
@@ -286,7 +288,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	/*搜索模块路由*/
 	util.addRoute('/search', '#body', function() {
 		main.remove();
-		require(['jquery', 'searchheadview', 'searchmainview','listview'], function($, h, m,l) {
+		require(['jquery', 'searchheadview', 'searchmainview','wpgamelistview'], function($, h, m,l) {
 			var sheadhtml = h({});
 			var smainhtml; 
 			var searchtips = main.find("#searchtips");
@@ -301,16 +303,22 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				}
 			});
 			main.find("#searchbtn").on(event, function() {
-				if(main.find("#searchbox").val()){
-					var param = util.filter(main.find("#searchbox").val());
+				var param = util.filter(main.find("#searchbox").val());
+				if(param){
 					loading.show();
-					$.getScript(prefix+"js/app/data/searchresult.php?p="+param, function(d){
-					var d = data;
-						main.remove("#main");
-						loading.hide(); 
-						smainhtml = l(d);
-						main.add(smainhtml);
-						main.find("#searchtips").show().text("共搜索到"+d.gamelist.length+"条结果");
+					log(hgprefix+"api/get_search_results/?search="+param+"&callback=?&count=5");
+					//$.getScript(prefix+"js/app/data/searchresult.php?p="+param, function(d){
+					$.getJSON(hgprefix+"api/get_search_results/?search="+param+"&callback=?&count=5", function(d){
+						var d = d;
+						loading.hide();
+						if (d.posts.length > 0) {
+							main.remove("#main");
+							smainhtml = l(d);
+							main.add(smainhtml);
+							main.find("#searchtips").show().text("共搜索到" + d.posts.length + "条结果");
+						} else {
+							tip.setContent("没有找到你想要的，换个关键字哦").show(1500);
+						} 
 					});
 				}else{
 					tip.setContent("请输入搜索关键字").show(1500);
@@ -330,7 +338,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					$.getScript(prefix+"js/app/data/searchsuggest.php",function(d) {
 						main.remove("#main");
 						loading.hide();
-					var d = data;
+						var d = data;
 						smainhtml = m(d);
 						main.add(smainhtml);
 					});
