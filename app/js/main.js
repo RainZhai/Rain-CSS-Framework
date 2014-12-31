@@ -5,7 +5,7 @@ require.config({
 		jquery: 'lib/jquery-1.7.2.min',
 		html: 'lib/freehtml.min',
 		template: 'lib/template',
-		util: 'lib/util',
+		util: 'lib/util.min',
 		swipe: 'lib/swipe.min',
 		slide: 'lib/slide.min',
 		headview: 'app/view/head',
@@ -192,7 +192,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					height: 195, //高
 					images: 1, //每屏展示图片的个数
 					slides: 1, //每次滑动图片个数
-					length: 200, //触屏最小滑动长度
+					length: 80, //触屏最小滑动长度
 					control: true, //是有控制按钮
 					controlwidth: 0,
 					btnLeftStyle: {"left": "10px","bottom": "50%","width": "40px"},
@@ -202,6 +202,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					speed: 600, //滑动速度
 					delay: 5000, //滚动间隔
 					preloadamt: 3,
+					preventDefault: false,
 					before: function() {
 						if (!(util.isIOS || util.isAndroid)) {
 							$("#slide").addClass("w-40 mlrauto");

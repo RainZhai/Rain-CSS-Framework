@@ -5,7 +5,7 @@ define(['template'],function (t) {
 		 '<div class="slidemain oh mlrauto">'+
 		 '<ul class="slidewrap lsn nop nom clearfix oh">'+
 		   '<li class="l fl">'+
-		       '<h2 class="fs14px white pl pt"><a href="http://wande.me" class="white" style="text-decoration: underline;" target="_blank" >玩的么</a>《看美眉》 (第{{period}}期)</h2>'+
+		       '<h2 class="fs14px white pl pt"><span>玩的么</span>《看美眉》 (第{{period}}期)</h2>'+
 		       '<p class="fs12px white pl">{{name}}</p>'+
 		       '<a class="block ps tac" href="javascript:;"><img class="fullw round-5" src="{{imgurl}}" /></a>'+
 		    '</li>'+

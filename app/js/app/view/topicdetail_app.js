@@ -15,14 +15,14 @@ define(['template'],function (t) {
 			 '{{each list as value i}} '+
 			     '<div class="listitem wf-100 h-7 clearfix bgw so mts rounds"> '+
 			         '<div class="l fl wf-25 fullh"> '+
-				         '<a class="block tdn oh hf-80 ps" href="{{value.url}}" target="_blank"><img src="{{value.imgurl}}" class="round-10" alt="{{value.name}}" height="100%"/></a> '+
+				         '<a class="j_start block tdn oh hf-80 ps" href1="{{value.url}}" href="javascript:;" target="_blank"><img src="{{value.imgurl}}" class="round-10" alt="{{value.name}}" height="100%"/></a> '+
 				 '</div> '+
 				'<div class="l fl wf-40 fullh">'+
-					'<a class="block tal tdn fs14px mtl" href="{{value.url}}" target="_blank">{{value.name}}</a>'+
+					'<a class="j_start block tal tdn fs14px mtl" href1="{{value.url}}" href="javascript:;" target="_blank">{{value.name}}</a>'+
 					'<p class="oh">{{value.intro}}</p>'+
 				'</div>'+
 				'<div class="l fl wf-35 fullh lh-7 tar">'+
-					'<a class="hm ib pl pr rounds gr btn redbtn tac mr" href="{{value.url}}" target="_blank">{{value.start}}</a>'+
+					'<a class="j_start hm ib pl pr rounds gr btn redbtn tac mr" href1="{{value.url}}" href="javascript:;" target="_blank">{{value.start}}</a>'+
 				'</div>'+
 			    '</div>'+
 			'{{/each}}'+

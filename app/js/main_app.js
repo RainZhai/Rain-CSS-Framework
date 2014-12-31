@@ -65,22 +65,21 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var remove = function(){
 		main.remove('#searchhead').remove('#main').remove(slide).remove('#mainnav');
 	}
+                var registerGameEvent = function() {
+                    main.find("#main").find(".j_start").live(event, function() {
+                        var link = $(this).attr('href1'); 
+                        window.gamewin = window.open(link, '_blank', 'location=no');
+                        //window.location.hash = "opengame";
+                    });
+                }
 	util.addRoute('/', '', function() {
 		main.remove();
 		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml); 
-		main.find("#main").find(".j_start").live(event,function(){
-			var link = $(this).attr('href1');
-			var ref = window.open(link, '_blank', 'location=no');
-		})
 	});
 	//nav1路由
 	util.addRoute('/nav1', '#main', function() {
 		main.remove();
 		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml); 
-		main.find("#main").find(".j_start").live(event,function(){
-			var link = $(this).attr('href1');
-			var ref = window.open(link, '_blank', 'location=no');
-		})
 	});
 	//nav2路由
 	var data2;
@@ -101,10 +100,6 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					main.add(headhtml).add(slide).add(navhtml).add(list).add(foothtml); 
 				});
 			}
-			main.find("#main").find(".j_start").live(event,function(){
-				var link = $(this).attr('href1');
-				var ref = window.open(link, '_blank', 'location=no');
-			})
 		});
 	});
 	//nav3分类列表页面路由
@@ -126,10 +121,6 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				var d = data;
 				smainhtml = l(d);
 				main.add(headhtml).add(smainhtml);
-				main.find("#main").find(".j_start").live(event,function(){
-					var link = $(this).attr('href1');
-					var ref = window.open(link, '_blank', 'location=no');
-				})
 				window.location.hash = "catedetail";
 			});
 		});
@@ -168,11 +159,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				var d = data;
 				loading.hide(); 
 				smainhtml = l(d);
-				main.add(headhtml).add(smainhtml);
-				main.find("#main").find(".j_start").live(event,function(){
-					var link = $(this).attr('href1');
-					var ref = window.open(link, '_blank', 'location=no');
-				})
+				main.add(headhtml).add(smainhtml); 
 				window.location.hash = "topicdetail";
 			});
 		});
@@ -212,7 +199,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					height: 195, //高
 					images: 1, //每屏展示图片的个数
 					slides: 1, //每次滑动图片个数
-					length: 200, //触屏最小滑动长度
+					length: 80, //触屏最小滑动长度
 					control: true, //是有控制按钮
 					controlwidth: 0,
 					btnLeftStyle: {"left": "10px","bottom": "50%","width": "40px"},
@@ -222,6 +209,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					speed: 600, //滑动速度
 					delay: 5000, //滚动间隔
 					preloadamt: 3,
+					preventDefault: false,
 					before: function() {
 						if (!(util.isIOS || util.isAndroid)) {
 							$("#slide").addClass("w-40 mlrauto");
@@ -383,19 +371,23 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 			responsive: false,
 			tipswrapStyle: {bottom: "10px",right: "5px"}
 		});
-		main.add(headhtml).add(slide).add(navhtml);
-		loading.setContent('正在加载...').show();
-		
-		$.getScript(prefix+"js/app/data/gamelist.js",function() {
-			main.remove("#main");
-			loading.hide();
-			var d = data;
-			gamelist = l(d);
-			main.add(gamelist).add(foothtml);
-			main.find("#main").find(".j_start").live(event,function(){
-				var link = $(this).attr('href1');
-				var ref = window.open(link, '_blank', 'location=no');
-			})
-		});
+		main.add(headhtml);
+		//判断手机网络连接 
+		var networkState = navigator.network.connection.type;
+		alert(networkState);
+		if (networkState == Connection.NONE) {
+			main.add("<div class='main pt-5 pl-2 pr-2 tac' id='main'><p class='fs-2'>当前无网络o(╯□╰)o</p><a class='block p tdunder fs14px' href='index.html'>重新加载</a></div>");
+			return false;
+		}else{
+			loading.setContent('正在加载...').show();
+			$.getScript(prefix+"js/app/data/gamelist.js",function() {
+				main.remove("#main");
+				loading.hide();
+				var d = data;
+				gamelist = l(d);
+				main.add(slide).add(navhtml).add(gamelist).add(foothtml);
+				registerGameEvent();
+			});
+		} 
 	});
 });
