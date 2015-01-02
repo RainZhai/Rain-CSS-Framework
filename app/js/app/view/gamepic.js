@@ -3,7 +3,7 @@ define(['template'],function (t) {
 	var source = '<div class="main mts mlss mrss pb-6" id="main">'+
 		'<div id="listwrap" class="listwrap">'+
 		 '{{each list as value i}} '+
-			'<a class="j_picitem listitem block wf-100 bgw so mts" href="javascript:;" name="{{i}}" >'+
+			'<a class="j_mmitem listitem block wf-100 bgw so mts" href="javascript:;" name="{{i}}" >'+
 				'<div class="ps">'+
 				'<img src="{{value.imgurl}}" width="100%"/>'+
 				'<p class="topictitle css3_flexbox">'+

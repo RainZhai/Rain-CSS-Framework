@@ -172,7 +172,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		});
 	});
 	//游戏图mm详情页面加载
-	main.find(".j_picitem").live(event,function(){
+	main.find(".j_mmitem").live(event,function(){
 		main.remove();
 		var i = parseInt(this.name);
 		require(['gamepicdetailview','slide'], function(l,s) {
