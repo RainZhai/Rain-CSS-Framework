@@ -1,10 +1,11 @@
 require.config({
+	enforceDefine: true,
 	//urlArgs: 'v=' + new Date().getTime(),
 	"baseUrl": "./js/",
 	paths: {
-		jquery: 'lib/jquery-1.7.2.min',
+		jquery: ['http://cdn.staticfile.org/jquery/1.7.2/jquery.min', 'lib/jquery-1.7.2.min'],
 		html: 'lib/freehtml.min',
-		template: 'lib/template',
+		template:['http://cdn.staticfile.org/artTemplate.js/3.0/template', 'lib/template'],
 		util: 'lib/util.min',
 		swipe: 'lib/swipe.min',
 		slide: 'lib/slide.min',
