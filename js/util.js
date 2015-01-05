@@ -31,7 +31,7 @@
         tapTimeout;
       var now, delta;
       $(function() {
-        $(document.body).on('touchstart', function(e) {
+        $(document).on('touchstart', function(e) {
           now = Date.now();
           delta = now - (touch.last || now);
           var e = e.originalEvent;
