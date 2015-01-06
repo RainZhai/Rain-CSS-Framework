@@ -79,9 +79,9 @@
       	<h2>Tabs and List</h2>
 				<div class='tabswrap-1'>
 				<ul class='lsn nop norm borderBottom heightL clearfix'>
-					<li class='l mbn-1 mrss bgWhite ib border nobb css3_round_topS tdn pl pr itemColorBlack' href='#'>Home</li>
-					<li class='l mrss bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Profile</li>
-					<li class='l bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Messages</li>
+					<li class='j_tab l mbn-1 mrss bgWhite ib border nobb css3_round_topS tdn pl pr itemColorBlack' href='#'>Home</li>
+					<li class='j_tab l mrss bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Profile</li>
+					<li class='j_tab l bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Messages</li>
 				</ul>
 
 				<div class='c_tabpanel' id='tab-0' >
@@ -234,8 +234,17 @@
   </div>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.tabs.js"></script>
-<script type="text/javascript">
-$('.tabswrap-1').tabs({event:'click',currentClass:'gekkkk'});
+<script type="text/javascript"> 
+ $('.tabswrap-1').tabs({
+   event: 'click',
+   currentClass: 'on',
+   tabSelector: '.j_tab',
+   panelSelector: ".c_tabpanel",
+   index: 1,
+   callback: function(i) {
+     alert(i)
+   }
+ });
 </script>
 </body>
 </html>

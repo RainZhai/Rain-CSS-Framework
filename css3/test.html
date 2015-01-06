@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Rain CSS </title>
+<link rel="stylesheet" type="text/css" href="http://rainzhai.github.io/raincss/css/rain.css" >
 <style>
 @-webkit-keyframes spin {from {-webkit-transform: rotateY(0)}to {-webkit-transform: rotateY(360deg)}}
 @-ms-keyframes spin {from {ms-transform: rotateY(0)}to {ms-transform: rotateY(360deg)}}
@@ -141,6 +142,27 @@ background-repeat:no-repeat;
 background-origin:content-box;
 }
 .sd{width:100px; height:100px;  box-shadow:5px 2px 6px #000; }
+@-webkit-keyframes slideani {
+0%   {left:-500px;}
+25%  {left:-100px;}
+50%  {left:0px;}
+75%  {left:-100px;}
+100% {left:-500px;}
+}
+@keyframes slideani {
+0%   {left:-500px;}
+25%  {left:-100px;}
+50%  {left:0px;}
+75%  {left:-100px;}
+100% {left:-500px;}
+}
+.slide{
+    -webkit-animation: slideani 15s infinite linear;
+    -moz-animation: slideani 15s infinite linear;
+    -ms-animation: slideani 15s infinite linear;
+    animation: slideani 15s infinite linear;
+}
+.slide img{ margin: 0; display: block; float: left;}
 </style>
 </head>
 <body class="body">
@@ -162,5 +184,15 @@ background-origin:content-box;
  <div class="bg"></div>
 
  <div class="sd"></div>
+
+ <div class="bgr posr oh" style="width:100px; height:100px;">
+     <div class="j_slide slide bgb posa" style="height:100px; width:500px; top:0; left:-500px">
+     <img src="http://img.hb.aicdn.com/89ad08610f6eab630c365a7357fda1311e45635949c87-3xXM59_fw658" width="100px">
+     <img src="http://img.hb.aicdn.com/89ad08610f6eab630c365a7357fda1311e45635949c87-3xXM59_fw658" width="100px">
+     <img src="http://img.hb.aicdn.com/89ad08610f6eab630c365a7357fda1311e45635949c87-3xXM59_fw658" width="100px">
+     <img src="http://img.hb.aicdn.com/89ad08610f6eab630c365a7357fda1311e45635949c87-3xXM59_fw658" width="100px">
+     <img src="http://img.hb.aicdn.com/89ad08610f6eab630c365a7357fda1311e45635949c87-3xXM59_fw658" width="100px">
+     </div>
+ </div>
 </body>
 </html>
