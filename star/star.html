@@ -5,65 +5,103 @@
     <meta name="viewport" content="width=device-width, user-scalable=no ,target-densitydpi=device-dpi ,initial-scale= 0.5"/>
 	<meta charset="utf-8">
 </head>
+	<link rel="stylesheet" href="../css/screen.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="../css/main.css" type="text/css" media="all"/>
+<style type="text/css">
+.demo-title{font-size:14px; font-weight: bold;padding: 10px 5px; background-color: #ddd;}
+.demo-list{font-size:12px; padding: 10px 5px; border-bottom: 1px solid #ccc;}
+.demo-list a{display: block; width: 100%;}
+.star{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(css/images/comment_ico.png) no-repeat -190px 0; vertical-align: middle;}
+.stared{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(css/images/comment_ico.png) no-repeat 0 0; vertical-align: middle;}
+</style>
 <body> 
-             <div id="markStar">
-                 <img src="ystar.gif" alt="星星评分" title="1个小星星">
-                 <img src="ystar.gif" alt="星星评分" title="2个小星星">
-                 <img src="ystar.gif" alt="星星评分" title="3个小星星">
-                 <img src="ystar.gif" alt="星星评分" title="4个小星星">
-                 <img src="ystar.gif" alt="星星评分" title="5个小星星">
-                 <input type="hidden" value="5" name="star">
-             </div> 
+		<div id="starbox" class="starwrap h-2 ">
+			<span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span>
+		</div>
 </body>
 <script src="../js/jquery-1.7.2.js"></script>
 <script src="../js/util.js"></script>
 <script>
-		var util = util || {};
-         /*
-         *一个评分的控件 ，输入的参数是一个对象直接量。
-         * @paramer contorl: 容器控制器
-         * @paramer postv: 加分的星星图片src
-         * @paramer nagv: 减分的星星图片src
-         * @author: heimanba         
-         * */
-        util.star=function(opt){
-            this.opt=opt||{};
-            this.contorl=this.opt.contorl||"#star";
-            this.postv=this.opt.postv||"";
-            this.nagv=this.opt.nagv||"";
-            this.init();
-        }
-        util.star.prototype={
-           init:function(){
-               this.bind();
-           },
-            bind:function(){
-                var _flag=true,self=this;//_flag是一个开关。
-                $(this.contorl).delegate('img',"mouseover",function(){
-                    var _this=$(this), _index=_this.index();
-                   _flag&&self.change(_this,_index);
-                }).delegate('img','click',function(){
-                    _flag=false;
-                    var _this=$(this), _index=_this.index();
-                    self.change(_this,_index);
-                 });
-            },
-            /*星星改变的方法
-            *@paramer handle: 正在点击的或者移入的星星控制器。
-            * @paramer handle: 正在点击的或者移入的星星的index、
-            * */
-            change:function(handle,_index){
-                var _num=$(this.contorl).find('input');
-                if(handle.attr('src')===this.postv){
-                    handle.nextAll().attr('src',this.nagv);
-                    _num.val(_index+1);
-                }else{
-                    handle.attr('src',this.postv).prevAll().attr('src',this.postv);
-                    _num.val(_index+1);
-                }
-            }
-        }
-    new util.star({contorl:'#markStar',postv:'ystar.gif',nagv:'gstar.gif'});
-console.log(util)
+//评论星级功能
+$.star = window.star = function(obj) {
+  this.obj = obj;
+  $.extend(this,{
+    boxHandler:"#starbox",
+    event:'click',
+    value: 5,
+    boxClass:"",
+    boxStyle:{},
+    starClass:"",
+    starStyle:{},
+    selectedClass:"",
+    selectedStyle:{}
+  }, this.obj || {});
+  this.box = $(this.boxHandler);
+  this.init();
+  return this;
+};
+star.prototype = {
+		starvalue:5,
+		init: function(){
+			var t = this;
+			t.inithtml();
+			t.initstar();
+			t.registerEvents();
+		},
+		getStars: function(){
+			return this.box.find('span');
+		},
+		setValue: function(i){
+			this.starvalue = i;
+		},
+		getValue: function(){
+			return this.starvalue;
+		},
+		initstar: function(){
+			var t = this;
+			if(t.value>0){
+				for(var i=0,l = t.value; i<l; i++){
+					t.getStars().eq(i).addClass(t.selectedClass).css(t.selectedStyle);
+				}
+			}
+			t.setValue(t.value);
+		},
+		inithtml: function(){
+			var t = this;
+			t.box.addClass(t.boxClass).css(t.boxStyle);
+			var stars = t.box.find('span');
+			if(stars.length>0){
+				stars.addClass(t.starClass).css(t.starStyle);
+			}else{
+				t.box.append('<span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span>');
+				t.box.find('span').addClass(t.starClass).css(t.starStyle);
+			}
+			return t;
+		},
+		registerEvents: function(){
+			var t = this;
+			var stars = t.getStars();
+			stars.on(t.event, function(){
+				var me = $(this);
+				stars.removeClass(t.selectedClass);
+				for(var i=0,l = me.index(); i<l+1; i++){
+					stars.eq(i).addClass(t.selectedClass).css(t.selectedStyle);
+				}
+				t.setValue(me.index() + 1);
+			});
+		}
+};
+
+var s = new star({
+	boxHandler:"#starbox",
+	event:'click',
+	value: 2,
+	boxClass:"",
+	boxStyle:{},
+	starClass:"star",
+	starStyle:{},
+	selectedClass:"stared",
+	selectedStyle:{}
+});
 </script>
 </html>
