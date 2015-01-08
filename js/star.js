@@ -1,28 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <meta name="viewport" content="width=device-width, user-scalable=no ,target-densitydpi=device-dpi ,initial-scale= 0.5"/>
-	<meta charset="utf-8">
-</head>
-	<link rel="stylesheet" href="../css/screen.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="../css/main.css" type="text/css" media="all"/>
-<style type="text/css">
-.demo-title{font-size:14px; font-weight: bold;padding: 10px 5px; background-color: #ddd;}
-.demo-list{font-size:12px; padding: 10px 5px; border-bottom: 1px solid #ccc;}
-.demo-list a{display: block; width: 100%;}
-.star{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(css/images/comment_ico.png) no-repeat -190px 0; vertical-align: middle;}
-.stared{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(css/images/comment_ico.png) no-repeat 0 0; vertical-align: middle;}
-</style>
-<body> 
-		<div id="starbox" class="starwrap h-2 ">
-			<span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span>
-		</div>
-</body>
-<script src="../js/jquery-1.7.2.js"></script>
-<script src="../js/util.js"></script>
-<script>
-//评论星级功能
 $.star = window.star = function(obj) {
   this.obj = obj;
   $.extend(this,{
@@ -91,17 +66,3 @@ star.prototype = {
 			});
 		}
 };
-
-var s = new star({
-	boxHandler:"#starbox",
-	event:'click',
-	value: 2,
-	boxClass:"",
-	boxStyle:{},
-	starClass:"star",
-	starStyle:{},
-	selectedClass:"stared",
-	selectedStyle:{}
-});
-</script>
-</html>
