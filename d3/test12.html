@@ -10,14 +10,7 @@
 <style type="text/css">  
 body{font-size:12px;} 
 /*折线图*/
-.chart-headline, .chart-subHeadline { text-align: center;}
-.chart-headline { position: relative; font-weight: 100; font-size: 28px;}
-.chart-headline:before { position: absolute; content: ''; bottom: 133%; left: 50%; width: 25%; margin: 0 0 0 -12.5%; border-top: 1px dashed #ccc;
-}
-.chart-subHeadline { font-weight: 400; font-size: 14px; letter-spacing: 1px;}
-.charts-container { background-color: white; width: 100%;}
-.charts-headline { text-align: center; color: #444; background-color: #fff; padding: 1em;}
-/* .lineChart-area {fill: url(#lineChart-gradientBackgroundArea);} */
+#lineChartSVG-2 .area path{stroke-width: 2;}
 .lineChart-areaLine {fill: none; stroke-width: 1;}
 .lineChart-bubblewrap{stroke:#fff;}
 .lineChart-bubble-label { fill: #fff; font-size: 12px;}
@@ -25,12 +18,14 @@ body{font-size:12px;}
 .lineChart-circle__highlighted { fill: #359ae0; stroke:#359ae0;}
 .lineChart-gradientBackgroundArea-top { stop-color: #1f3d63;  stop-opacity: 0.4;}
 .lineChart-gradientBackgroundArea-bottom { stop-color: #1f3d63; stop-opacity: 0.6;}
-.lineChart-gradientBackgroundArea-top2 { stop-color: #ff277e;  stop-opacity: 0.4;}
-.lineChart-gradientBackgroundArea-bottom2 { stop-color: #ff277e; stop-opacity: 0.6;}
+.gradientBg2-top { stop-color: #86383d;  stop-opacity: 1;}
+.gradientBg2-bottom { stop-color: #86383d; stop-opacity: 0.1;} 
+
 .lineChart-xAxisTicks .domain, .lineChart-xAxis .domain, .lineChart-yAxisTicks .domain { display: none;}
 .lineChart-xAxis .tick line { display: none;}
 .lineChart-xAxis .tick text{fill:#999;}
 .lineChart-xAxisTicks .tick line, .lineChart-yAxisTicks .tick line {fill: none; stroke: #ccc; stroke-width: 1; }
+
 .pieChart-center-innerCircle {fill: #fff;}
 .pieChart-center-text { font-size: 28px;}
 .pieChart-center-outerCircle {fill: rgba(255, 255, 255, 0.75);}
@@ -41,6 +36,7 @@ body{font-size:12px;}
 .pieChart-detail__right { text-align: right;}
 .pieChart__blue { fill: #6bb7c7;}
 .pieChart__red { fill: #d79d91;}
+
 .hidden { display: none;}
 .tooltip {position:absolute;min-width:48px;	height:25px; padding:2px 2px 5px 2px;background-color:#fff; border:1px solid #666; color:#666; -webkit-border-radius:5px; -moz-border-radius:5px;
 	border-radius:5px;	pointer-events:none;}
@@ -55,6 +51,7 @@ body{font-size:12px;}
 	transition: stroke-dashoffset 1.595056250356918s ease-in-out 0s; 
 }
 .pathAnima2 { 
+	fill:none;
 	stroke-dashoffset: 0;
 	transition: stroke-dashoffset 1.595056250356918s ease-in-out 0s; 
 }
@@ -82,19 +79,35 @@ body{font-size:12px;}
 	</div>
 	
       <div id="lineChart" class="posr ml mr">
-        <svg id="lineChartSVG" class="lineChart-svg">
-          <defs>
-            <linearGradient id="lineChart-gradientBackgroundArea" x1="0" x2="0" y1="0" y2="1">
-              <stop class="lineChart-gradientBackgroundArea-top" offset="0%" />
-              <stop class="lineChart-gradientBackgroundArea-bottom" offset="100%" />
-            </linearGradient>
-          </defs>
-        </svg>
-		<div id="tooltip" class="tooltip hide">
-			<b class="r_angle">◆<i>◆</i></b>
-			<p class="tac lh-1">当前值</p>
-			<p class="tac lh-1 oh ptss"><span class="j_value"></span></p>
-		</div>
+	<svg id="lineChartSVG" class="lineChart-svg">
+	  <defs>
+	    <linearGradient id="lineChart-gradientBackgroundArea" x1="0" x2="0" y1="0" y2="1">
+	      <stop class="lineChart-gradientBackgroundArea-top" offset="0%" />
+	      <stop class="lineChart-gradientBackgroundArea-bottom" offset="100%" />
+	    </linearGradient>
+	  </defs>
+	</svg>
+	<div id="tooltip" class="tooltip hide">
+		<b class="r_angle">◆<i>◆</i></b>
+		<p class="tac lh-1">当前值</p>
+		<p class="tac lh-1 oh ptss"><span class="j_value"></span></p>
+	</div>
+      </div>
+	
+      <div id="lineChart-2" class="posr ml mr">
+	<svg id="lineChartSVG-2" class="lineChart-svg">
+	  <defs>
+		<linearGradient id="gradientBg2"  x1="0%" y1="0%" x2="100%" y2="0%">
+		  <stop class="gradientBg2-top" offset="0%" />
+		  <stop class="gradientBg2-bottom" offset="100%" />
+		</linearGradient>
+	  </defs>
+	</svg>
+	<div id="tooltip-2" class="tooltip hide">
+		<b class="r_angle">◆<i>◆</i></b>
+		<p class="tac lh-1">当前值</p>
+		<p class="tac lh-1 oh ptss"><span class="j_value"></span></p>
+	</div>
       </div>
       <input type="button" value="动画" id="run" /> 
 <script src="d3.v3.min.js"></script>
@@ -103,11 +116,11 @@ body{font-size:12px;}
 <script src="main.js"></script>  
 <script type="text/javascript">
 var init = function(){
-$("#tooltip-1").css({'opacity':0});
-var lineChart =  [{ date: '2006-02-1',label: '支出',value: 44.55},{	date: '2006-03-1',label: '支出',value: 61.00},{date: '2006-04-1',label: '支出',
+	$("#tooltip-1").css({'opacity':0});
+	var lineChart =  [{ date: '2006-02-1',label: '支出',value: 44.55},{	date: '2006-03-1',label: '支出',value: 61.00},{date: '2006-04-1',label: '支出',
 	value: 117},{date: '2006-05-1',label: '支出',value: 174.25},{date: '2006-06-1',label: '支出',value: 445.25},{date: '2006-07-1',	label: '支出',
 	value: 88.48}];
-	mobile.drawLineChart({
+	var temp1 = mobile.drawLineChart({
 		elementId:'#lineChart-1',
 		tooltipId:'#tooltip-1',
 		width: $("#lineChart-1").width(),
@@ -147,11 +160,6 @@ var lineChart =  [{ date: '2006-02-1',label: '支出',value: 44.55},{	date: '200
 		showcurval: false,
 		showtip:true
 	}); 
-}
-init();
-$("#run").on("click",function(){
-	init();
-});
 	//折线图数据
 	var lineChart1 = [{ date: '2006-02-1',label: '支出',value: 51.55},{	date: '2006-03-1',label: '支出',value: 61.02},{date: '2006-04-1',label: '支出',
 		value: 47.22},{date: '2006-05-1',label: '支出',value: 74.25},{date: '2006-06-1',label: '支出',value: 245.88},{date: '2006-07-1',	label: '支出',
@@ -197,6 +205,57 @@ $("#run").on("click",function(){
 		showcurval: false,
 		showtip: true
 	}); 
+	//折线图数据
+	var lineChart2 = [{ date: '2006-02-1',label: '支出',value: 51.55},{	date: '2006-03-1',label: '支出',value: 61.02},{date: '2006-04-1',label: '支出',
+		value: 47.22},{date: '2006-05-1',label: '支出',value: 74.25},{date: '2006-06-1',label: '支出',value: 245.88},{date: '2006-07-1',	label: '支出',
+		value:  89.22}];
+	//折线图
+	var temp2 = mobile.drawLineChart({
+		elementId:'#lineChart-2',
+		tooltipId:'#tooltip-2',
+		width: $("#lineChart-2").width(),
+		height:150, 
+		data: lineChart2,
+		duration:1500,
+		delay:500,
+		xTicks: true,
+		xTickstransX:15,
+		xTickstransY:0,
+		xTickamt:6,
+		xTicksize:155,
+		xAxis: true,
+		xAxisfill: "#999",
+		activexAxisFill:"#fff",
+		xAxisamt:6,
+		xAxissize:-150,
+		xflexline: false,
+		xAxisformat: d3.time.format('%m月'),
+		yTicks: true,
+		yTickamt:6,
+		yTicksize: $("#lineChart-2").width(),
+		yAxis: true,
+		yAxisamt:5,
+		yAxissize:5,
+		radius:3,
+		stroke:"#ff5b59",
+		strokeWidth: 2,
+		fill:"#ff5b59",
+		cycleActive: false,
+		activeFill:"#ff5b59",
+		marginWidth:30,
+		area: true,
+		areafill:"url(#gradientBg2)",
+		tipIndex:5,
+		tipXDeviation: -parseInt($("#tooltip-2").width())+22,
+		tipYDeviation: -parseInt($("#tooltip-2").height())-20,
+		showcurval: false,
+		showtip: true
+	}); 
+}
+init();
+$("#run").on("click",function(){
+	init();
+});
 </script>
 </body>
 </html>
