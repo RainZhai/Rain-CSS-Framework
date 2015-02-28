@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta content="telephone=no" name="format-detection" />
+<title>test12</title> 
+<link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="../css/rain.css" type="text/css" media="all"/>
+<style type="text/css">  
+body{font-size:12px; background: #15151d ;  margin: 0 auto;v 
+font-family: Arial;
+font-weight: bold;
+} 
+@media handheld, only screen and (min-width: 1280px){
+	body{width: 320px !important;}
+} 
+/*折线图*/
+#lineChartSVG-2 .area path{stroke-width: 2;}
+.lineChart-areaLine {fill: none; stroke-width: 1;}
+.lineChart-bubblewrap{stroke:#fff;}
+.lineChart-bubble-label { fill: #fff; font-size: 12px;}
+.lineChart-bubble-value { fill: #fff; font-size: 12px;} 
+.lineChart-circle__highlighted { fill: #359ae0; stroke:#359ae0;}
+.lineChart-svg{ background: url(bgline.png) no-repeat 15px 0; background-size: 90% 84%;}
+.lineChart-xAxisTicks .domain, .lineChart-xAxis .domain, .lineChart-yAxisTicks .domain { display: none;}
+.lineChart-xAxis .tick line { display: none;}
+.lineChart-xAxis .tick text{fill:#999;}
+.lineChart-xAxisTicks .tick line, .lineChart-yAxisTicks .tick line {fill: none; stroke: #ccc; stroke-width: 1; }
+
+.hidden { display: none;}
+.balltipAnim{ -webkit-transform: scale(1,1);}
+.balltip {position:absolute; width:25px; text-align: center; height: 25px; line-height:25px; overflow: hidden; font-size: 10px;  background-color:#bcd045;  color:#58602b;  border-radius:100%; pointer-events:none;}
+.balltip2{background-color:#ffa039; color: #8e4d06;}
+.balltip3{background-color:#ff5b59; color: #a02c2b;}
+.pathAnima {fill:none;stroke-dashoffset: 0;transition: stroke-dashoffset 1.595056250356918s ease-in-out 0s; }
+.o-0{opacity:0;}
+.head{height: 50px;}
+</style> 
+</head>
+<body class="body bg37"> 
+	<div class="head">
+		
+	</div>
+      <div id="lineChart-2" class="posr ml mr">
+	<svg id="lineChartSVG-2" class="lineChart-svg">
+	  <defs>
+		<linearGradient id="gradientBg2"  x1="0%" y1="0%" x2="100%" y2="0%">
+		  <stop stop-color="#383e13" stop-opacity="1" offset="0%" />
+		  <stop stop-color="#383e13" stop-opacity="1" offset="20%" />
+		  <stop stop-color="#383e13" stop-opacity="0.4" offset="80%" />
+		  <stop stop-color="#383e13" stop-opacity="0"  offset="100%" />
+		</linearGradient>
+		<linearGradient id="gradientBg3"  x1="0%" y1="0%" x2="100%" y2="0%">
+		  <stop stop-color="#c57825" stop-opacity="0.9" offset="0%" />
+		  <stop stop-color="#c57825" stop-opacity="0.2" offset="20%" />
+		  <stop stop-color="#c57825" stop-opacity="0.1" offset="80%" />
+		  <stop stop-color="#c57825" stop-opacity="0"  offset="100%" />
+		</linearGradient>
+		<linearGradient id="gradientBg4"  x1="0%" y1="0%" x2="100%" y2="0%">
+		  <stop stop-color="#86383d" stop-opacity="1" offset="0%" />
+		  <stop stop-color="#86383d" stop-opacity="0.8" offset="25%" />
+		  <stop stop-color="#86383d" stop-opacity="0.7" offset="50%" />
+		  <stop stop-color="#86383d" stop-opacity="0.6" offset="75%" />
+		  <stop stop-color="#86383d" stop-opacity="0"  offset="100%" />
+		</linearGradient>
+	  </defs>
+	</svg>
+	<div id="tooltip-1" class="balltip hide"> 
+		<span class="j_value"></span>
+	</div>
+	<div id="tooltip-2" class="balltip balltip2 hide"> 
+		<span class="j_value"></span>
+	</div>
+	<div id="tooltip-3" class="balltip balltip3 hide"> 
+		<span class="j_value"></span>
+	</div>
+      </div>
+      <input type="button" value="动画" id="run" /> 
+<script src="d3.v3.min.js"></script>
+<script src="../js/jquery-1.7.2.js"></script>
+<script src="../js/util.js"></script>  
+<script src="lineChart.js"></script>  
+<script type="text/javascript">
+var init = function(){
+	//折线图数据
+    var lineChart2 = [{
+        date: '2006-01-1',
+        label: '支出',
+        value: 41.55
+    },{
+        date: '2006-02-1',
+        label: '支出',
+        value: 45.55
+    }, {
+        date: '2006-03-1',
+        label: '支出',
+        value: 46.02
+    }, {
+        date: '2006-04-1',
+        label: '支出',
+        value: 50.22
+    }, {
+        date: '2006-05-1',
+        label: '支出',
+        value: 55.25
+    }, {
+        date: '2006-06-1',
+        label: '支出',
+        value: 50.88
+    }, {
+        date: '2006-07-1',
+        label: '支出',
+        value: 56.22
+    }, {
+        date: '2006-08-1',
+        label: '支出',
+        value: 60.22
+    }, {
+        date: '2006-09-1',
+        label: '支出',
+        value: 57.22
+    }, {
+        date: '2006-10-1',
+        label: '支出',
+        value: 54.22
+    }, {
+        date: '2006-11-1',
+        label: '支出',
+        value: 44.22
+    }, {
+date: '2006-12-1',
+label: '支出',
+value: 41.22
+}];
+
+var lineChart3 = [{ date: '2006-01-1',label: '支出',value: 29.55},{ date: '2006-02-1',label: '支出',value: 31.55},{	date: '2006-03-1',label: '支出',value: 33.02},{date: '2006-04-1',label: '支出',
+value: 36.22},{date: '2006-05-1',label: '支出',value: 37.25},{date: '2006-06-1',label: '支出',value: 35.88},{date: '2006-07-1', label: '支出', value:  38.22}, {
+date: '2006-08-1',
+label: '支出',
+value: 33.22
+}, {
+date: '2006-09-1',
+label: '支出',
+value: 25.22
+}, {
+date: '2006-10-1',
+label: '支出',
+value: 22.22
+}, {
+date: '2006-11-1',
+label: '支出',
+value: 21.22
+}, {
+date: '2006-12-1',
+label: '支出',
+value: 31.22
+}];
+	var lineChart4 = [{ date: '2006-01-1',label: '支出',value: 20.55},{ date: '2006-02-1',label: '支出',value: 15.55},{	date: '2006-03-1',label: '支出',value: 16.02},{date: '2006-04-1',label: '支出',
+		value: 17.22},{date: '2006-05-1',label: '支出',value: 20.25},{date: '2006-06-1',label: '支出',value: 34.88},{date: '2006-07-1',label: '支出',
+		value:  36.22}, { date: '2006-08-1',label: '支出', value: 40.22 }, { date: '2006-09-1',label: '支出',value: 41.22  }, {  date: '2006-10-1',   label: '支出',  value: 35.22 }, {
+        date: '2006-11-1',label: '支出',  value: 33.22  }, {
+date: '2006-12-1',
+label: '支出',
+value: 30.22
+}];
+	//折线图
+	var temp2 = mobile.drawLineChart({
+		elementId:'#lineChart-2',
+		tooltipId:'#tooltip-1',
+		width: $("#lineChart-2").width(),
+		height:150, 
+		data: lineChart2,
+		multi: true,
+		duration:1500,
+		delay:500,
+		xTicks: false,
+		xTickstransX: 15,
+		xTickstransY: -5,
+		xTickamt:6,
+		xTicksize:155,
+		xAxis: true,
+		xAxisfill: "#999",
+		activexAxisFill:"#fff",
+		xAxisamt:12,
+		xAxissize:-150,
+		xflexline: false,
+		xAxisformat: d3.time.format('%m '),
+		yTicks: false,
+		yTickamt:6,
+		yTicksize: $("#lineChart-2").width(),
+		yAxis: true,
+		yAxisamt:5,
+		yAxissize:5,
+		radius:3,
+		stroke:"#bcd045",
+		strokeWidth: 2,
+		fill:"#bcd045",
+		cycleActive: false,
+		activeFill:"#bcd045",
+		marginWidth:30,
+		area: true,
+		areafill:"url(#gradientBg2)",
+		tipIndex: 7,
+		tipXDeviation: -parseInt($("#tooltip-1").width())+28,
+		tipYDeviation: -parseInt($("#tooltip-1").height())-10,
+		showcurval: false,
+		showtip: true,
+		showtext: false,
+		showIndexCircle: true,
+		tipCallback: function() {}
+	});  
+	temp2.drawChart({
+		data:lineChart3,
+		stroke: "#ffa039",
+		strokeWidth: 2,
+		areafill:"url(#gradientBg3)",
+		fill: "#ffa039",
+		radius: 3,
+		activeFill: "#fff",
+		showtext: false,
+		tooltipId:'#tooltip-2',
+		tipIndex: 8,
+		tipXDeviation: -parseInt($("#tooltip-2").width())+28,
+		tipYDeviation: -parseInt($("#tooltip-2").height())-10,
+		showIndexCircle: true
+	});
+	temp2.drawChart({
+		data:lineChart4,
+		stroke: "#ff5b59",
+		strokeWidth: 2,
+		areafill:"url(#gradientBg4)",
+		fill: "#ff5b59",
+		radius: 3,
+		activeFill: "#fff",
+		showtext: false,
+		tooltipId:'#tooltip-3',
+		tipIndex: 9,
+		tipXDeviation: -parseInt($("#tooltip-3").width())+28,
+		tipYDeviation: -parseInt($("#tooltip-3").height())-10,
+		showIndexCircle: true
+	});
+}
+init();
+$("#run").on("click",function(){
+	init();
+});
+</script>
+</body>
+</html>

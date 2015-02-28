@@ -582,10 +582,10 @@
       params: null,
       wrapHandle: '#listbox',
       loading: null,//加载提示框对象
-      stop: false
+      stop: false,
+      scrollObj: window
     }, obj || {});
-
-    var win = $(window);
+    var win = $(opt.scrollObj);
     var wrapbox = $(opt.wrapHandle);
     var stop = opt.stop;
     var o = {
@@ -627,7 +627,7 @@
           //手机端滚动到底部加载height=device-height;
           log(stop);
           if ( !stop && $(opt.lastItemHandle).is(':visible')) {
-            if (win.scrollTop() + win.height() >= $(document).height()) {
+            //if (win.scrollTop() + win.height() >= $(document).height()) {
               if (opt.loadurl) {
                 var p = o.getParams();
                 if(opt.loading) opt.loading.show();
@@ -636,7 +636,7 @@
                   if ($.isFunction(callback)) callback();
                 });
               }
-            }
+            //}
           }
         });
       }
