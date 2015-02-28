@@ -130,7 +130,20 @@
       console.log(util.clearLastComma(s));
     }
   };
-
+  //设置手机端基本宽高
+  if(util.isAndroid){
+    win.w = win.document.body.offsetWidth;
+    win.h = win.document.body.offsetHeight;
+  }else{
+    win.w = win.screen.width;
+    win.h = win.screen.height;
+  }
+  //判断并设置事件
+  if(util.supportTouch){
+    util.touch.click = 'tap';
+  }else{
+    util.touch.click = 'click';
+  }
 
   /**
    * 浏览器的特性的简单检测，并非精确判断。
