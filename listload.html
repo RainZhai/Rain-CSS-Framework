@@ -55,6 +55,24 @@
             	<li class="roundbs bb">
             		<a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
             	</li>
+              <li class="roundbs bb">
+                <a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
+              </li>
+              <li class="roundbs bb">
+                <a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
+              </li>
+              <li class="roundbs bb">
+                <a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
+              </li>
+              <li class="roundbs bb">
+                <a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
+              </li>
+              <li class="roundbs bb">
+                <a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
+              </li>
+              <li class="roundbs bb">
+                <a class="block heightL tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a>
+              </li>
             </ul>
         </div>
 		</div>
@@ -72,15 +90,18 @@ var list = util.listload({
   params:{pager:0},
   wrapHandle:'#datalist'
 },function(){
-		var data = list.getData(); 
-    var d = data.list, _html = '';
-    for ( var i = 0, l = d.length; i < l; i++) {
-      _html += '<li class="bb" value="' + d[i].value + '"><a  class="block hl tdn pl pr hoverlgrey hovercblack" href="#">' + d[i].name + '</a></li>';
-    }
-    list.getDatabox().append(_html);
-    var i = list.getParams().pager+1;
-  	console.log(i);
-    list.setParams({pager:i});
+    if (list.getParams().pager < 4) {
+        var data = list.getData(); 
+        var d = data.list, _html = '';
+        for ( var i = 0, l = d.length; i< l; i++) {
+              _html += '<li class="bb" value="' + d[i].value + '"><a  class="block hl tdn pl pr hoverlgrey hovercblack" href="#">' + d[i].name + '</a></li>';
+        }
+        list.getDatabox().append(_html);
+        var i = list.getParams().pager+1;
+        console.log(i);
+        list.setParams({pager:i});
+        list.setStop(false);
+    };
 });
 </script>
 </body>

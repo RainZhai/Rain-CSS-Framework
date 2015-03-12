@@ -639,17 +639,18 @@
         win.scroll(function() {
           //手机端滚动到底部加载height=device-height;
           log(stop);
-          if ( !stop && $(opt.lastItemHandle).is(':visible')) {
-            //if (win.scrollTop() + win.height() >= $(document).height()) {
+          if (!stop && $(opt.lastItemHandle).is(':visible')) {
+            o.setStop(true);
+            if (win.scrollTop() + win.height() >= $(document).height()) {
               if (opt.loadurl) {
                 var p = o.getParams();
-                if(opt.loading) opt.loading.show();
+                if (opt.loading) opt.loading.show();
                 $.getJSON(opt.loadurl, p, function(data) {
                   o.setData(data);
                   if ($.isFunction(callback)) callback();
                 });
               }
-            //}
+            }
           }
         });
       }
