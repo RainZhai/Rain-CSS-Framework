@@ -90,7 +90,7 @@ var list = util.listload({
   params:{pager:0},
   wrapHandle:'#datalist'
 },function(){
-    if (list.getParams().pager < 4) {
+    if (list.getParams().pager < 6) {
         var data = list.getData(); 
         var d = data.list, _html = '';
         for ( var i = 0, l = d.length; i< l; i++) {

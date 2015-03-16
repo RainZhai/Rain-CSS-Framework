@@ -640,8 +640,8 @@
           //手机端滚动到底部加载height=device-height;
           log(stop);
           if (!stop && $(opt.lastItemHandle).is(':visible')) {
-            o.setStop(true);
             if (win.scrollTop() + win.height() >= $(document).height()) {
+              o.setStop(true);
               if (opt.loadurl) {
                 var p = o.getParams();
                 if (opt.loading) opt.loading.show();
