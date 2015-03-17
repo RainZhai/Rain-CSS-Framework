@@ -25,6 +25,7 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 </style>
 </head>
 <body class="body">
+
   <div class="headerBlue">
   	<nav class="lsn posr clearfix">
     	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">首页home</a>
@@ -37,7 +38,37 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
     	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
     </div>
   </div>
-  
+  <div class="c_touch2 mainads">
+                   <div class="c_touhmain posr oh">
+                     <ul class=" lsn c_touhlist posa nom nop w-mx clearfix">
+                       <li class="fl l posr" style="background:url(http://ww3.sinaimg.cn/large/005vSBqyjw1elpmz3aub7j31hc0u0qrl.jpg) no-repeat 0 0;"> 
+                         <div class="container fullh">
+                              <div class="mainadsbox1 w-30 fullh white" style="background:rgba(0, 0 ,0 ,0.5);">
+                                <fieldset class="">
+                                  <legend style="font-size:36px; line-height:36px;">大背景滚动</legend> 
+                                </fieldset> 
+                              </div>
+                         </div>
+                       </li> 
+                       <li class="fl l posr" style="background:url(http://ww3.sinaimg.cn/large/005vSBqyjw1elpmz3aub7j31hc0u0qrl.jpg) no-repeat 0 0;"> 
+                         <div class="container fullh">
+                              <div class="mainadsbox1 w-30 fullh white" style="background:rgba(0, 0 ,0 ,0.5);">
+                                <fieldset class="">
+                                  <legend style="font-size:36px; line-height:36px;">大背景滚动</legend> 
+                                </fieldset> 
+                              </div>
+                         </div>
+                       </li> 
+                     </ul>
+                     <ul class="c_touchicon lsn clearfix posa nom nop tipCir">
+                       <li class="fl l posr c_tips mls "> <i class="c_on tipicon w-1 h-1  block so bgw"></i>
+                       </li>
+                       <li class="fl l posr c_tips mls "> <i class="c_on  tipicon w-1 h-1 block so bgw"></i>
+                       </li>
+                     </ul>
+                   </div>
+</div>
+
 	<div class="container mt"> 
     <div class="content">
 		<div class="sidebar l posr">
@@ -274,6 +305,21 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 <script type="text/javascript" src="js/slide.js"></script>
 <script type="text/javascript" src="js/star.js"></script>
 <script type="text/javascript">
+//创建滑动广告头部
+var bigswipe = new $.swipe({ 
+      touchSelector: ".c_touch2",
+      imgArray: [],
+      linksArray: [],
+      time: 3000,
+      autorun: true,
+      width: $(window).width(),
+      height: 551,
+      responsive: false,
+      tipswrapStyle: {
+        bottom: "12px",
+        right: "500px"
+      }});
+
 //创建loading弹出框效果
 var lo = util.loading({loadingClass:'bglg'});
 lo.setContent('the content is loading...');
