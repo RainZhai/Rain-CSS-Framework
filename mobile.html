@@ -22,6 +22,35 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 
 .star{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat -190px 0; vertical-align: middle;}
 .stared{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat 0 0; vertical-align: middle;}
+
+/* 翻卡片效果 */
+.scrollnumbox{margin:5px;}
+.numwrap{ width: 37px; height:52px; margin-right:2px; position:relative; float:left; background: #000; border-radius:3px; box-shadow: 0px -1px 3px rgba(141, 172, 200, 0.25) inset; text-align:center; font-size: 40px; line-height:52px; color:#fff;}
+.numwrap .numbox{position:absolute; top:0; width: 37px; height:26px; background: #000; overflow:hidden; border-radius:3px; text-align:center; font-size: 40px; line-height:52px; color:#fff;}
+.numwrap .numboxdown{position:absolute; bottom:0; width: 37px; height:26px; background: #000; overflow:hidden; border-radius:3px; text-align:center; font-size: 40px;
+ line-height:52px; color:#fff; z-index: 9998;}
+.numwrap .numboxdown .numdiv{position:absolute; bottom:0; width: 37px;}
+.numwrap:last-child{margin-right: 0;}
+.numwrap span.lines{display: block; height: 10px; top: 20px;left: 2px; width:31px; border-left: 1px solid rgba(108,126,172,0.5);border-right: 1px solid rgba(108,126,172,0.5); 
+ position: absolute;z-index: 9999;}
+.numwrap span.lines hr{height: 0px; border:none; background:none; border-bottom: 1px solid rgba(0,0,0,0.2); margin: 5px 0;}
+.numboxdown{
+  animation: animationFrames linear 0.5s;
+  animation-iteration-count: 1;
+  transform-origin: 0% 0%;
+  -webkit-animation: animationFrames linear 0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: 0% 0%;
+}
+@keyframes animationFrames{
+  0% { transform: rotateX(180deg);  }
+  100% {  transform: rotateX(0deg);}
+} 
+
+@-webkit-keyframes animationFrames {
+  0% {  transform: rotateX(180deg); }
+  100% {  transform: rotateX(0deg); }	
+}
 </style>
 </head>
 <body class="body">
@@ -91,6 +120,15 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 						<div class="j_sliderbg1 fullh posa"></div>
 						<div class="j_sliderbg2 fullh posa o-9"></div>
 						<a href="javascript:;" class="j_sliderbtn1 sliderbtn ib w-2 h-2 bgw b rounds posa" role="slider"></a>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset id="rollcard">
+				<legend>滚动卡片 Roll card</legend>
+				<div class="scrollnumbox clearfix">
+					<div class="numwrap"><span class="lines"><hr /></span>0
+						<div class="numbox">1</div>
+						<div class="numboxdown"><div class="numdiv">1</div></div>
 					</div>
 				</div>
 			</fieldset>
