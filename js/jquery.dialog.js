@@ -30,7 +30,7 @@
     $.extend(this,{
       "width":540,
       // 弹出框宽度
-      "height":0,
+      "height":300,
       // 弹出框高度
       "top":"20%",
       // 离顶部的距离
@@ -79,7 +79,8 @@
       "afterShow":function() {},
       "beforeClose":function() {},
       "afterClose":function() {},
-      "upload":false
+      "upload":false,
+      "responsive": true
     }, this.obj || {});
     this.randomStr = Math.round(Math.random() * 1e6 + 1) + "", this.contentObj = this.content, this.closeClass = this.closeHandleClass + this.randomStr, this.dialogHandleClass = this.dialogHandleClass + this.randomStr, this.contentwrapid = "contentwrap" + this.randomStr, this.html = null;
   };
@@ -346,9 +347,9 @@
         html.find("." + this.closeClass).on("click", {"name":"closebtn","type":"close"}, function(e) {
           this.close(e,this.closeCallback);
         });
-        this._initUI();
         $("body").append(html);
         this._setDialogHeight(html);
+        this._initUI();
         return this;
       },
       /** @method 初始化UI
@@ -372,14 +373,24 @@
         // 获取dialog宽度和高度
         var _width = $("body").width() / 5 + 150;
         var _height = obj.find(".c_contentWrap").outerHeight(true) + obj.find(".c_dialogTitle").outerHeight(true) + obj.find(".c_btnWrap").outerHeight(true);
+        
         // 计算弹出层的大小和位置
         if (this.width > 0 && this.height > 0) {
-          obj.find(".c_dialogBox").css({
-            "width":this.width,
-            "height":this.height,
-            "top":this.top,
-            "left":this.left
-          });
+          if(this.responsive){
+            obj.find(".c_dialogBox").css({
+              "width": this.width,
+              "height": _height,
+              "top": this.top,
+              "left": this.left
+            });
+          }else{
+            obj.find(".c_dialogBox").css({
+              "width":this.width,
+              "height":this.height,
+              "top":this.top,
+              "left":this.left
+            });
+          }
         } else {
           obj.find(".c_dialogBox").css({
             "width":_width,
