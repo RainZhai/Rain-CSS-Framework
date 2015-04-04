@@ -110,6 +110,12 @@ var img =util.cacheImg({src:"images/logo.png",width:200,height:70},"image/png", 
 	log(img.src);
 	$("body").append(img);
 });
+
+$(document).one('hidden.bs.modal', function() {
+          alert(1434324);      
+});
+$(document).trigger('hidden.bs.modal');
+$(document).trigger('hidden.bs.modal');
 </script>
 </body>
 </html>

@@ -487,6 +487,35 @@ var s = new star({
 	selectedClass:"stared",
 	selectedStyle:{}
 });
+//顶部固定内容自动收起功能
+var scrollExpand = function(selector){
+	var win = $(window);
+	var initTop = 0;
+	win.on('scroll',function(){
+		var scrollTop = $('body').scrollTop();
+		if(scrollTop > initTop){
+			$('#tagbox').height('39px');
+			$("#tagwrap").addClass("fixed"); 
+			$("body").css({'padding-top':'45px'});
+			if(links.length>4){
+				 $('#moretag').removeClass('hide'); 
+			}
+		} else {
+			if(scrollTop<40){ 
+				$('#tagbox').height('auto');
+				$("#tagwrap").removeClass("fixed");
+				$("body").css({'padding-top':'0'});
+				if(links.length==8) $('#moretag').removeClass('hide'); 
+				if($('#tagbox').height() > 78) $('#moretag').addClass('hide')
+			}
+		}
+		initTop = scrollTop;
+	});
+	touch.on('#moretag', 'click', function(e){ 
+		$('#tagbox').height('auto').css({'max-height':'none'});
+		$('#moretag').addClass('hide'); 
+	});
+}
 </script>
 </body>
 </html>
