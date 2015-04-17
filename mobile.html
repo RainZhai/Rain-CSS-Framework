@@ -55,18 +55,18 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 </head>
 <body class="body">
 
-  <div class="headerBlue">
-  	<nav class="lsn posr clearfix">
-    	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">首页home</a>
-    	<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">博客blog</a>
-    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">游戏game</a>
-    </nav>
-  </div>
+	<div class="headerBlue">
+		<nav class="lsn posr clearfix">
+			<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">首页home</a>
+			<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">博客blog</a>
+			<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">游戏game</a>
+		</nav>
+	</div>
 	<div class="headerM headerGrey">
-  	<div class="container posr">
-    	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
-    </div>
-  </div>
+		<div class="container posr">
+			<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
+		</div>
+	</div>
   <div class="c_touch2 mainads">
                    <div class="c_touhmain posr oh">
                      <ul class=" lsn c_touhlist posa nom nop w-mx clearfix">
@@ -488,7 +488,7 @@ var s = new star({
 	selectedStyle:{}
 });
 //顶部固定内容自动收起功能
-var scrollExpand = function(selector){
+var scrollExpand = function(opt){
 	var win = $(window);
 	var initTop = 0;
 	win.on('scroll',function(){
@@ -516,6 +516,12 @@ var scrollExpand = function(selector){
 		$('#moretag').addClass('hide'); 
 	});
 }
+scrollExpand({
+	selector:"",
+	wrapSelector:"",
+	moreSelector:"",
+	
+});
 </script>
 </body>
 </html>

@@ -318,7 +318,7 @@
           }
         }
         if (this.obj && (typeof this.obj === "string" || this.obj instanceof jQuery || "nodeName" in this.obj)) {
-        	this.getHtml().find("." + this.closeClass).hide();
+          this.getHtml().find("." + this.closeClass).hide();
           this.getHtml().find(".c_contentWrap").append(this.obj);
         } else {
           this.setContent(this.contentObj);
@@ -329,9 +329,10 @@
        *  @public
        */
       "initModule":function() {
+        var _this = this;
         var html = this.getHtml();
         // 控制框是否可以拖拽
-        if (this.draggable) {
+        if (_this.draggable) {
           html.find(".c_dialogBox").draggable({
             "cursor":"move",
             "handle":".c_dialogTitle",
@@ -340,17 +341,17 @@
           });
         }
         // 设置上传控制
-        if (this.upload) {
-          this._initUpload();
+        if (_this.upload) {
+          _this._initUpload();
         }
         //按钮绑定事件
-        html.find("." + this.closeClass).on("click", {"name":"closebtn","type":"close"}, function(e) {
-          this.close(e,this.closeCallback);
+        html.find("." + _this.closeClass).on("click", {"name":"closebtn","type":"close"}, function(e) {
+          _this.close(e,_this.closeCallback);
         });
         $("body").append(html);
-        this._setDialogHeight(html);
-        this._initUI();
-        return this;
+        _this._setDialogHeight(html);
+        _this._initUI();
+        return _this;
       },
       /** @method 初始化UI
        *  @private

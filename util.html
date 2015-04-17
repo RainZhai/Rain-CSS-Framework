@@ -11,7 +11,15 @@
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 <script type="text/javascript" src='js/jquery-1.7.2.js'></script>
- 
+ <style>
+.searchwrap{ transition: all .5s linear; -webkit-transition: all .5s linear; height: 25px; width: 30px; margin: 20px 0 0 35px;}
+.searchwrap .searchinner{width: 238px;}
+.searchwrap .searchicon{ width: 25px; height: 25px; margin-right: 10px;  border:0 none; cursor: pointer; padding: 0; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMFJREFUeNpiYKAV+P//vwMQr/+PCt4D8XwgNiDWkPn/CYMEUg3ZD8QNUHyfKMOg3kH2hgMWNQVoahSwGYQcJg54XN2ApK4fmwK4d4gIx/fY1DKhqTtIRJxcgNIO+AwiBTzA59zzBLwlgDcY0KK+gMgkkoBNgQFaOmnA4hL0dFaAy7YELNliPxSTlsqhhr3/TxoAG8aIxTBQis0HYgMo/gCNoYVQej0QC6BpSySndDDA4ur35BY1GIZRUm4hG9YPEGAAtovdMQCq9tIAAAAASUVORK5CYII=) no-repeat center center;}
+.searchwrap .searchicon:hover{background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQpJREFUeNpiYKASYEQXsN390wFI5QNxAJLwByDeAMQTD7uyXyBoENCQ+UAqgYDliUDDFuA0CIshB4D4IJQdD8QK+AxjRPLOfiRvBAIVHkBzbQGQ6kdSYwhU8wAmzwSl85H0YBgCAkCxCUCqEcoVQNMDNwgWsAewGYJkWAPUNSBggM0gGDhIREzDYs0Bn0GkgAfYDII51x+fTmCACyC5BKtBG2D+hsYOLtCPxF6IzaCJyIqBhjWguwRLOhPAlSBBiuajZQusAYstYaJnkQSo8wVICHSwYdgyrQI0sRlA8QdowC6E0uuxWJTISGqcAy0ygGYnZMM+kJyOoMWII1KSAQc8WQkSi2ETAAIMADJBW9xL2neoAAAAAElFTkSuQmCC) no-repeat center center; }
+.searchwrap .searchbox{ margin:4px 0;  width: 200px; background: none; border:0 none; color: #fff;}
+.wauto{ width: 238px!important; background: #0067a3; border-radius: 3px; }
+
+ </style>
 </head>
 <body class="body">
 	<div class="header headerBlue">
@@ -28,7 +36,13 @@
   </div>
   
 	<div class="container mt">
-    
+          <p>搜索框组件</p>
+          <div class="bgg">
+            <div class="j_searchwrap searchwrap oh">
+            <div class="searchinner  clearfix"><button  class="j_searchicon searchicon block l" ></button> <input type="text" class="j_searchbox searchbox l" /></div>
+            </div>
+          </div>
+
 		<div class="paddingTop">
 	      <footer class="footer socialFooter c bt">
 	        <p class="bottom pt pb">Copyright 2010-2014 Web Development Machine All rights reserved.</p>
@@ -116,6 +130,41 @@ $(document).one('hidden.bs.modal', function() {
 });
 $(document).trigger('hidden.bs.modal');
 $(document).trigger('hidden.bs.modal');
+
+//搜索框组件
+window.Common = {};
+Common.home = function(){
+  this.init();
+};
+Common.home.prototype = {
+  init: function(){
+    var me = this;
+    this.searchbox = $('#j_searchbox');
+    me.registerEvent();
+  },
+  registerEvent: function(){
+    var me = this;
+    var searchbox = me.searchbox;
+    $(".j_searchicon").on("click", function(){
+      $(".j_searchwrap").toggleClass("wauto"); 
+    });
+
+    searchbox.on("blur", function(){
+      $(".j_searchwrap").toggleClass("wauto");
+    });
+
+    $(document).on("keypress", function(event) { 
+      if($('.j_searchbox').val()){
+          var keycode = (event.keyCode ? event.keyCode : event.which);
+          if (keycode == '13') {
+             
+          }
+      }
+    });
+
+  }
+}
+    var home = new Common.home();
 </script>
 </body>
 </html>

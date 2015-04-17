@@ -14,6 +14,7 @@
             width: 320,
             height: 95,
             responsive: true,
+            fadeout: false,
             tipswrapStyle: {
                 bottom: "10px",
                 left: "5px"
@@ -37,10 +38,17 @@
                         iconContent = '',
                         html = '<div class="c_touhmain posr oh"><ul class=" lsn c_touhlist posa nom nop w-mx clearfix">',
                         IconHtml = '<ul class="c_touchicon lsn clearfix posa nom nop tipCir">';
-                    $.each(o.imgArray, function(i) {
-                        imgContent += '<li class="fl l"><a class="block fullw fullh" href="' + o.linksArray[i] + '"><img class="fullw fullh" src=' + o.imgArray[i] + ' /></a></li>';
-                        iconContent += '<li class="fl l posr c_tips mls"><i class="c_on round-10 w-1 h-1 block so bgw"></i></li>';
-                    });
+                    if(o.fadeout){
+                            $.each(o.imgArray, function(i) {
+                                imgContent += '<li class=""><a class="block fullw fullh" href="' + o.linksArray[i] + '"><img class="fullw fullh" src=' + o.imgArray[i] + ' /></a></li>';
+                                iconContent += '<li class="fl l posr c_tips mls"><i class="c_on round-10 w-1 h-1 block so bgw"></i></li>';
+                            });
+                    }else{
+                            $.each(o.imgArray, function(i) {
+                                imgContent += '<li class="fl l"><a class="block fullw fullh" href="' + o.linksArray[i] + '"><img class="fullw fullh" src=' + o.imgArray[i] + ' /></a></li>';
+                                iconContent += '<li class="fl l posr c_tips mls"><i class="c_on round-10 w-1 h-1 block so bgw"></i></li>';
+                            });
+                    }
                     html = html + imgContent + '</ul></div>';
                     IconHtml = IconHtml + iconContent + '</ul>';
                     touchobj.addClass('posr').append(html + IconHtml);
@@ -71,7 +79,7 @@
                 var w = obj.getWidth();
                 obj.touchbox.height(o.height).width(w);
                 obj.touchlist.height(o.height);
-                obj.touchlist.find("li").height(o.height).width(w);
+                obj.items.height(o.height).width(w);
                 obj.tipsitems.first().find('.c_on').removeClass('bgw').addClass('bgy');
                 touchobj.find('.c_touchicon').css(o.tipswrapStyle);
             },
@@ -79,9 +87,13 @@
              *绑定事件函数:touchstart,touchmove,touchend
              */
             bindEvent: function() {
-                touchobj[0].addEventListener('touchstart', obj.touchStart, false);
-                touchobj[0].addEventListener('touchmove', obj.touchMove, false);
-                touchobj[0].addEventListener('touchend', obj.touchEnd, false);
+                if(o.fadeout){
+                    touchobj[0].addEventListener('touchstart', obj.touchStart, false);
+                    touchobj[0].addEventListener('touchmove', obj.touchMove, false);
+                    touchobj[0].addEventListener('touchend', obj.touchEnd, false);
+                }else{
+
+                }
             },
             /**
              *懒加载函数。
@@ -135,10 +147,10 @@
             },
 
             /**
-             *touchend处理函数.
+             *touchend事件,最后来确定显示用户所滑动的图像。同时生成定时器。
              *@param {Object} evt Object对象,事件对象。
              */
-            _touchends: function() {
+            touchEnd: function(evt) {
                 if (dirvalue === 0) {
                     return;
                 }
@@ -163,44 +175,41 @@
             },
 
             /**
-             *touchend事件,最后来确定显示用户所滑动的图像。同时生成定时器。
-             *@param {Object} evt Object对象,事件对象。
-             */
-            touchEnd: function(evt) {
-                obj._touchends();
-            },
-
-            /**
              *定时轮播函数。
              */
             setTime: function() {
                 var w = obj.getWidth();
                 i++;
-                if (i > obj.len - 1) {
-                    obj.touchlist.stop();
-                    obj.touchlist.animate({
-                        "left": -i * w
-                    }, 1000, null, function() {
-                        i = 0;
-                        obj.touchlist.css({
-                            "left": 0
+                if(!o.fadeout){
+                    if (i > obj.len - 1) {
+                        obj.touchlist.stop();
+                        obj.touchlist.animate({"left": -i * w}, 1000, null, function() {
+                            i = 0;
+                            obj.touchlist.css({"left": 0});
                         });
-                    });
-                } else {
-                    obj.touchlist.stop(); 
-                    obj.touchlist.animate({
-                        "left": -i * w
-                    }, 1000, null, function() {});
+                    } else {
+                        obj.touchlist.stop(); 
+                        obj.touchlist.animate({ "left": -i * w}, 1000, null, function() {});
+                    }
+                    obj.lazyLoad(i, obj.items);
+                }else{
+                    if (i > obj.len - 1) {
+                        obj.items.hide().find('img').hide();
+                        obj.items.eq(0).show().find('img').fadeIn();
+                        i=0;
+                    }else{
+                        obj.items.hide();
+                        obj.items.eq(i).show().find('img').fadeIn();
+                    }
                 }
-                obj.lazyLoad(i, obj.items);
                 obj.tipShow();
             },
             init: function() {
                 obj.initHtml();
                 obj.initUI();
                 if (util.supportTouch) obj.bindEvent();
-                if (o.autorun) {
-                    obj.touchlist.find('li').slice(0, 1).clone(true).appendTo('.c_touhlist');
+                if (o.autorun ) {
+                    if(!o.fadeout) obj.touchlist.find('li').slice(0, 1).clone(true).appendTo('.c_touhlist');
                     obj.timeHanlder = setInterval(obj.setTime, timer);
                 }
             },
