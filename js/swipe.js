@@ -87,13 +87,19 @@
              *绑定事件函数:touchstart,touchmove,touchend
              */
             bindEvent: function() {
-                if(o.fadeout){
-                    touchobj[0].addEventListener('touchstart', obj.touchStart, false);
-                    touchobj[0].addEventListener('touchmove', obj.touchMove, false);
-                    touchobj[0].addEventListener('touchend', obj.touchEnd, false);
-                }else{
+                if (util.supportTouch){
+                    if(o.fadeout){
+                        touchobj[0].addEventListener('touchstart', obj.touchStart, false);
+                        touchobj[0].addEventListener('touchmove', obj.touchMove, false);
+                        touchobj[0].addEventListener('touchend', obj.touchEnd, false);
+                    }else{
 
+                    }
                 }
+                touchobj.find('.c_touchicon').find(".c_tips").on("click", function(){
+                    var i = $(this).index();
+                    obj.setItemShow(i);
+                });;
             },
             /**
              *懒加载函数。
@@ -204,10 +210,37 @@
                 }
                 obj.tipShow();
             },
+            setItemShow: function(n){
+                var w = obj.getWidth();
+                i = n;
+                if(!o.fadeout){
+                    if (i > obj.len - 1) {
+                        obj.touchlist.stop();
+                        obj.touchlist.animate({"left": -i * w}, 1000, null, function() {
+                            i = 0;
+                            obj.touchlist.css({"left": 0});
+                        });
+                    } else {
+                        obj.touchlist.stop(); 
+                        obj.touchlist.animate({ "left": -i * w}, 1000, null, function() {});
+                    }
+                    obj.lazyLoad(i, obj.items);
+                }else{
+                    if (i > obj.len - 1) {
+                        obj.items.hide().find('img').hide();
+                        obj.items.eq(0).show().find('img').fadeIn();
+                        i=0;
+                    }else{
+                        obj.items.hide();
+                        obj.items.eq(i).show().find('img').fadeIn();
+                    }
+                }
+                obj.tipShow();
+            },
             init: function() {
                 obj.initHtml();
                 obj.initUI();
-                if (util.supportTouch) obj.bindEvent();
+                obj.bindEvent();
                 if (o.autorun ) {
                     if(!o.fadeout) obj.touchlist.find('li').slice(0, 1).clone(true).appendTo('.c_touhlist');
                     obj.timeHanlder = setInterval(obj.setTime, timer);

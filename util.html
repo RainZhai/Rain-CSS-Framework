@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
-<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
-<script type="text/javascript" src='js/jquery-1.7.2.js'></script>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]--> 
+<link rel="stylesheet" type="text/css" href="css/manhuaDate.1.0.css">
  <style>
 .searchwrap{ transition: all .5s linear; -webkit-transition: all .5s linear; height: 25px; width: 30px; margin: 20px 0 0 35px;}
 .searchwrap .searchinner{width: 238px;}
@@ -42,6 +42,10 @@
             <div class="searchinner  clearfix"><button  class="j_searchicon searchicon block l" ></button> <input type="text" class="j_searchbox searchbox l" /></div>
             </div>
           </div>
+          <p>日期</p>
+          <input type="text" class="ps w-10" id="starttime" name="starttime" readonly="true" />    
+
+
 
 		<div class="paddingTop">
 	      <footer class="footer socialFooter c bt">
@@ -49,9 +53,10 @@
 	      </footer>
 		</div>
 	</div>
+<script type="text/javascript" src='js/jquery-1.7.2.js'></script>
 <script type="text/javascript" src='js/util.js'></script>
+<script type="text/javascript" src="js/manhuaDate.1.0.js"></script>
 <script type="text/javascript">
-
 
 util.ob = $({});
 $.subscribe = function () {
@@ -165,6 +170,20 @@ Common.home.prototype = {
   }
 }
     var home = new Common.home();
+
+$(function (){
+//日期显示
+$("#starttime").manhuaDate({               
+  handlerClass: ".j_calender1", 
+  Event : "click",//可选               
+  Left : 0,//弹出时间停靠的左边位置
+  Top : -16,//弹出时间停靠的顶部边位置
+  fuhao : "-",//日期连接符默认为-
+  isTime : false,//是否开启时间值默认为false
+  beginY : 2015,//年份的开始默认为1949
+  endY :2100//年份的结束默认为2049
+});
+});
 </script>
 </body>
 </html>
