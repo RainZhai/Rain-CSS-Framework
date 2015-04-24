@@ -20,9 +20,10 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 .switch span.letter{ padding:0 5px 0 7px;} 
 .switch span.dot{ padding:0 0 0 4px; font-size: 10px;}
 
-.star{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat -190px 0; vertical-align: middle;}
+.star{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat -17px 0; vertical-align: middle;}
 .stared{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat 0 0; vertical-align: middle;}
-
+.starwraps .star{width: 12px;height: 12px; margin: 0 5px 0 0; background: url(images/comment_ico.png) no-repeat -20px -21px; vertical-align: middle;}
+.starwraps .stared{width: 12px;height: 12px; margin: 0 5px 0 0; background: url(images/comment_ico.png) no-repeat 0 -21px; vertical-align: middle;}
 /* 翻卡片效果 */
 .scrollnumbox{margin:5px;}
 .numwrap{ width: 37px; height:52px; margin-right:2px; position:relative; float:left; background: #000; border-radius:3px; box-shadow: 0px -1px 3px rgba(141, 172, 200, 0.25) inset; text-align:center; font-size: 40px; line-height:52px; color:#fff;}
@@ -135,6 +136,9 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 			<fieldset id="starlevel">
 				<legend>评论星级 Star</legend>
 				<div id="starbox" class="starwrap h-2 ">
+					<span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span>
+				</div>
+				<div id="starbox2" class="starwraps h-2 ">
 					<span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span>
 				</div>
 			</fieldset>
@@ -350,7 +354,7 @@ var bigswipe = new $.swipe({
       linksArray: [],
       time: 3000,
       autorun: true,
-      width: $(window).width(),
+      width: $(window).width()-20,
       height: 551,
       responsive: false,
       tipswrapStyle: {
@@ -478,6 +482,18 @@ $("#removeScroll").on("click",function(){
 //评论星级功能
 var s = new star({
 	boxHandler:"#starbox",
+	event:'click',
+	value: 2,
+	boxClass:"",
+	boxStyle:{},
+	starClass:"star",
+	starStyle:{},
+	selectedClass:"stared",
+	selectedStyle:{}
+});
+//评论星级功能
+var s = new star({
+	boxHandler:"#starbox2",
 	event:'click',
 	value: 2,
 	boxClass:"",
