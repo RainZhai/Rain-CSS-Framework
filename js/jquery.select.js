@@ -41,9 +41,13 @@
 			activeItemClass:"yellow",
 			activeItemStyle : {},
 			inActiveItemStyle : {},
+            activeIconClass:"",
+            activeIconStyle:"",
+            inActiveIconStyle : {},
 			callback : function() {},
 			//判断是否一次加载完成
-			loadonce : false
+			loadonce : false,
+            auto:false//判断是否自动加载不需要触发
 		}, obj || {});
 		var selectobj = $(opt.selectHandler), lis = '';
         var o = {
@@ -108,7 +112,7 @@
             },
             /** @method 获取弹出框列表 */
             getList: function(){
-            	return o.getUlobj().fint('li');
+            	return o.getUlobj().find('li');
             },
             /** @method 设置selectUL对象 内容 */
             setUlobj: function (c) {
@@ -142,8 +146,10 @@
                 list.attr('state', 'n');
                 obj.attr('state', 's');
                 if(opt.listIcon){
-	                list.find('.j_listlink').find('span').removeClass(opt.activeItemClass).css(opt.inActiveItemStyle);
-	                obj.find('.j_listlink').find('span').addClass(opt.activeItemClass).css(opt.activeItemStyle);
+                    list.find('.j_listlink').removeClass(opt.activeItemClass).css(opt.inActiveItemStyle);
+                    obj.find('.j_listlink').addClass(opt.activeItemClass).css(opt.activeItemStyle);
+	                list.find('.j_listlink').find('span').removeClass(opt.activeIconClass).css(opt.inActiveIconStyle);
+	                obj.find('.j_listlink').find('span').addClass(opt.activeIconClass).css(opt.activeIconStyle);
                 }else{
 	                list.find('.j_listlink').removeClass(opt.activeItemClass).css(opt.inActiveItemStyle);
 	                obj.find('.j_listlink').addClass(opt.activeItemClass).css(opt.activeItemStyle);
@@ -178,16 +184,18 @@
             },
             /** @method 注册事件 */
             registerEvents: function () {
-                /* 输入框事件控制 */
-                selectobj.on(opt.event, function (e) {
-                    var i = 0;
-                    if (opt.mark) {
-                        i = o.getSelectindex();
-                    } else {
-                        i = $(this).find('select')[0].selectedIndex;
-                    }
-                    o.getDialog().show();
-                });
+                if(!opt.auto){
+                    /* 输入框事件控制 */
+                    selectobj.on(opt.event, function (e) {
+                        var i = 0;
+                        if (opt.mark) {
+                            i = o.getSelectindex();
+                        } else {
+                            i = $(this).find('select')[0].selectedIndex;
+                        }
+                        o.getDialog().show();
+                    });
+                }
             },
             /**
              * @method 设置下一select对象的所需数据
@@ -238,7 +246,9 @@
                 var d = data, options = '', lis = '';
                 for (var i = 0,l=d.length; i < l; i++) {
                     options += '<option value="' + d[i].value + '">' + d[i].name + '</option>';
-                    lis += '<li state="n" val="' + d[i].value + '" text= "' + d[i].name + '"><a class="j_listlink" href="javascript:;">'+ iconhtml + d[i].name+ '</a></li>';
+                    lis += '<li state="n" val="' + d[i].value + '" text= "' + d[i].name + '"><a class="j_listlink" href="javascript:;">'+ iconhtml + d[i].name+ 
+                    '<p>'+d[i].addr+'</p>'+
+                    '</a></li>';
                 }
                 o.getNativeSelect().append(options);
                 o.addUlobj(lis);
@@ -250,14 +260,18 @@
             },
             /** @method 初始化ui */
             initUI: function () {
+                if(!opt.auto){
                 selectobj.addClass(opt.selectClass).css(opt.selectStyle);
                 selectobj.find(".j_iconwrap").addClass(opt.iconwrapClass).css(opt.iconwrapStyle);
                 selectobj.find(".j_icon").addClass(opt.iconClass).css(opt.iconStyle);
+                }
             },
             /** @method 构建html */
             buildHtml: function () {
-                var _html = '<span class="j_iconwrap"><i class="j_icon"></i></span><span class="j_innerbtn ' + opt.innerClass + '"></span>' + '<select></select>';
-                selectobj.append(_html);
+                if(!opt.auto){
+                    var _html = '<span class="j_iconwrap"><i class="j_icon"></i></span><span class="j_innerbtn ' + opt.innerClass + '"></span>' + '<select></select>';
+                    selectobj.append(_html);
+                }
                 return o;
             },
             reloadData:function(callback){

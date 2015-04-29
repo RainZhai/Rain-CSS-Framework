@@ -20,24 +20,85 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 .switch span.letter{ padding:0 5px 0 7px;} 
 .switch span.dot{ padding:0 0 0 4px; font-size: 10px;}
 
-.star{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat -190px 0; vertical-align: middle;}
+.star{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat -17px 0; vertical-align: middle;}
 .stared{width: 16px;height: 15px; margin: 3px 5px 0 0;background: url(images/comment_ico.png) no-repeat 0 0; vertical-align: middle;}
+.starwraps .star{width: 12px;height: 12px; margin: 0 5px 0 0; background: url(images/comment_ico.png) no-repeat -20px -21px; vertical-align: middle;}
+.starwraps .stared{width: 12px;height: 12px; margin: 0 5px 0 0; background: url(images/comment_ico.png) no-repeat 0 -21px; vertical-align: middle;}
+/* 翻卡片效果 */
+.scrollnumbox{margin:5px;}
+.numwrap{ width: 37px; height:52px; margin-right:2px; position:relative; float:left; background: #000; border-radius:3px; box-shadow: 0px -1px 3px rgba(141, 172, 200, 0.25) inset; text-align:center; font-size: 40px; line-height:52px; color:#fff;}
+.numwrap .numbox{position:absolute; top:0; width: 37px; height:26px; background: #000; overflow:hidden; border-radius:3px; text-align:center; font-size: 40px; line-height:52px; color:#fff;}
+.numwrap .numboxdown{position:absolute; bottom:0; width: 37px; height:26px; background: #000; overflow:hidden; border-radius:3px; text-align:center; font-size: 40px;
+ line-height:52px; color:#fff; z-index: 9998;}
+.numwrap .numboxdown .numdiv{position:absolute; bottom:0; width: 37px;}
+.numwrap:last-child{margin-right: 0;}
+.numwrap span.lines{display: block; height: 10px; top: 20px;left: 2px; width:31px; border-left: 1px solid rgba(108,126,172,0.5);border-right: 1px solid rgba(108,126,172,0.5); 
+ position: absolute;z-index: 9999;}
+.numwrap span.lines hr{height: 0px; border:none; background:none; border-bottom: 1px solid rgba(0,0,0,0.2); margin: 5px 0;}
+.numboxdown{
+  animation: animationFrames linear 0.5s;
+  animation-iteration-count: 1;
+  transform-origin: 0% 0%;
+  -webkit-animation: animationFrames linear 0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: 0% 0%;
+}
+@keyframes animationFrames{
+  0% { transform: rotateX(180deg);  }
+  100% {  transform: rotateX(0deg);}
+} 
+
+@-webkit-keyframes animationFrames {
+  0% {  transform: rotateX(180deg); }
+  100% {  transform: rotateX(0deg); }	
+}
 </style>
 </head>
 <body class="body">
-  <div class="headerBlue">
-  	<nav class="lsn posr clearfix">
-    	<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">首页home</a>
-    	<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">博客blog</a>
-    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">游戏game</a>
-    </nav>
-  </div>
+
+	<div class="headerBlue">
+		<nav class="lsn posr clearfix">
+			<a href="http://www.webdevelopmentmachine.com" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">首页home</a>
+			<a href="http://www.webdevelopmentmachine.com/blog" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">博客blog</a>
+			<a href="http://www.webdevelopmentmachine.com/demo/game.html" target='_blank' class="headerLink headerLinkBlue tac fl l ib wf-33 tdn">游戏game</a>
+		</nav>
+	</div>
 	<div class="headerM headerGrey">
-  	<div class="container posr">
-    	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
-    </div>
-  </div>
-  
+		<div class="container posr">
+			<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
+		</div>
+	</div>
+  <div class="c_touch2 mainads">
+                   <div class="c_touhmain posr oh">
+                     <ul class=" lsn c_touhlist posa nom nop w-mx clearfix">
+                       <li class="fl l posr" style="background:url(http://ww3.sinaimg.cn/large/005vSBqyjw1elpmz3aub7j31hc0u0qrl.jpg) no-repeat 0 0;"> 
+                         <div class="container fullh">
+                              <div class="mainadsbox1 w-30 fullh white" style="background:rgba(0, 0 ,0 ,0.5);">
+                                <fieldset class="">
+                                  <legend style="font-size:36px; line-height:36px;">大背景滚动</legend> 
+                                </fieldset> 
+                              </div>
+                         </div>
+                       </li> 
+                       <li class="fl l posr" style="background:url(http://ww3.sinaimg.cn/large/005vSBqyjw1elpmz3aub7j31hc0u0qrl.jpg) no-repeat 0 0;"> 
+                         <div class="container fullh">
+                              <div class="mainadsbox1 w-30 fullh white" style="background:rgba(0, 0 ,0 ,0.5);">
+                                <fieldset class="">
+                                  <legend style="font-size:36px; line-height:36px;">大背景滚动</legend> 
+                                </fieldset> 
+                              </div>
+                         </div>
+                       </li> 
+                     </ul>
+                     <ul class="c_touchicon lsn clearfix posa nom nop tipCir">
+                       <li class="fl l posr c_tips mls "> <i class="c_on tipicon w-1 h-1  block so bgw"></i>
+                       </li>
+                       <li class="fl l posr c_tips mls "> <i class="c_on  tipicon w-1 h-1 block so bgw"></i>
+                       </li>
+                     </ul>
+                   </div>
+</div>
+
 	<div class="container mt"> 
     <div class="content">
 		<div class="sidebar l posr">
@@ -63,9 +124,21 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 					</div>
 				</div>
 			</fieldset>
+			<fieldset id="rollcard">
+				<legend>滚动卡片 Roll card</legend>
+				<div class="scrollnumbox clearfix">
+					<div class="numwrap"><span class="lines"><hr /></span>0
+						<div class="numbox">1</div>
+						<div class="numboxdown"><div class="numdiv">1</div></div>
+					</div>
+				</div>
+			</fieldset>
 			<fieldset id="starlevel">
 				<legend>评论星级 Star</legend>
 				<div id="starbox" class="starwrap h-2 ">
+					<span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span>
+				</div>
+				<div id="starbox2" class="starwraps h-2 ">
 					<span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span><span class="j_star ib"></span>
 				</div>
 			</fieldset>
@@ -274,6 +347,21 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 <script type="text/javascript" src="js/slide.js"></script>
 <script type="text/javascript" src="js/star.js"></script>
 <script type="text/javascript">
+//创建滑动广告头部
+var bigswipe = new $.swipe({ 
+      touchSelector: ".c_touch2",
+      imgArray: [],
+      linksArray: [],
+      time: 3000,
+      autorun: true,
+      width: $(window).width()-20,
+      height: 551,
+      responsive: false,
+      tipswrapStyle: {
+        bottom: "12px",
+        right: "500px"
+      }});
+
 //创建loading弹出框效果
 var lo = util.loading({loadingClass:'bglg'});
 lo.setContent('the content is loading...');
@@ -402,6 +490,53 @@ var s = new star({
 	starStyle:{},
 	selectedClass:"stared",
 	selectedStyle:{}
+});
+//评论星级功能
+var s = new star({
+	boxHandler:"#starbox2",
+	event:'click',
+	value: 2,
+	boxClass:"",
+	boxStyle:{},
+	starClass:"star",
+	starStyle:{},
+	selectedClass:"stared",
+	selectedStyle:{}
+});
+//顶部固定内容自动收起功能
+var scrollExpand = function(opt){
+	var win = $(window);
+	var initTop = 0;
+	win.on('scroll',function(){
+		var scrollTop = $('body').scrollTop();
+		if(scrollTop > initTop){
+			$('#tagbox').height('39px');
+			$("#tagwrap").addClass("fixed"); 
+			$("body").css({'padding-top':'45px'});
+			if(links.length>4){
+				 $('#moretag').removeClass('hide'); 
+			}
+		} else {
+			if(scrollTop<40){ 
+				$('#tagbox').height('auto');
+				$("#tagwrap").removeClass("fixed");
+				$("body").css({'padding-top':'0'});
+				if(links.length==8) $('#moretag').removeClass('hide'); 
+				if($('#tagbox').height() > 78) $('#moretag').addClass('hide')
+			}
+		}
+		initTop = scrollTop;
+	});
+	touch.on('#moretag', 'click', function(e){ 
+		$('#tagbox').height('auto').css({'max-height':'none'});
+		$('#moretag').addClass('hide'); 
+	});
+}
+scrollExpand({
+	selector:"",
+	wrapSelector:"",
+	moreSelector:"",
+	
 });
 </script>
 </body>

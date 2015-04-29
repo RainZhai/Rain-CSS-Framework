@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta content="telephone=no" name="format-detection" />
+<title>test12</title> 
+<link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="../css/rain.css" type="text/css" media="all"/>
+<style type="text/css">
+</style> 
+</head>
+<body class="body bg37"> 
+
+            <fieldset>
+                <legend>柱状图  bar chart</legend>
+                <div id="demo1"></div>
+            </fieldset>
+
+<script src="d3.v3.min.js"></script>
+<script src="../js/jquery-1.7.2.js"></script>
+<script src="../js/util.js"></script>   
+<script type="text/javascript">
+
+var demo = demo || {};
+//柱状图
+demo.demo1 = function(){
+    var w = 500;
+    var h = 100;
+    var barPadding = 5;
+    //设置数据集
+    var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+    11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+     
+    //创建svg元素
+    var svg = d3.select("#demo1")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+    //选择所有rect元素，并设置器数据集,xy坐标，宽高还有填充色等
+    svg.selectAll("rect")
+    .data(dataset)
+    .enter()
+    .append("rect")
+    .attr("x", function(d, i) { return i * (w / dataset.length);})
+    .attr("y", function(d) { return  h-(d * 4);})
+    .attr("rx", "10")
+    .attr("ry", "10")
+    .attr("width", w / dataset.length - barPadding)
+    .attr("height", function(d) { return d * 4; })
+    .attr("fill", function(d) {
+        return "rgb(180, 240, 0)";
+    });
+    //同上设置柱状图文本
+    svg.selectAll("text")
+    .data(dataset)
+    .enter()
+    .append("text")
+    .text(function(d) { return d;})
+    .attr("text-anchor", "middle")
+    .attr("x", function(d, i) {
+    return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+    })
+    .attr("y", function(d) {
+    return h - (d * 4) + 14;
+    });
+}
+demo.demo1();
+</script>
+</body>
+</html>

@@ -30,7 +30,7 @@
     $.extend(this,{
       "width":540,
       // 弹出框宽度
-      "height":0,
+      "height":300,
       // 弹出框高度
       "top":"20%",
       // 离顶部的距离
@@ -79,7 +79,8 @@
       "afterShow":function() {},
       "beforeClose":function() {},
       "afterClose":function() {},
-      "upload":false
+      "upload":false,
+      "responsive": true
     }, this.obj || {});
     this.randomStr = Math.round(Math.random() * 1e6 + 1) + "", this.contentObj = this.content, this.closeClass = this.closeHandleClass + this.randomStr, this.dialogHandleClass = this.dialogHandleClass + this.randomStr, this.contentwrapid = "contentwrap" + this.randomStr, this.html = null;
   };
@@ -317,7 +318,7 @@
           }
         }
         if (this.obj && (typeof this.obj === "string" || this.obj instanceof jQuery || "nodeName" in this.obj)) {
-        	this.getHtml().find("." + this.closeClass).hide();
+          this.getHtml().find("." + this.closeClass).hide();
           this.getHtml().find(".c_contentWrap").append(this.obj);
         } else {
           this.setContent(this.contentObj);
@@ -328,9 +329,10 @@
        *  @public
        */
       "initModule":function() {
+        var _this = this;
         var html = this.getHtml();
         // 控制框是否可以拖拽
-        if (this.draggable) {
+        if (_this.draggable) {
           html.find(".c_dialogBox").draggable({
             "cursor":"move",
             "handle":".c_dialogTitle",
@@ -339,17 +341,17 @@
           });
         }
         // 设置上传控制
-        if (this.upload) {
-          this._initUpload();
+        if (_this.upload) {
+          _this._initUpload();
         }
         //按钮绑定事件
-        html.find("." + this.closeClass).on("click", {"name":"closebtn","type":"close"}, function(e) {
-          this.close(e,this.closeCallback);
+        html.find("." + _this.closeClass).on("click", {"name":"closebtn","type":"close"}, function(e) {
+          _this.close(e,_this.closeCallback);
         });
-        this._initUI();
         $("body").append(html);
-        this._setDialogHeight(html);
-        return this;
+        _this._setDialogHeight(html);
+        _this._initUI();
+        return _this;
       },
       /** @method 初始化UI
        *  @private
@@ -372,14 +374,24 @@
         // 获取dialog宽度和高度
         var _width = $("body").width() / 5 + 150;
         var _height = obj.find(".c_contentWrap").outerHeight(true) + obj.find(".c_dialogTitle").outerHeight(true) + obj.find(".c_btnWrap").outerHeight(true);
+        
         // 计算弹出层的大小和位置
         if (this.width > 0 && this.height > 0) {
-          obj.find(".c_dialogBox").css({
-            "width":this.width,
-            "height":this.height,
-            "top":this.top,
-            "left":this.left
-          });
+          if(this.responsive){
+            obj.find(".c_dialogBox").css({
+              "width": this.width,
+              "height": _height,
+              "top": this.top,
+              "left": this.left
+            });
+          }else{
+            obj.find(".c_dialogBox").css({
+              "width":this.width,
+              "height":this.height,
+              "top":this.top,
+              "left":this.left
+            });
+          }
         } else {
           obj.find(".c_dialogBox").css({
             "width":_width,

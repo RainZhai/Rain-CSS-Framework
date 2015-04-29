@@ -130,7 +130,20 @@
       console.log(util.clearLastComma(s));
     }
   };
-
+  //设置手机端基本宽高
+  if(util.isAndroid){
+    win.w = win.document.body.offsetWidth;
+    win.h = win.document.body.offsetHeight;
+  }else{
+    win.w = win.screen.width;
+    win.h = win.screen.height;
+  }
+  //判断并设置事件
+  if(util.supportTouch){
+    util.touch.click = 'tap';
+  }else{
+    util.touch.click = 'click';
+  }
 
   /**
    * 浏览器的特性的简单检测，并非精确判断。
@@ -181,6 +194,34 @@
       return (min + Math.round(Rand * Range));
     }
     return 0;
+  }
+  util.setCookie = function(c_name, value, expiredays) {
+    if(c_name && value){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
+    }
+  }
+  util.getCookie = function(c_name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+          c_start = c_start + c_name.length + 1;
+          c_end = document.cookie.indexOf(";", c_start);
+          if (c_end == -1) {
+            c_end = document.cookie.length;
+          }
+          return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return "";
+  }
+  //删除cookies
+  util.delCookie = function(name) {
+  var exp = new Date();
+  exp.setTime(exp.getTime() - 1);
+  var cval = Common.getCookie(name);
+  if (cval != null) document.cookie = name +"="+cval + ";expires ="+exp.toGMTString();
   }
   /*增加历史状态*/
   util.pushState = function(obj) {
@@ -582,10 +623,10 @@
       params: null,
       wrapHandle: '#listbox',
       loading: null,//加载提示框对象
-      stop: false
+      stop: false,
+      scrollObj: window
     }, obj || {});
-
-    var win = $(window);
+    var win = $(opt.scrollObj);
     var wrapbox = $(opt.wrapHandle);
     var stop = opt.stop;
     var o = {
@@ -626,11 +667,12 @@
         win.scroll(function() {
           //手机端滚动到底部加载height=device-height;
           log(stop);
-          if ( !stop && $(opt.lastItemHandle).is(':visible')) {
+          if (!stop && $(opt.lastItemHandle).is(':visible')) {
             if (win.scrollTop() + win.height() >= $(document).height()) {
+              o.setStop(true);
               if (opt.loadurl) {
                 var p = o.getParams();
-                if(opt.loading) opt.loading.show();
+                if (opt.loading) opt.loading.show();
                 $.getJSON(opt.loadurl, p, function(data) {
                   o.setData(data);
                   if ($.isFunction(callback)) callback();
