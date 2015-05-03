@@ -27,61 +27,72 @@
 <script type="text/javascript">
 (function ($) {
 window.screenslide =function(obj){
-	this.obj = obj;
-	$.extend(this,{
-		selector: '.j_itemwrap',
-		itemSelectror: '.slideitem',
-		firstslide: function(){},
-		beforeslide: function(){},
-		upCallback: function(){},
-		downCallback: function(){}
-	}, this.obj || {});
-	this.init();
+    this.obj = obj;
+    $.extend(this,{
+        selector: '.j_itemwrap',
+        itemSelectror: '.slideitem',
+        firstslide: function(){},
+        beforeslide: function(){},
+        upCallback: function(){},
+        downCallback: function(){}
+    }, this.obj || {});
+    this.init();
 };
 
 screenslide.prototype = {
-	index: 0,
-	slideheight:568,
-	init: function(){
-		$(document).on('touchmove',function(e){
-			e.preventDefault();
-		});
-		this.firstslide();
-		this.registerEvents();
-	},
-	getBox: function(){ 
-		return $(this.selector);
-	},
-	getMax: function(){
-		return $(this.itemSelectror).length;
-	},
-	getIndex: function(){
-		return this.index;
-	},
-	registerEvents: function(){
-		var _this = this;
-		var box = _this.getBox();
-		touch.on(_this.selector, "swipeup",function(e){
-			if(_this.index < _this.getMax()-1){
-				_this.index++;
-				_this.beforeslide();
-				box.velocity({"margin-top":"-"+_this.index * _this.slideheight+"px"},function(){
-					_this.upCallback();
-				});
-			}
-		});
-		touch.on(_this.selector, "swipedown",function(e){
-			if(_this.index > 0){
-				_this.index--;
-				_this.beforeslide();
-				box.velocity({"margin-top":"-"+_this.index * _this.slideheight+"px"},function(){
-					_this.downCallback();
-				});
-			}
-		});
-	}
+    index: 0,
+    slideheight: window.screen.height,
+    init: function(){
+        $(document).on('touchmove',function(e){
+            e.preventDefault();
+        });
+        this.firstslide();
+        this.registerEvents();
+    },
+    getBox: function(){ 
+        return $(this.selector);
+    },
+    getMax: function(){
+        return $(this.itemSelectror).length;
+    },
+    getIndex: function(){
+        return this.index;
+    },
+    goNext: function(){
+        var _this = this;
+        var box = _this.getBox();
+        if(_this.index < _this.getMax()-1){
+            _this.index++;
+            _this.beforeslide();
+            box.velocity({"margin-top":"-"+_this.index * _this.slideheight+"px"},function(){
+                _this.upCallback();
+            });
+        }
+    },
+    registerEvents: function(){
+        var _this = this;
+        var box = _this.getBox();
+        touch.on(_this.selector, "swipeup",function(e){
+            if(_this.index < _this.getMax()-1){
+                _this.index++;
+                _this.beforeslide();
+                box.velocity({"margin-top":"-"+_this.index * _this.slideheight+"px"},function(){
+                    _this.upCallback();
+                });
+            }
+        });
+        touch.on(_this.selector, "swipedown",function(e){
+            if(_this.index > 0){
+                _this.index--;
+                _this.beforeslide();
+                box.velocity({"margin-top":"-"+_this.index * _this.slideheight+"px"},function(){
+                    _this.downCallback();
+                });
+            }
+        });
+    }
 }
-})(Zepto || jQuery); 
+})(window.Zepto || window.jQuery); 
 var screenslide = new screenslide({
 	selector: '.j_itemwrap',
 	itemSelectror: '.slideitem',

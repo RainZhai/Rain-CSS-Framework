@@ -664,6 +664,17 @@
         stop = v;
       },
       init: function() {
+//div滚动的判断
+/**var nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
+var nScrollTop = 0;   //滚动到的当前位置
+var nDivHight = $("#div1").height();
+
+$("#div1").scroll(function(){
+  nScrollHight = $(this)[0].scrollHeight;
+  nScrollTop = $(this)[0].scrollTop;
+  if(nScrollTop + nDivHight >= nScrollHight)
+  alert("滚动条到底部了");
+});*/
         win.scroll(function() {
           //手机端滚动到底部加载height=device-height;
           log(stop);
