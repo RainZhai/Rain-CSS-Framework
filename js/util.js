@@ -217,12 +217,36 @@
     return "";
   }
   //删除cookies
-  util.delCookie = function(name) {
+util.delCookie = function(name) {
   var exp = new Date();
   exp.setTime(exp.getTime() - 1);
   var cval = Common.getCookie(name);
   if (cval != null) document.cookie = name +"="+cval + ";expires ="+exp.toGMTString();
-  }
+}
+//交换数组元素
+util.swapItems = function(arr, index1, index2) {
+    arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+    return arr;
+};
+//设置列表记录id
+util.setlist = function(name,val) {
+    var list = util.getCookie(name);
+    if (list) {
+       var arr = list.split(",");
+      if (arr.length < 5) {
+        if (arr.indexOf(val) > 0) {
+          var i = arr.indexOf(val);
+          util.swapItems(arr, 0, i);
+        } else {
+          arr.unshift(val);
+          arr.pop();
+        }
+        util.setCookie(name, arr.join(","));
+      }
+    }else{
+       util.setCookie(name, val);
+    }
+}
   /*增加历史状态*/
   util.pushState = function(obj) {
     if (history && util.checkprop('pushState', history)) {
