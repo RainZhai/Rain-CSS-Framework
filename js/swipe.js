@@ -15,6 +15,8 @@
             height: 95,
             responsive: true,
             fadeout: false,
+            tipsClass: "bggrey",
+            tipsActiveClass: "bgw",
             tipswrapStyle: {
                 bottom: "10px",
                 left: "5px"
@@ -80,7 +82,7 @@
                 obj.touchbox.height(o.height).width(w);
                 obj.touchlist.height(o.height);
                 obj.items.height(o.height).width(w);
-                obj.tipsitems.first().find('.c_on').removeClass('bgw').addClass('bgy');
+                obj.tipsitems.first().find('.c_on').removeClass(o.tipsClass).addClass(o.tipsActiveClass);
                 touchobj.find('.c_touchicon').css(o.tipswrapStyle);
             },
             /**
@@ -148,8 +150,8 @@
              */
             tipShow: function() {
                 i === obj.len ? i = 0 : i;
-                obj.tipsitems.find('.c_on').addClass('bgw').removeClass('bgy');
-                obj.tipsitems.eq(i).find('.c_on').addClass('bgy').removeClass('bgw');
+                obj.tipsitems.find('.c_on').addClass(o.tipsClass).removeClass(o.tipsActiveClass);
+                obj.tipsitems.eq(i).find('.c_on').addClass(o.tipsActiveClass).removeClass(o.tipsClass);
             },
 
             /**
