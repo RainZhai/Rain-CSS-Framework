@@ -230,22 +230,30 @@ util.swapItems = function(arr, index1, index2) {
 };
 //设置列表记录id
 util.setlist = function(name,val) {
-    var list = util.getCookie(name);
-    if (list) {
-       var arr = list.split(",");
-      if (arr.length < 5) {
-        if (arr.indexOf(val) > 0) {
-          var i = arr.indexOf(val);
-          util.swapItems(arr, 0, i);
-        } else {
-          arr.unshift(val);
-          arr.pop();
-        }
-        util.setCookie(name, arr.join(","));
+      var list = Common.getCookie(name);
+      if (list) {
+             var arr = list.split(",");
+            if (arr.length < 5) {
+                    if (arr.indexOf(val) > 0) {
+                      var i = arr.indexOf(val);
+                      Common.swapItems(arr, 0, i);
+                    } else { 
+                      arr.unshift(val);//在数组前添加元素
+                    }
+                    Common.setCookie(name, arr.join(","));
+            }else{
+                    if (arr.indexOf(val) > 0) {
+                        var i = arr.indexOf(val);
+                        Common.swapItems(arr, 0, i);
+                    } else { 
+                        arr.unshift(val);//在数组前添加元素
+                    }
+                    arr.pop();//删除最后一个元素
+                    Common.setCookie(name, arr.join(","));
+            }
+      }else{
+            Common.setCookie(name, val);
       }
-    }else{
-       util.setCookie(name, val);
-    }
 }
   /*增加历史状态*/
   util.pushState = function(obj) {
