@@ -724,6 +724,50 @@ $("#div1").scroll(function(){
             }
           }
         });
+
+        //侧边栏滚动自动定位到相应的链接
+        $(document).ready(function() {
+          var a = $,
+            b = document,
+            c = a(".j_mainContent "),
+            d = a(".j_sidebar");
+          if (d.length > 0) {
+            var e = d.offset().top,
+              f = d.find(".anchor-btn"),
+              g = function() {
+                for (var b = [], c = 0; c < f.length; c++) b.push(a(a(f[c]).attr("href")).offset().top);
+                return b
+              },
+              h = g(),
+              i = function(b) {
+                for (var c, b = b + 86, d = 0; d < h.length; d++)
+                  if (b < h[d + 1]) {
+                    c = d;
+                    break
+                  }
+                void 0 == c && (c = d - 1), f.parent("li").find("a").removeClass("on"), a(f[c]).parent("li").find("a").addClass("on")
+              },
+              j = function(a) {
+                a > e && !d.hasClass("tab-fix-top") && (d.addClass("tab-fix-top")), e > a && d.hasClass("tab-fix-top") && (d.removeClass("tab-fix-top"));
+                /*, d.css("width", "auto"))*/
+              };
+            a(window).on("scroll", function(c) {
+              var d = a(b).scrollTop();
+              j(d), i(d)
+            }), a(window).on("resize", function(e) {
+              d.hasClass("tab-fix-top");
+              var f = a(b).scrollTop();
+              j(f), i(f)
+            }), a(".anchor-btn").on("click", function(b) {
+              var c = a(this);
+              setTimeout(function() {
+                f.parent("li").find("a").removeClass("on"), c.parent("li").find("a").addClass("on")
+              }, 50)
+            });
+            var k = a(b).scrollTop();
+            j(k)
+          }
+        });
       }
     };
     o.init();
