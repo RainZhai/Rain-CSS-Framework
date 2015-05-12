@@ -44,7 +44,13 @@
           </div>
           <p>日期</p>
           <input type="text" class="ps w-10" id="starttime" name="starttime" readonly="true" />    
-
+          <p>下拉菜单</p>
+          <div class="j_linksbox link ib posr">
+            <a href="javascript:void(0);" class="ib">
+              <span>网站导航</span> <em class="ng-iconfont down"></em>
+            </a>
+            <div class="j_sitenav ng-sn-site-nav posa oh" style="display: none;"></div>
+          </div>
 
 
 		<div class="paddingTop">
@@ -131,45 +137,47 @@ var img =util.cacheImg({src:"images/logo.png",width:200,height:70},"image/png", 
 });
 
 $(document).one('hidden.bs.modal', function() {
-          alert(1434324);      
+          log(1434324);      
 });
-$(document).trigger('hidden.bs.modal');
 $(document).trigger('hidden.bs.modal');
 
 //搜索框组件
 window.Common = {};
-Common.home = function(){
-  this.init();
-};
-Common.home.prototype = {
-  init: function(){
-    var me = this;
-    this.searchbox = $('#j_searchbox');
-    me.registerEvent();
+Common.searchbox = function(callback){
+  this.init(callback);
+}
+Common.searchbox.prototype = {
+  init: function(callback){
+      var me = this;
+      me.searchbox = $('.j_searchbox');
+      me.registerEvent(callback);
   },
-  registerEvent: function(){
-    var me = this;
-    var searchbox = me.searchbox;
-    $(".j_searchicon").on("click", function(){
-      $(".j_searchwrap").toggleClass("wauto"); 
-    });
+  registerEvent: function(callback){
+      var me = this;
+      var searchbox = me.searchbox;
+      $(".j_searchicon").on("click", function(){
+        $(".j_searchwrap").toggleClass("wauto");
+      });
 
-    searchbox.on("blur", function(){
-      $(".j_searchwrap").toggleClass("wauto");
-    });
 
-    $(document).on("keypress", function(event) { 
-      if($('.j_searchbox').val()){
-          var keycode = (event.keyCode ? event.keyCode : event.which);
-          if (keycode == '13') {
-             
-          }
-      }
-    });
+      searchbox.on("blur", function(){
+        $(".j_searchwrap").toggleClass("wauto");
+      });
 
+
+      $(document).on("keypress", function(event) {
+        if($('.j_searchbox').val()){
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+               if(typeof(callback) =="function"){
+                callback();
+               }
+            }
+        }
+      });
   }
 }
-    var home = new Common.home();
+var searchbox = new Common.searchbox();
 
 $(function (){
 //日期显示
