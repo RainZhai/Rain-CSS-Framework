@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rain CSS > upload</title> 
+<!-- Framework CSS -->
+<link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="all"/> 
+<link rel="stylesheet" href="../css/rain.css" type="text/css" media="all"/> 
+<style type="text/css">
+.body{width:320px;}
+.idcard .idcard-add a.ia-succ {color: #999;  padding-top: 7.25em;  margin-top: 1em;  display: inline-block;  background-size: 70px 54px;  color: #ff6666;}
+.idcard .ia-tip {  position: absolute;  right: 0px;  top: 0px;  background: #b2b2b2;  color: #fff;  font-size: 14px;  padding: 0.4em;}
+</style>
+</head>
+<body class="body">
+<div id="uppre" class="common-wrapper">
+
+        <div class="m idcard">
+            <div class="mc">
+                <!-- 添加class，idcard-add-no ,为不可添加状态 -->
+                <div id="up_1" class="idcard-add h-20 b fullw posr">
+                    <a href="javascript:;" class="ia-add">
+                        <div class="fs-10 tac">+</div>
+                        <input id="file_1" capture="camera" accept="image/*" name="file_1" type="file" style="font-size: 118px;cursor: pointer;position: absolute;right: 0;top: 0; width: 100%; height: 100%;z-index:999;filter:alpha(opacity=0);opacity:0;">
+                        <p class="tac">点击添加身份证正面照片</p>
+                    </a>
+                </div>
+                <div id="upover_1" class="idcard-add h-20 b fullw posr" style="display:none;">
+                    <a href="javascript:;" class="ia-succ">已经选好图片</a>
+                    <i id="change_1" class="ia-tip">更换</i>
+                </div>
+            </div>
+            <div class="mt">
+                <!-- 添加class，idcard-add-no ,为不可添加状态 -->
+                <div id="up_2" class="idcard-add h-20 b fullw posr">
+                    <a href="javascript:;" class="ia-add">
+                        <div class="fs-10 tac">+</div>
+                        <input id="file_2" capture="camera" accept="image/*" name="file_2" type="file" style="font-size: 118px;cursor: pointer;position: absolute;right: 0;top: 0; width: 100%; height: 100%;z-index:999;filter:alpha(opacity=0);opacity:0;">
+                         <p class="tac">点击添加身份证反面照片</p>
+                    </a>
+                </div>
+                <div id="upover_2" class="idcard-add h-20 b fullw posr" style="display:none;">
+                    <a href="javascript:;" class="ia-succ">已经选好图片</a>
+                    <i id="change_2" class="ia-tip">更换</i>
+                </div>
+            </div>
+        </div>
+        <div class="name-upload">
+            <!-- class添加nu-cancel-no，为不能点击状态 -->
+            <a href="javascript:;" class="nu-cancel">取消</a>
+            <!-- class添加nu-upload-no，为不能点击状态 -->
+            <a href="javascript:;" class="nu-upload">上传</a>
+        </div>
+
+    </div>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/util.js"></script>
+<script type="text/javascript" src="./jquery.uploadify-3.1.min.js"></script>
+<script type="text/javascript" src="./util-upload.js"></script>
+<script type="text/javascript" src="./ajaxfileupload.js"></script>
+<script type="text/javascript">
+$(function(){ 
+    var isReady = 1; 
+    $("#file_1,#file_2").change(function(e){
+        var domId = this.id;
+        var tail = domId.substring(domId.length - 1);
+        $("#up_" + tail).hide();
+        $("#upover_" + tail).show();
+        isReady+=tail;
+    })
+    $(".ia-tip").click(function(){
+        var domId = this.id;
+        var tail = domId.substring(domId.length - 1);
+        $("#up_" + tail).show();
+        $("#upover_" + tail).hide();
+        isReady-=tail;
+        $("#file_" + tail).replaceWith($("#file_" + tail).clone(true));     
+    });
+
+    var isUploading = 0;
+    
+    $(".nu-upload").click(function(){
+        // 校验
+        if ( isReady == 1 || isReady == 3 || !file_1.value || file_1.value == "" ) {
+            alert("点击添加身份证正面照片");
+            return false;
+        }
+
+        if ( isReady == 1 || isReady == 2 || !file_2.value || file_2.value == "" ) {
+            alert("点击添加身份证反面照片");
+            return false;
+        }
+
+        if ( isUploading == 1) {
+            return false;
+        } else {
+            isUploading = 1;
+            var lo = util.loading({loadingClass:'bglg'});
+            lo.show();
+        }
+        
+        //异步上传图片
+        jQuery.ajaxFileUpload({
+            url          : "",
+            secureuri    : false,
+            fileElementId: 'file_1',
+            compress     : true,
+            limitSize    : 51200000,
+            dataType     : 'json',
+            success      : function (data) {
+                if ( data.islogin && data.islogin == -1 ) {
+                    $("#upfail").attr("close","1");
+                    alert("网络超时，请刷新电脑页面重新扫描二维码");
+                } else {
+                    if ( data.errorCode ) {
+                    } else if ( (data.fail && data.fail == 1) || !data.img1 ) {
+                    } else if ( data.img1 ) {
+                        jQuery.ajaxFileUpload({
+                            url          : "",
+                            secureuri    : false,
+                            fileElementId: 'file_2',
+                            compress     : true,
+                            limitSize    : 51200000,
+                            dataType     : 'json',
+                            success      : function (data) {
+                                if ( data.islogin && data.islogin == -1 ) {
+                                    $("#upfail").attr("close","1");
+                                    alert("网络超时，请刷新电脑页面重新扫描二维码");
+                                } else {
+                                    if ( data.errorCode ) {
+                                    } else if ( (data.fail && data.fail == 1) || !data.img1 || !data.img2 ) {
+                                    } else if ( data.img1 && data.img2 ) {
+                                      alert("网络超时，请刷新电脑页面重新扫描二维码");
+                                    }
+                                }
+                            },
+                            error: function (data) {
+                                succOrfail(false)
+                            }
+                        });
+                    }
+                }
+            },
+            error: function (data) {
+            }
+        });
+    });
+})
+</script> 
+</body>
+</html>
