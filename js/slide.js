@@ -12,6 +12,7 @@
             text: [], //图片的text
             fix: false, //是否固定大小
             width: 320, //宽
+            itemwith: 280,//li的宽度
             height: 195, //高
             images: 3, //每屏展示图片的个数
             slides: 1, //每次滑动图片个数
@@ -24,6 +25,7 @@
             delay: 5000, //滚动间隔
             preloadamt: 3,
             preventDefault: true,
+            marginRight: 20,//li的margin right
             before: function() {}
         }, {}, opt);
         var _selector = $(opts.selector);
@@ -88,7 +90,7 @@
                     "marginLeft": -ms * o.getItemWidth(),
                     "width": "99999px"
                 }).find('li').each(function() {
-                    $(this).width(o.getItemWidth());
+                    $(this).width(o.getItemWidth()-opts.marginRight).css({"margin-right": opts.marginRight+"px"});
                 });
             },
             setWidth: function(v) {
@@ -104,10 +106,11 @@
             },
             //获取每个li的宽
             getItemWidth: function() {
+                if(opts.fix){ return parseInt(opts.itemwith+ opts.marginRight); } 
                 if (opts.control) {
-                    return (o.getWidth() - opts.controlwidth) / images;
+                    return parseInt((o.getWidth() - opts.controlwidth) / images + opts.marginRight);
                 }
-                return o.getWidth() / images;
+                return parseInt(o.getWidth() / images + opts.marginRight);
             },
             //获取展示图片的张数
             getimages: function() {
