@@ -22,6 +22,7 @@
 	<div id="lotteryContainer"></div>
 <script type="text/javascript" src="js/zepto.min.js"></script> 
 <script type="text/javascript">
+//刮奖
 function Lottery(id, cover, coverType, width, height, drawPercentCallback) {
     this.conId = id;
     this.conNode = document.getElementById(this.conId);
@@ -133,6 +134,7 @@ Lottery.prototype = {
         this.mask = this.mask || this.createElement('canvas', {
             style: 'position:absolute;left:0;top:0;'
         });
+        this.mask.id = "lotterymask";
 
         if (!this.conNode.innerHTML.replace(/[\w\W]| /g, '')) {
             this.conNode.appendChild(this.background);
@@ -167,9 +169,23 @@ Lottery.prototype = {
             var fontSize = 30;
             this.backCtx.font = 'Bold ' + fontSize + 'px Arial';
             this.backCtx.textAlign = 'center';
-            this.backCtx.fillStyle = '#F60';
+            this.backCtx.fillStyle = '#E60144';
             this.backCtx.fillText(this.lottery, this.width / 2, this.height / 2 + fontSize / 2);
             this.backCtx.restore();
+            if(window.prizetext1){
+                this.backCtx.font = 'Bold ' + fontSize + 'px Arial';
+                this.backCtx.textAlign = 'center';
+                this.backCtx.fillStyle = '#E60144';
+                this.backCtx.fillText(window.prizetext1, this.width / 2, this.height / 2 + 2*fontSize);
+                this.backCtx.restore(); 
+            }
+            if(window.prizetext2){
+                this.backCtx.font = 'Bold ' + fontSize + 'px Arial';
+                this.backCtx.textAlign = 'center';
+                this.backCtx.fillStyle = '#E60144';
+                this.backCtx.fillText(window.prizetext2, this.width / 2, this.height / 2 +4* fontSize);
+                this.backCtx.restore(); 
+            }
             this.drawMask();
         }
     },
@@ -189,28 +205,59 @@ Lottery.prototype = {
             image.src = this.cover;
         }
     },
+    clearMask: function(){
+        //this.maskCtx.css('visibility', 'hidden');
+        //this.maskCtx.clearRect(0, 0, this.width, this.height);
+/*      this.maskCtx.clearRect(0, 0, this.width, this.height);
+        this.maskCtx.style.display = 'none';// Detach from DOM
+        this.maskCtx.offsetHeight; // Force the detach
+        this.maskCtx.style.display = 'inherit'; // Reattach to DOM*/
+        $("#"+this.mask.id).remove();
+    },
     init: function (lottery, lotteryType) {
         this.lottery = lottery;
         this.lotteryType = lotteryType || 'image';
         this.drawLottery();
     }
 }
-
-window.onload = function () {
-    var lottery = new Lottery('lotteryContainer', '#CCC', 'color', 300, 100, drawPercent);
-    lottery.init('http://www.baidu.com/img/bdlogo.gif', 'image');
-    
-    document.getElementById('freshBtn').onclick = function() {
-        drawPercentNode.innerHTML = '0%';
-        lottery.init(getRandomStr(10), 'text');
+/** 获取随机数 */
+var getRandomNum = function(min /*number*/ , max /*number*/ ) {
+    if (max > min) {
+      var Range = max - min;
+      var Rand = Math.random();
+      return (min + Math.round(Rand * Range));
     }
-    
-    var drawPercentNode = document.getElementById('drawPercent');
-    
-    function drawPercent(percent) {
-        drawPercentNode.innerHTML = percent + '%';
-    }
+    return 0;
 }
+var lottery = new Lottery('lotteryContainer', 'images/guagua_pic.png', 'image', 500, 500, drawPercent);
+var number =  getRandomNum(1, 4);
+console.log(number);
+if(number===1){
+    window.prizetext1 = "XXXXXXXXX";
+    window.prizetext2 = "XXXXXXXXX";
+    lottery.init('恭喜你获得奖品一份', 'text');
+}else{
+    window.prizetext1 = "插肩而过啦"; 
+    lottery.init('很遗憾，奖品和你', 'text');
+}
+document.getElementById('freshBtn').onclick = function() {
+    drawPercentNode.innerHTML = '0%';
+    lottery.init(getRandomStr(10), 'text');
+}
+
+var drawPercentNode = document.getElementById('drawPercent');
+
+function drawPercent(percent) {
+    //drawPercentNode.innerHTML = percent + '%';
+    if(percent>15){
+        lottery.clearMask();
+        if(number===1){
+            $(".j_lingjiang").css({"opacity":1});
+        }else{
+
+        }
+    }
+} 
 
 function getRandomStr(len) {
     var text = "";
