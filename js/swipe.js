@@ -200,16 +200,21 @@
                         obj.touchlist.animate({ "left": -i * w}, 1000, null, function() {});
                     }
                     obj.lazyLoad(i, obj.items);
-                }else{
-                    if (i > obj.len - 1) {
-                        obj.items.hide().find('img').hide();
-                        obj.items.eq(0).show().find('img').fadeIn();
-                        i=0;
-                    }else{
-                        obj.items.hide();
-                        obj.items.eq(i).show().find('img').fadeIn();
-                    }
-                }
+                }else{ 
+                    obj.items.css({"display":"none","position":"absolute"});  
+                        if (i > obj.len - 1 || i===0) {
+                            //obj.items.hide().find('img').hide();
+                            //obj.items.eq(0).show().find('img').fadeIn();
+                            obj.items.eq(obj.len-1).css({"display":"block"}).fadeOut(3000);
+                            obj.items.eq(0).fadeIn(1000);
+                            i=0;
+                        }else {
+                            //obj.items.hide();
+                            //obj.items.eq(i).show().find('img').fadeIn();
+                            obj.items.eq(i-1).css({"display":"block"}).fadeOut(3000);
+                            obj.items.eq(i).fadeIn(1000);
+                        }
+                    } 
                 obj.tipShow();
             },
             setItemShow: function(n){
