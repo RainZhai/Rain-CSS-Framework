@@ -26,6 +26,8 @@
             preloadamt: 3,
             preventDefault: true,
             marginRight: 20,//li的margin right
+            btnLeftStyle: {},
+            btnRightStyle:{},
             before: function() {}
         }, {}, opt);
         var _selector = $(opts.selector);
