@@ -34,6 +34,9 @@ $(function() {
 		var monthbox = html.find(".j_month"); 
 		var preMonthbox = html.find(".j_preMonth"); 
 		var nextMonthbox = html.find(".j_nextMonth"); 
+		$(".j_datebgwrap").css({
+			"position":"absolute"
+		});
 
 
 		//年、月下拉框的初始化
@@ -182,9 +185,10 @@ $(function() {
 				 }else{
 					str = yearbox.val() + options.fuhao + monthbox.val() + options.fuhao + dv;
 				}				 
-				$("input.dateVisited").val(str);
-				$("input.dateVisited").removeClass('dateVisited')
-				$(".calender").hide();
+				$mhInput.val(str);
+				$mhInput.removeClass('dateVisited')
+				html.hide();	
+				$(".j_datebgwrap").hide();	
 			}
 		});
 		//文本框绑定事件
@@ -194,23 +198,28 @@ $(function() {
 				clearTimeout(stc);//清除定时器
 			}
 			var iof = $(this).offset();
-			$(".calender").css({ "left" : iof.left+options.Left,"top" : iof.top+options.Top });
-			$(".calender").show();	
+			html.css({ "left" : iof.left+options.Left,"top" : iof.top+options.Top });
+			html.show();	
+				$(".j_datebgwrap").show();	
 		});		
-		//当鼠标离开控件上面的时候延迟3秒关闭
-		html.live("mouseleave",function(){ 
+/*		//当鼠标离开控件上面的时候延迟3秒关闭
+		html.on("mouseleave",function(){ 
 			stc = setTimeout(function (){			
-				$(".calender").hide();
+				html.hide();
 				clearTimeout(stc);
 			},1000);	
 		});
 		//当鼠标移到控件上面的时候显示
-		html.live("mousemove",function(){     
+		html.on("mousemove",function(){     
 			if(stc){
 				clearTimeout(stc);//清除定时器
 			}
 			$(this).show();
-		});	
+		});*/
+		$(".j_datebgwrap").on("click",function(){      
+			html.hide();	
+				$(".j_datebgwrap").hide();		
+		});		
 		//点击年选择下拉框的时候清除定时器阻止控件层关闭
 		yearbox.die().live("click",function(){     
 			if(stc){

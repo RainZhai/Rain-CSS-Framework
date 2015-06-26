@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Rain CSS > List</title>
+<title>Rain CSS > Util</title>
 <!-- Framework CSS -->
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
@@ -18,8 +18,9 @@
 .searchwrap .searchicon:hover{background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQpJREFUeNpiYKASYEQXsN390wFI5QNxAJLwByDeAMQTD7uyXyBoENCQ+UAqgYDliUDDFuA0CIshB4D4IJQdD8QK+AxjRPLOfiRvBAIVHkBzbQGQ6kdSYwhU8wAmzwSl85H0YBgCAkCxCUCqEcoVQNMDNwgWsAewGYJkWAPUNSBggM0gGDhIREzDYs0Bn0GkgAfYDII51x+fTmCACyC5BKtBG2D+hsYOLtCPxF6IzaCJyIqBhjWguwRLOhPAlSBBiuajZQusAYstYaJnkQSo8wVICHSwYdgyrQI0sRlA8QdowC6E0uuxWJTISGqcAy0ygGYnZMM+kJyOoMWII1KSAQc8WQkSi2ETAAIMADJBW9xL2neoAAAAAElFTkSuQmCC) no-repeat center center; }
 .searchwrap .searchbox{ margin:4px 0;  width: 200px; background: none; border:0 none; color: #fff;}
 .wauto{ width: 238px!important; background: #0067a3; border-radius: 3px; }
-
- </style>
+.on{ color: red; }
+.tab-fix-top{ position: fixed; top:0;}
+ </style>  
 </head>
 <body class="body">
 	<div class="header headerBlue">
@@ -36,21 +37,55 @@
   </div>
   
 	<div class="container mt">
-          <p>搜索框组件</p>
-          <div class="bgg">
-            <div class="j_searchwrap searchwrap oh">
-            <div class="searchinner  clearfix"><button  class="j_searchicon searchicon block l" ></button> <input type="text" class="j_searchbox searchbox l" /></div>
-            </div>
+      <div class="content">
+          <div class="sidebar l posr">
+            <div class="sidebox"> 
+                  <div class="j_sidebar sidebar l posr"> 
+                      <ul class="lsn last">
+                        <li>
+                          <a href="#title1" class="anchor-btn p block bglgrey2 on">定位1</a>
+                          <hr class="spline">
+                        </li> 
+                        <li>
+                          <a href="#title2" class="anchor-btn p block bglgrey2">定位2</a>
+                          <hr class="spline">
+                        </li>  
+                      </ul>  
+                  </div>
+            </div>  
           </div>
-          <p>日期</p>
-          <input type="text" class="ps w-10" id="starttime" name="starttime" readonly="true" />    
-          <p>下拉菜单</p>
-          <div class="j_linksbox link ib posr">
-            <a href="javascript:void(0);" class="ib">
-              <span>网站导航</span> <em class="ng-iconfont down"></em>
-            </a>
-            <div class="j_sitenav ng-sn-site-nav posa oh" style="display: none;"></div>
+
+          <div class="j_mainContent main mainRight posr">
+              <fieldset >
+                  <legend id="title1">搜索框组件</legend>
+                  <div class="bgg">
+                    <div class="j_searchwrap searchwrap oh">
+                    <div class="searchinner  clearfix"><button  class="j_searchicon searchicon block l" ></button> <input type="text" class="j_searchbox searchbox l" /></div>
+                    </div>
+                  </div>
+              </fieldset>
+
+              <fieldset >
+                  <legend >日期</legend>
+                  <input type="text" class="ps w-10" id="starttime" name="starttime" readonly="true" />   
+              </fieldset>
+              
+              <fieldset >
+                  <legend >下拉菜单</legend> 
+                  <div class="j_linksbox link ib posr">
+                    <a href="javascript:void(0);" class="ib bb">
+                      <span>网站导航</span> <em class="ng-iconfont down">></em>
+                    </a>
+                    <div class="j_sitenav ng-sn-site-nav posa oh  w-10 bglgrey2" style="display: none;">
+                      <a href="#" class=" block p bb">菜单菜单</a>
+                      <a href="#" class=" block p bb">菜单菜单</a>
+                      <a href="#" class=" block p bb">菜单菜单</a>
+                    </div>
+                  </div>
+              </fieldset>
+              <p id="title2" style="padding-top:500px; height:500px;  ">内容2</p>
           </div>
+      </div> 
 
 
 		<div class="paddingTop">
@@ -159,11 +194,9 @@ Common.searchbox.prototype = {
         $(".j_searchwrap").toggleClass("wauto");
       });
 
-
       searchbox.on("blur", function(){
         $(".j_searchwrap").toggleClass("wauto");
       });
-
 
       $(document).on("keypress", function(event) {
         if($('.j_searchbox').val()){
@@ -178,19 +211,96 @@ Common.searchbox.prototype = {
   }
 }
 var searchbox = new Common.searchbox();
+//顶部展开效果
+Common.navbar = function(){
+  this.init();
+};
+Common.navbar.prototype = {
+  init: function(){
+    var me = this; 
+    me.nav =$(".j_sitenav");
+    me.registerEvent();
+  },
+    registerEvent: function(){
+        var me = this;
+        var timer;
+        $(".j_linksbox").hover(function() {
+            var nav = $(this).find(".j_sitenav");
+            $(this).addClass("ng-bar-node-hover");
+            nav.show();
+        }, function() {
+            var nav = $(this).find(".j_sitenav");
+            $(this).removeClass("ng-bar-node-hover");
+            nav.hide();
+        });
+        $(".j_sitenav").on("mouseleave", function(){
+            var me = $(this);
+            var nav = $(this).find(".j_sitenav");
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                nav.hide();
+            }, 200);
+        });
 
+    }
+}
+var navbar = new Common.navbar();
+//================== 侧边栏滚动定位 ==================
+$(document).ready(function() {
+    var a = $,
+        b = document,
+        c = a(".j_mainContent "),
+        d = a(".j_sidebar");
+    if (d.length > 0) {
+        var e = d.offset().top,
+            f = d.find(".anchor-btn"),
+            g = function() {
+                for (var b = [], c = 0; c < f.length; c++) b.push(a(a(f[c]).attr("href")).offset().top);
+                return b
+            },
+            h = g(),
+            i = function(b) {
+                for (var c, b = b + 86, d = 0; d < h.length; d++)
+                    if (b < h[d + 1]) {
+                        c = d;
+                        break
+                    }
+                void 0 == c && (c = d - 1), f.parent("li").find("a").removeClass("on"), a(f[c]).parent("li").find("a").addClass("on")
+            },
+            j = function(a) {
+                a > e && !d.hasClass("tab-fix-top") && (d.addClass("tab-fix-top")), e > a && d.hasClass("tab-fix-top") && (d.removeClass("tab-fix-top"));
+                  /*, d.css("width", "auto"))*/
+            };
+        a(window).on("scroll", function(c) {
+            var d = a(b).scrollTop();
+            j(d), i(d)
+        }), a(window).on("resize", function(e) {
+            d.hasClass("tab-fix-top");
+            var f = a(b).scrollTop();
+            j(f), i(f)
+        }), a(".anchor-btn").on("click", function(b) {
+            var c = a(this);
+            setTimeout(function() {
+                f.parent("li").find("a").removeClass("on"), c.parent("li").find("a").addClass("on")
+            }, 50)
+        });
+        var k = a(b).scrollTop();
+        j(k)
+    }
+})
 $(function (){
-//日期显示
-$("#starttime").manhuaDate({               
-  handlerClass: ".j_calender1", 
-  Event : "click",//可选               
-  Left : 0,//弹出时间停靠的左边位置
-  Top : -16,//弹出时间停靠的顶部边位置
-  fuhao : "-",//日期连接符默认为-
-  isTime : false,//是否开启时间值默认为false
-  beginY : 2015,//年份的开始默认为1949
-  endY :2100//年份的结束默认为2049
-});
+    //日期显示
+    $("#starttime").manhuaDate({               
+      handlerClass: ".j_calender1", 
+      Event : "click",//可选               
+      Left : 0,//弹出时间停靠的左边位置
+      Top : -16,//弹出时间停靠的顶部边位置
+      fuhao : "-",//日期连接符默认为-
+      isTime : false,//是否开启时间值默认为false
+      beginY : 2015,//年份的开始默认为1949
+      endY :2100//年份的结束默认为2049
+    });
+
 });
 </script>
 </body>
