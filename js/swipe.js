@@ -98,6 +98,12 @@
 
                     }
                 }
+                touchobj.on("mouseenter",function(){
+                    clearInterval(obj.timeHanlder);
+                });
+                touchobj.on("mouseleave",function(){
+                    obj.timeHanlder = setInterval(obj.setTime, 2 * timer);
+                });
                 touchobj.find('.c_touchicon').find(".c_tips").on("click", function(){
                     var i = $(this).index();
                     obj.setItemShow(i);
