@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<title>Rain css</title>
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<style type="text/css">
+.w320px{ width: 320px; }
+.fixed {  position: fixed;  top: 0;  left: 0;  width: 100%;}
+.tagwrap{overflow: hidden; background-color: #fff;  z-index: 9999;}
+.tagwrap .tagbox{overflow: hidden; background-color: #fff; position: relative; max-height: 78px;}
+.tagwrap .catetag{display: block; float:left; width:25%; text-align:center;}
+.tagwrap .catetag span{display: block; text-align:center; line-height: 38px; border-right: 1px #e7e7e7 solid;border-bottom: 1px #e7e7e7 solid;font-family:'lanting'; color:#666;}
+.tagwrap .catetag:nth-child(4n) span{ border-right:none;}
+.tagwrap .catetag.first{}
+.tagwrap .catetag.first span{color:#22d199;}
+.tagwrap .moretag{position: absolute; bottom:0; right:-1px; background-color: #fff; height: 38px; border-right: 1px #e7e7e7 solid;border-bottom: 1px #e7e7e7 solid;}
+</style>
+</head>
+<body id="body" class="body w320px">
+<div id="tagwrap" class="tagwrap">
+	<div id="tagbox" class="tagbox clearfix">
+		<a href="#" class="catetag first"><span>全部</span></a>
+		<a href="#" class="catetag"><span>言情1</span></a>
+		<a href="#" class="catetag"><span>言情2</span></a>
+		<a href="javascript:;" class="catetag"><span>言情3</span></a>
+		<a href="#" class="catetag"><span>言情4</span></a>
+		<a href="#" class="catetag"><span>言情5</span></a>
+		<a href="#" class="catetag"><span>言情6</span></a> 
+		<a href="#" class="catetag"><span>言情6</span></a> 
+		<a id="moretag" href="javascript:;" class="catetag moretag hide"><div class="j_morewrap "><span class="clearfix"><i class="text">更多</i><i class="arrow"></i></span></div></a>
+	</div>
+</div>
+<div style="height:600px;"></div>
+<script type="text/javascript">
+var lazyJs=function(){var h=document,a,i=[],c=[],b;function f(j,m){var d,k;e();if(j.src){j.src=j.src.constructor===Array?j.src:[j.src];for(var l=0;l<j.src.length;l++){if(j.src[l].constructor!==Array){j.src[l]=[j.src[l]]}c.push(j.src[l])}}i=c.shift();a=a||h.getElementsByTagName("head")[0];j.src=i;for(var l=0;l<j.src.length;l++){k=j.src[l];d=h.createElement("script");d.src=k;d.type="text/javascript";if(b.ie){d.onreadystatechange=function(){var n=this.readyState;if(n==="loaded"||n==="complete"){this.onreadystatechange=null;g(j,m)}}}else{d.onload=d.onerror=function(){g(j,m)}}a.appendChild(d)}}function g(d,k){var j=i;if(!j){return}j.shift();if(!j.length){if(c.length){f(d,k)}else{if(typeof k=="function"){k()}return}}}function e(){if(b){return}var d=/msie/i.test(navigator.userAgent.toLowerCase());b={ie:d}}return{init:function(d,j){f(d,j)}}}();
+window.onload=function(){
+	lazyJs.init({
+		src: ["js/zepto.min.js","js/util.js"]
+	},function(){
+		//分类标签顶部固定功能
+		var links = $('#tagbox').find('a');
+		if(links.length>9){
+			$('#moretag').removeClass('hide');
+		}
+		var win = $(window);
+		var initTop = 0;
+		win.on('scroll',function(){
+			var scrollTop = $('#body').scrollTop();
+			log("scrollTop--"+scrollTop);
+			log("initTop--"+initTop);
+			if(scrollTop > initTop){
+				$('#tagbox').height('39px');
+				$("#tagwrap").addClass("fixed"); 
+				$("#body").css({'padding-top':'45px'});
+				if(links.length>4){
+					 $('#moretag').removeClass('hide');
+					//if(links.length!=9) $('#moretag').removeClass('hide');
+				}
+			} else {
+				if(scrollTop<40){ 
+					$('#tagbox').height('auto');
+					$("#tagwrap").removeClass("fixed");
+					$("#body").css({'padding-top':'0'});
+					if(links.length==8) $('#moretag').removeClass('hide'); 
+					if($('#tagbox').height() > 78) $('#moretag').addClass('hide')
+				}
+			}
+			initTop = scrollTop;
+		});
+  		touch.on('#moretag', 'click', function(e){ 
+  				$('#tagbox').height('auto').css({'max-height':'none'});
+  				$('#moretag').addClass('hide'); 
+		});
+	}); 
+}
+</script>
+</body>
+</html>
