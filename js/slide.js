@@ -12,6 +12,7 @@
             text: [], //图片的text
             fix: false, //是否固定大小
             width: 320, //宽
+            space:0,
             itemwith: 280,//li的宽度
             height: 195, //高
             images: 3, //每屏展示图片的个数
@@ -26,8 +27,9 @@
             preloadamt: 3,
             preventDefault: true,
             marginRight: 20,//li的margin right
-            btnLeftStyle: {},
-            btnRightStyle:{},
+            easing:'swing',
+            btnLeftStyle: {"left": "15px","top": "60px","width": "50px"},
+            btnRightStyle: {"right": "15px","top": "60px","width": "50px"},
             before: function() {}
         }, {}, opt);
         var _selector = $(opts.selector);
@@ -89,7 +91,7 @@
                 }
                 //更改ul位置
                 _wrap.css({
-                    "marginLeft": -ms * o.getItemWidth(),
+                    "marginLeft": -ms * o.getItemWidth()-opts.space,
                     "width": "99999px"
                 }).find('li').each(function() {
                     $(this).width(o.getItemWidth()-opts.marginRight).css({"margin-right": opts.marginRight+"px"});
@@ -108,11 +110,14 @@
             },
             //获取每个li的宽
             getItemWidth: function() {
-                if(opts.fix){ return parseInt(opts.itemwith+ opts.marginRight); } 
-                if (opts.control) {
-                    return parseInt((o.getWidth() - opts.controlwidth) / images + opts.marginRight);
+                if (opts.control) { 
+                        return parseInt((o.getWidth() - opts.controlwidth) / images + opts.marginRight); 
+                }else{
+                    if(opts.fix){ 
+                        return parseInt(opts.itemwith+ opts.marginRight); 
+                    }
+                    return parseInt(o.getWidth() / images + opts.marginRight);
                 }
-                return parseInt(o.getWidth() / images + opts.marginRight);
             },
             //获取展示图片的张数
             getimages: function() {
@@ -127,18 +132,18 @@
                     if (!opts.loop && i + images + slides > s) {
                         _wrap.stop().animate({
                             marginLeft: -(s - images) * w
-                        }, opts.speed, function() {
+                        }, opts.speed, opts.easing,function() {
                             i = s - images;
                         });
                     } else {
                         _wrap.stop().animate({
                             marginLeft: '-=' + slides * w
-                        }, opts.speed, function() {
+                        }, opts.speed,opts.easing, function() {
                             i += slides;
                             if (i + slides > s) {
                                 i = i - s;
                                 _wrap.css({
-                                    marginLeft: -i * w - ms * w
+                                    marginLeft: -i * w - ms * w-opts.space
                                 });
                             }
                         });
@@ -154,18 +159,18 @@
                     if (!opts.loop && i - slides < 0) {
                         _wrap.stop().animate({
                             marginLeft: 0
-                        }, opts.speed, function() {
+                        }, opts.speed,opts.easing, function() {
                             i = 0;
                         });
                     } else {
                         _wrap.stop().animate({
                             marginLeft: '+=' + slides * w
-                        }, opts.speed, function() {
+                        }, opts.speed,opts.easing, function() {
                             i -= slides;
                             if (i < 0) {
                                 i = i + s;
                                 _wrap.css({
-                                    marginLeft: -i * w - ms * w
+                                    marginLeft: -i * w - ms * w-opts.space
                                 });
                             }
                         });
