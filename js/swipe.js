@@ -66,10 +66,14 @@
                 obj.len = obj.items.length;
             },
             setWidth: function() {
-                if (o.responsive) {
-                    _width = touchobj.width();
-                } else {
-                    _width = o.width;
+                if(o.fadeout){
+                    _width = "100%";
+                }else{
+                    if (o.responsive) {
+                        _width = touchobj.width();
+                    } else {
+                        _width = o.width;
+                    }
                 }
             },
             getWidth: function() {
