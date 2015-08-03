@@ -14,7 +14,7 @@
 ----------------------------------------------------------------------- */
 
 /* reset css */
-html,.body{height:100%;width:100%; font-family:"Microsoft YaHei",Arial;}
+html,.body{ width:100%; font-family:"Microsoft YaHei",Arial;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111; margin: 0;}
 p {margin:0;}
 p .left {margin:0;padding:0;}

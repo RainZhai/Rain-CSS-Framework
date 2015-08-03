@@ -114,7 +114,7 @@
       }
     }
   };
-  util.touch.initTap();
+  if(util.supportTouch){ util.touch.initTap(); }
   if (!win.console) {
     win.console = function() {};
     win.console.info = win.console.debug = win.console.warn = win.console.log = win.console.error = function(str) {

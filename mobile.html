@@ -120,7 +120,7 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
 					<div role="application" class="j_sliderbar bglgrey2 rounds b so fullw h-1 posr ov">
 						<div class="j_sliderbg1 fullh posa"></div>
 						<div class="j_sliderbg2 fullh posa o-9"></div>
-						<a href="javascript:;" class="j_sliderbtn1 sliderbtn ib w-2 h-2 bgw b rounds posa" role="slider"></a>
+						<span class="j_sliderbtn1 sliderbtn ib w-2 h-2 bgw b rounds posa" role="slider"></span>
 					</div>
 				</div>
 			</fieldset>
@@ -336,8 +336,9 @@ box-shadow:0px 1px 1px #dadada inset, 0 1px 1px rgba(0,0,0, .5);
     </footer> 
     </div>
   </div>
-<script type="text/javascript" src="js/zepto.min.js"></script>
-<script type="text/javascript" src="js/fx.js"></script>
+<!-- <script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script> -->
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/jquery.slider.js"></script>
 <script type="text/javascript" src="js/checkbox.js"></script>
@@ -376,7 +377,7 @@ var arr1 = [{name:0,val:0},{name:30,val:4},{name:60,val:8},{name:90,val:11.9},
             {name:100,val:13},{name:150,val:19.1},{name:200,val:25},{name:250,val:30.7},{name:300,val:36.2},{name:350,val:41.4},
             {name:400,val:46.5},{name:500,val:57},{name:600,val:67.1},{name:700,val:76.9},{name:800,val:86.2},{name:900,val:95.2},
             {name:1000,val:103.8},{name:1200,val:124.3},{name:1500,val:152.8},{name:2000,val:200}];
-var slider = new slider({
+var slider = new $.slider({
     barHandler:".j_sliderbar",
     btnHandler:".j_sliderbtn1",
     outputHandler:"#slider-1",
@@ -386,7 +387,7 @@ var slider = new slider({
     bgbarStyle2:{"background-color":"#fc7c26"},
     max:200,
     min:10,
-    divs:0,
+    divs:4,
     data: arr1,
     initValue:121,
     prevValue: 500,
@@ -502,42 +503,7 @@ var s = new star({
 	starStyle:{},
 	selectedClass:"stared",
 	selectedStyle:{}
-});
-//顶部固定内容自动收起功能
-var scrollExpand = function(opt){
-	var win = $(window);
-	var initTop = 0;
-	win.on('scroll',function(){
-		var scrollTop = $('body').scrollTop();
-		if(scrollTop > initTop){
-			$('#tagbox').height('39px');
-			$("#tagwrap").addClass("fixed"); 
-			$("body").css({'padding-top':'45px'});
-			if(links.length>4){
-				 $('#moretag').removeClass('hide'); 
-			}
-		} else {
-			if(scrollTop<40){ 
-				$('#tagbox').height('auto');
-				$("#tagwrap").removeClass("fixed");
-				$("body").css({'padding-top':'0'});
-				if(links.length==8) $('#moretag').removeClass('hide'); 
-				if($('#tagbox').height() > 78) $('#moretag').addClass('hide')
-			}
-		}
-		initTop = scrollTop;
-	});
-	touch.on('#moretag', 'click', function(e){ 
-		$('#tagbox').height('auto').css({'max-height':'none'});
-		$('#moretag').addClass('hide'); 
-	});
-}
-scrollExpand({
-	selector:"",
-	wrapSelector:"",
-	moreSelector:"",
-	
-});
+}); 
 </script>
 </body>
 </html>
