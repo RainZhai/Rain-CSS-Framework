@@ -52,7 +52,8 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var foothtml;
 	var gamelist;
 	var slide;
-	var prefix = 'http://wande.me/app/';
+	var prefix = 'http://wandeme.com/app/';
+	var prefix2 = 'http://wande.me/app/';
 	var hwprefix = 'http://wande.me/haowan/';
 	var hgprefix = 'http://wande.me/games/';
 	//var prefix = 'http://127.0.0.1/Rain-CSS-Framework/app/';
@@ -66,7 +67,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	var remove = function(){
 		main.remove('#searchhead').remove('#main').remove(slide).remove('#mainnav');
 	}
-	util.addRoute('/', '', function() {
+	util.addRoute('/', '#main', function() {
 		main.remove();
 		main.add(headhtml).add(slide).add(navhtml).add(gamelist).add(foothtml); 
 	});
@@ -105,12 +106,12 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		});
 	});
 	//分类详情页面加载
-	main.find(".j_catelist").live(event,function(){
+	main.find(".j_catelist").die(event).live(event,function(){
 		main.remove();
 		var c = this.name;
 		require(['listview'], function(l) {
 			loading.show();
-			$.getScript(prefix+"js/app/data/searchcate.php?c="+c, function(){
+			$.getScript(prefix2+"js/app/data/searchcate.php?c="+c, function(){
 				loading.hide(); 
 				var d = data;
 				smainhtml = l(d);
@@ -130,7 +131,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				var list = t(data4);
 				main.add(headhtml).add(list);
 			} else {
-				$.getScript(prefix + "js/app/data/topic.php", function(d) {
+				$.getScript(prefix2 + "js/app/data/topic.php", function(d) {
 					data4 = data;
 					if (data4.list.length > 0) {
 						var list = t(data4);
@@ -144,12 +145,12 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		});
 	});
 	//专题详情页面加载
-	main.find(".j_topicitem").live(event,function(){
+	main.find(".j_topicitem").die(event).live(event,function(){
 		main.remove();
 		var c = this.name;
 		require(['topicdetailview'], function(l) {
 			loading.show();
-			$.getScript(prefix+"js/app/data/searchtopic.php?c="+c, function(d){
+			$.getScript(prefix2+"js/app/data/searchtopic.php?c="+c, function(d){
 				var d = data;
 				loading.hide(); 
 				smainhtml = l(d);
@@ -173,7 +174,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		});
 	});
 	//游戏图mm详情页面加载
-	main.find(".j_mmitem").live(event,function(){
+	main.find(".j_mmitem").die(event).live(event,function(){
 		main.remove();
 		var i = parseInt(this.name);
 		require(['gamepicdetailview','slide'], function(l,s) {
@@ -216,7 +217,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	}); 
 	//游戏图列表路由
 	util.addRoute('/gamepic2', '#gamepic2', function() { 
-		main.empty('#main').remove('#searchhead').remove(slide).remove('#mainnav');
+		main.empty('#main').remove('#searchhead').remove(slide).remove('#mainnav').remove("#footer"); 
 		require(['wplistview'], function(l) {
 			loading.show();
 			//跨域callback参数为？不需要设置让wp生成
@@ -225,6 +226,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				loading.hide(); 
 				smainhtml = l(gpicdata);
 				main.find("#main").append(smainhtml);
+				main.add(foothtml); 
 				var i = 2;
 				var list = util.listload({
 					lastItemHandle: '#main .j_picitem:last-child',
@@ -250,10 +252,36 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 			});
 		});
 	});
+
+	//游戏图详情页面加载
+	main.find(".j_picitem").die(event).live(event,function(e){
+		var me = this;  
+		//if(e.target == this){
+		var i = $(this).attr("index"); 
+		var id = $(this).attr("postid"); 
+		var content = $(this).find(".j_content").html();
+		var title = $(this).find(".j_title").text();
+		main.remove();
+		require(['wplistdetailview'], function(l) {
+			var d = {
+				i: i,
+				id: id,
+				content: content,
+				title: title
+			};
+			smainhtml = l(d);
+			main.add(headhtml).add(smainhtml); 
+			window.location.hash = "gamepicdetail2"; 
+		});
+		//}
+		e.preventDefault();
+		e.stopPropagation();
+	});
+
 	var gxdata;
 	//搞笑图列表路由
-	util.addRoute('/gaoxiao', '#gaoxiao', function() { 
-		main.empty('#main').remove('#searchhead').remove(slide).remove('#mainnav');
+	util.addRoute('/gaoxiao', '#gaoxiao', function() {  
+		main.empty('#main').remove('#searchhead').remove(slide).remove('#mainnav').remove("#footer"); 
 		require(['wplistview'], function(l) {
 			loading.show();
 			$.getJSON(hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=5", function(d){
@@ -261,8 +289,9 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				loading.hide(); 
 				smainhtml = l(gpicdata);
 				main.find("#main").append(smainhtml);
+				main.add(foothtml); 
 				var i = 2;
-				var list = util.listload({
+				var list2 = util.listload({
 					lastItemHandle: '#main .j_picitem:last-child',
 					loadurl: hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=5",
 					params: {page: 2},
@@ -271,14 +300,14 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				}, function() {
 					loading.hide();
 					if (i > gpicdata.pages || gpicdata.pages==0) {
-						list.setStop(true);
+						list2.setStop(true);
 						tip.setContent("没有记录╮(╯▽╰)╭").show(1000);
 					} else {
 						i++;
 						gpicdata = list.getData();
 						smainhtml = l(gpicdata);
-						list.getDatabox().append(smainhtml);
-						list.setParams({
+						list2.getDatabox().append(smainhtml);
+						list2.setParams({
 							page: i
 						});
 					}
@@ -304,7 +333,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					main.find("#clearbtn").hide();
 				}
 			});
-			main.find("#searchbtn").on(event, function() {
+			main.find("#searchbtn").off(event).on(event, function() {
 				var param = util.filter(main.find("#searchbox").val());
 				if(param){
 					loading.show();
@@ -326,18 +355,18 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 					tip.setContent("请输入搜索关键字").show(1500);
 				}
 			});
-			main.find("#clearbtn").on(event, function() {
+			main.find("#clearbtn").off(event).on(event, function() {
 				main.find("#searchbox").val("").focus();
 				$(this).hide();
 			});
-			$.getScript(prefix+"js/app/data/searchsuggest.php", function(d){
+			$.getScript(prefix2+"js/app/data/searchsuggest.php", function(d){
 				var d = data;
 				smainhtml = m(d);
 				main.add(smainhtml);
 				//换一批推荐
-				main.find("#reSuggest").live(event, function() {
+				main.find("#reSuggest").die(event).live(event, function() {
 					loading.setContent('正在加载...').show();
-					$.getScript(prefix+"js/app/data/searchsuggest.php",function(d) {
+					$.getScript(prefix2+"js/app/data/searchsuggest.php",function(d) {
 						main.remove("#main");
 						loading.hide();
 						var d = data;
