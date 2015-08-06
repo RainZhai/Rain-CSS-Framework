@@ -3,31 +3,31 @@ require.config({
 	//urlArgs: 'v=' + new Date().getTime(),
 	"baseUrl": "./js/",
 	paths: {
-		jquery: ['http://cdn.staticfile.org/jquery/1.7.2/jquery.min', 'lib/jquery-1.7.2.min'],
-		html: ['lib/freehtml.min','http://rainzhai.github.io/raincss/app/js/lib/freehtml.min'],
-		template:['http://cdn.staticfile.org/artTemplate.js/3.0/template', 'lib/template'],
-		util:  ['lib/util.min' , 'http://rainzhai.github.io/raincss/app/js/lib/util.min'],
-		swipe: [ 'lib/swipe.min', 'http://rainzhai.github.io/raincss/app/js/lib/swipe.min'],
-		slide: ['lib/slide.min' , 'http://rainzhai.github.io/raincss/app/js/lib/slide.min'],
-		headview: ['app/view/head', 'http://rainzhai.github.io/raincss/app/js/app/view/head'],
-		footview: ['app/view/foot' , 'http://rainzhai.github.io/raincss/app/js/app/view/foot'],
-		navview: ['app/view/nav' , 'http://rainzhai.github.io/raincss/app/js/app/view/nav'],
-		commondata: ['app/data/common', 'http://rainzhai.github.io/raincss/app/js/app/data/common'],
-		//commondata: 'app/data/common',
-		searchheadview: ['app/view/searchHead', 'http://rainzhai.github.io/raincss/app/js/app/view/searchHead'],
-		searchmainview: ['app/view/searchMain', 'http://rainzhai.github.io/raincss/app/js/app/view/searchMain'],
-		listview: ['app/view/list', 'http://rainzhai.github.io/raincss/app/js/app/view/list'],
-		cateview: ['app/view/category', 'http://rainzhai.github.io/raincss/app/js/app/view/category'],
-		catedata: ['app/data/category', 'http://rainzhai.github.io/raincss/app/js/app/data/category'],
-		//catedata: 'app/data/category',
-		topicview: ['app/view/topic', 'http://rainzhai.github.io/raincss/app/js/app/view/topic'],
-		topicdetailview: ['app/view/topicdetail', 'http://rainzhai.github.io/raincss/app/js/app/view/topicdetail'],
-		gamepicview: ['app/view/gamepic', 'http://rainzhai.github.io/raincss/app/js/app/view/gamepic'],
-		gamepicdetailview: ['app/view/gamepicdetail', 'http://rainzhai.github.io/raincss/app/js/app/view/gamepicdetail'],
-		wplistview: ['app/view/wplist', 'http://rainzhai.github.io/raincss/app/js/app/view/wplist'],
-		wpgamelistview: ['app/view/wpgamelist', 'http://rainzhai.github.io/raincss/app/js/app/view/wpgamelist'],
-		wplistdetailview: ['app/view/wplistdetail', 'http://rainzhai.github.io/raincss/app/js/app/view/wplistdetail'],
-		json: ['app/service/json', 'http://rainzhai.github.io/raincss/app/js/app/service/json']
+	    jquery: [ 'lib/jquery-1.7.2.min', 'http://cdn.staticfile.org/jquery/1.7.2/jquery.min'],
+	    html: ['lib/freehtml.min','http://rainzhai.github.io/raincss/app/js/lib/freehtml.min'],
+	    template:[ 'lib/template', 'http://cdn.staticfile.org/artTemplate.js/3.0/template'],
+	    util:  ['lib/util.min' , 'http://rainzhai.github.io/raincss/app/js/lib/util.min'],
+	    swipe: [ 'lib/swipe.min', 'http://rainzhai.github.io/raincss/app/js/lib/swipe.min'],
+	    slide: ['lib/slide.min' , 'http://rainzhai.github.io/raincss/app/js/lib/slide.min'],
+	    headview: ['app/view/head', 'http://rainzhai.github.io/raincss/app/js/app/view/head'],
+	    footview: ['app/view/foot' , 'http://rainzhai.github.io/raincss/app/js/app/view/foot'],
+	    navview: ['app/view/nav' , 'http://rainzhai.github.io/raincss/app/js/app/view/nav'],
+	    commondata: ['app/data/common', 'http://rainzhai.github.io/raincss/app/js/app/data/common'],
+	    //commondata: 'app/data/common',
+	    searchheadview: ['app/view/searchHead', 'http://rainzhai.github.io/raincss/app/js/app/view/searchHead'],
+	    searchmainview: ['app/view/searchMain', 'http://rainzhai.github.io/raincss/app/js/app/view/searchMain'],
+	    listview: ['app/view/list', 'http://rainzhai.github.io/raincss/app/js/app/view/list'],
+	    cateview: ['app/view/category', 'http://rainzhai.github.io/raincss/app/js/app/view/category'],
+	    catedata: ['app/data/category', 'http://rainzhai.github.io/raincss/app/js/app/data/category'],
+	    //catedata: 'app/data/category',
+	    topicview: ['app/view/topic', 'http://rainzhai.github.io/raincss/app/js/app/view/topic'],
+	    topicdetailview: ['app/view/topicdetail', 'http://rainzhai.github.io/raincss/app/js/app/view/topicdetail'],
+	    gamepicview: ['app/view/gamepic', 'http://rainzhai.github.io/raincss/app/js/app/view/gamepic'],
+	    gamepicdetailview: ['app/view/gamepicdetail', 'http://rainzhai.github.io/raincss/app/js/app/view/gamepicdetail'],
+	    wplistview: ['app/view/wplist', 'http://rainzhai.github.io/raincss/app/js/app/view/wplist'],
+	    wpgamelistview: ['app/view/wpgamelist', 'http://rainzhai.github.io/raincss/app/js/app/view/wpgamelist'],
+	    wplistdetailview: ['app/view/wplistdetail', 'http://rainzhai.github.io/raincss/app/js/app/view/wplistdetail'],
+	    json: ['app/service/json', 'http://rainzhai.github.io/raincss/app/js/app/service/json']
 	},
 	shim: {
 		'util': {
@@ -221,7 +221,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		require(['wplistview'], function(l) {
 			loading.show();
 			//跨域callback参数为？不需要设置让wp生成
-			$.getJSON(hwprefix + "api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&count=5", function(d){
+			$.getJSON(hwprefix + "api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&count=3", function(d){
 				var gpicdata= d; 
 				loading.hide(); 
 				smainhtml = l(gpicdata);
@@ -230,7 +230,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				var i = 2;
 				var list = util.listload({
 					lastItemHandle: '#main .j_picitem:last-child',
-					loadurl: hwprefix+"api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&count=5",
+					loadurl: hwprefix+"api/get_tag_posts/?tag_slug=%E6%B8%B8%E6%88%8F&callback=?&count=3",
 					params: {page: 2},
 					wrapHandle: '#main',
 					loading: loading
@@ -284,7 +284,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 		main.empty('#main').remove('#searchhead').remove(slide).remove('#mainnav').remove("#footer"); 
 		require(['wplistview'], function(l) {
 			loading.show();
-			$.getJSON(hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=5", function(d){
+			$.getJSON(hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=3", function(d){
 				var gpicdata= d; 
 				loading.hide(); 
 				smainhtml = l(gpicdata);
@@ -293,7 +293,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 				var i = 2;
 				var list2 = util.listload({
 					lastItemHandle: '#main .j_picitem:last-child',
-					loadurl: hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=5",
+					loadurl: hwprefix+"api/get_category_posts/?category_slug=%E6%90%9E%E7%AC%91%E5%9B%BE&callback=?&count=3",
 					params: {page: 2},
 					wrapHandle: '#main',
 					loading: loading

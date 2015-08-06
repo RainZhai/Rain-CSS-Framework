@@ -93,25 +93,27 @@
              *绑定事件函数:touchstart,touchmove,touchend
              */
             bindEvent: function() {
-                if (util.supportTouch){
-                    if(o.fadeout){
-                        touchobj[0].addEventListener('touchstart', obj.touchStart, false);
-                        touchobj[0].addEventListener('touchmove', obj.touchMove, false);
-                        touchobj[0].addEventListener('touchend', obj.touchEnd, false);
-                    }else{
-
+                if(obj.len > 1){
+                    if (util.supportTouch){
+                        if(!o.fadeout){
+                            touchobj[0].addEventListener('touchstart', obj.touchStart, false);
+                            touchobj[0].addEventListener('touchmove', obj.touchMove, false);
+                            touchobj[0].addEventListener('touchend', obj.touchEnd, false);
+                        } 
                     }
+                    if(o.fadeout){
+                        touchobj.on("mouseenter",function(){
+                        clearInterval(obj.timeHanlder);
+                        });
+                        touchobj.on("mouseleave",function(){
+                        obj.timeHanlder = setInterval(obj.setTime, 2 * timer);
+                        });
+                    }
+                    touchobj.find('.c_touchicon').find(".c_tips").on("click", function(){
+                        var i = $(this).index();
+                        obj.setItemShow(i);
+                    });;
                 }
-                touchobj.on("mouseenter",function(){
-                    clearInterval(obj.timeHanlder);
-                });
-                touchobj.on("mouseleave",function(){
-                    obj.timeHanlder = setInterval(obj.setTime, 2 * timer);
-                });
-                touchobj.find('.c_touchicon').find(".c_tips").on("click", function(){
-                    var i = $(this).index();
-                    obj.setItemShow(i);
-                });;
             },
             /**
              *懒加载函数。
@@ -258,7 +260,7 @@
                 obj.initHtml();
                 obj.initUI();
                 obj.bindEvent();
-                if (o.autorun ) {
+                if (o.autorun && obj.len > 1) {
                     if(!o.fadeout) obj.touchlist.find('li').slice(0, 1).clone(true).appendTo('.c_touhlist');
                     obj.timeHanlder = setInterval(obj.setTime, timer);
                 }
