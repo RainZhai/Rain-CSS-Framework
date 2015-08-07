@@ -13,6 +13,12 @@ var data = {
 		name:'美女爱消除',
 		intro:'一款美女消除游戏',
 		start:'开始游戏'
+	},{
+		url:'http://go.weizoo.com/flappy/',
+		imgurl:'http://wande.me/game/images/gameicons-6.jpg',
+		name:'Flappy bird',
+		intro:'虐心变态小鸟',
+		start:'开始游戏'
 	},
 	{
 		url:'http://wande.me/demo/game.html',
