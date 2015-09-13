@@ -5,7 +5,7 @@ define(['template'],function (t) {
 	 '{{each gamelist as value i}} '+
 	     '<div class="listitem wf-100 h-7 clearfix bgw so mts rounds"> '+
 	         '<div class="l fl wf-25 fullh"> '+
-		         '<a class="block tdn oh hf-80 ps" href="{{value.url}}" target="_blank"><img src="{{value.imgurl}}" class="round-10" alt="{{value.name}}" height="100%"/></a> '+
+		         '<a class="block tdn oh hf-80 ps" href="{{value.url}}" target="_blank"><img src="{{value.imgurl}}" class="round-10 minw" alt="{{value.name}}" height="100%"/></a> '+
 		 '</div> '+
 		'<div class="l fl wf-40 fullh">'+
 			'<a class="block tal tdn fs14px mtl" href="{{value.url}}" target="_blank">{{value.name}}</a>'+
