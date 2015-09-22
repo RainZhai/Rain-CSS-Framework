@@ -147,7 +147,7 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	//专题详情页面加载
 	main.find(".j_topicitem").die(event).live(event,function(){
 		main.remove();
-		var c = this.name;
+		var c = $(this).attr("name")
 		require(['topicdetailview'], function(l) {
 			loading.show();
 			$.getScript(prefix2+"js/app/data/searchtopic.php?c="+c, function(d){
@@ -176,12 +176,12 @@ require(['jquery', 'html', 'util'], function($, _html, util) {
 	//游戏图mm详情页面加载
 	main.find(".j_mmitem").die(event).live(event,function(){
 		main.remove();
-		var i = parseInt(this.name);
+		var i = parseInt($(this).attr("name"));
 		require(['gamepicdetailview','slide'], function(l,s) {
 			loading.show();
 			$.getScript(prefix+"js/app/data/gamepic.js", function(){
 				var d = data;
-				loading.hide(); 
+				loading.hide();
 				smainhtml = l(d.list[i]);
 				main.add(headhtml).add(smainhtml);
 				var slide = new $.slide({
