@@ -9,7 +9,14 @@
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
 <!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
 <link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+  <link rel="stylesheet" href="icomoon/style.css">
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<style>
+.simucheck{display: inline-block; width: 12px; height: 12px; line-height: 12px; border:3px solid #0090ff; }
+.rightcheck{ font-size: 12px;}
+.simucheck.on{ background-color: #0090ff; }
+.simucheck.on .rightcheck{ visibility: visible;  }
+</style>
 </head>
 
 <body class="body">
@@ -351,6 +358,9 @@
                   <input type="checkbox"> Check one<br>
                   <input type="checkbox"> Check two<br>
                   <input type="checkbox"> Check three<br>
+                  <span class="simucheck" id="simucheck1">
+                    <span class="imooc-icon rightcheck  vf">&#xea10;</span>           
+                  </span>
                 </p>
               </fieldset>
               
@@ -493,5 +503,14 @@
       </footer> 
     </div>
   </div>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="js/util.js"></script> 
+<script type="text/javascript">
+    $('#simucheck1').on("click", function(){
+     $('#simucheck1').toggleClass("on");
+     var c = $("#useticket").attr("checked");
+     $("#useticket").attr("checked", !c);
+    });
+</script>
 </body>
 </html>

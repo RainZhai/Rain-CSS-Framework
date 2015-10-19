@@ -34,6 +34,7 @@
             items: null,
             tipsitems: null,
             len: null,
+            timeHanlder: null,
             initHtml: function() {
                 if(o.imgArray.length>0){
                     var imgContent = '',
@@ -186,7 +187,7 @@
                     "left": -i * w
                 }, function() {
                     if (o.autorun) {
-                        obj.touchlist.find('li').slice(0, 1).clone(true).appendTo('.c_touhlist');
+                        obj.touchlist.find('li').slice(0, 1).clone(true).appendTo(obj.touchlist);
                         obj.timeHanlder = setInterval(obj.setTime, 2 * timer);
                     }
                 });
@@ -261,7 +262,7 @@
                 obj.initUI();
                 obj.bindEvent();
                 if (o.autorun && obj.len > 1) {
-                    if(!o.fadeout) obj.touchlist.find('li').slice(0, 1).clone(true).appendTo('.c_touhlist');
+                    if(!o.fadeout) obj.touchlist.find('li').slice(0, 1).clone(true).appendTo(obj.touchlist);
                     obj.timeHanlder = setInterval(obj.setTime, timer);
                 }
             },
@@ -273,6 +274,6 @@
             }
         }
         obj.init();
-        return obj.getHtml();
+        return obj;
     }
 })(window.jQuery || window.Zepto);
