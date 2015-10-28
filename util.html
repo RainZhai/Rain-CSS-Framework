@@ -150,8 +150,8 @@
               <fieldset >
                   <legend >日期控制</legend> 
                   <input type="text" class="text" date-range-picker="dateOption" id="daterangebox">
-              </fieldset>
-              
+              </fieldset> 
+
               <fieldset >
                   <legend >地址联动</legend> 
                   省：<select id="cmbProvince"></select>
@@ -162,6 +162,14 @@
                   市：<select id="Select2"></select>
                   区：<select id="Select3"></select>
               </fieldset>
+              
+              <fieldset >
+                  <legend >数字跳动累加</legend> 
+                  <span id="oSpan" style=" color:red;">1</span>
+                  <br>
+                  <button id="runnumbtn">开始</button>
+              </fieldset>
+
               <p id="title2" style="padding-top:500px; height:500px;  ">内容2</p>
           </div>
       </div> 
@@ -488,6 +496,29 @@ $("#daterangebox").daterangepicker(dateOption, function(start, end, label){
 /**--------------- 地址联动 ----------------**/
 addressInit('cmbProvince', 'cmbCity', 'cmbArea', '陕西', '宝鸡市', '金台区');
 addressInit('Select1', 'Select2', 'Select3'); 
+
+/**---------------数字跳动累加 ----------------**/
+function numJump(){
+  var oSpan=document.getElementById("oSpan");
+  var d=215412;//结束的位置
+  var s= 0//起始位置
+  var time=2000;  //所用时间 1000毫秒（ 在1秒内 数值增加到d）;
+  var outTime=0;  //所消耗的时间
+  var interTime=30;
+  oSpan.innerHTML = "0";
+  var timer = setInterval(function(){
+    outTime+=interTime;
+    if(outTime<time){
+      oSpan.innerHTML= parseInt(d/time*outTime);
+    }else{
+      oSpan.innerHTML=d;
+      clearInterval(timer);
+    }
+    },interTime);
+}
+$("#runnumbtn").on("click",function(){
+  numJump();
+});
 </script>
 </body>
 </html>
