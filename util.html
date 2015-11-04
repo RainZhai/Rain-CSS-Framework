@@ -13,6 +13,7 @@
 <!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]--> 
 <link rel="stylesheet" type="text/css" href="css/manhuaDate.1.0.css">
 <link rel="stylesheet" type="text/css" href="lib/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="lib/tipsy/tipsy.css">
  <style>
 .searchwrap{ transition: all .5s linear; -webkit-transition: all .5s linear; height: 25px; width: 30px; margin: 20px 0 0 35px;}
 .searchwrap .searchinner{width: 238px;}
@@ -169,6 +170,11 @@
                   <br>
                   <button id="runnumbtn">开始</button>
               </fieldset>
+              
+              <fieldset >
+                  <legend >tooltip</legend> 
+                  <a href="https://github.com/jaz303/tipsy" id="tooltip1" original-title="Tipsy is a jQuery plugin for creating a Facebook-like tooltips,Tipsy is a jQuery plugin for creating a Facebook-like tooltips,Tipsy is a jQuery plugin for creating a Facebook-like tooltips,Tipsy is a jQuery plugin for creating a Facebook-like tooltips,Tipsy is a jQuery plugin for creating a Facebook-like tooltips">tooltip</a> 
+              </fieldset>
 
               <p id="title2" style="padding-top:500px; height:500px;  ">内容2</p>
           </div>
@@ -187,6 +193,7 @@
 <script type="text/javascript" src="lib/daterangepicker/moment.js"></script>
 <script type="text/javascript" src="lib/daterangepicker/daterangepicker.js"></script>
 <script type="text/javascript" src="lib/address/jsAddress.js"></script>
+<script type="text/javascript" src="lib/tipsy/jquery.tipsy.js"></script>
 <script type="text/javascript">
 util.ob = $({});
 $.subscribe = function () {
@@ -519,6 +526,8 @@ function numJump(){
 $("#runnumbtn").on("click",function(){
   numJump();
 });
+/**--------------- tooltip ----------------**/
+$('#tooltip1').tipsy({gravity: $.fn.tipsy.autoNS});
 </script>
 </body>
 </html>
