@@ -1,16 +1,13 @@
-@charset "utf-8";
-/* CSS Document */
-/* -----------------------------------------------------------------------
- 
- Rain CSS Framework 2.0
- http://www.webdevelopmentmachine.com
-
-		@  version  2.0.4
-		@  author: Rain Zhai,heimanba,Yangming Zhang
-		@  date: 2010.6.27
-		@  update date: 2013.12.16
-
------------------------------------------------------------------------ */
+@charset "utf-8"; 
+/*
+*Rain CSS Framework 2.0(http://www.webdevelopmentmachine.com/rain-css)
+*   Copyright 2010-2015 webdevelopmentmachine.com.
+*   Licensed under MIT (https://github.com/RainZhai/Rain-CSS-Framework/blob/master/LICENSE)
+*   version  2.0.5
+*   author: Rain Zhai,heimanba,Yangming Zhang
+*   date: 2010.6.27
+*   update date: 2015.11.23
+*/
 
 /* reset css */
 html,.body{ width:100%; height:100%; font-family:"Microsoft YaHei",Arial;}
@@ -876,8 +873,7 @@ border-right: 0 none;border-radius:0 10px 10px 0;
 }
 /*-- table.css -- table object and sub-objects --*/
 table {margin-bottom:0;width:100%;} 
-thead th {background: none;} 
-th, td, caption {padding:0;}
+thead th {background: none;}  
 tbody tr:nth-child(even) td, tbody tr.even td {background:none;}
 tfoot {font-style: normal;}
 caption {background: none;}
@@ -891,14 +887,14 @@ caption {background: none;}
 
 .table-2 tr:nth-child(2n) td {background:#f9f9f9;}
 .table-2 tr.even td {background:#f9f9f9;}
-.table-2 th{ border-bottom:3px solid #ddd;}
-.table-2 td{ border-bottom:1px solid #ddd;}
+.table-2 th{ border-bottom:3px solid #ddd; padding: 10px 10px 9px;}
+.table-2 td{ border-bottom:1px solid #ddd; padding: 10px 10px 9px;}
 .table-2 tr:hover td { background-color: #f5f5f5;}
 
 .table-3 {border-collapse:collapse;border-spacing:0;}
 .table-3 tr:nth-child(2n) td {background:#f9f9f9;}
 .table-3 tr.even td {background:#f9f9f9;}
-.table-3 th, .table-3 td{ border:1px solid #ddd;}
+.table-3 th, .table-3 td{ border:1px solid #ddd;padding: 10px 10px 9px;}
 .table-3 tr:hover td { background-color: #f5f5f5;}
 
 .table-4 {border-collapse:collapse;border-spacing:0;}
@@ -906,7 +902,7 @@ caption {background: none;}
 .table-4 tr.even td {background:#fff;}
 .table-4 colgroup + thead tr:first-child th, .table-4 colgroup + thead tr:first-child td, .table-4 thead:first-child tr:first-child th, .table-4 thead:first-child tr:first-child td, .table-4 tr:first-child th{
 border-top: 0 none;}
-.table-4 th, .table-4 td{ border-top:1px solid #ddd;}
+.table-4 th, .table-4 td{ border-top:1px solid #ddd;padding: 10px 10px 9px;}
 .table-4 tr:hover td { background-color: #f5f5f5;}
 
 .table-5 {border-collapse:collapse;border-spacing:0;}
@@ -914,7 +910,7 @@ border-top: 0 none;}
 .table-5 tr.even td {background:#f9f9f9;}
 .table-5 colgroup + thead tr:first-child th, .table-5 colgroup + thead tr:first-child td, .table-5 thead:first-child tr:first-child th, .table-5 thead:first-child tr:first-child td, .table-5 tr:first-child th{
 border-top: 0 none;}
-.table-5 th, .table-5 td{ border-top:1px solid #ddd;}
+.table-5 th, .table-5 td{ border-top:1px solid #ddd;padding: 10px 10px 9px;}
 .table-5 tr:hover td { background-color: #f5f5f5;}
 
 .table-6 {border-collapse:collapse;border-spacing:0;}
@@ -935,7 +931,7 @@ border-top: 0 none;}
 .table-8 {border-collapse:collapse;border-spacing:0;}
 .table-8 tr:nth-child(2n) td {background:none;}
 .table-8 tr.even td {background:none;} 
-.table-8 th, .table-8 td{ border:1px solid #ddd;}
+.table-8 th, .table-8 td{ border:1px solid #ddd;padding: 10px 10px 9px;}
 .table-8 tr:hover td { background-color: #fff;}
 
 .table-9 {border-collapse:collapse;border-spacing:0;}
