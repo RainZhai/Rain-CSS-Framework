@@ -28,8 +28,6 @@
             preventDefault: true,
             marginRight: 20,//li的margin right
             easing:'swing',
-            btnLeftStyle: {"left": "15px","top": "60px","width": "50px"},
-            btnRightStyle: {"right": "15px","top": "60px","width": "50px"},
             before: function() {}
         }, {}, opt);
         var _selector = $(opts.selector);
@@ -64,7 +62,7 @@
                     }
                     html += '</ul></div>';
                     if (opts.control) {
-                        html += '<a id="btnLeft" class="black posa b" href="javascript:;"></a><a id="btnRight" class="black posa b" href="javascript:;"></a>';
+                        html += '<a class="j_btnLeft black posa b" href="javascript:;"></a><a class="j_btnRight black posa b" href="javascript:;"></a>';
                     }
                     $(html).prependTo(_selector);
                 }
@@ -84,8 +82,8 @@
                 }
                 if (opts.control) {
                     _selector.find('.slidemain').width(o.getWidth() - opts.controlwidth);
-                    _selector.find('#btnLeft').css(opts.btnLeftStyle);
-                    _selector.find('#btnRight').css(opts.btnRightStyle);
+                    _selector.find('.j_btnLeft').css(opts.btnLeftStyle);
+                    _selector.find('.j_btnRight').css(opts.btnRightStyle);
                 } else {
                     _selector.find('.slidemain').width(o.getWidth());
                 }
@@ -110,14 +108,11 @@
             },
             //获取每个li的宽
             getItemWidth: function() {
-                if (opts.control) { 
-                        return parseInt((o.getWidth() - opts.controlwidth) / images + opts.marginRight); 
-                }else{
-                    if(opts.fix){ 
-                        return parseInt(opts.itemwith+ opts.marginRight); 
-                    }
-                    return parseInt(o.getWidth() / images + opts.marginRight);
+                if(opts.fix){ return parseInt(opts.itemwith+ opts.marginRight); } 
+                if (opts.control) {
+                    return parseInt((o.getWidth() - opts.controlwidth) / images + opts.marginRight);
                 }
+                return parseInt(o.getWidth() / images + opts.marginRight);
             },
             //获取展示图片的张数
             getimages: function() {
@@ -252,15 +247,15 @@
                     _selector[0].addEventListener("touchstart", o.touchStar, false);
                     _selector[0].addEventListener("touchend", o.touchEnd, false);
                     _selector[0].addEventListener("touchmove", o.touchMove, false);
-                    _selector.find('#btnLeft')[0].addEventListener("touchstart", o.rightMove, false);
-                    _selector.find('#btnRight')[0].addEventListener("touchstart", o.leftMove, false);
+                    _selector.find('.j_btnLeft')[0].addEventListener("touchstart", o.rightMove, false);
+                    _selector.find('.j_btnRight')[0].addEventListener("touchstart", o.leftMove, false);
                 } else {
-                    _selector.find('#btnLeft').on('click', o.rightMove);
-                    _selector.find('#btnRight').on('click', o.leftMove);
+                    _selector.find('.j_btnLeft').on('click', o.rightMove);
+                    _selector.find('.j_btnRight').on('click', o.leftMove);
                 }
             },
             //初始化
-            init: function() {
+            init: function() { 
                 opts.before();
                 o.initUI();
                 //加载初次展示的图片，如果dom的初始就为src可以删去。
