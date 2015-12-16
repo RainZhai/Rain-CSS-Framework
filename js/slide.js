@@ -118,8 +118,16 @@
             getimages: function() {
                 return opts.images;
             },
+            //获取当前索引
+            getIndex: function(){
+                return i;
+            },
+            //获取个数
+            getSize: function(){
+                return s;
+            },
             //左移
-            leftMove: function() {
+            leftMove: function(callback) {
                 w = o.getItemWidth();
                 if (!_wrap.is(':animated')) {
                     o.lazyLoad('left', i);
@@ -129,6 +137,9 @@
                             marginLeft: -(s - images) * w
                         }, opts.speed, opts.easing,function() {
                             i = s - images;
+                            if(typeof(callback) =="function"){
+                                callback();
+                            }
                         });
                     } else {
                         _wrap.stop().animate({
@@ -141,12 +152,15 @@
                                     marginLeft: -i * w - ms * w-opts.space
                                 });
                             }
+                            if(typeof(callback) =="function"){
+                                callback();
+                            }
                         });
                     }
                 }
             },
             //右移
-            rightMove: function() {
+            rightMove: function(callback) {
                 w = o.getItemWidth();
                 if (!_wrap.is(':animated')) {
                     o.lazyLoad('right', i);
@@ -156,6 +170,9 @@
                             marginLeft: 0
                         }, opts.speed,opts.easing, function() {
                             i = 0;
+                            if(typeof(callback) =="function"){
+                                callback();
+                            }
                         });
                     } else {
                         _wrap.stop().animate({
@@ -167,6 +184,9 @@
                                 _wrap.css({
                                     marginLeft: -i * w - ms * w-opts.space
                                 });
+                            }
+                            if(typeof(callback) =="function"){
+                                callback();
                             }
                         });
                     }
