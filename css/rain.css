@@ -97,6 +97,9 @@ Atomic Css Objects
 .hoverblack:hover,.itemBlack:hover{background-color: #000!important;}
 .hoverwhite:hover,.itemWhite:hover{background-color: #fff!important;}
 
+.c3{ color: #333; }
+.c6{ color: #666; }
+.c9{ color: #999; }
 .colorly,.colorLightYellow{color: #FDF5D9!important;}
 .colorlr,.colorLightRed{color: #FDDFDE!important;}
 .colorlg,.colorLightGreen{color: #D1EED1!important;}
@@ -195,12 +198,14 @@ pre-line 	合并空白符序列，但是保留换行符。
 .fullh,.fullHeight{height:100%;}
 .wauto,.widthAuto{width:auto;}
 .hauto,.heightAuto{height: auto;}
-.hs,.heightS{ height:25px; line-height:25px!important;}
-.hm,.heightM{ height:30px; line-height:30px!important;}
-.hl,.heightL{ height:35px; line-height:35px!important;}
-.hll,.heightLL{ height:40px; line-height:40px!important;}
+.hs,.h25,.heightS{ height:25px; line-height:25px!important;}
+.hm,.h30,.heightM{ height:30px; line-height:30px!important;}
+.hl,.h35,.heightL{ height:35px; line-height:35px!important;}
+.hll,.h40,.heightLL{ height:40px; line-height:40px!important;}
+.h20{height:20px!important; line-height:20px!important;}
 .h45{height:45px!important; line-height:45px!important;}
-.h50{line-height:50px!important;}
+.h50{height:50px!important; line-height:50px!important;}
+.h60{height:60px!important; line-height:60px!important;}
 
 .ws,.widthS{ width:80px;}
 .wm,.widthM{ width:110px;}
