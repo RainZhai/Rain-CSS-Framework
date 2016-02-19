@@ -26,7 +26,7 @@
             delay: 5000, //滚动间隔
             preloadamt: 3,
             preventDefault: true,
-            marginRight: 20,//li的margin right
+            marginRight: 20,//li的margin right 
             easing:'swing',
             before: function() {}
         }, {}, opt);
@@ -125,6 +125,13 @@
             //获取个数
             getSize: function(){
                 return s;
+            },
+            //获取全部个数
+            getAllSize: function(){
+                return _wrap.find('li').length;
+            },
+            getLoop: function(){
+                return opts.loop;
             },
             //左移
             leftMove: function(callback) {
