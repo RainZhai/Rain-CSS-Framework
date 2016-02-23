@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rain CSS &gt; scrollScreen</title>
+<meta content="rain css,rain_css,rain css framework,rain.css,html5前端框架,前端框架,front-end,css" name="description"/>
+<meta content="rain css,rain_css,rain css framework,rain.css,html5前端框架,前端框架,front-end,css" name="keywords"/>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<style type="text/css"> 
+ .numwrap{ width: 37px; height:52px; margin-right:2px; position:relative; float:left; background: #111117; border-radius:3px;overflow: hidden; box-shadow: 0px -1px 3px rgba(141, 172, 200, 0.25) inset; text-align:center; font-size: 40px; line-height:52px; color:#3c9ce0;}
+.numwrap .numlistwrap{position:absolute; top:0; }
+.numwrap .numbox{width: 37px; height:52px; background: #111117; overflow:hidden; border-radius:3px; text-align:center; font-size: 40px; line-height:52px; color:#3c9ce0;}
+.numwrap .numboxdown{position:absolute; bottom:0; width: 37px; height:26px; background: #111117; overflow:hidden; border-radius:3px; text-align:center; font-size: 40px;
+ line-height:52px; color:#3c9ce0; z-index: 9998;}
+.numwrap .numboxdown .numdiv{position:absolute; bottom:0; width: 37px;}
+.numwrap:last-child{margin-right: 0;}
+.numwrap span.lines{display: block; height: 10px; top: 20px;left: 2px; width:31px; border-left: 1px solid rgba(108,126,172,0.5);border-right: 1px solid rgba(108,126,172,0.5); 
+ position: absolute;z-index: 9999;}
+.numwrap span.lines hr{height: 0px; border:none; border-bottom: 1px solid rgba(0,0,0,0.5); margin: 5px 0;}
+.scrollnumbox{margin: 22px 32px 0;}
+
+.ani1{
+  animation: animationFrames linear 0.5s;
+  animation-iteration-count: 20;
+  transform-origin: 0% 0%;
+  -webkit-animation: animationFrames linear 0.5s;
+  -webkit-animation-iteration-count: 20;
+  -webkit-transform-origin: 0% 0%;
+} 
+@keyframes animationFrames{
+  0% {
+top:0px;
+    /* transform: rotateX(180deg); */
+  }
+  100% {
+top:-400px;  
+    /* transform: rotateX(0deg); */
+  }
+} 
+
+@-webkit-keyframes animationFrames {
+  0% {
+top:0px;
+   /*  transform: rotateX(180deg); */
+  }
+  100% {
+top:-400px;
+   /*  transform: rotateX(0deg); */
+  } 
+}
+</style>
+</head>
+<body class="body posr oh fullh">
+	<div class="header posr headerBlue">
+		<div class="posr clearfix">
+			<a href="http://www.webdevelopmentmachine.com"
+				class="headerLink headerLinkBlue l pr pl ib tdn">首页home</a> <a
+				href="http://www.webdevelopmentmachine.com/blog"
+				class="headerLink headerLinkBlue l pr pl ib tdn">博客blog</a> <a
+				href="http://www.webdevelopmentmachine.com/demo/game.html"
+				class="headerLink headerLinkBlue l pr pl ib tdn">游戏game</a>
+				<a href="javascript:;" id="test" class="headerLink headerLinkBlue l pr pl ib tdn">test</a>
+		</div>
+	</div>
+<div>
+                <fieldset>
+                    <legend>滚动数字</legend>
+                    <div class="scrollnumbox clearfix">
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_1 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_2 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_3 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_4 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_5 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_6 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_7 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                        <div class="numwrap"><span class="lines"><hr /></span>
+                            <div class="j_numlist_8 numlistwrap ani1">
+                                <div class="numbox">0</div>
+                                <div class="numbox">1</div>
+                                <div class="numbox">2</div>
+                                <div class="numbox">3</div>
+                                <div class="numbox">4</div>
+                                <div class="numbox">5</div>
+                                <div class="numbox">6</div>
+                                <div class="numbox">7</div>
+                                <div class="numbox">8</div>
+                                <div class="numbox">9</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+</div>
+
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/lib/velocity.min.js"></script> 
+<script type="text/javascript">
+/**
+ * 顶部滚动数字方法
+ * @param {number}
+ */
+var runroll = function(arr){
+    var h = -52;
+    var dly=0;
+    for(var i=1,len=arr.length;i<=len;i++){
+        $(".j_numlist_"+i).removeClass("ani1");
+        $(".j_numlist_"+(len-i+1)).velocity({top:h*arr[len-i]+'px'},{complete:function(elem){$(elem).addClass("ani1")},duration:250, delay:i*50,easing:'easeInSine'});
+    }
+    for(i=1;i<=len;i++){
+        $(".j_numlist_"+i).velocity({top:h*arr[i]+'px'},{begin:function(elem){$(elem).removeClass("ani1")},duration:500, delay:700+i*200,easing:'easeOutSine'});
+    }
+}
+//数字滚动
+runroll([1,2,3,4,5,6,7,8]);
+</script>
+</body>
+</html>
