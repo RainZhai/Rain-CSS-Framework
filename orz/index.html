@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<title>orz</title>
+<meta content="" name="description"/>
+<meta content="" name="keywords"/>
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
+<meta content="all" name="robots"/>
+<link rel="stylesheet" href="http://wandeme.com/raincss/css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://wandeme.com/raincss/css/rain.css" type="text/css" media="all"/>
+<!--[if lte IE 8]><link rel="stylesheet" href="http://wandeme.com/css/blueprint/ie.css" type="text/css" media="all"><![endif]--> 
+<style type="text/css">
+</style>
+</head>
+<body class="body pt-3">
+  <div class="container b p">
+    <div id="loginbox" class="hide">
+            <p>
+              <label>用户名</label><br/>
+              <input type="text" class="title j_username" maxlength="30" placeholder="用户名" />
+            </p>
+            <p>
+              <label>密码</label><br/>
+              <input type="password" class="title j_password" maxlength="30"  placeholder="密码" />
+            </p>
+            <p class="j_msg red"></p>
+            <p>
+               <a href="javascript:;" class="ib round-5 gr btn redbtn tdn  hl w-10 tac" id="loginbtn">登录</a><a href="javascript:;" class="j_goreg ib ml tdunder" >注册</a>
+            </p>
+    </div>
+    <div id="regbox" class="hide">
+            <p>
+              <label>用户名</label><br/>
+              <input type="text" class="title j_username" maxlength="30" placeholder="用户名" />
+            </p>
+            <p>
+              <label>密码</label><br/>
+              <input type="password" class="title j_password" maxlength="30"  placeholder="密码" />
+            </p>
+            <p class="j_msg red"></p>
+            <p>
+               <a href="javascript:;" class="ib round-5 gr btn redbtn tdn  hl w-10 tac" id="regbtn">注册</a>
+            </p>
+    </div>
+    <div  id="main" class="hide">
+      <div class="css3_flexbox j_choose">
+          <a href="javascript:;" class="block b wf-50 tac h100" id="join1">加入喵ฅ(๑˙o˙๑)ฅ阵营</a>
+          <a href="javascript:;" class="block b wf-50 tac h100" id="join2">加入汪(-ω- ) 阵营</a>
+      </div>
+      <div class="hm">颜之国王: <span>大牛</span> 颜之国王体力: <span>560004</span></div>
+      <div class="hm posr">
+         (｡・`ω´･) 体力: <span>100</span> <a href="javascript:;" class="b" id="qdao">签到</a>
+          <a href="javascript:;" class="hs b posa" style="top:0; right:0; " id="yqbtn">邀请获取体力</a>
+      </div>
+      <div>
+          <a href="javascript:;" class="ib b w-15 tac hl" id="dalie">打猎</a>
+          <a href="javascript:;" class="ib b w-15 tac hl" id="wabao">挖宝</a>
+          <a href="javascript:;" class="ib b w-15 tac hl" id="gong1">攻打夺取王座</a>
+      </div>
+    </div>
+  </div> 
+<script type="text/javascript">
+var lazyJs=function(){var h=document,a,i=[],c=[],b;function f(j,m){var d,k;e();if(j.src){j.src=j.src.constructor===Array?j.src:[j.src];for(var l=0;l<j.src.length;l++){if(j.src[l].constructor!==Array){j.src[l]=[j.src[l]]}c.push(j.src[l])}}i=c.shift();a=a||h.getElementsByTagName("head")[0];j.src=i;for(var l=0;l<j.src.length;l++){k=j.src[l];d=h.createElement("script");d.src=k;d.type="text/javascript";if(b.ie){d.onreadystatechange=function(){var n=this.readyState;if(n==="loaded"||n==="complete"){this.onreadystatechange=null;g(j,m)}}}else{d.onload=d.onerror=function(){g(j,m)}}a.appendChild(d)}}function g(d,k){var j=i;if(!j){return}j.shift();if(!j.length){if(c.length){f(d,k)}else{if(typeof k=="function"){k()}return}}}function e(){if(b){return}var d=/msie/i.test(navigator.userAgent.toLowerCase());b={ie:d}}return{init:function(d,j){f(d,j)}}}();
+lazyJs.init({
+    src: ["http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js","https://cdn1.lncld.net/static/js/av-mini-0.6.4.js"]
+},function(){
+        AV.initialize('5tu3pnOeK6XiGqmnTO1DzF1s-gzGzoHsz', 'NeXNG0LnuMa5I5sF8NAMahRR');
+        var common = {};
+        common.regbox = $("#regbox");
+        common.loginbox = $("#loginbox");
+        common.mainbox = $("#main");
+        common.game = null;
+        var GameObject = AV.Object.extend('gameObject');
+        //获取用户游戏数据
+        common.game = new GameObject();
+        common.gamequery = new AV.Query(GameObject);
+
+        common.init = function(objid){
+            common.gamequery.get(objid).then(function(obj) {
+              alert(111);
+              // 成功获得实例
+              var content = obj.get('content');
+            }, function(error) {
+              // 失败了
+            });
+        }
+
+        //判断登录
+        common.currentUser = AV.User.current();
+        if (common.currentUser) {
+          common.loginbox.hide();
+          common.mainbox.show();
+          debugger;
+          common.init(common.currentUser.id);
+        } else {
+          common.loginbox.show();
+          common.mainbox.hide();
+        }
+
+        $(".j_goreg").on("click", function(){
+          common.loginbox.hide();
+          common.regbox.show();
+        });
+        //注册
+        $("#regbtn").on("click", function(){
+            var username = $.trim(common.regbox.find(".j_username").val());
+            var password = $.trim(common.regbox.find(".j_password").val());
+            if(username && password){
+                    var user = new AV.User();
+                    user.set('username', username);
+                    user.set('password', password);
+                    //user.set('email', '');
+                    //user.set('phone', '');
+                    user.signUp().then(function(user) {
+                      console.log(user);
+                      common.regbox.hide();
+                      common.mainbox.show();
+                    }, function(error) {
+                      console.log('Error: ' + error.code + ' ' + error.message);
+                    }); 
+            }else{ 
+                if(username.length<5){
+                    common.regbox.find(".j_msg").text('用户名长度不能小于5');
+                    return;
+                }
+                if(password.length<5){
+                    common.regbox.find(".j_msg").text('密码长度不能小于5');
+                    return;
+                }
+            }
+        });
+        //登录
+        $("#loginbtn").on("click", function(){
+            var username = $.trim(common.loginbox.find(".j_username").val());
+            var password = $.trim(common.loginbox.find(".j_password").val());
+            if(username && password){
+                AV.User.logIn(username, password).then(function() {
+                  common.loginbox.hide();
+                  common.mainbox.show();
+                  common.currentUser = AV.User.current();
+                  common.init(common.currentUser.id);
+                }, function() {
+                  alert("登录失败");
+                });
+            }else{ 
+                if(username.length<5){
+                    common.loginbox.find(".j_msg").text('用户名长度不能小于5');
+                    return;
+                }
+                if(password.length<5){
+                    common.loginbox.find(".j_msg").text('密码长度不能小于5');
+                    return;
+                }
+            }
+        });
+});
+
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F645f788e2c22c6df311adee9e3c514a0' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>
