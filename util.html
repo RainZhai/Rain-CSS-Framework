@@ -225,6 +225,11 @@
                   <legend >tooltip</legend> 
                   <a href="https://github.com/jaz303/tipsy" id="tooltip1" original-title="Tipsy is a jQuery plugin for creating a Facebook-like tooltips,Tipsy is a jQuery plugin for creating a Facebook-like tooltips">tooltip</a> 
               </fieldset>
+              <fieldset>
+                  <input type="text" data-bind-test="name" />
+                  <input type="text" data-bind-test="name" />
+                  <span data-bind-test="name"></span>
+              </fieldset>
 
               <p id="title2" style="padding-top:500px; height:500px;  ">内容2</p>
           </div>
@@ -653,7 +658,42 @@ $(".j_slidewrap").find("li").hover(function(){
       me.css({"margin-left":"0px"});
     }
 }); 
+/**数据双向绑定 */
+/*
+* User Model
+* @param {uid} String
+*/
+function User(uid) {  
+  var binder = new util.dataBinder(uid);
 
+  var user = {
+    attribute: {},
+
+    // 属性设置器使用数据绑定器pubSub来发布
+    set: function(attr_name, val) {
+      this.attribute[attr_name] = val;
+      binder.publish(uid + ":change", attr_name, val, this);
+    },
+
+    get: function(attr_name) {
+      return this.attribute[attr_name];
+    },
+
+    _binder: binder
+  };
+
+  // Model修改变化
+  binder.on(uid + ":change", function(event, attr_name, new_val, initiator) {
+    if (initiator !== user) {
+      user.set(attr_name, new_val);
+    }
+  });
+
+  return user;
+}
+// test
+var user = new User('test');
+user.set("name", "jackie");
 </script>
 </body>
 </html>

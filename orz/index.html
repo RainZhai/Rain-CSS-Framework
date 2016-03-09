@@ -7,14 +7,40 @@
 <meta content="" name="keywords"/>
 <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
 <meta content="all" name="robots"/>
-<link rel="stylesheet" href="http://wandeme.com/raincss/css/blueprint/screen.css" type="text/css" media="all"/>
-<link rel="stylesheet" href="http://wandeme.com/raincss/css/rain.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://wandeme.com/css/blueprint/screen.css?v=11" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://wandeme.com/css/main.css?=3242321" type="text/css" media="all"/>
 <!--[if lte IE 8]><link rel="stylesheet" href="http://wandeme.com/css/blueprint/ie.css" type="text/css" media="all"><![endif]--> 
 <style type="text/css">
 </style>
 </head>
-<body class="body pt-3">
-  <div class="container b p">
+<body class="posr">
+<!-- header [[ -->
+<div class="headwrap posf fullw" style="left:0;top:0;z-index:9999;">
+<div class="header posr tar bglgrey2">
+    <a href="javascript:;" class="">退出</a>
+</div>
+  <div class="headerM headerGrey">
+    <div class="container posr fullh clearfix"> 
+      <div class="menuNav block posr l oh">
+            <a class="l fl posr menuLink block tdn fullh" href="http://wandeme.com/haowan" target="_blank">Joy
+            <br/><span>好玩的</span>
+            </a>
+            <a class="l fl posr menuLink block tdn fullh" href="http://wandeme.com/games" target="_blank">Games
+            <br/><span>游戏</span>
+            </a>
+            <a class="l fl posr menuLink block tdn fullh" target="_blank" href="http://wandeme.com/haowan/category/mm">Images
+            <br/><span>游戏美图</span>
+            </a>
+            <a class="l fl posr menuLink block tdn fullh" href="http://wandeme.com/haowan/category/%E6%90%9E%E7%AC%91%E5%9B%BE/" target="_blank">Funny
+            <br/><span>搞笑图</span>
+            </a>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- header ]] -->
+
+  <div class="container b pt-8">
     <div id="loginbox" class="hide">
             <p>
               <label>用户名</label><br/>
@@ -48,7 +74,7 @@
           <a href="javascript:;" class="block b wf-50 tac h100" id="join1">加入喵ฅ(๑˙o˙๑)ฅ阵营</a>
           <a href="javascript:;" class="block b wf-50 tac h100" id="join2">加入汪(-ω- ) 阵营</a>
       </div>
-      <div class="hm">颜之国王: <span>大牛</span> 颜之国王体力: <span>560004</span></div>
+      <div class="hm">颜之国王: <span>大牛</span> 国王体力: <span>560004</span></div>
       <div class="hm posr">
          (｡・`ω´･) 体力: <span>100</span> <a href="javascript:;" class="b" id="qdao">签到</a>
           <a href="javascript:;" class="hs b posa" style="top:0; right:0; " id="yqbtn">邀请获取体力</a>
@@ -153,6 +179,10 @@ lazyJs.init({
                     return;
                 }
             }
+        });
+        //登录
+        $("#logoutbtn").on("click", function(){
+
         });
 });
 

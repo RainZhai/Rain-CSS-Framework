@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Rain CSS > loading bar</title>
+<meta content="rain css,rain_css,rain css framework,rain.css,html5前端框架,前端框架,front-end,css" name="description"/>
+<meta content="rain css,rain_css,rain css framework,rain.css,html5前端框架,前端框架,front-end,css" name="keywords"/>
+<!-- Framework CSS -->
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+<!--[if lte IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]--> 
+<link rel="stylesheet" href="css/rain.css" type="text/css" media="all"/>
+<!--[if lt IE 9]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<style type="text/css">
+.entry-title{padding: 5px;}
+.entry-content img{width:70%;}
+</style>
+</head>
+<body class="body">
+	<div class="header headerBlue">
+  	<nav class="lsn posr clearfix">
+    	<a href="http://www.webdevelopmentmachine.com" class="headerLink headerLinkBlue l pr pl ib tdn">首页home</a>
+    	<a href="http://www.webdevelopmentmachine.com/blog" class="headerLink headerLinkBlue l pr pl ib tdn">博客blog</a>
+    	<a href="http://www.webdevelopmentmachine.com/demo/game.html" class="headerLink headerLinkBlue l pr pl ib tdn">游戏game</a>
+    </nav>
+  </div>
+	<div class="headerM headerGrey">
+  	<div class="container posr">
+    	<div class="l"><a class="tdn block ptll fsxxl" href="index.html">Rain CSS</a></div>
+    </div>
+  </div>
+  <div class="container mt hide" id="main">
+    <div class="content">
+      <div class="sidebar l positionR">
+        <div class="sidebox">
+          <p>页面图片加载进度显示</p>
+        </div>
+      </div>
+
+      <div class="main mainRight posr">
+        <a id="gameimgs" href="http://wandeme.com/haowan/category/mm/" target="_blank" class="bloc">
+          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1ettfb9bdr1j30dw0iidi6.jpg">        
+          <img loadsrc="http://ww2.sinaimg.cn/bmiddle/005vSBqygw1ettfba4n2xj30dw0iiad2.jpg">        
+          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1er8dk3k573j30ia0od78x.jpg">        
+          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1er0mpftq1yj30cr0h5gnt.jpg">
+          <img loadsrc="http://ww3.sinaimg.cn/bmiddle/005vSBqygw1f0g87hjsihj30g4082gn7.jpg">
+          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1f0g87i3peyj30g40823zw.jpg">
+          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1f0g87iw6yjj30g408v74x.jpg">
+          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1f0g87jdynrj30g408v0u9.jpg">
+        </a>
+      </div>
+
+      <footer class="footer socialFooter c bt">
+        <p class="ps">
+          Maintained by the
+          <a href="https://github.com/rainzhai" class="blue">RainZhai</a>
+          .
+        </p>
+        <p class="ps">
+          Code licensed under
+          <a rel="license" class="blue" href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">MIT</a>
+          , documentation under
+          <a rel="license"  class="blue" href="https://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>
+          .
+        </p>
+      </footer>
+    </div>
+  </div>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src='js/util.js'></script>
+<script type="text/javascript">
+var lo = util.loading({loadingClass:'bglg'});
+lo.show();
+/**
+ * [loadingbar 页面图片加载进度显示]
+ * @param  {[string]} attr [img图片路径的属性]
+ * @return {[null]} 
+ */
+util.loadingbar = function(opts){
+        var loadsrc = opts.imgattr || "loadsrc";
+        var img = $("body").find("img["+loadsrc+"]");//图片数组
+        var length = img.length;//图片数量
+        var downImg = 0;//已下载数量
+        var percent = 0;//百分比
+        for ( var i=0;i<length;i++ ){
+          var imgobj = new Image();
+          var imgItem = img.eq(i);
+          var imgsrc = imgItem.attr(loadsrc);
+          imgobj.src = imgsrc;
+          if(imgobj.complete){
+              imgItem.attr("src",imgsrc).removeAttr(loadsrc);//有缓存
+              imgDown();
+          }else{
+              imgItem.attr("src",imgsrc).load(function(){
+                $(this).removeAttr(loadsrc);//无缓存
+                imgDown();
+              })
+          }
+        }
+        function imgDown() {
+          downImg ++;
+          percent = parseInt(100*downImg/length);
+          lo.setContent(percent+"%");
+          if ( percent == 100 ){
+            if(typeof(opts.callback) =="function"){
+              lo.hide();
+              opts.callback();
+            }
+          }
+        }
+}
+util.loadingbar({
+  callback:function(){
+            $("#main").show();
+  }
+});
+</script>
+</body>
+</html>

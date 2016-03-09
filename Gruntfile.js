@@ -34,6 +34,15 @@ module.exports = function (grunt) {
       build: {
         src: 'Rain-CSS-Framework/js/dest/libs.js',
         dest: 'Rain-CSS-Framework/js/dest/libs.min.js'
+      },
+      buildall: {
+          //任务三：按原文件结构压缩js文件夹内所有JS文件
+          files: [{
+              expand:true,
+              cwd:'app/js/',//js目录下
+              src:'**/*.js',//所有js文件
+              dest: 'app/output/js'//输出到此目录下
+          }]
       }
     },
     qunit: {
@@ -78,6 +87,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browser-sync');
   //在命令行执行 "grunt test" 会运行 test 任务
   grunt.registerTask('test', ['jshint']);
+  //将所有的js文件压缩
+  grunt.registerTask('minall', ['uglify:buildall']);
   
   //在命令行执行 "grunt test" 会运行 test 任务
   grunt.registerTask('con', ['concat','uglify']);

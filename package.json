@@ -8,7 +8,7 @@
     "name": "zhaiyu"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
+    "grunt": "^0.4.5",
     "grunt-browser-sync": "^1.3.0",
     "grunt-contrib-clean": "*",
     "grunt-contrib-concat": "*",
