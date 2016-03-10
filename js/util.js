@@ -614,6 +614,23 @@ util.dataBinder = function(object_id) {
 
     return pubSub;
   }
+  
+/**
+ * 图片上传预览 preview
+ * @param {Object} file文件对象
+ * @param {Function} 回调
+ * @return {null}
+ */
+util.preview = function(file,callback) {
+      var reader = new FileReader()
+      reader.onload = function(e) {
+          var $img = $('<img>').attr("src", e.target.result);
+          if(typeof(callback) == 'function'){
+            callback($img);
+          }
+      }
+      reader.readAsDataURL(file);
+  }
 
   /**
    * 通用loader对象
