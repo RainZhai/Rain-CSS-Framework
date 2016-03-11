@@ -15,6 +15,9 @@
 <style type="text/css">
 .entry-title{padding: 5px;}
 .entry-content img{width:70%;}
+@media handheld, only screen and (max-width: 980px),only screen and (device-width: 768px){
+  img{ width: 100%; margin-bottom: 5px;}
+}
 </style>
 </head>
 <body class="body">
@@ -33,21 +36,18 @@
   <div class="container mt hide" id="main">
     <div class="content">
       <div class="sidebar l positionR">
-        <div class="sidebox">
-          <p>页面图片加载进度显示</p>
+        <div class="sidebox p">
+          <p>1, 页面图片加载进度显示</p>
+          <p>2, 摇一摇控制</p>
         </div>
       </div>
 
       <div class="main mainRight posr">
-        <a id="gameimgs" href="http://wandeme.com/haowan/category/mm/" target="_blank" class="bloc">
+        <a id="gameimgs" href="http://wandeme.com/haowan/category/mm/" target="_blank" class="block p">
           <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1ettfb9bdr1j30dw0iidi6.jpg">        
           <img loadsrc="http://ww2.sinaimg.cn/bmiddle/005vSBqygw1ettfba4n2xj30dw0iiad2.jpg">        
           <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1er8dk3k573j30ia0od78x.jpg">        
           <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1er0mpftq1yj30cr0h5gnt.jpg">
-          <img loadsrc="http://ww3.sinaimg.cn/bmiddle/005vSBqygw1f0g87hjsihj30g4082gn7.jpg">
-          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1f0g87i3peyj30g40823zw.jpg">
-          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1f0g87iw6yjj30g408v74x.jpg">
-          <img loadsrc="http://ww1.sinaimg.cn/bmiddle/005vSBqygw1f0g87jdynrj30g408v0u9.jpg">
         </a>
       </div>
 
@@ -114,6 +114,80 @@ util.loadingbar({
   callback:function(){
             $("#main").show();
   }
+});
+
+
+  /**
+ * 注册摇一摇 preview
+ * @param {Function} 回调 callback
+ * @return {null}
+ */
+util.shake = function(callback) {
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', deviceMotionHandler, false);
+    }
+    var SHAKE_THRESHOLD = 600; 
+    var end = false;
+    var last_update = 0;
+    var x, y, z, last_x, last_y, last_z;
+
+    function deviceMotionHandler(eventData) {
+        var acceleration = eventData.accelerationIncludingGravity;
+        var curTime = new Date().getTime();
+        var diffTime = curTime - last_update;
+
+        if (diffTime > 100) {
+
+          last_update = curTime;
+
+          x = acceleration.x;
+          y = acceleration.y;
+          z = acceleration.z;
+
+          var xdiff = (x - last_x);
+          var ydiff = (y - last_y);
+          var zdiff = (z - last_z);
+
+          var value = x + y + z;
+          var lastvalue = last_x + last_y + last_z;
+          var speed = Math.abs(value - lastvalue) /diffTime * 10000;
+
+          if (speed > SHAKE_THRESHOLD) {
+            callback();
+            begin = false;
+          }
+          last_x = x;
+          last_y = y;
+          last_z = z;
+        }
+    }
+  }
+//摇一摇功能实现
+var shake = new Audio();
+shake.src = "audio/shake.mp3";
+shake.load();
+var shakeMath = new Audio();
+shakeMath.src = "audio/shake_match.mp3";
+shakeMath.load();
+
+util.shake(function(){
+      lo.show();
+      setTimeout(function(){
+        shake.play();
+      },100);
+      setTimeout(function(){
+        lo.setContent("正在获取结果...");
+        shakeMath.play();
+        var num =  util.getRandomNum(0,5);
+        if(num===0){
+          $("#gameimgs").find("img").eq(0).attr("src","http://ww2.sinaimg.cn/bmiddle/005vSBqygw1ettfba4n2xj30dw0iiad2.jpg");
+        }else if(num===1){
+          $("#gameimgs").find("img").eq(0).attr("src","http://ww1.sinaimg.cn/bmiddle/005vSBqygw1er8dk3k573j30ia0od78x.jpg");
+        }else {
+          $("#gameimgs").find("img").eq(0).attr("src","http://ww1.sinaimg.cn/bmiddle/005vSBqygw1er0mpftq1yj30cr0h5gnt.jpg");
+        }
+        lo.hide();
+      },3000);
 });
 </script>
 </body>
