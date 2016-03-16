@@ -65,6 +65,14 @@
 .bestslide a.arrowright{ width: 34px; height: 84px; line-height: 84px; color: #fff; text-align: center; right:0; top:145px;  background: rgba(149,149,149, 0.6);} 
 .bestslide a.arrowleft:hover{ background: rgba(0,172,237, 0.8); }
 .bestslide a.arrowright:hover{ background: rgba(0,172,237, 0.8);}
+/** 带圆圈步骤进度 */
+.stepbox {   border-top: 3px solid #ccc;}
+.stepbox.on {   border-top: 3px solid #0097e0;}
+.stepbox2.on {   border-top: 3px solid #ccc;}
+.dotbox {  width: 17px;  height: 17px; text-align: center;  font-size: 12px;  line-height: 17px;  display: inline-block;  color: #fff; background-color: #999; border:1px solid #ccc; border-radius: 17px; -webkit-border-radius: 17px;}
+.stepbox.on .dotbox {  background-color: #0097e0;  border:1px solid #fff;}
+.stepbox.on .titlename{ color:#0097e0;}
+.stepbox.on .dotbox img{ display: block;}
  </style>  
 </head>
 <body class="body">
@@ -226,9 +234,39 @@
                   <a href="https://github.com/jaz303/tipsy" id="tooltip1" original-title="Tipsy is a jQuery plugin for creating a Facebook-like tooltips,Tipsy is a jQuery plugin for creating a Facebook-like tooltips">tooltip</a> 
               </fieldset>
               <fieldset>
+                  <legend >数据双向绑定</legend> 
                   <input type="text" data-bind-test="name" />
                   <input type="text" data-bind-test="name" />
                   <span data-bind-test="name"></span>
+              </fieldset>
+              <fieldset> 
+                    <legend >带圆圈步骤进度</legend> 
+                    <div class="pl-3 pr-3 css3_flexbox"> 
+                        <div class="wf-20 posr stepbox on">
+                          <span class="posa dotbox " style="left:-2px; top:-10px;">1
+                          <!-- <img src="images/icon57.png" class="posa fullh fullw hide" style="left:0; top:0; "> -->
+                          </span>
+                          <p class="pt fs10px tac titlename" style="margin-left:-40px;">步骤1</p>
+                        </div>
+                        <div class="wf-20 posr stepbox stepbox2 on"> 
+                          <span class="posa dotbox" style="left:-2px; top:-10px;">2
+                          <!-- <img src="images/icon57.png" class="posa fullh fullw hide" style="left:0; top:0; "> -->
+                          </span>
+                          <p class="pt fs10px titlename" style="margin-left:-15px;">步骤2</p>
+                        </div>
+                        <div class="wf-20 posr stepbox">
+                          <span class="posa dotbox" style="left:5px; top:-10px;">3</span>
+                          <p class="pt fs10px titlename" style="margin-left:-8px;">步骤3</p>
+                        </div>
+                        <div class="wf-20 posr stepbox">
+                          <span class="posa dotbox" style="left:14px; top:-10px;">4</span>
+                          <p class="pt fs10px titlename" style="margin-left:10px;">步骤4</p>
+                        </div>
+                        <div class="wf-10 posr stepbox">
+                          <span class="posa dotbox" style="right:-2px; top:-10px;">5</span>
+                          <p class="pt fs10px   titlename" style="margin-right:-40px;">步骤5</p>
+                        </div> 
+                    </div>
               </fieldset>
 
               <p id="title2" style="padding-top:500px; height:500px;  ">内容2</p>
