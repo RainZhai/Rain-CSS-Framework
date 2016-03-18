@@ -214,6 +214,7 @@
   border-radius: 4px;
   white-space: nowrap;
   cursor: pointer;
+  padding: 0px;
 }
 
 .daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
