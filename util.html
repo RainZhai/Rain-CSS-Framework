@@ -570,7 +570,7 @@ todayStart.setMilliseconds(0)
 var todayEnd = new Date(+todayStart + 24 * 3600000 - 1);
 var amonth = new Date(+todayStart - 24 * 3600000 * 30);
 var threeMonth = new Date(+todayStart - 24 * 3600000 * 90);
-var sixMonth = new Date(+threeMonth - 24 * 3600000 * 180);
+var sixMonth = new Date(+todayStart - 24 * 3600000 * 180);
 var dateOption = {
     "locale":localopts,
     "timePickerIncrement": 365,
