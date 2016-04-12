@@ -13,6 +13,7 @@
 <style type="text/css">
 .transitionBg{ left:0; bottom: 0; height:3px; width:53px; transition:all 1s ease 0s;}
 .transitionLink-2:hover .transitionBg{left:57px;transition: all 1s ease 0s;}
+.bootpag li{ display: inline-block; padding:5px; }
 </style>
 </head>
 
@@ -161,7 +162,7 @@
       <div class="main mainRight posr">
 				<h2>Pagination</h2>
 				<div class='fullw clearfix'>	
-        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+        <nav class="pagination btn border rounds posr clearfix mbs ib tac">
             <span class="ptss pbss pl pr block l bgrey_1r tdn">40 pages</span>
             <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">&lt;&lt;</a>
             <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn active">1</a> 
@@ -172,7 +173,7 @@
             <a href="#" class="ptss pbss pl pr hoverlgrey block l bgrey_1r tdn">&gt;&gt;</a>
             <a href="#" class="ptss pbss pl pr hoverlgrey block l tdn">Lastest</a>
         </nav></div>
-        <nav class="pagination block btn border rounds posr clearfix mbs l tac">
+        <nav class="pagination block btn border rounds posr clearfix mbs ib tac">
             <span class="pagelink block l bgrey_1r tdn">40 pages</span>
             <a href="#" class="pagelink block l bgrey_1r tdn">&larr; Previous</a>
             <a href="#" class="pagelink block l bgrey_1r tdn active">1</a> 
@@ -183,7 +184,7 @@
             <a href="#" class="pagelink block l bgrey_1r tdn">Next &rarr;</a>
             <a href="#" class="pagelink block l tdn">Lastest</a>
         </nav>
-        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+        <nav class="pagination btn border rounds posr clearfix mbs ib tac">
             <span class="pagelink block l bgrey_1r">40 pages</span>
             <a href="#" class="pagelink block l bgrey_1r tdn">&lt;&lt; Previous</a>
             <a href="#" class="pagelink block l bgrey_1r tdn active">1</a> 
@@ -194,7 +195,7 @@
             <a href="#" class="pagelink block l bgrey_1r tdn">Next &gt;&gt;</a>
             <a href="#" class="pagelink block l tdn">Lastest</a>
         </nav>
-        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+        <nav class="pagination btn border rounds posr clearfix mbs ib tac">
             <span class="pts pbs pll prl block l bgrey_1r">40 pages</span>
             <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">&lt;&lt;</a>
             <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn active">1</a> 
@@ -205,7 +206,7 @@
             <a href="#" class="pts pbs pll prl hoverlgrey block l bgrey_1r tdn">&gt;&gt;</a>
             <a href="#" class="pts pbs pll prl hoverlgrey block l tdn">Lastest</a>
         </nav>
-        <nav class="pagination btn border rounds posr clearfix mbs l tac">
+        <nav class="pagination btn border rounds posr clearfix mbs ib tac">
             <span class="pt pb plll prll block l bgrey_1r tdn">40 pages</span>
             <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">&lt;&lt;</a>
             <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn active">1</a> 
@@ -216,6 +217,8 @@
             <a href="#" class="pt pb plll prll hoverlgrey block l bgrey_1r tdn">&gt;&gt;</a>
             <a href="#" class="pt pb plll prll hoverlgrey block l tdn">Lastest</a>
         </nav>
+        <div id="pagination-here" class=" block"></div>
+
 		<h2 class="c">Pager</h2>
         <nav class="pager posr clearfix mbs width-20">
 	        <a href="#" class="pagelink ib btn l bgrey_1 tdn">&larr; Previous</a> 
@@ -235,6 +238,7 @@
   </div>
 <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
 <script type="text/javascript" src="js/jquery.tabs.js"></script>
+<script type="text/javascript" src="lib/jquery-bootpag/jquery.bootpag.js"></script>
 <script type="text/javascript"> 
  $('.tabswrap-1').tabs({
    event: 'click',
@@ -245,6 +249,16 @@
    callback: function(i) {
    }
  });
+$('#pagination-here').bootpag({
+    total: 7,          // total pages
+    page: 1,            // default page
+    maxVisible: 5,     // visible pagination
+    leaps: true         // next/prev leaps through maxVisible
+}).on("page", function(event, num){
+    $("#content").html("Page " + num); // or some ajax content loading...
+    // ... after content load -> change total to 10
+    $(this).bootpag({total: 10, maxVisible: 10});
+});
 </script>
 </body>
 </html>
