@@ -597,7 +597,7 @@ pre-line 	合并空白符序列，但是保留换行符。
 .bgrey_1l,.borderGrey_1_Left { border-left:1px #CCC solid!important;}
 .bgrey_1r,.borderGrey_1_Right { border-right:1px #CCC solid!important;}
 .bgrey_1t,.borderGrey_1_Top { border-top:1px #CCC solid!important;}
-.bgrey_1b,.borderGrey_1_Bottom { border-bottom:1px #CCC solid;!important;}
+.bgrey_1b,.borderGrey_1_Bottom { border-bottom:1px #CCC solid !important;}
 
 .bgrey_2,.borderGrey_2{ border:1px #999 solid!important;}
 .bgrey_2l,.borderGrey_2_Left { border-left:1px #999 solid!important;}
@@ -1022,16 +1022,7 @@ pre{white-space: normal;}
 .fr{float:right!important;}
 .fl{float:left!important;}
 }
-
-/**-- dojo.css  dojo objects and components --**/
-/* progress bar code */
-.progressBarAnim{ background: #EFEFEF url(../dijit/themes/claro/images/progressBarAnim.gif) repeat-x center top; }
-.dijitProgressBarFull{ z-index:-1; }
-/* button code */
-.plusIcon, .plusBlockIcon { background:url(images/plus.gif) no-repeat center center; height:18px; width:18px; }
-.dijitArrowButtonInner { background:url(images/buttonArrows.png) no-repeat -51px 53%; height:15px; width:15px; }
-
-
+ 
 /* -----------------------------------------------------------------------
 		CSS3, Please! The Cross-Browser CSS3 Rule Generator 
 		From: http://css3please.com/
