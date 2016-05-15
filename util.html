@@ -216,10 +216,14 @@
                   省：<select id="cmbProvince"></select>
                   市：<select id="cmbCity"></select>
                   区：<select id="cmbArea"></select>
-                  <br /> 
+                    <div class="j_sresult">
+                      <span class="j_cityitem cityitem rounds b pss">武汉 <a href="javascript:;" class="j_removecity ib c9">x</a></span>
+                    </div>
+                  <div>
                   省：<select id="Select1"></select>
                   市：<select id="Select2"></select>
                   区：<select id="Select3"></select>
+                  </div>
               </fieldset>
               
               <fieldset >
@@ -594,9 +598,20 @@ $("#daterangebox").daterangepicker(dateOption, function(start, end, label){
 });
  
 /**--------------- 地址联动 ----------------**/
-addressInit('cmbProvince', 'cmbCity', 'cmbArea', '陕西', '宝鸡市', '金台区');
-addressInit('Select1', 'Select2', 'Select3'); 
-
+addressInit('cmbProvince', 'cmbCity', 'cmbArea', '湖北', '武汉市', '武昌区');
+addressInit('Select1', 'Select2', 'Select3');
+var cityarr = [];
+$("#cmbCity").on("change", function(){
+  var v = $(this).val();
+  for(var i =0;i < cityarr.length; i++){
+    if(v==cityarr[i]){ return false; }
+  }
+  cityarr.push(v); 
+  $(".j_sresult").append('<span class="j_cityitem cityitem rounds b pss mrs">'+v+'<a href="javascript:;" class="j_removecity ib c9">x</a></span>');
+});
+$(".j_removecity").live("click",function(){
+  $(this).parent(".j_cityitem").remove();
+});
 /**---------------数字跳动累加 ----------------**/
 function numJump(){
   var oSpan=document.getElementById("oSpan");
