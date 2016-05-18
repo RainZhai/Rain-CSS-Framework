@@ -850,3 +850,28 @@ $("#div1").scroll(function(){
   };
 
 })(window, window.jQuery || window.Zepto);
+
+/**
+ * 数组的扩展 获取索引
+ * @param  {[element]}  
+ * @return {[number]}
+ */
+Array.prototype.indexOf = function(el){
+ for (var i=0,n=this.length; i<n; i++){
+  if (this[i] === el){
+   return i;
+  }
+ }
+ return -1;
+}
+/**
+ * 数组扩展 移除一个元素
+ * @param  {[element]}  
+ * @return {[Array]}  
+ */
+Array.prototype.remove = function(val) {  
+    var index = this.indexOf(val);  
+    if (index > -1) {  
+        this.splice(index, 1);  
+    }  
+};
