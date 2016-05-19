@@ -80,9 +80,9 @@
       	<h2>Tabs and List</h2>
 				<div class='tabswrap-1'>
 				<ul class='lsn nop norm borderBottom heightL clearfix'>
-					<li class='j_tab l mbn-1 mrss bgWhite ib border nobb css3_round_topS tdn pl pr itemColorBlack' href='#'>Home</li>
-					<li class='j_tab l mrss bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Profile</li>
-					<li class='j_tab l bgWhite ib css3_round_topS tdn pl pr hoverlgrey itemColorBlack' href='#'>Messages</li>
+					<a class='j_tab l mbn-1 b nobb bgw mrss ib roundts tdn pl pr hoverlgrey' href='javascript:;'>Home</a>
+					<a class='j_tab l mrss bgw ib roundts tdn pl pr hoverlgrey' href='javascript:;'>Profile</a>
+					<a class='j_tab l bgw ib roundts tdn pl pr hoverlgrey' href='javascript:;'>Messages</a>
 				</ul>
 
 				<div class='c_tabpanel' id='tab-0' >
@@ -96,25 +96,15 @@
 				</div>
 				
 				</div>
-				
-				<ul class="lsn nop norm heightM clearfix">
+				<br>
+				<ul class="lsn nop norm hm clearfix">
 					<li class="l ib mrss bgWhite">
 					<a class="ib bgBlue rounds tdn pl pr colorWhite trans" href="#">Home</a>
 					</li>
 					<li class="l ib mrss bgWhite"><a class="ib rounds tdn pl pr hoverlgrey itemColorBlack trans" href="#">Profile</a></li>
 					<li class="l ib bgWhite"><a class="ib rounds tdn pl pr hoverlgrey itemColorBlack trans" href="#">Messages</a></li>
 				</ul>
-				
-				<ul class="lsn nop norm heightM posr clearfix">
-					<li class="l ib mrss bgWhite">
-                        <a class="transitionLink ib bgBlue rounds tdn pl pr colorWhite" href="#">
-                            <span class="transitionBg block rounds posa"></span>Home
-                        </a>
-					</li>
-					<li class="l ib mrss bgWhite"><a class="transitionLink-2 ib rounds tdn pl pr itemColorBlack" href="#">
-                    	<span class="transitionBg bgBlue block rounds posa"></span>Profile</a></li>
-					<li class="l ib bgWhite"><a class="transitionLink-3 ib rounds tdn pl pr hoverlgrey itemColorBlack" href="#">Messages</a></li>
-				</ul>
+                            <br>
 				
 				<ul class="rounds border lsn nop norm">
 					<li class="css3_round_topS borderBottom">
@@ -127,7 +117,7 @@
 						<a class="block heightL tdn pl pr hoverlgrey itemColorBlack css3_round_bottomS" href="#">Messages</a>
 					</li>
 				</ul>
-				
+                            <br>
 				<ul class="lsn nop norm">
 					<li class="bgWhite marginBottomSS">
 						<a class="block heightL bgBlue rounds tdn pl pr colorWhite" href="#">Home</a>
@@ -242,10 +232,10 @@
 <script type="text/javascript"> 
  $('.tabswrap-1').tabs({
    event: 'click',
-   currentClass: 'on',
+   currentClass: 'on mbn-1 b nobb',
    tabSelector: '.j_tab',
    panelSelector: ".c_tabpanel",
-   index: 1,
+   index: 0,
    callback: function(i) {
    }
  });
