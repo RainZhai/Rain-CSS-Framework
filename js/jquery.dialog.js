@@ -2,7 +2,7 @@
 * dailog 1.3.1
 * Anthor: zhaiyu
 * Date: 2013.1.21
-* lastUpdate : 2013.12.17
+* lastUpdate : 2016.05.19
 */
 (function ($) {
 /**
@@ -28,58 +28,75 @@
   window.dialog = $.dialog = function(obj) {
     this.obj = obj;
     $.extend(this,{
-      "width":540,
       // 弹出框宽度
-      "height":300,
+      "width":540,
       // 弹出框高度
-      "top":"20%",
+      "height":300,
       // 离顶部的距离
-      "left":"50%",
+      "top":"20%",
       // 离左边的距离
-      "draggable":false,
+      "left":"50%",
       // 是否可以拖拽
+      "draggable":false,
+      //头部是否显示
       "header":true,
+      //关闭是否显示
       "showClose":false,
-      "content":null,
       // 弹出框内显示的内容
-      "closeHandleClass":"c_close",
+      "content":null,
       // 关闭图标的句柄
-      "dialogHandleClass":"c_dialogwrap",
+      "closeHandleClass":"c_close",
       // 弹出层句柄
-      "titleText":"提示框",
+      "dialogHandleClass":"c_dialogwrap",
       // 弹出层文本
-      "bgColor":"#fff",
+      "titleText":"提示框",
       // 遮罩背景色
+      "bgColor":"#fff",
+      //关闭样式
       "closeStyle":{},
+      //关闭class
       "closeClass":"",
+      // 弹出框样式
       "dialogStyle":{},
-      // 设置弹出框样式
+      // 弹出框class
       "dialogClass":"",
-      // 设置弹出框class
+      // 头部样式
       "headStyle":{"background":"#F5F5F5"},
+      // 头部class
       "headClass":"",
+      // 内容样式
       "contentStyle":{},
+      // 内容class
       "contentClass":"",
+      // 按钮外层样式
       "btnsWrapStyle":{"text-align":"right"},
+      // 按钮外层class
       "btnsWrapClass":"",
-      "buttonsStyle":[ {} ],
       // 按钮组style
+      "buttonsStyle":[ {} ],
+      // 按钮组class
       "buttonsClass":[ "hs rounds gb button blueBtn marginLeft" ],
-      // 按钮class组
+      // 关闭回调
       "closeCallback":function() {},
+      // 常用按钮OK,OKCancel,YesNo,YesNoCancel
       "buttons":null,
-      // 常用按钮
+      // 自定义按钮组
       "buttonsArray":[],
-      // 按钮组
-      "buttonsCallback":{},
       // 按钮的回调
-      "buttonsAttr":[],
+      "buttonsCallback":{},
       // 按钮的属性
+      "buttonsAttr":[],
+      //按钮显示前的回调
       "beforeShow":function() {},
+      //按钮显示后的回调
       "afterShow":function() {},
+      //按钮关闭前的回调
       "beforeClose":function() {},
+      //按钮关闭后的回调
       "afterClose":function() {},
+      //上传是否显示
       "upload":false,
+      //自动适应
       "responsive": true
     }, this.obj || {});
     this.randomStr = Math.round(Math.random() * 1e6 + 1) + "", this.contentObj = this.content, this.closeClass = this.closeHandleClass + this.randomStr, this.dialogHandleClass = this.dialogHandleClass + this.randomStr, this.contentwrapid = "contentwrap" + this.randomStr, this.html = null;
@@ -229,7 +246,7 @@
        */
       "_initUpload":function() {
         var html = this.getHtml();
-        var uploadHtml = $('<div class="uploadBox margin">' + '<div class="hide c_picArea positionR">' + '<form enctype="multipart/form-data" method="post" action="#" id="upload-pic" target="iframe-post-form">' + '<input type="text" disabled="true" class="uploadFileName" id="txtFileName">' + '<span id="spanButtonPlaceHolder" class="valignMiddle"></span>' + '<label id="fsUploadProgress">正在上传...</label>' + "</form>" + '<span class="c_closeUploadBox closeUploadBox colorGrey positionA cursorPointer">X</span>' + "</div>" + '<a name="pic-area" class="c_lnPic" href="#">添加照片</a>' + "</div>");
+        var uploadHtml = $('<div class="uploadBox margin">' + '<div class="hide c_picArea positionR">' + '<form enctype="multipart/form-data" method="post" action="#" id="upload-pic" target="iframe-post-form">' + '<input type="text" disabled="true" class="uploadFileName" id="txtFileName">' + '<span id="spanButtonPlaceHolder" class="valignMiddle"></span>' + '<label id="fsUploadProgress">正在上传...</label>' + "</form>" + '<span class="c_closeUploadBox closeUploadBox posa cursorPointer">x</span>' + "</div>" + '<a name="pic-area" class="c_lnPic" href="#">添加照片</a>' + "</div>");
         html.find(".c_contentWrap").append(uploadHtml);
         uploadHtml.find(".c_lnPic").on("click", function() {
           _height = _height + 30;
@@ -310,7 +327,7 @@
           if (this.header) {
             var closehtml = "";
             if (this.showClose) {
-              closehtml = '<span class="' + this.closeClass + ' close block posa oh tac fontBord">X</span>';
+              closehtml = '<span class="' + this.closeClass + ' close block posa oh tac">x</span>';
             }
             this.html = $('<div id="' + this.dialogHandleClass + '" class="' + this.dialogHandleClass + ' dialogWrap tal posf vf">' + '<div class="dialogWrapIE o posa c_bgColor"></div>' + '<div class="c_dialogBox dialogBox posa"> ' + '<div class="c_dialogTitle p"><span class="c_titletext bottom">' + this.titleText + "</span>" + closehtml + "</div>" + '<div class="c_contentWrap pl pr"></div>' + '<p class="c_btnWrap m posr"> </p>' + "</div></div>");
           } else {

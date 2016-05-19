@@ -98,20 +98,20 @@
 <!--<script src="js/lib/require.js" data-main="js/dialogmain"></script>-->
 <script src="js/jquery-1.7.2.js"></script>
 <script src="js/util.js"></script>
-<script src="js/jquery.dialog.js"></script>
+<script src="js/jquery.dialog.js?=1"></script>
 <script>
-b =new dialog({
+var b =new dialog({
   top:'10%',
   draggable: true,
   showClose: true,
-  titleText:"hello dialog 2",
-  dialogStyle:{"border":"8px solid #ededed"},
+  titleText:"hello dialog",
+  dialogClass:"round-3 so",
+  dialogStyle:{"border":"1px solid #ccc"},
   headStyle:{"background":"#F5F5F5"},
-  headClass:"",
+  headClass:"roundt-3 ",
   contentStyle:{},
   contentClass:"",
-  btnsWrapStyle:{'text-align':'right'},
-  buttonsClass:["hs rounds gb btn bluebtn","hs rounds ggrey btn greybtn ml"],
+  btnsWrapStyle:{'text-align':'right'}, 
   closeCallback: function(){},
   buttons:"OKCancel",
   content:$(".c_testwrap2"),
@@ -133,6 +133,31 @@ util.registerStateChange(function(){
 util.initObjByUrl(b);
 //util.augment(c,b);
 b.show();
+
+var c =new dialog({
+  top:'10%',
+  draggable: true,
+  showClose: true,
+  titleText:"hello dialog",
+  dialogClass:"round-3 so",
+  dialogStyle:{"border":"1px solid #ccc"},
+  headStyle:{"background":"#F5F5F5"},
+  headClass:"roundt-3 ",
+  contentStyle:{},
+  contentClass:"",
+  btnsWrapStyle:{'text-align':'right'},
+  buttonsClass:["hs ib pr pl rounds gb btn bluebtn white"],
+  closeCallback: function(){},
+  buttonsArray: ["确定"],
+  content: "hello",
+  "buttonsCallback":{"确定": function(){
+      c.close();
+  }}
+});
+c.show();
+util.registerStateChange(function(){
+  if(!util.state() && b){b.close();}else{b._show();}
+});
 </script>
 </body>
 </html>
