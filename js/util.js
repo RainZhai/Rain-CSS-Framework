@@ -637,12 +637,15 @@ util.preview = function(file,callback) {
    * @param {Object} 参数对象
    * @return {Object} 返回一个公有对象
    */
-  util.loading = $.fn.loading = $.loading = function(obj) {
+  util.loading = util.tip = $.fn.loading = $.loading = function(obj) {
     var opt = $.extend({
       icon: true,
       content: "", //文本
       loadingStyle: {}, //loading的样式
-      loadingClass: "", //loading class。
+      loadingClass: "round-5", //loading class
+      iconClass: "block center roundall o-5",
+      iconStyle:{},
+      iconSrc: "images/ajax-loader.gif",
       textStyle: {
         "font-size": "1.2em"
       }, //文本的样式
@@ -660,7 +663,7 @@ util.preview = function(file,callback) {
       /** 初始化html*/
       initHtml: function() {
         if (!o.html) {
-          o.html = $('<div id="j_loader' + randomStr + '" class="j_loader' + randomStr + ' ui-loader  posa fullh fullw hide"><div class="j_loadermain loadermain mlrauto round-5"><span class="j_icon ui-icon-loading block center roundall o-5"></span><div class="j_content tac"></div></div></div>');
+          o.html = $('<div id="j_loader' + randomStr + '" class="j_loader' + randomStr + ' ui-loader  posa fullh fullw hide"><div class="j_loadermain loadermain mlrauto"><img class="j_icon" /><div class="j_content tac"></div></div></div>');
         }
         if (_content) {
           o.html.find('.j_content').html(_content);
@@ -675,7 +678,11 @@ util.preview = function(file,callback) {
         }
         o.html.find('.j_loadermain').css(opt.loadingStyle);
         o.html.find('.j_content').css(opt.textStyle);
-        o.html.find('.j_content').addClass(o.textClass);
+        o.html.find('.j_content').addClass(opt.textClass);
+        
+        o.html.find('.j_icon').css(opt.iconStyle);
+        o.html.find('.j_icon').addClass(opt.iconClass);
+        o.html.find('.j_icon').attr("src",opt.iconSrc);
         $('body').append(o.html);
       },
       /**
