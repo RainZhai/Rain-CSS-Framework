@@ -30,7 +30,7 @@ mobile.midAngle = function (d) {
 mobile.showPie = function(data,h,w) {
 	var svg = d3.select("#pie-chart").append("svg").attr("width", w).attr("height", h);
 	var g = svg.append("g");
-	var colors = ['#ef2a79', '#f8b13d', '#2a95c7'];
+	//var colors = ['#ef2a79', '#f8b13d', '#2a95c7', '#2a95c7'];
 	var outerArea = g.append("g").attr("id", "outer-area");
 
 	var outerArcs = outerArea.selectAll("path").data(data).enter()
@@ -79,7 +79,7 @@ mobile.showPie = function(data,h,w) {
 	var polyline = svg.select(".lines").selectAll("polyline").data(data);
 	
 	var cycles = svg.select(".lines").selectAll("circle").data(data);
-	mobile.drawCircle(cycles,colors,3);
+	mobile.drawCircle(cycles,data,3);
 	polyline.enter().append("polyline").each(function(d) {
 		this._current = {
 			startAngle: 0,
@@ -89,7 +89,7 @@ mobile.showPie = function(data,h,w) {
 	
 	polyline.transition().duration(1000)
 		.attr("stroke", function(d, i) {
-			return colors[i];
+			return data[i].fill;
 		})
 		.attr("stroke-width", "1px")
 		.attrTween("points", function(d) {
@@ -112,7 +112,7 @@ mobile.showPie = function(data,h,w) {
 	polyline.exit().remove();
 };
 
-mobile.drawCircle = function(obj,colors,r){
+mobile.drawCircle = function(obj,data,r){
 	obj.enter()
  	.append("circle").each(function(d) {
 		this._current = {
@@ -143,7 +143,7 @@ mobile.drawCircle = function(obj,colors,r){
 		var pos = arc.centroid(d2);
 		return pos[1]; 
 	}).attr("r", r).attr("fill", function(d,i) {
- 	 	return colors[i];
+ 	 	return data[i].fill;
  	});
 };
 
@@ -197,15 +197,17 @@ mobile.drawText = function(obj,x,y,color,propname){
 mobile.showPay = function() { 
 		var used = {
 			item0: {name:"文本1",use:50,cost:120,sign:" G"},
-			item1: {name:"文本2",use:555,cost:10,sign:" G"},
-			item2: {name:"文本3",use:10,cost:10,sign:" G"}
+			item1: {name:"文本2",use:89,cost:10,sign:" G"},
+			item2: {name:"文本3",use:10,cost:10,sign:" G"},
+			item3: {name:"文本4",use:40,cost:40,sign:" G"}
 		}
-		var costsum = used.item0.use + used.item1.use + used.item2.use; 
+		var costsum = used.item0.use + used.item1.use + used.item2.use + used.item3.use; 
 		var d1 = 360 * used.item0.use / costsum;
 		var d2 = 360 * used.item1.use / costsum;
 		var d3 = 360 * used.item2.use / costsum;
+		var d4 = 360 * used.item3.use / costsum;
 		if(costsum===0){
-			d1 = d2 = d3 = 120;
+			d1 = d2 = d3 = d4 = 90;
 		}
 		log(d1,d2,d3);
 		mobile.showPie( [{
@@ -238,6 +240,16 @@ mobile.showPay = function() {
 			fill: "#2a95c7",
 			angularSize: d3,
 			startAngle: d1+d2
+		}, {
+			type: used.item3.name,
+			use: used.item3.use + used.item3.sign,
+			cost: used.item3.cost,
+			id: "arc-4",
+			radius: 15,
+			innerRadius: 64,
+			fill: "#161742",
+			angularSize: d4,
+			startAngle: d1+d2+d3
 		}],320,320); 
 }
 mobile.showPay();
