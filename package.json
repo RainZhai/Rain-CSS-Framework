@@ -1,11 +1,13 @@
 {
-  "name": "install-grunt",
-  "description": "Example project to demonstrate Grunt.",
+  "name": "raincss",
+  "description": "rain css",
   "version": "0.1.0",
-  "file": "jquery-1.7.2",
-  "private": true,
   "author": {
     "name": "zhaiyu"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --inline --hot",
+    "build": "webpack build"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -20,7 +22,20 @@
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-strip": "*",
-    "gulp": "^3.9.0"
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-runtime": "^6.11.6",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "html-webpack-plugin": "^2.22.0",
+    "image-webpack-loader": "^2.0.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
   },
   "dependencies": {
     "express": "*"
