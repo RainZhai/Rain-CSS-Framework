@@ -6,11 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   devtool: 'eval-source-map',
   debug: true,
-  entry: [
-      'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://localhost:8080',
-      path.resolve(__dirname, './main.js')
-  ],
+  entry: ['./js/main.js'],
   output: {
     path: './js/',
     filename: 'bundle.js',
@@ -31,11 +27,11 @@ module.exports = {
     })
   ],
   module: {
-    preLoaders: [{
+  /*  preLoaders: [{
       test: /\.js$/,
       loader: "eslint-loader",
       exclude: /node_modules/
-    }],
+    }],*/
     loaders: [{
       test: /\.vue$/,
       loader: 'vue',
@@ -58,16 +54,22 @@ module.exports = {
       loader: 'url?limit=10000&name=fonts/[hash:8].[name].[ext]'
     }]
   },
-  vue: {
+ /* vue: {
     loaders: {
       js: 'babel!eslint'
     }
   },
   eslint: {
     configFile: './.eslintrc.json'
-  },
+  },*/
   resolve: {
     root: path.resolve(__dirname, 'node_modules'),
     extensions: ['', '.js', '.vue', '.scss']
+  },
+  devServer:{
+  historyApiFallback:true,
+  hot:true,
+  inline:true,
+  progress:true//报错无法识别，删除后也能正常刷新
   }
 }

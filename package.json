@@ -6,7 +6,7 @@
     "name": "zhaiyu"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot",
+    "start": "webpack-dev-server --inline",
     "build": "webpack build"
   },
   "devDependencies": {
